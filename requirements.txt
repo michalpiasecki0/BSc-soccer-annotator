@@ -9,3 +9,5 @@ pandas=>1.5.2
 beautifulsoup=>4.11.1
 
 sqlite3=>3.40.0
+
+streamlit_lottie

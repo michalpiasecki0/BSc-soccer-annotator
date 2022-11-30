@@ -30,8 +30,8 @@ local_css(PATH_style)
 
 # ---- LOAD ASSETS ----
 lottie_coding = load_lottieurl("https://assets5.lottiefiles.com/packages/lf20_fcfjwiyb.json")
-img_contact_form = Image.open("Gui_test_demo/images/yt_contact_form.png")
-img_lottie_animation = Image.open("Gui_test_demo/images/yt_lottie_animation.png")
+#img_contact_form = Image.open("Gui_test_demo/images/yt_contact_form.png")
+#img_lottie_animation = Image.open("Gui_test_demo/images/yt_lottie_animation.png")
 
 # ---- HEADER SECTION ----
 with st.container():
@@ -49,10 +49,11 @@ with st.container():
         st.write("##")
         st.write(
             """
-            -
-            -
-            -
-            -
+            - inputting data
+            - data deletion
+            - communication with database
+            - displaying data
+            - login form
             """
         )
     with right_column:
@@ -146,6 +147,29 @@ with st.container():
             output_text = 'Row not deleted (such an instance did not exist)'
             st.write(output_text)
 
+
+# ---- DISPLAY DATA SIMULATOR ----
+
+with st.container():
+    st.write("---")
+    st.header("DISPLAY Data Simulator")
+    st.write("##")
+    st.write('This section serves to simulate displaying data through match and date')
+    #st.write('ID of a annotation is composed of "team1-team2-date-annotator-annotation_time" in a form of a string')
+
+    form_display = st.form(key="form_display")
+    match = form_display.text_input(label='Enter match (in format team1-team2)')
+    match_date = form_display.date_input(label='Select match date')
+    submit = form_display.form_submit_button(label='Display data')
+
+    if submit:
+        match_date = str(match_date)
+        annotation_key = (match,match_date)
+        df = get_data_frame(annotation_key,conn)
+        if type(df) == None:
+            st.write('No data to be shown')
+        else:
+            st.dataframe(df)
 
 
 
