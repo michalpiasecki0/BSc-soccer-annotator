@@ -8,6 +8,7 @@ from Database.Objects import Annotation
 def initialize_base():
     if not os.path.isfile('Database/annotations.db'):
         conn = sqlite3.connect('Database/annotations.db')
+        c = conn.cursor()
         c.execute("""
         CREATE TABLE annotations (
         x_cor REAL NOT NULL,
