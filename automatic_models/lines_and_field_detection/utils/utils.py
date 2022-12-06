@@ -11,7 +11,7 @@ try:
 except ModuleNotFoundError:
     pass
 
-from utils import constant_var
+from lines_and_field_detection.utils import constant_var
 
 
 def confirm(question='OK to continue?'):

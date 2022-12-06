@@ -5,7 +5,7 @@
 import torch
 import numpy as np
 
-from utils import utils, warp
+from lines_and_field_detection.utils import utils, warp
 
 
 class IOU(object):

@@ -12,8 +12,8 @@ import json
 import os
 
 
-from options.options_check import check_cuda, check_pretrained_weights, check_warp_params
-from options.options_utils import str2bool, print_opt, confirm_opt
+from lines_and_field_detection.options.options_check import check_cuda, check_pretrained_weights, check_warp_params
+from lines_and_field_detection.options.options_utils import str2bool, print_opt, confirm_opt
 
 
 def read_global_config():

@@ -7,11 +7,11 @@ from pathlib import Path
 import os
 import cv2
 
-from utils import utils, warp, image_utils, constant_var
-from models import end_2_end_optimization
-from utils.image_utils import *
-from automatic_models.extra_utils.helpers import convert_numpy_to_bitmask
-from automatic_models.extra_utils.constants import PATH_TO_AUTOMATIC_MODELS
+from lines_and_field_detection.utils import utils, warp, image_utils, constant_var
+from lines_and_field_detection.models import end_2_end_optimization
+from lines_and_field_detection.utils.image_utils import *
+from extra_utils.helpers import convert_numpy_to_bitmask
+from extra_utils.constants import PATH_TO_AUTOMATIC_MODELS
 
 
 @dataclass

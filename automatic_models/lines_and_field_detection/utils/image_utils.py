@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 
-from utils import utils
+from lines_and_field_detection.utils import utils
 
 
 def normalize_single_image(image):

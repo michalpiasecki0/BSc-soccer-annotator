@@ -8,7 +8,7 @@ import json
 
 import torch
 
-from utils import utils, constant_var
+from lines_and_field_detection.utils import utils, constant_var
 
 
 def check_pretrained_weights(opt):

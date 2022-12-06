@@ -2,8 +2,8 @@ import abc
 
 import numpy as np
 
-from utils import utils
-from models import init_guesser
+from lines_and_field_detection.utils import utils
+from lines_and_field_detection.models import init_guesser
 
 
 def get_homography_between_corners_and_default_canon4pts(corners, canon4pts_type: str):

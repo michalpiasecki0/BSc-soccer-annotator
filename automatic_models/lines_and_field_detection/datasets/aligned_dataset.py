@@ -8,7 +8,7 @@ from torch.utils import data
 import imageio
 import tables
 
-from utils import utils, warp, image_utils
+from lines_and_field_detection.utils import utils, warp, image_utils
 
 
 class AlignedDatasetFactory():

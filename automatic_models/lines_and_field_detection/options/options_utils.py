@@ -2,7 +2,7 @@
 '''
 
 
-from utils import utils
+from lines_and_field_detection.utils import utils
 
 
 def str2bool(v: str) -> bool:

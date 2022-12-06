@@ -2,7 +2,7 @@
 import torch
 import numpy as np
 
-from utils import utils
+from lines_and_field_detection.utils import utils
 
 
 def warp_image(img, H, out_shape=None, input_grid=None):

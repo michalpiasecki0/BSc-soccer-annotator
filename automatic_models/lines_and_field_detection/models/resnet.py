@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 
-from utils import utils
+from lines_and_field_detection.utils import utils
 
 __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101',
            'resnet152']

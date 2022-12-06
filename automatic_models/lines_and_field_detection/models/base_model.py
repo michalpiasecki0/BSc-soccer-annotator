@@ -6,7 +6,7 @@ import abc
 
 import torch
 
-from utils import utils
+from lines_and_field_detection.utils import utils
 
 
 class BaseModel(abc.ABC):
