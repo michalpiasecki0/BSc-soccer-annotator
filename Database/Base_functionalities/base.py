@@ -1,6 +1,7 @@
 import sqlite3
 import os
 from Database.Objects import Annotation
+import pandas as pd
 
 # x-cor, y-cor, time-start, time-finish, match, match-date, annotator-name, action-type, description
 # match is composed of given string: team1-team2, where team1 and team2 should be in alphabetical order
@@ -8,6 +9,7 @@ from Database.Objects import Annotation
 def initialize_base():
     if not os.path.isfile('Database/annotations.db'):
         conn = sqlite3.connect('Database/annotations.db')
+        c = conn.cursor()
         c.execute("""
         CREATE TABLE annotations (
         x_cor REAL NOT NULL,
@@ -91,8 +93,27 @@ def get_row(annotation_key,connector):
     match = annotation_key[0]
     date = annotation_key[1]
     c = connector.cursor()
-    c.execute("SELECT * FROM annotations WHERE date=:date and match=:match",{'date':date,'match':match})
+    c.execute("SELECT * FROM annotations WHERE match_date=:date and match=:match",{'date':date,'match':match})
     return c.fetchall()
+
+def get_data_frame(annotation_key,connector):
+    match = annotation_key[0]
+    date = annotation_key[1]
+    c = connector.cursor()
+    #c.execute("SELECT * FROM annotations WHERE match_date=:date and match=:match", {'date': date, 'match': match})
+    to_execute = "SELECT * FROM annotations WHERE match_date = '{}' AND match = '{}'".format(date,match)
+    to_execute_2 = "SELECT * FROM annotations"
+    try:
+        df = pd.read_sql_query(to_execute_2, connector)
+    except Exception:
+        df = None
+    return df
+
+def register_user(user_data,connnector):
+    pass
+
+def user_login(user_data,connector):
+    pass
 
 #to be performed via GUI
 def download_selected(keys_arr):
