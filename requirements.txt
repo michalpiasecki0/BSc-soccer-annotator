@@ -1,0 +1,13 @@
+requests==
+
+streamlit=>1.15.1
+
+PIL=>9.3.0
+
+pandas=>1.5.2
+
+beautifulsoup=>4.11.1
+
+sqlite3=>3.40.0
+
+streamlit_lottie
