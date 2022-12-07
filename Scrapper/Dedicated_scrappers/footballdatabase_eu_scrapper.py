@@ -8,6 +8,7 @@ from requests_html import HTMLSession
 from selenium.webdriver.common.by import By
 from unidecode import unidecode
 import re
+import json
 
 
 def initialize_session_footballdatabase():
@@ -24,8 +25,10 @@ def initialize_login_session(driver, session):
 # date format is YYYY-MM-DD
 def get_data_from_GUI(date, team1, team2):
     team1 = unidecode(team1).replace(" ", "_")
+    team1 = team1.lower()
     team2 = unidecode(team2).replace(" ", "_")
-    return (date, team1, team2)
+    team2 = team2.lower()
+    return date, team1, team2
 
 
 def get_game_id_and_href(data, session, driver):
@@ -57,7 +60,7 @@ def get_game_id_and_href(data, session, driver):
     key_dict = {'reference_core': 'https://www.footballdatabase.eu', 'match_id': id, 'team_1': team1,
                 'team_2': team2}
     reference_link = "{reference_core}{match_id}/{team_1}-{team_2}".format(**key_dict)
-    return id, reference_link
+    return id, 'https://www.footballdatabase.eu/en/match/overview/785164-mc_el_eulma-es_setif'
 
 
 def get_match_page_session_and_data(session, driver, reference_link):
@@ -91,7 +94,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
     # <--- getting match length ---->
     def get_match_length():
         # no information about match length given on the website
-        return None
+        return ''
 
     # <--- getting player scores and times ---->
     def get_players_scores():
@@ -122,6 +125,99 @@ def get_match_page_session_and_data(session, driver, reference_link):
         temp = soup.find_all('p', class_='nameReferee')
         return temp[0].text.replace(" ", "", 1)
 
+    # <--- getting substitutions ---->
+    def get_substitutions():
+        def correct_concat_numbers(z):
+            # potential problem with games that last more than 100 minutes !!!
+            if len(str(int(z))) < 3:
+                return int(z)
+            z = str(int(z))
+            return z[len(z) // 2:]
 
-def save_to_JSON(data_raw_form):
+        temp = soup.find_all('div', class_='playerTitulaire outplayer')
+        table = temp[2].find_all('table')
+        df1 = pd.read_html(str(table))[0][["Substitutes.3", "Substitutes.4"]]
+        df1['type'] = 'up'
+        x = list(df1.itertuples(index=False, name=None))
+
+        temp = soup.find_all('div', class_='playerTitulaire outplayer')
+        table = temp[0].find_all('table')
+        df1 = pd.read_html(str(table))[0][["First 11.3", "First 11.4"]]
+        df1 = df1[df1['First 11.4'].notna()]
+        df1["First 11.4"] = df1["First 11.4"].apply(correct_concat_numbers)
+        df1['type'] = 'down'
+        y = list(df1.itertuples(index=False, name=None))
+        team_1_substitutions = x + y
+
+        temp = soup.find_all('div', class_='playerTitulaire outplayer')
+        table = temp[3].find_all('table')
+        df1 = pd.read_html(str(table))[0][["Substitutes.3", "Substitutes.4"]]
+        df1['type'] = 'up'
+        x = list(df1.itertuples(index=False, name=None))
+
+        temp = soup.find_all('div', class_='playerTitulaire outplayer')
+        table = temp[1].find_all('table')
+        df1 = pd.read_html(str(table))[0][["First 11.3", "First 11.4"]]
+        df1 = df1[df1['First 11.4'].notna()]
+        df1["First 11.4"] = df1["First 11.4"].apply(correct_concat_numbers)
+        df1['type'] = 'down'
+        y = list(df1.itertuples(index=False, name=None))
+        team_2_substitutions = x + y
+        return team_1_substitutions, team_2_substitutions
+
+
+    def intent_to_get_data(data_get_func):
+        try:
+            data = data_get_func()
+        except Exception:
+            data = ''
+        return data
+
+    score = intent_to_get_data(get_score)
+
+    try:
+        stadium, country = get_country_stadium()
+    except Exception:
+        stadium, country = '', ''
+
+    try:
+        first_eleven_team_1, first_eleven_team_2 = get_first_eleven_both_teams()
+    except Exception:
+        first_eleven_team_1, first_eleven_team_2 = '', ''
+
+    match_length = get_match_length()
+
+    try:
+        scores_team_1, scores_team_2 = get_players_scores()
+    except Exception:
+        scores_team_1, scores_team_2 = '', ''
+
+    try:
+        team_manager_1, team_manager_2 = get_team_managers()
+    except Exception:
+        team_manager_1, team_manager_2 = '', ''
+
+    referee = intent_to_get_data(get_referee)
+
+    try:
+        substitutions_team_1, substitutions_team_2 = get_substitutions()
+    except Exception:
+        substitutions_team_1, substitutions_team_2 = '', ''
+
+    dict_return = {'score' : score,'stadium_name':stadium,'country':country,'first_eleven_team_1':first_eleven_team_1,
+                   'first_eleven_team_2':first_eleven_team_2,'match_length':match_length,'scores_team_1':scores_team_1,
+                   'scores_team_2':scores_team_2,'team_manager_1':team_manager_1,'team_manager_2':team_manager_2,
+                   'referee':referee,'substitutions_team_1':substitutions_team_1,'substitutions_team_2':substitutions_team_2}
+
+    return dict_return
+
+
+def save_to_JSON(to_json_dict, match_date_string):
+    #file = match_date_string + '/' + 'scrapped_data.json'
+    file = 'scrapped_data.json'
+    with open(file, "w") as outfile:
+        json.dump(to_json_dict, outfile)
+
+
+def execute_all(date, team1, team2):
     pass
