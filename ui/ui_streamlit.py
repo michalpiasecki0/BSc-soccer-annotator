@@ -18,6 +18,7 @@ st.set_page_config(
 
 st.title('BSc Soccer Annotator')
 
+sidebar = st.sidebar
 firstRow = st.columns([3, 4, 3])
 with firstRow[0]:
     videoSourceType = st.radio('Video Source',
@@ -39,7 +40,6 @@ with firstRow[0]:
 
     elif videoSourceType == 'File':
         videoFile = st.file_uploader('Upload your video file',
-                                     type='mp4',
                                      on_change=video_on_change)
         if videoFile is not None:
             videoBytes = videoFile.getvalue()
@@ -57,31 +57,50 @@ with firstRow[0]:
 
     secondsOfVideoPlayed = videoPlayer[1]['playedSeconds'] if videoPlayer[1] is not None else 0
 
+with sidebar:
+    with st.form(key='scraper_form'):
+        st.write('Getting data about the match')
+        st.date_input('Choose the date of the match')
+        sidebarColumns = st.columns(2)
+        with sidebarColumns[0]:
+            st.text_input('The first team')
+        with sidebarColumns[1]:
+            st.text_input('The second team')
+        scrapData = st.form_submit_button('Get data')
+        if scrapData:
+            pass  # initialize data scraping
+
+    with st.form(key='automatic_annotation'):
+        st.write('Getting automatic annotations')
+        st.form_submit_button('Get annotations')
+
 with firstRow[1]:
-    annotationType = st.selectbox('Choose annotation type',
-                                  ['Event annotation',
-                                   'Field annotation',
-                                   'Line annotation',
-                                   'Object annotation'],
-                                  index=0)
+    annotationType = st.radio('Choose annotation type',
+                              ['Event annotation',
+                               'Field annotation',
+                               'Line annotation',
+                               'Player annotation',
+                               'Ball annotation'],
+                              index=0,
+                              horizontal=True)
     if annotationType == 'Field annotation':
         canvasDrawingMode = 'polygon'
-        annotationsFile = 'data/field_annotations.csv'
+        annotationsFile = 'ui/data/field_annotations.csv'
     elif annotationType == 'Line annotation':
         canvasDrawingMode = 'line'
-        annotationsFile = 'data/line_annotations.csv'
-    elif annotationType == 'Object annotation':
+        annotationsFile = 'ui/data/line_annotations.csv'
+    elif annotationType in ['Player annotation', 'Ball annotation']:
         canvasDrawingMode = 'rect'
-        annotationsFile = 'data/object_annotations.csv'
+        annotationsFile = 'ui/data/object_annotations.csv'
     elif annotationType == 'Event annotation':
-        annotationsFile = 'data/event_annotations.csv'
+        annotationsFile = 'ui/data/event_annotations.csv'
     annotations = pd.read_csv(annotationsFile)
 
 with firstRow[2]:
     if annotationType == 'Line annotation':
         canvas_field = st_canvas(
             fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
-            background_image=Image.open('data/football_pitch.png'),
+            background_image=Image.open('ui/data/football_pitch.png'),
             update_streamlit=True,
             drawing_mode='point',
             key="canvas_pitch",
@@ -102,7 +121,7 @@ with firstRow[2]:
 with st.expander('Editing', expanded=False):
     secondRow = st.columns([1, 2, 1, 1, 6])
 with secondRow[0]:
-    players = pd.read_csv('data/players.csv')
+    players = pd.read_csv('ui/data/players.csv')
     players.set_index('_')
     teams = pd.DataFrame({'Teams': players.columns[[1, 2]]})
     gb_teams = GridOptionsBuilder.from_dataframe(teams)
@@ -121,7 +140,7 @@ with secondRow[1]:
                         fit_columns_on_grid_load=True)
 
 with secondRow[2]:
-    events = pd.read_csv('data/events.csv')
+    events = pd.read_csv('ui/data/events.csv')
     gb_events = GridOptionsBuilder.from_dataframe(events)
     gb_events.configure_default_column(editable=True)
     ag_events = AgGrid(data=events,
@@ -134,9 +153,9 @@ with secondRow[3]:
         updatedTeams = list(ag_teams['data']['Teams'])
         updatedPlayers = ag_players['data']
         updatedPlayers.columns = [updatedPlayers.columns[0]] + updatedTeams
-        updatedPlayers.to_csv('data/players.csv', index=False)
+        updatedPlayers.to_csv('ui/data/players.csv', index=False)
         updatedEvents = ag_events['data']
-        updatedEvents.to_csv('data/events.csv', index=False)
+        updatedEvents.to_csv('ui/data/events.csv', index=False)
 
 with secondRow[4]:
     gb_annotations = GridOptionsBuilder.from_dataframe(annotations)
@@ -184,7 +203,7 @@ with firstRow[1]:
                 ['-'] + list(players.columns[[1, 2]]))
             selectedPlayer = st.selectbox(
                 'Choose player',
-                players[selectedTeam] if selectedTeam != '-' else ['Ball'])
+                players[selectedTeam] if selectedTeam != '-' else ['Ball', 'Referee'])
 
         currentFrame = get_frame(secondsOfVideoPlayed)
         canvas_frame = st_canvas(
@@ -208,8 +227,9 @@ with firstRow[1]:
             ['-'] + list(players[selectedTeam]) if selectedTeam != '-' else ['-'])
         submitAnnotation = st.button('Add annotation')
         if submitAnnotation:
-            presentedAnnotations.add_rows({'Event': [selectedEvent],
-                                           'Team': [selectedTeam],
-                                           'Player': [selectedPlayer],
-                                           'Min': [secondsOfVideoPlayed // 60],
-                                           'Sec': [round(secondsOfVideoPlayed % 60, 2)]})
+            pass
+            # presentedAnnotations.add_rows({'Event': [selectedEvent],
+            #                                'Team': [selectedTeam],
+            #                                'Player': [selectedPlayer],
+            #                                'Min': [secondsOfVideoPlayed // 60],
+            #                                'Sec': [round(secondsOfVideoPlayed % 60, 2)]})
