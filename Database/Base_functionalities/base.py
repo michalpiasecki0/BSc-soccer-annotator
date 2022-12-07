@@ -104,7 +104,7 @@ def get_data_frame(annotation_key,connector):
     to_execute = "SELECT * FROM annotations WHERE match_date = '{}' AND match = '{}'".format(date,match)
     to_execute_2 = "SELECT * FROM annotations"
     try:
-        df = pd.read_sql_query(to_execute_2, connector)
+        df = pd.read_sql_query(to_execute, connector)
     except Exception:
         df = None
     return df
