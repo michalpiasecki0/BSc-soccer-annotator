@@ -1,3 +1,5 @@
+import shutil
+import json
 import numpy as np
 import cv2
 from pathlib import Path
@@ -5,13 +7,18 @@ from typing import List, Dict, Optional
 
 from automatic_models.extra_utils.helpers import divide_video_into_frames
 from automatic_models.lines_and_field_detection.lines_and_field_detector import LineDetector
+from automatic_models.object_detection.object_detector import ObjectDetector
 #from detect import detect_2
 
 class VideoHandler:
     def __init__(self, video_path: str,
+                 desired_frequency: float,
+                 starting_point: float,
                  output_path: str):
         self.video_path = video_path
         self.output_path = output_path
+        self.desired_frequency = desired_frequency
+        self.starting_point = starting_point
         self.frames: Optional[Dict[int, np.ndarray]] = None
         self.image_handlers: Optional[Dict[int, ImageHandler]] = None
         #self.events: Optional[Dict] = None
@@ -26,6 +33,13 @@ class VideoHandler:
                         'objects': {}}
     def save_results_to_files(self):
         general_path = Path(self.output_path)
+
+        for name in ['homographies','objects']:
+            if self.results[name]:
+
+                with open(f'{str(general_path / name)}.json', 'w') as f:
+                    json.dump(self.results[name], f)
+
 
     def save_one_result(self, result_type: str,):
         general_path = Path(self.output_path)
@@ -43,17 +57,17 @@ class VideoHandler:
 
 
 
-    def divide_video(self, desired_frequency: Optional[int] = None):
+    def divide_video(self):
         if self.frames:
             print('Video is already divided')
         else:
             self.frames, self.image_handlers = {}, {}
             self.frames = divide_video_into_frames(video_path=self.video_path,
                                                    output_folder=self.output_path + '/raw_frames',
-                                                   desired_frequency=desired_frequency)
+                                                   desired_frequency=self.desired_frequency)
             for idx, frame in self.frames.items():
-                self.image_handlers[idx] = ImageHandler(idx = idx,
-                                                        image_array=frame)
+                self.image_handlers[self.starting_point + idx * (1 / self.desired_frequency)] = \
+                    ImageHandler(idx=self.starting_point + idx * (1 / self.desired_frequency), image_array=frame)
 
     def annotate_events(self):
         """TO DO"""
@@ -86,9 +100,18 @@ class VideoHandler:
 
 
     def detect_objects(self):
-        """This part is not yet integrated with Handlers.
-        Provisional usage is provided in object_detection/yolo/object_detection.py"""
-        pass
+        if self.results['objects']:
+            print('Fields and lines are already calculated')
+        else:
+            if self.image_handlers:
+                for idx, image_handler in self.image_handlers.items():
+                    objects = image_handler.get_objects()
+
+                    self.results['objects'][idx] = objects
+
+                    print(f'{idx} was processed.')
+            else:
+                print('You must divide video and create image handlers before invoking Object Detection')
 
 
 class ImageHandler:
@@ -113,9 +136,11 @@ class ImageHandler:
         pass
 
     def get_objects(self):
-        """This part is not yet integrated with Handlers.
-        Provisional usage is provided in object_detection/yolo/object_detection.py"""
-        pass
+        object_detector = ObjectDetector(idx=self.idx,
+                                         image_array=self.image_array)
+        object_detector()
+        self.objects = object_detector.results
+        return self.objects
 
 
     def get_lines_field_and_homography(self,
