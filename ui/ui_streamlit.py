@@ -1,3 +1,4 @@
+import datetime
 import streamlit as st
 from st_aggrid import AgGrid, GridOptionsBuilder
 import pandas as pd
@@ -8,6 +9,7 @@ from youtube_dl import YoutubeDL
 import cv2
 from base64 import b64encode
 from tempfile import NamedTemporaryFile
+import json
 
 # streamlit configs
 st.set_page_config(
@@ -16,9 +18,54 @@ st.set_page_config(
     layout="wide"
 )
 
+# loading default data
+players = pd.read_csv('ui/data/players.csv')
+events = pd.read_csv('ui/data/events.csv')
+fieldAnnotations = pd.read_csv('ui/data/field_annotations.csv')
+lineAnnotations = pd.read_csv('ui/data/line_annotations.csv')
+playerAnnotations = pd.read_csv('ui/data/player_annotations.csv')
+ballAnnotations = pd.read_csv('ui/data/ball_annotations.csv')
+eventAnnotations = pd.read_csv('ui/data/event_annotations.csv')
+
 st.title('BSc Soccer Annotator')
 
 sidebar = st.sidebar
+with sidebar:
+    with st.form(key='scraper_form'):
+        st.write('Getting data about the match')
+        matchDate = st.date_input('Choose the date of the match', value=datetime.date(2019, 8, 17))
+        sidebarColumns = st.columns(2)
+        with sidebarColumns[0]:
+            firstTeam = st.text_input('The first team', value='Celta Vigo')
+        with sidebarColumns[1]:
+            secondTeam = st.text_input('The second team', value='Real Madrid')
+        scrapeData = st.form_submit_button('Get data')
+        if scrapeData:
+            # initialize data scraping
+            # scrapedData = json.load(
+            #     open(
+            #         'matches/' + str(matchDate) + '_' + firstTeam + '_' + secondTeam + '/scrapped_data.json'
+            #     )
+            # )
+            st.session_state['scrapedData'] = json.load(
+                open('matches/2019-08-17_celtavigo_realmadrid/scrapped_data.json')
+            )
+
+    with st.form(key='automatic_annotation'):
+        st.write('Getting automatic annotations')
+        annotate = st.form_submit_button('Get annotations')
+        if annotate:
+            # initialize automatic annotation
+            st.session_state['annotatedEvents'] = json.load(
+                open('matches/2019-08-17_celtavigo_realmadrid/objects.json')
+            )
+
+if 'scrapedData' in st.session_state:
+    scrapedData = st.session_state['scrapedData']
+    players.columns = ['_', firstTeam, secondTeam]
+    players[firstTeam] = scrapedData['first_eleven_team_1']
+    players[secondTeam] = scrapedData['first_eleven_team_2']
+
 firstRow = st.columns([3, 4, 3])
 with firstRow[0]:
     videoSourceType = st.radio('Video Source',
@@ -57,22 +104,11 @@ with firstRow[0]:
 
     secondsOfVideoPlayed = videoPlayer[1]['playedSeconds'] if videoPlayer[1] is not None else 0
 
-with sidebar:
-    with st.form(key='scraper_form'):
-        st.write('Getting data about the match')
-        st.date_input('Choose the date of the match')
-        sidebarColumns = st.columns(2)
-        with sidebarColumns[0]:
-            st.text_input('The first team')
-        with sidebarColumns[1]:
-            st.text_input('The second team')
-        scrapData = st.form_submit_button('Get data')
-        if scrapData:
-            pass  # initialize data scraping
-
-    with st.form(key='automatic_annotation'):
-        st.write('Getting automatic annotations')
-        st.form_submit_button('Get annotations')
+if 'annotatedEvents' in st.session_state:
+    annotatedEvents = st.session_state['annotatedEvents']
+    if str(float(int(secondsOfVideoPlayed))) in annotatedEvents:
+        annotatedEventsDf = pd.DataFrame.from_dict(annotatedEvents[str(float(int(secondsOfVideoPlayed)))], orient='index')
+        playerAnnotations = annotatedEventsDf
 
 with firstRow[1]:
     annotationType = st.radio('Choose annotation type',
@@ -85,16 +121,18 @@ with firstRow[1]:
                               horizontal=True)
     if annotationType == 'Field annotation':
         canvasDrawingMode = 'polygon'
-        annotationsFile = 'ui/data/field_annotations.csv'
+        annotations = fieldAnnotations
     elif annotationType == 'Line annotation':
         canvasDrawingMode = 'line'
-        annotationsFile = 'ui/data/line_annotations.csv'
-    elif annotationType in ['Player annotation', 'Ball annotation']:
+        annotations = lineAnnotations
+    elif annotationType == 'Player annotation':
         canvasDrawingMode = 'rect'
-        annotationsFile = 'ui/data/object_annotations.csv'
+        annotations = playerAnnotations
+    elif annotationType == 'Ball annotation':
+        canvasDrawingMode = 'rect'
+        annotations = ballAnnotations
     elif annotationType == 'Event annotation':
-        annotationsFile = 'ui/data/event_annotations.csv'
-    annotations = pd.read_csv(annotationsFile)
+        annotations = eventAnnotations
 
 with firstRow[2]:
     if annotationType == 'Line annotation':
@@ -121,7 +159,6 @@ with firstRow[2]:
 with st.expander('Editing', expanded=False):
     secondRow = st.columns([1, 2, 1, 1, 6])
 with secondRow[0]:
-    players = pd.read_csv('ui/data/players.csv')
     players.set_index('_')
     teams = pd.DataFrame({'Teams': players.columns[[1, 2]]})
     gb_teams = GridOptionsBuilder.from_dataframe(teams)
@@ -140,7 +177,6 @@ with secondRow[1]:
                         fit_columns_on_grid_load=True)
 
 with secondRow[2]:
-    events = pd.read_csv('ui/data/events.csv')
     gb_events = GridOptionsBuilder.from_dataframe(events)
     gb_events.configure_default_column(editable=True)
     ag_events = AgGrid(data=events,
@@ -153,7 +189,7 @@ with secondRow[3]:
         updatedTeams = list(ag_teams['data']['Teams'])
         updatedPlayers = ag_players['data']
         updatedPlayers.columns = [updatedPlayers.columns[0]] + updatedTeams
-        updatedPlayers.to_csv('ui/data/players.csv', index=False)
+        # updatedPlayers.to_csv('ui/data/players.csv', index=False)
         updatedEvents = ag_events['data']
         updatedEvents.to_csv('ui/data/events.csv', index=False)
 
