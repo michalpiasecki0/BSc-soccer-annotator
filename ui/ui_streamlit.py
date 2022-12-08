@@ -1,3 +1,5 @@
+import sys
+
 import streamlit as st
 from st_aggrid import AgGrid, GridOptionsBuilder
 import pandas as pd
@@ -8,6 +10,8 @@ from youtube_dl import YoutubeDL
 import cv2
 from base64 import b64encode
 from tempfile import NamedTemporaryFile
+from execute_scrapper import run_script
+
 
 # streamlit configs
 st.set_page_config(
@@ -60,15 +64,19 @@ with firstRow[0]:
 with sidebar:
     with st.form(key='scraper_form'):
         st.write('Getting data about the match')
-        st.date_input('Choose the date of the match')
+        date = st.date_input('Choose the date of the match')
         sidebarColumns = st.columns(2)
         with sidebarColumns[0]:
-            st.text_input('The first team')
+            team1 = st.text_input('The first team')
         with sidebarColumns[1]:
-            st.text_input('The second team')
+            team2 = st.text_input('The second team')
         scrapData = st.form_submit_button('Get data')
         if scrapData:
-            pass  # initialize data scraping
+            try:
+                run_script(date, team1, team2)
+            except:
+                pass
+
 
     with st.form(key='automatic_annotation'):
         st.write('Getting automatic annotations')

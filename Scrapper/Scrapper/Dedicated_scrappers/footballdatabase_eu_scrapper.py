@@ -9,10 +9,11 @@ from selenium.webdriver.common.by import By
 from unidecode import unidecode
 import re
 import json
+import os
 
 
 def initialize_session_footballdatabase():
-    driver = Chrome(executable_path="/././chromedriver")
+    driver = Chrome(executable_path="chromedriver")
     session = HTMLSession()
     return session, driver
 
@@ -57,10 +58,11 @@ def get_game_id_and_href(data, session, driver):
         links += score.find_all('a')
     hrefs = [link['href'] for link in links]
     id = search_for_match_id(team1, team2)
+    id = '/en/match/overview/' + str(id)
     key_dict = {'reference_core': 'https://www.footballdatabase.eu', 'match_id': id, 'team_1': team1,
                 'team_2': team2}
     reference_link = "{reference_core}{match_id}/{team_1}-{team_2}".format(**key_dict)
-    return id, 'https://www.footballdatabase.eu/en/match/overview/785164-mc_el_eulma-es_setif'
+    return id, reference_link
 
 
 def get_match_page_session_and_data(session, driver, reference_link):
@@ -70,7 +72,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
     # <---- getting score ---->
     def get_score():
         text = requests.get(reference_link).text
-        soup = BeautifulSoup(text)
+        soup = BeautifulSoup(text,features="lxml")
         temp = soup.find_all('div', class_="score0")
         return temp[0].find_all('h2')[0].text
 
@@ -78,7 +80,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
     def get_country_stadium():
         temp = soup.find_all('div', class_='location')
         temp_2 = re.split('-', temp[0].find_all('p')[0].text)
-        return temp_2[2].replace(" ", ""), temp_2[0].replace(" ", "") + " " + temp[1].replace(" ", "")
+        return unidecode(temp_2[2].replace(" ", "")), unidecode(temp_2[0].replace(" ", "") + " " + temp_2[1].replace(" ", ""))
 
     # <--- getting first eleven playing players for both teams ---->
     def get_first_eleven_both_teams():
@@ -89,7 +91,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
         table = temp[1].find_all('table')
         team_2 = pd.read_html(str(table))[0]
 
-        return list(team_1['First 11.3']), list(team_2['First 11.3'])
+        return list(team_1['First 11.3'].apply(unidecode)), list(team_2['First 11.3'].apply(unidecode))
 
     # <--- getting match length ---->
     def get_match_length():
@@ -102,12 +104,12 @@ def get_match_page_session_and_data(session, driver, reference_link):
         # list of tuples (player, time)
         scores_team1 = []
         for element in temp:
-            scores_team1.append((element.find_all('a')[0].text, element.find_all('p')[0].text))
+            scores_team1.append((unidecode(element.find_all('a')[0].text), element.find_all('p')[0].text))
 
         temp = soup.find_all('div', class_='scorerTeam2')
         scores_team2 = []
         for element in temp:
-            scores_team2.append((element.find_all('a')[0].text, element.find_all('p')[0].text))
+            scores_team2.append((unidecode(element.find_all('a')[0].text), element.find_all('p')[0].text))
         return scores_team1, scores_team2
 
     # <--- getting team managers ---->
@@ -118,12 +120,12 @@ def get_match_page_session_and_data(session, driver, reference_link):
         temp_2 = soup.find_all('div', class_='section entraineur toggleteam2')
         temp_2 = temp_2[0].find_all('a')
 
-        return temp.text, temp_2.text
+        return unidecode(temp.text), unidecode(temp_2.text)
 
     # <--- getting match referee ---->
     def get_referee():
         temp = soup.find_all('p', class_='nameReferee')
-        return temp[0].text.replace(" ", "", 1)
+        return unidecode(temp[0].text.replace(" ", "", 1))
 
     # <--- getting substitutions ---->
     def get_substitutions():
@@ -137,6 +139,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
         temp = soup.find_all('div', class_='playerTitulaire outplayer')
         table = temp[2].find_all('table')
         df1 = pd.read_html(str(table))[0][["Substitutes.3", "Substitutes.4"]]
+        df1["Substitutes.3"] = df1["Substitutes.3"].apply(unidecode)
         df1['type'] = 'up'
         x = list(df1.itertuples(index=False, name=None))
 
@@ -145,6 +148,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
         df1 = pd.read_html(str(table))[0][["First 11.3", "First 11.4"]]
         df1 = df1[df1['First 11.4'].notna()]
         df1["First 11.4"] = df1["First 11.4"].apply(correct_concat_numbers)
+        df1["First 11.3"] = df1["First 11.3"].apply(unidecode)
         df1['type'] = 'down'
         y = list(df1.itertuples(index=False, name=None))
         team_1_substitutions = x + y
@@ -152,6 +156,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
         temp = soup.find_all('div', class_='playerTitulaire outplayer')
         table = temp[3].find_all('table')
         df1 = pd.read_html(str(table))[0][["Substitutes.3", "Substitutes.4"]]
+        df1["Substitutes.3"] = df1["Substitutes.3"].apply(unidecode)
         df1['type'] = 'up'
         x = list(df1.itertuples(index=False, name=None))
 
@@ -160,6 +165,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
         df1 = pd.read_html(str(table))[0][["First 11.3", "First 11.4"]]
         df1 = df1[df1['First 11.4'].notna()]
         df1["First 11.4"] = df1["First 11.4"].apply(correct_concat_numbers)
+        df1["First 11.3"] = df1["First 11.3"].apply(unidecode)
         df1['type'] = 'down'
         y = list(df1.itertuples(index=False, name=None))
         team_2_substitutions = x + y
@@ -212,10 +218,17 @@ def get_match_page_session_and_data(session, driver, reference_link):
     return dict_return
 
 
-def save_to_JSON(to_json_dict, match_date_string):
-    #file = match_date_string + '/' + 'scrapped_data.json'
-    file = 'scrapped_data.json'
-    with open(file, "w") as outfile:
+def save_to_JSON(to_json_dict, match_string):
+    try:
+        file = os.path.join('..\matches', match_string)
+        os.makedirs(file)
+    except FileExistsError:
+        # directory already exists
+        pass
+    #file = '/././matches/{match_string}'.format(match_string = match_string) + '/' + 'scrapped_data.json'
+    file = os.path.join('..\matches',match_string,'scrapped_data.json')
+    with open(file, "w+") as outfile:
+        print('Opening {file}'.format(file = str(file)))
         json.dump(to_json_dict, outfile)
 
 
