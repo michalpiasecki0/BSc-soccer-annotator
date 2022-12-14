@@ -25,9 +25,9 @@ Lista mozliwych linii wraz z ich wspolrzednymi na templacie znajduje sie w oddzi
 ### FIELDS
 Kazda klatka jest zapisana jako oddzielny obiekt do jsona.
 Kluczem kazdej klatki jest czas w sekundach od rozpoczecia video.
-Dla kazdej klatki mamy listę punktow definiujacych wielokat opisujacy boisko.
+Dla kazdej klatki mamy listę punktow definiujacych wielokat opisujacy boisko tzn [[x1, y1], [x2, y2] ..., [xn, yn]]
 
-![](/home/skocznapandaimg/field.png)
+![](img/field.png)
 
 
 ## OBJECTS
