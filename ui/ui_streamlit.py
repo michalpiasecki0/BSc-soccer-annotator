@@ -104,6 +104,42 @@ if 'scrapedData' in st.session_state:
     players.columns = ['_', firstTeam, secondTeam]
     players[firstTeam] = scrapedData['first_eleven_team_1']
     players[secondTeam] = scrapedData['first_eleven_team_2']
+    for score in scrapedData['scores_team_1']:
+        newEvent = {
+            'Event': 'Goal',
+            'Team': firstTeam,
+            'Player': score[0],
+            'Min': score[1],
+            'Sec': 0
+        }
+        eventAnnotations = eventAnnotations.append(newEvent, ignore_index=True)
+    for score in scrapedData['scores_team_2']:
+        newEvent = {
+            'Event': 'Goal',
+            'Team': secondTeam,
+            'Player': score[0],
+            'Min': score[1],
+            'Sec': 0
+        }
+        eventAnnotations = eventAnnotations.append(newEvent, ignore_index=True)
+    for substitution in scrapedData['substitutions_team_1']:
+        newEvent = {
+            'Event': 'Substitution',
+            'Team': firstTeam,
+            'Player': substitution[0],
+            'Min': substitution[1],
+            'Sec': 0
+        }
+        eventAnnotations = eventAnnotations.append(newEvent, ignore_index=True)
+    for substitution in scrapedData['substitutions_team_2']:
+        newEvent = {
+            'Event': 'Substitution',
+            'Team': secondTeam,
+            'Player': substitution[0],
+            'Min': substitution[1],
+            'Sec': 0
+        }
+        eventAnnotations = eventAnnotations.append(newEvent, ignore_index=True)
 
 firstRow = st.columns([3, 4, 3])
 with firstRow[0]:
@@ -176,7 +212,6 @@ with firstRow[0]:
                 annotatedFields[secondsRoundedStr],
                 orient='index')
             fieldAnnotations = annotatedObjectsDf
-
 
 with firstRow[1]:
     annotationType = st.radio('Choose annotation type',
