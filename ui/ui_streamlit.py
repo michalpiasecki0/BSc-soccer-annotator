@@ -1,6 +1,6 @@
 import datetime
 import os
-
+import sys
 import streamlit as st
 from st_aggrid import AgGrid, GridOptionsBuilder
 import pandas as pd
@@ -11,8 +11,8 @@ from youtube_dl import YoutubeDL
 import cv2
 from base64 import b64encode
 import json
-
-# from tempfile import NamedTemporaryFile
+from tempfile import NamedTemporaryFile
+from execute_scrapper import run_script
 
 # streamlit configs
 st.set_page_config(
@@ -52,9 +52,13 @@ with sidebar:
             firstTeam = st.text_input('The first team', value='Celta Vigo')
         with sidebarColumns[1]:
             secondTeam = st.text_input('The second team', value='Real Madrid')
-        scrapeData = st.form_submit_button('Get data')
-        if scrapeData:
+        scrapData = st.form_submit_button('Get data')
+        if scrapData:
             # initialize data scraping
+            try:
+                run_script(matchDate, firstTeam, secondTeam)
+            except:
+                pass
             st.session_state['scrapedData'] = json.load(
                 open('ui/data/scrapped_data.json')
             )

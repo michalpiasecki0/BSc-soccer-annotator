@@ -1,0 +1,6996 @@
+{
+  "60.0": {
+    "0": {
+      "class": "CHAIR",
+      "x_top_left": 934.0,
+      "y_top_left": 553.0,
+      "x_bottom_right": 979.0,
+      "y_bottom_right": 597.0,
+      "confidence": 0.2706216275691986
+    },
+    "1": {
+      "class": "BENCH",
+      "x_top_left": 933.0,
+      "y_top_left": 553.0,
+      "x_bottom_right": 981.0,
+      "y_bottom_right": 597.0,
+      "confidence": 0.279792457818985
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 893.0,
+      "y_top_left": 630.0,
+      "x_bottom_right": 941.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.28740260004997253
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 961.0,
+      "y_top_left": 520.0,
+      "x_bottom_right": 1006.0,
+      "y_bottom_right": 577.0,
+      "confidence": 0.30410853028297424
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 1220.0,
+      "y_top_left": 392.0,
+      "x_bottom_right": 1256.0,
+      "y_bottom_right": 451.0,
+      "confidence": 0.36931782960891724
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 1139.0,
+      "y_top_left": 403.0,
+      "x_bottom_right": 1173.0,
+      "y_bottom_right": 471.0,
+      "confidence": 0.5072638988494873
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 512.0,
+      "y_top_left": 159.0,
+      "x_bottom_right": 530.0,
+      "y_bottom_right": 200.0,
+      "confidence": 0.6009881496429443
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 1077.0,
+      "y_top_left": 377.0,
+      "x_bottom_right": 1116.0,
+      "y_bottom_right": 461.0,
+      "confidence": 0.6222015619277954
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 1144.0,
+      "y_top_left": 316.0,
+      "x_bottom_right": 1166.0,
+      "y_bottom_right": 389.0,
+      "confidence": 0.6489729881286621
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 1061.0,
+      "y_top_left": 459.0,
+      "x_bottom_right": 1092.0,
+      "y_bottom_right": 549.0,
+      "confidence": 0.7514345645904541
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 946.0,
+      "y_top_left": 288.0,
+      "x_bottom_right": 969.0,
+      "y_bottom_right": 352.0,
+      "confidence": 0.7635787725448608
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 714.0,
+      "y_top_left": 271.0,
+      "x_bottom_right": 735.0,
+      "y_bottom_right": 338.0,
+      "confidence": 0.783586859703064
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 480.0,
+      "y_top_left": 219.0,
+      "x_bottom_right": 502.0,
+      "y_bottom_right": 276.0,
+      "confidence": 0.7931416630744934
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 240.0,
+      "y_top_left": 383.0,
+      "x_bottom_right": 264.0,
+      "y_bottom_right": 464.0,
+      "confidence": 0.7976778149604797
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 188.0,
+      "y_top_left": 204.0,
+      "x_bottom_right": 217.0,
+      "y_bottom_right": 273.0,
+      "confidence": 0.8095273375511169
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 12.0,
+      "y_top_left": 293.0,
+      "x_bottom_right": 35.0,
+      "y_bottom_right": 361.0,
+      "confidence": 0.8313944339752197
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 480.0,
+      "y_top_left": 324.0,
+      "x_bottom_right": 505.0,
+      "y_bottom_right": 388.0,
+      "confidence": 0.8353513479232788
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 769.0,
+      "y_top_left": 372.0,
+      "x_bottom_right": 798.0,
+      "y_bottom_right": 450.0,
+      "confidence": 0.8370832800865173
+    },
+    "18": {
+      "class": "PERSON",
+      "x_top_left": 360.0,
+      "y_top_left": 302.0,
+      "x_bottom_right": 385.0,
+      "y_bottom_right": 363.0,
+      "confidence": 0.8428219556808472
+    },
+    "19": {
+      "class": "PERSON",
+      "x_top_left": 333.0,
+      "y_top_left": 638.0,
+      "x_bottom_right": 376.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.8453283905982971
+    },
+    "20": {
+      "class": "PERSON",
+      "x_top_left": 705.0,
+      "y_top_left": 412.0,
+      "x_bottom_right": 741.0,
+      "y_bottom_right": 497.0,
+      "confidence": 0.8637561202049255
+    },
+    "21": {
+      "class": "PERSON",
+      "x_top_left": 820.0,
+      "y_top_left": 430.0,
+      "x_bottom_right": 852.0,
+      "y_bottom_right": 518.0,
+      "confidence": 0.8784869909286499
+    }
+  },
+  "61.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 965.0,
+      "y_top_left": 524.0,
+      "x_bottom_right": 1001.0,
+      "y_bottom_right": 576.0,
+      "confidence": 0.27875271439552307
+    },
+    "1": {
+      "class": "CHAIR",
+      "x_top_left": 927.0,
+      "y_top_left": 552.0,
+      "x_bottom_right": 955.0,
+      "y_bottom_right": 593.0,
+      "confidence": 0.2906835377216339
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1209.0,
+      "y_top_left": 389.0,
+      "x_bottom_right": 1244.0,
+      "y_bottom_right": 446.0,
+      "confidence": 0.3023007810115814
+    },
+    "3": {
+      "class": "BENCH",
+      "x_top_left": 1172.0,
+      "y_top_left": 448.0,
+      "x_bottom_right": 1207.0,
+      "y_bottom_right": 489.0,
+      "confidence": 0.37852907180786133
+    },
+    "4": {
+      "class": "CHAIR",
+      "x_top_left": 1172.0,
+      "y_top_left": 448.0,
+      "x_bottom_right": 1207.0,
+      "y_bottom_right": 489.0,
+      "confidence": 0.39010724425315857
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 1099.0,
+      "y_top_left": 388.0,
+      "x_bottom_right": 1129.0,
+      "y_bottom_right": 474.0,
+      "confidence": 0.5430183410644531
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 946.0,
+      "y_top_left": 604.0,
+      "x_bottom_right": 1001.0,
+      "y_bottom_right": 720.0,
+      "confidence": 0.5609075427055359
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 1151.0,
+      "y_top_left": 318.0,
+      "x_bottom_right": 1176.0,
+      "y_bottom_right": 395.0,
+      "confidence": 0.6002552509307861
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 1135.0,
+      "y_top_left": 400.0,
+      "x_bottom_right": 1164.0,
+      "y_bottom_right": 478.0,
+      "confidence": 0.6338094472885132
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 268.0,
+      "x_bottom_right": 19.0,
+      "y_bottom_right": 334.0,
+      "confidence": 0.6452885270118713
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 467.0,
+      "y_top_left": 217.0,
+      "x_bottom_right": 490.0,
+      "y_bottom_right": 274.0,
+      "confidence": 0.7297744750976562
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 940.0,
+      "y_top_left": 289.0,
+      "x_bottom_right": 965.0,
+      "y_bottom_right": 352.0,
+      "confidence": 0.7517077326774597
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 814.0,
+      "y_top_left": 351.0,
+      "x_bottom_right": 838.0,
+      "y_bottom_right": 426.0,
+      "confidence": 0.7544241547584534
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 684.0,
+      "y_top_left": 273.0,
+      "x_bottom_right": 709.0,
+      "y_bottom_right": 338.0,
+      "confidence": 0.7800799012184143
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 319.0,
+      "y_top_left": 297.0,
+      "x_bottom_right": 343.0,
+      "y_bottom_right": 360.0,
+      "confidence": 0.7890031337738037
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 1055.0,
+      "y_top_left": 457.0,
+      "x_bottom_right": 1086.0,
+      "y_bottom_right": 548.0,
+      "confidence": 0.7976506352424622
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 874.0,
+      "y_top_left": 409.0,
+      "x_bottom_right": 901.0,
+      "y_bottom_right": 495.0,
+      "confidence": 0.8120039105415344
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 220.0,
+      "y_top_left": 201.0,
+      "x_bottom_right": 246.0,
+      "y_bottom_right": 269.0,
+      "confidence": 0.8130408525466919
+    },
+    "18": {
+      "class": "PERSON",
+      "x_top_left": 282.0,
+      "y_top_left": 369.0,
+      "x_bottom_right": 306.0,
+      "y_bottom_right": 447.0,
+      "confidence": 0.8351775407791138
+    },
+    "19": {
+      "class": "PERSON",
+      "x_top_left": 356.0,
+      "y_top_left": 629.0,
+      "x_bottom_right": 394.0,
+      "y_bottom_right": 716.0,
+      "confidence": 0.8440939784049988
+    },
+    "20": {
+      "class": "PERSON",
+      "x_top_left": 40.0,
+      "y_top_left": 285.0,
+      "x_bottom_right": 64.0,
+      "y_bottom_right": 352.0,
+      "confidence": 0.8485235571861267
+    },
+    "21": {
+      "class": "PERSON",
+      "x_top_left": 493.0,
+      "y_top_left": 324.0,
+      "x_bottom_right": 521.0,
+      "y_bottom_right": 387.0,
+      "confidence": 0.8669875264167786
+    },
+    "22": {
+      "class": "PERSON",
+      "x_top_left": 666.0,
+      "y_top_left": 417.0,
+      "x_bottom_right": 700.0,
+      "y_bottom_right": 506.0,
+      "confidence": 0.8719152808189392
+    }
+  },
+  "62.0": {
+    "0": {
+      "class": "CHAIR",
+      "x_top_left": 927.0,
+      "y_top_left": 550.0,
+      "x_bottom_right": 973.0,
+      "y_bottom_right": 595.0,
+      "confidence": 0.298866331577301
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1212.0,
+      "y_top_left": 388.0,
+      "x_bottom_right": 1243.0,
+      "y_bottom_right": 447.0,
+      "confidence": 0.3727583587169647
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1170.0,
+      "y_top_left": 398.0,
+      "x_bottom_right": 1203.0,
+      "y_bottom_right": 485.0,
+      "confidence": 0.4475877583026886
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 240.0,
+      "y_top_left": 201.0,
+      "x_bottom_right": 262.0,
+      "y_bottom_right": 250.0,
+      "confidence": 0.5620018839836121
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 537.0,
+      "y_top_left": 155.0,
+      "x_bottom_right": 552.0,
+      "y_bottom_right": 200.0,
+      "confidence": 0.5673463344573975
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 1001.0,
+      "y_top_left": 571.0,
+      "x_bottom_right": 1041.0,
+      "y_bottom_right": 706.0,
+      "confidence": 0.6277966499328613
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 256.0,
+      "y_top_left": 215.0,
+      "x_bottom_right": 276.0,
+      "y_bottom_right": 269.0,
+      "confidence": 0.6583138704299927
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 1150.0,
+      "y_top_left": 323.0,
+      "x_bottom_right": 1171.0,
+      "y_bottom_right": 401.0,
+      "confidence": 0.6952458024024963
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 1054.0,
+      "y_top_left": 457.0,
+      "x_bottom_right": 1085.0,
+      "y_bottom_right": 549.0,
+      "confidence": 0.7634352445602417
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 1066.0,
+      "y_top_left": 387.0,
+      "x_bottom_right": 1113.0,
+      "y_bottom_right": 473.0,
+      "confidence": 0.7659239172935486
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 461.0,
+      "y_top_left": 217.0,
+      "x_bottom_right": 481.0,
+      "y_bottom_right": 273.0,
+      "confidence": 0.7867127060890198
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 71.0,
+      "y_top_left": 278.0,
+      "x_bottom_right": 98.0,
+      "y_bottom_right": 343.0,
+      "confidence": 0.8052740693092346
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 814.0,
+      "y_top_left": 343.0,
+      "x_bottom_right": 837.0,
+      "y_bottom_right": 416.0,
+      "confidence": 0.8060973286628723
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 493.0,
+      "y_top_left": 327.0,
+      "x_bottom_right": 525.0,
+      "y_bottom_right": 393.0,
+      "confidence": 0.8063644766807556
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 325.0,
+      "y_top_left": 358.0,
+      "x_bottom_right": 349.0,
+      "y_bottom_right": 431.0,
+      "confidence": 0.8075628876686096
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 914.0,
+      "y_top_left": 396.0,
+      "x_bottom_right": 943.0,
+      "y_bottom_right": 478.0,
+      "confidence": 0.8097838759422302
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 648.0,
+      "y_top_left": 275.0,
+      "x_bottom_right": 679.0,
+      "y_bottom_right": 344.0,
+      "confidence": 0.824506938457489
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 289.0,
+      "y_top_left": 299.0,
+      "x_bottom_right": 319.0,
+      "y_bottom_right": 360.0,
+      "confidence": 0.8327767252922058
+    },
+    "18": {
+      "class": "PERSON",
+      "x_top_left": 920.0,
+      "y_top_left": 293.0,
+      "x_bottom_right": 949.0,
+      "y_bottom_right": 358.0,
+      "confidence": 0.8417355418205261
+    },
+    "19": {
+      "class": "PERSON",
+      "x_top_left": 3.0,
+      "y_top_left": 453.0,
+      "x_bottom_right": 34.0,
+      "y_bottom_right": 538.0,
+      "confidence": 0.8543472290039062
+    },
+    "20": {
+      "class": "PERSON",
+      "x_top_left": 355.0,
+      "y_top_left": 620.0,
+      "x_bottom_right": 401.0,
+      "y_bottom_right": 716.0,
+      "confidence": 0.8630431890487671
+    },
+    "21": {
+      "class": "PERSON",
+      "x_top_left": 28.0,
+      "y_top_left": 260.0,
+      "x_bottom_right": 57.0,
+      "y_bottom_right": 325.0,
+      "confidence": 0.8644651174545288
+    },
+    "22": {
+      "class": "PERSON",
+      "x_top_left": 649.0,
+      "y_top_left": 429.0,
+      "x_bottom_right": 688.0,
+      "y_bottom_right": 521.0,
+      "confidence": 0.8957762718200684
+    }
+  },
+  "63.0": {
+    "0": {
+      "class": "CHAIR",
+      "x_top_left": 928.0,
+      "y_top_left": 555.0,
+      "x_bottom_right": 974.0,
+      "y_bottom_right": 600.0,
+      "confidence": 0.26383331418037415
+    },
+    "1": {
+      "class": "CHAIR",
+      "x_top_left": 993.0,
+      "y_top_left": 528.0,
+      "x_bottom_right": 1034.0,
+      "y_bottom_right": 589.0,
+      "confidence": 0.2656113803386688
+    },
+    "2": {
+      "class": "CHAIR",
+      "x_top_left": 965.0,
+      "y_top_left": 537.0,
+      "x_bottom_right": 1001.0,
+      "y_bottom_right": 595.0,
+      "confidence": 0.2849068343639374
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 545.0,
+      "y_top_left": 161.0,
+      "x_bottom_right": 567.0,
+      "y_bottom_right": 203.0,
+      "confidence": 0.4527268409729004
+    },
+    "4": {
+      "class": "CHAIR",
+      "x_top_left": 1172.0,
+      "y_top_left": 455.0,
+      "x_bottom_right": 1208.0,
+      "y_bottom_right": 495.0,
+      "confidence": 0.5102209448814392
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 1229.0,
+      "y_top_left": 399.0,
+      "x_bottom_right": 1256.0,
+      "y_bottom_right": 477.0,
+      "confidence": 0.5184654593467712
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 1134.0,
+      "y_top_left": 335.0,
+      "x_bottom_right": 1156.0,
+      "y_bottom_right": 407.0,
+      "confidence": 0.6176181435585022
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 336.0,
+      "y_top_left": 222.0,
+      "x_bottom_right": 361.0,
+      "y_bottom_right": 267.0,
+      "confidence": 0.6251056790351868
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 1052.0,
+      "y_top_left": 563.0,
+      "x_bottom_right": 1098.0,
+      "y_bottom_right": 675.0,
+      "confidence": 0.6421955227851868
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 282.0,
+      "y_top_left": 213.0,
+      "x_bottom_right": 315.0,
+      "y_bottom_right": 253.0,
+      "confidence": 0.666890561580658
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 882.0,
+      "y_top_left": 300.0,
+      "x_bottom_right": 921.0,
+      "y_bottom_right": 360.0,
+      "confidence": 0.7369735240936279
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 946.0,
+      "y_top_left": 388.0,
+      "x_bottom_right": 976.0,
+      "y_bottom_right": 468.0,
+      "confidence": 0.7421202659606934
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 990.0,
+      "y_top_left": 360.0,
+      "x_bottom_right": 1042.0,
+      "y_bottom_right": 446.0,
+      "confidence": 0.7460495829582214
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 457.0,
+      "y_top_left": 225.0,
+      "x_bottom_right": 479.0,
+      "y_bottom_right": 274.0,
+      "confidence": 0.7483135461807251
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 1056.0,
+      "y_top_left": 463.0,
+      "x_bottom_right": 1086.0,
+      "y_bottom_right": 553.0,
+      "confidence": 0.7749059796333313
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 103.0,
+      "y_top_left": 274.0,
+      "x_bottom_right": 124.0,
+      "y_bottom_right": 338.0,
+      "confidence": 0.7775527834892273
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 815.0,
+      "y_top_left": 338.0,
+      "x_bottom_right": 835.0,
+      "y_bottom_right": 409.0,
+      "confidence": 0.801649272441864
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 44.0,
+      "y_top_left": 255.0,
+      "x_bottom_right": 65.0,
+      "y_bottom_right": 318.0,
+      "confidence": 0.8174619078636169
+    },
+    "18": {
+      "class": "PERSON",
+      "x_top_left": 359.0,
+      "y_top_left": 350.0,
+      "x_bottom_right": 384.0,
+      "y_bottom_right": 423.0,
+      "confidence": 0.8215176463127136
+    },
+    "19": {
+      "class": "PERSON",
+      "x_top_left": 388.0,
+      "y_top_left": 623.0,
+      "x_bottom_right": 425.0,
+      "y_bottom_right": 708.0,
+      "confidence": 0.8374738693237305
+    },
+    "20": {
+      "class": "PERSON",
+      "x_top_left": 283.0,
+      "y_top_left": 299.0,
+      "x_bottom_right": 304.0,
+      "y_bottom_right": 363.0,
+      "confidence": 0.854099690914154
+    },
+    "21": {
+      "class": "PERSON",
+      "x_top_left": 648.0,
+      "y_top_left": 273.0,
+      "x_bottom_right": 672.0,
+      "y_bottom_right": 340.0,
+      "confidence": 0.8560069799423218
+    },
+    "22": {
+      "class": "PERSON",
+      "x_top_left": 63.0,
+      "y_top_left": 445.0,
+      "x_bottom_right": 93.0,
+      "y_bottom_right": 539.0,
+      "confidence": 0.8690220713615417
+    },
+    "23": {
+      "class": "PERSON",
+      "x_top_left": 490.0,
+      "y_top_left": 331.0,
+      "x_bottom_right": 530.0,
+      "y_bottom_right": 397.0,
+      "confidence": 0.8799749612808228
+    },
+    "24": {
+      "class": "PERSON",
+      "x_top_left": 632.0,
+      "y_top_left": 426.0,
+      "x_bottom_right": 666.0,
+      "y_bottom_right": 521.0,
+      "confidence": 0.8841162323951721
+    },
+    "25": {
+      "class": "PERSON",
+      "x_top_left": 3.0,
+      "y_top_left": 456.0,
+      "x_bottom_right": 41.0,
+      "y_bottom_right": 556.0,
+      "confidence": 0.905195951461792
+    }
+  },
+  "64.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1023.0,
+      "y_top_left": 575.0,
+      "x_bottom_right": 1073.0,
+      "y_bottom_right": 639.0,
+      "confidence": 0.29268431663513184
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1254.0,
+      "y_top_left": 348.0,
+      "x_bottom_right": 1280.0,
+      "y_bottom_right": 411.0,
+      "confidence": 0.3182099461555481
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 602.0,
+      "y_top_left": 181.0,
+      "x_bottom_right": 620.0,
+      "y_bottom_right": 222.0,
+      "confidence": 0.36258864402770996
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 500.0,
+      "y_top_left": 214.0,
+      "x_bottom_right": 530.0,
+      "y_bottom_right": 261.0,
+      "confidence": 0.4416772127151489
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 1174.0,
+      "y_top_left": 588.0,
+      "x_bottom_right": 1223.0,
+      "y_bottom_right": 714.0,
+      "confidence": 0.5930962562561035
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 528.0,
+      "y_top_left": 217.0,
+      "x_bottom_right": 557.0,
+      "y_bottom_right": 269.0,
+      "confidence": 0.6303814649581909
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 431.0,
+      "y_top_left": 209.0,
+      "x_bottom_right": 453.0,
+      "y_bottom_right": 257.0,
+      "confidence": 0.6829428672790527
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 132.0,
+      "y_top_left": 285.0,
+      "x_bottom_right": 153.0,
+      "y_bottom_right": 348.0,
+      "confidence": 0.6905477046966553
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 1022.0,
+      "y_top_left": 375.0,
+      "x_bottom_right": 1054.0,
+      "y_bottom_right": 460.0,
+      "confidence": 0.7127068638801575
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 1008.0,
+      "y_top_left": 407.0,
+      "x_bottom_right": 1036.0,
+      "y_bottom_right": 497.0,
+      "confidence": 0.7272246479988098
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 1134.0,
+      "y_top_left": 508.0,
+      "x_bottom_right": 1169.0,
+      "y_bottom_right": 609.0,
+      "confidence": 0.7373371720314026
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 33.0,
+      "y_top_left": 262.0,
+      "x_bottom_right": 52.0,
+      "y_bottom_right": 329.0,
+      "confidence": 0.7484376430511475
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 721.0,
+      "y_top_left": 279.0,
+      "x_bottom_right": 746.0,
+      "y_bottom_right": 347.0,
+      "confidence": 0.7641042470932007
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 898.0,
+      "y_top_left": 309.0,
+      "x_bottom_right": 932.0,
+      "y_bottom_right": 378.0,
+      "confidence": 0.779529333114624
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 396.0,
+      "y_top_left": 669.0,
+      "x_bottom_right": 440.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.8220913410186768
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 839.0,
+      "y_top_left": 357.0,
+      "x_bottom_right": 877.0,
+      "y_bottom_right": 435.0,
+      "confidence": 0.8260995745658875
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 288.0,
+      "y_top_left": 313.0,
+      "x_bottom_right": 317.0,
+      "y_bottom_right": 381.0,
+      "confidence": 0.8632315993309021
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 646.0,
+      "y_top_left": 437.0,
+      "x_bottom_right": 681.0,
+      "y_bottom_right": 535.0,
+      "confidence": 0.8651178479194641
+    },
+    "18": {
+      "class": "PERSON",
+      "x_top_left": 50.0,
+      "y_top_left": 465.0,
+      "x_bottom_right": 98.0,
+      "y_bottom_right": 566.0,
+      "confidence": 0.8737580180168152
+    },
+    "19": {
+      "class": "PERSON",
+      "x_top_left": 520.0,
+      "y_top_left": 351.0,
+      "x_bottom_right": 549.0,
+      "y_bottom_right": 424.0,
+      "confidence": 0.8866803646087646
+    },
+    "20": {
+      "class": "PERSON",
+      "x_top_left": 377.0,
+      "y_top_left": 366.0,
+      "x_bottom_right": 410.0,
+      "y_bottom_right": 442.0,
+      "confidence": 0.8917034864425659
+    },
+    "21": {
+      "class": "PERSON",
+      "x_top_left": 1.0,
+      "y_top_left": 480.0,
+      "x_bottom_right": 58.0,
+      "y_bottom_right": 591.0,
+      "confidence": 0.9081440567970276
+    }
+  },
+  "65.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1217.0,
+      "y_top_left": 204.0,
+      "x_bottom_right": 1236.0,
+      "y_bottom_right": 220.0,
+      "confidence": 0.2550491988658905
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1060.0,
+      "y_top_left": 168.0,
+      "x_bottom_right": 1079.0,
+      "y_bottom_right": 201.0,
+      "confidence": 0.28993815183639526
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1244.0,
+      "y_top_left": 188.0,
+      "x_bottom_right": 1272.0,
+      "y_bottom_right": 221.0,
+      "confidence": 0.326937198638916
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 646.0,
+      "y_top_left": 193.0,
+      "x_bottom_right": 670.0,
+      "y_bottom_right": 256.0,
+      "confidence": 0.6207681894302368
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 689.0,
+      "y_top_left": 168.0,
+      "x_bottom_right": 711.0,
+      "y_bottom_right": 229.0,
+      "confidence": 0.6348932385444641
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 486.0,
+      "y_top_left": 189.0,
+      "x_bottom_right": 515.0,
+      "y_bottom_right": 240.0,
+      "confidence": 0.7367521524429321
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 1040.0,
+      "y_top_left": 452.0,
+      "x_bottom_right": 1076.0,
+      "y_bottom_right": 546.0,
+      "confidence": 0.8231500387191772
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 965.0,
+      "y_top_left": 333.0,
+      "x_bottom_right": 989.0,
+      "y_bottom_right": 422.0,
+      "confidence": 0.8361856937408447
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 854.0,
+      "y_top_left": 396.0,
+      "x_bottom_right": 881.0,
+      "y_bottom_right": 495.0,
+      "confidence": 0.8401108384132385
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 113.0,
+      "y_top_left": 282.0,
+      "x_bottom_right": 142.0,
+      "y_bottom_right": 358.0,
+      "confidence": 0.8570523858070374
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 306.0,
+      "y_top_left": 396.0,
+      "x_bottom_right": 341.0,
+      "y_bottom_right": 474.0,
+      "confidence": 0.8617081046104431
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 759.0,
+      "y_top_left": 273.0,
+      "x_bottom_right": 800.0,
+      "y_bottom_right": 359.0,
+      "confidence": 0.8693233728408813
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 183.0,
+      "y_top_left": 321.0,
+      "x_bottom_right": 221.0,
+      "y_bottom_right": 401.0,
+      "confidence": 0.873292863368988
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 488.0,
+      "y_top_left": 373.0,
+      "x_bottom_right": 528.0,
+      "y_bottom_right": 461.0,
+      "confidence": 0.891722559928894
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 1083.0,
+      "y_top_left": 410.0,
+      "x_bottom_right": 1126.0,
+      "y_bottom_right": 515.0,
+      "confidence": 0.894126296043396
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 609.0,
+      "y_top_left": 462.0,
+      "x_bottom_right": 648.0,
+      "y_bottom_right": 575.0,
+      "confidence": 0.9025066494941711
+    }
+  },
+  "66.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1263.0,
+      "y_top_left": 187.0,
+      "x_bottom_right": 1280.0,
+      "y_bottom_right": 204.0,
+      "confidence": 0.2510779798030853
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 951.0,
+      "y_top_left": 152.0,
+      "x_bottom_right": 971.0,
+      "y_bottom_right": 174.0,
+      "confidence": 0.25801920890808105
+    },
+    "2": {
+      "class": "CHAIR",
+      "x_top_left": 1165.0,
+      "y_top_left": 123.0,
+      "x_bottom_right": 1190.0,
+      "y_bottom_right": 150.0,
+      "confidence": 0.31526458263397217
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 785.0,
+      "y_top_left": 171.0,
+      "x_bottom_right": 831.0,
+      "y_bottom_right": 226.0,
+      "confidence": 0.3578049838542938
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 1084.0,
+      "y_top_left": 184.0,
+      "x_bottom_right": 1131.0,
+      "y_bottom_right": 227.0,
+      "confidence": 0.3932856023311615
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 383.0,
+      "y_top_left": 155.0,
+      "x_bottom_right": 416.0,
+      "y_bottom_right": 210.0,
+      "confidence": 0.4574243426322937
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 1090.0,
+      "y_top_left": 149.0,
+      "x_bottom_right": 1112.0,
+      "y_bottom_right": 190.0,
+      "confidence": 0.5396885275840759
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 738.0,
+      "y_top_left": 141.0,
+      "x_bottom_right": 762.0,
+      "y_bottom_right": 209.0,
+      "confidence": 0.6489155888557434
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 711.0,
+      "y_top_left": 163.0,
+      "x_bottom_right": 740.0,
+      "y_bottom_right": 229.0,
+      "confidence": 0.6946621537208557
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 517.0,
+      "y_top_left": 440.0,
+      "x_bottom_right": 558.0,
+      "y_bottom_right": 503.0,
+      "confidence": 0.7160833477973938
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 893.0,
+      "y_top_left": 474.0,
+      "x_bottom_right": 949.0,
+      "y_bottom_right": 580.0,
+      "confidence": 0.8170112371444702
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 96.0,
+      "y_top_left": 263.0,
+      "x_bottom_right": 128.0,
+      "y_bottom_right": 350.0,
+      "confidence": 0.8595532774925232
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 767.0,
+      "y_top_left": 254.0,
+      "x_bottom_right": 811.0,
+      "y_bottom_right": 346.0,
+      "confidence": 0.8760144114494324
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 428.0,
+      "y_top_left": 368.0,
+      "x_bottom_right": 469.0,
+      "y_bottom_right": 459.0,
+      "confidence": 0.8812722563743591
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 213.0,
+      "y_top_left": 391.0,
+      "x_bottom_right": 251.0,
+      "y_bottom_right": 491.0,
+      "confidence": 0.8824140429496765
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 763.0,
+      "y_top_left": 435.0,
+      "x_bottom_right": 805.0,
+      "y_bottom_right": 528.0,
+      "confidence": 0.8836972117424011
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 51.0,
+      "y_top_left": 301.0,
+      "x_bottom_right": 92.0,
+      "y_bottom_right": 387.0,
+      "confidence": 0.8862612843513489
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 1079.0,
+      "y_top_left": 403.0,
+      "x_bottom_right": 1116.0,
+      "y_bottom_right": 523.0,
+      "confidence": 0.9075371623039246
+    },
+    "18": {
+      "class": "PERSON",
+      "x_top_left": 957.0,
+      "y_top_left": 346.0,
+      "x_bottom_right": 999.0,
+      "y_bottom_right": 444.0,
+      "confidence": 0.9146459698677063
+    }
+  },
+  "67.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1063.0,
+      "y_top_left": 146.0,
+      "x_bottom_right": 1084.0,
+      "y_bottom_right": 186.0,
+      "confidence": 0.3117351233959198
+    },
+    "1": {
+      "class": "CHAIR",
+      "x_top_left": 1165.0,
+      "y_top_left": 122.0,
+      "x_bottom_right": 1188.0,
+      "y_bottom_right": 149.0,
+      "confidence": 0.3205011188983917
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 986.0,
+      "y_top_left": 96.0,
+      "x_bottom_right": 1008.0,
+      "y_bottom_right": 134.0,
+      "confidence": 0.3457300364971161
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 952.0,
+      "y_top_left": 148.0,
+      "x_bottom_right": 971.0,
+      "y_bottom_right": 173.0,
+      "confidence": 0.36357104778289795
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 1087.0,
+      "y_top_left": 184.0,
+      "x_bottom_right": 1132.0,
+      "y_bottom_right": 226.0,
+      "confidence": 0.4488915801048279
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 700.0,
+      "y_top_left": 156.0,
+      "x_bottom_right": 732.0,
+      "y_bottom_right": 229.0,
+      "confidence": 0.5073672533035278
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 1089.0,
+      "y_top_left": 149.0,
+      "x_bottom_right": 1110.0,
+      "y_bottom_right": 188.0,
+      "confidence": 0.585023045539856
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 765.0,
+      "y_top_left": 137.0,
+      "x_bottom_right": 787.0,
+      "y_bottom_right": 201.0,
+      "confidence": 0.6623582243919373
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 245.0,
+      "y_top_left": 147.0,
+      "x_bottom_right": 270.0,
+      "y_bottom_right": 206.0,
+      "confidence": 0.6829440593719482
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 685.0,
+      "y_top_left": 499.0,
+      "x_bottom_right": 733.0,
+      "y_bottom_right": 607.0,
+      "confidence": 0.768415629863739
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 606.0,
+      "y_top_left": 465.0,
+      "x_bottom_right": 653.0,
+      "y_bottom_right": 570.0,
+      "confidence": 0.8386766910552979
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 465.0,
+      "y_top_left": 407.0,
+      "x_bottom_right": 504.0,
+      "y_bottom_right": 475.0,
+      "confidence": 0.8707636594772339
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 134.0,
+      "y_top_left": 256.0,
+      "x_bottom_right": 161.0,
+      "y_bottom_right": 340.0,
+      "confidence": 0.872180163860321
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 780.0,
+      "y_top_left": 243.0,
+      "x_bottom_right": 816.0,
+      "y_bottom_right": 331.0,
+      "confidence": 0.8729594945907593
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 1018.0,
+      "y_top_left": 385.0,
+      "x_bottom_right": 1054.0,
+      "y_bottom_right": 498.0,
+      "confidence": 0.8772826194763184
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 355.0,
+      "y_top_left": 359.0,
+      "x_bottom_right": 404.0,
+      "y_bottom_right": 448.0,
+      "confidence": 0.8798726797103882
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 166.0,
+      "y_top_left": 379.0,
+      "x_bottom_right": 198.0,
+      "y_bottom_right": 480.0,
+      "confidence": 0.8978152275085449
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 930.0,
+      "y_top_left": 361.0,
+      "x_bottom_right": 968.0,
+      "y_bottom_right": 464.0,
+      "confidence": 0.9194413423538208
+    }
+  },
+  "68.0": {
+    "0": {
+      "class": "CHAIR",
+      "x_top_left": 1167.0,
+      "y_top_left": 122.0,
+      "x_bottom_right": 1192.0,
+      "y_bottom_right": 149.0,
+      "confidence": 0.42108824849128723
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1087.0,
+      "y_top_left": 183.0,
+      "x_bottom_right": 1133.0,
+      "y_bottom_right": 225.0,
+      "confidence": 0.4474063217639923
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 988.0,
+      "y_top_left": 96.0,
+      "x_bottom_right": 1010.0,
+      "y_bottom_right": 134.0,
+      "confidence": 0.45643627643585205
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 1064.0,
+      "y_top_left": 146.0,
+      "x_bottom_right": 1087.0,
+      "y_bottom_right": 185.0,
+      "confidence": 0.46767428517341614
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 783.0,
+      "y_top_left": 160.0,
+      "x_bottom_right": 819.0,
+      "y_bottom_right": 208.0,
+      "confidence": 0.5509738922119141
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 953.0,
+      "y_top_left": 148.0,
+      "x_bottom_right": 970.0,
+      "y_bottom_right": 173.0,
+      "confidence": 0.5599862337112427
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 535.0,
+      "y_top_left": 160.0,
+      "x_bottom_right": 567.0,
+      "y_bottom_right": 225.0,
+      "confidence": 0.5651231408119202
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 640.0,
+      "y_top_left": 158.0,
+      "x_bottom_right": 679.0,
+      "y_bottom_right": 223.0,
+      "confidence": 0.5802319049835205
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 1091.0,
+      "y_top_left": 149.0,
+      "x_bottom_right": 1113.0,
+      "y_bottom_right": 187.0,
+      "confidence": 0.6189702749252319
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 105.0,
+      "y_top_left": 141.0,
+      "x_bottom_right": 132.0,
+      "y_bottom_right": 201.0,
+      "confidence": 0.6930185556411743
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 275.0,
+      "y_top_left": 353.0,
+      "x_bottom_right": 319.0,
+      "y_bottom_right": 443.0,
+      "confidence": 0.8675265312194824
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 409.0,
+      "y_top_left": 376.0,
+      "x_bottom_right": 450.0,
+      "y_bottom_right": 475.0,
+      "confidence": 0.8822255730628967
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 99.0,
+      "y_top_left": 262.0,
+      "x_bottom_right": 142.0,
+      "y_bottom_right": 345.0,
+      "confidence": 0.8874009251594543
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 784.0,
+      "y_top_left": 233.0,
+      "x_bottom_right": 824.0,
+      "y_bottom_right": 321.0,
+      "confidence": 0.8891012668609619
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 98.0,
+      "y_top_left": 375.0,
+      "x_bottom_right": 135.0,
+      "y_bottom_right": 475.0,
+      "confidence": 0.9077814817428589
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 892.0,
+      "y_top_left": 380.0,
+      "x_bottom_right": 934.0,
+      "y_bottom_right": 489.0,
+      "confidence": 0.9164736866950989
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 952.0,
+      "y_top_left": 368.0,
+      "x_bottom_right": 989.0,
+      "y_bottom_right": 480.0,
+      "confidence": 0.9192124605178833
+    }
+  },
+  "69.0": {
+    "0": {
+      "class": "CHAIR",
+      "x_top_left": 1202.0,
+      "y_top_left": 125.0,
+      "x_bottom_right": 1224.0,
+      "y_bottom_right": 152.0,
+      "confidence": 0.2559147775173187
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1021.0,
+      "y_top_left": 98.0,
+      "x_bottom_right": 1043.0,
+      "y_bottom_right": 137.0,
+      "confidence": 0.33075615763664246
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1120.0,
+      "y_top_left": 186.0,
+      "x_bottom_right": 1166.0,
+      "y_bottom_right": 230.0,
+      "confidence": 0.40552714467048645
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 979.0,
+      "y_top_left": 154.0,
+      "x_bottom_right": 999.0,
+      "y_bottom_right": 175.0,
+      "confidence": 0.455891877412796
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 1097.0,
+      "y_top_left": 149.0,
+      "x_bottom_right": 1121.0,
+      "y_bottom_right": 188.0,
+      "confidence": 0.4752216339111328
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 1125.0,
+      "y_top_left": 151.0,
+      "x_bottom_right": 1147.0,
+      "y_bottom_right": 190.0,
+      "confidence": 0.5001624226570129
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 135.0,
+      "x_bottom_right": 19.0,
+      "y_bottom_right": 199.0,
+      "confidence": 0.5303649306297302
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 808.0,
+      "y_top_left": 159.0,
+      "x_bottom_right": 834.0,
+      "y_bottom_right": 206.0,
+      "confidence": 0.6065731644630432
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 253.0,
+      "y_top_left": 645.0,
+      "x_bottom_right": 282.0,
+      "y_bottom_right": 697.0,
+      "confidence": 0.6382735371589661
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 395.0,
+      "y_top_left": 159.0,
+      "x_bottom_right": 432.0,
+      "y_bottom_right": 216.0,
+      "confidence": 0.6712703704833984
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 565.0,
+      "y_top_left": 158.0,
+      "x_bottom_right": 602.0,
+      "y_bottom_right": 225.0,
+      "confidence": 0.6887417435646057
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 210.0,
+      "y_top_left": 354.0,
+      "x_bottom_right": 242.0,
+      "y_bottom_right": 444.0,
+      "confidence": 0.8634110689163208
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 920.0,
+      "y_top_left": 356.0,
+      "x_bottom_right": 954.0,
+      "y_bottom_right": 463.0,
+      "confidence": 0.8762247562408447
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 817.0,
+      "y_top_left": 227.0,
+      "x_bottom_right": 853.0,
+      "y_bottom_right": 311.0,
+      "confidence": 0.8787240386009216
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 883.0,
+      "y_top_left": 406.0,
+      "x_bottom_right": 932.0,
+      "y_bottom_right": 517.0,
+      "confidence": 0.8856779336929321
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 32.0,
+      "y_top_left": 274.0,
+      "x_bottom_right": 74.0,
+      "y_bottom_right": 364.0,
+      "confidence": 0.8861313462257385
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 142.0,
+      "y_top_left": 594.0,
+      "x_bottom_right": 223.0,
+      "y_bottom_right": 720.0,
+      "confidence": 0.8867103457450867
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 50.0,
+      "y_top_left": 374.0,
+      "x_bottom_right": 96.0,
+      "y_bottom_right": 472.0,
+      "confidence": 0.9021180868148804
+    },
+    "18": {
+      "class": "PERSON",
+      "x_top_left": 388.0,
+      "y_top_left": 343.0,
+      "x_bottom_right": 424.0,
+      "y_bottom_right": 443.0,
+      "confidence": 0.9124858975410461
+    }
+  },
+  "70.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1060.0,
+      "y_top_left": 461.0,
+      "x_bottom_right": 1279.0,
+      "y_bottom_right": 687.0,
+      "confidence": 0.36661985516548157
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1158.0,
+      "y_top_left": 567.0,
+      "x_bottom_right": 1279.0,
+      "y_bottom_right": 718.0,
+      "confidence": 0.4071020483970642
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 767.0,
+      "y_top_left": 96.0,
+      "x_bottom_right": 957.0,
+      "y_bottom_right": 319.0,
+      "confidence": 0.4950447976589203
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 842.0,
+      "y_top_left": 233.0,
+      "x_bottom_right": 1075.0,
+      "y_bottom_right": 491.0,
+      "confidence": 0.7148914337158203
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 461.0,
+      "y_top_left": 104.0,
+      "x_bottom_right": 959.0,
+      "y_bottom_right": 712.0,
+      "confidence": 0.9415183663368225
+    }
+  },
+  "71.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 879.0,
+      "y_top_left": 308.0,
+      "x_bottom_right": 969.0,
+      "y_bottom_right": 439.0,
+      "confidence": 0.2576393485069275
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 150.0,
+      "y_top_left": 316.0,
+      "x_bottom_right": 353.0,
+      "y_bottom_right": 499.0,
+      "confidence": 0.269858717918396
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 965.0,
+      "y_top_left": 225.0,
+      "x_bottom_right": 1157.0,
+      "y_bottom_right": 451.0,
+      "confidence": 0.285803884267807
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 862.0,
+      "y_top_left": 130.0,
+      "x_bottom_right": 1051.0,
+      "y_bottom_right": 338.0,
+      "confidence": 0.2932625412940979
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 509.0,
+      "y_top_left": 572.0,
+      "x_bottom_right": 666.0,
+      "y_bottom_right": 720.0,
+      "confidence": 0.3078385591506958
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 1074.0,
+      "y_top_left": 439.0,
+      "x_bottom_right": 1277.0,
+      "y_bottom_right": 717.0,
+      "confidence": 0.330513596534729
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 1032.0,
+      "y_top_left": 323.0,
+      "x_bottom_right": 1278.0,
+      "y_bottom_right": 579.0,
+      "confidence": 0.3676244020462036
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 1134.0,
+      "y_top_left": 586.0,
+      "x_bottom_right": 1280.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.37467607855796814
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 2.0,
+      "y_top_left": 87.0,
+      "x_bottom_right": 204.0,
+      "y_bottom_right": 322.0,
+      "confidence": 0.40348073840141296
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 366.0,
+      "y_top_left": 287.0,
+      "x_bottom_right": 561.0,
+      "y_bottom_right": 474.0,
+      "confidence": 0.43212440609931946
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 445.0,
+      "y_top_left": 90.0,
+      "x_bottom_right": 658.0,
+      "y_bottom_right": 336.0,
+      "confidence": 0.5351219773292542
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 870.0,
+      "y_top_left": 419.0,
+      "x_bottom_right": 1090.0,
+      "y_bottom_right": 693.0,
+      "confidence": 0.5697426795959473
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 204.0,
+      "y_top_left": 79.0,
+      "x_bottom_right": 456.0,
+      "y_bottom_right": 421.0,
+      "confidence": 0.6805782318115234
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 573.0,
+      "y_top_left": 105.0,
+      "x_bottom_right": 929.0,
+      "y_bottom_right": 712.0,
+      "confidence": 0.8711785674095154
+    }
+  },
+  "72.0": {
+    "0": {
+      "class": "SPORTS_BALL",
+      "x_top_left": 689.0,
+      "y_top_left": 354.0,
+      "x_bottom_right": 747.0,
+      "y_bottom_right": 414.0,
+      "confidence": 0.2797352969646454
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 389.0,
+      "y_top_left": 221.0,
+      "x_bottom_right": 547.0,
+      "y_bottom_right": 467.0,
+      "confidence": 0.3431367874145508
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1.0,
+      "y_top_left": 590.0,
+      "x_bottom_right": 182.0,
+      "y_bottom_right": 720.0,
+      "confidence": 0.3816130757331848
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 732.0,
+      "y_top_left": 610.0,
+      "x_bottom_right": 895.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.42486873269081116
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 872.0,
+      "y_top_left": 376.0,
+      "x_bottom_right": 1042.0,
+      "y_bottom_right": 633.0,
+      "confidence": 0.436540812253952
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 169.0,
+      "y_top_left": 218.0,
+      "x_bottom_right": 390.0,
+      "y_bottom_right": 457.0,
+      "confidence": 0.44025251269340515
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 1083.0,
+      "y_top_left": 112.0,
+      "x_bottom_right": 1279.0,
+      "y_bottom_right": 360.0,
+      "confidence": 0.5275585055351257
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 385.0,
+      "y_top_left": 65.0,
+      "x_bottom_right": 612.0,
+      "y_bottom_right": 299.0,
+      "confidence": 0.5492435097694397
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 80.0,
+      "x_bottom_right": 167.0,
+      "y_bottom_right": 363.0,
+      "confidence": 0.6295171976089478
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 167.0,
+      "y_top_left": 82.0,
+      "x_bottom_right": 411.0,
+      "y_bottom_right": 358.0,
+      "confidence": 0.6484258770942688
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 911.0,
+      "y_top_left": 470.0,
+      "x_bottom_right": 1120.0,
+      "y_bottom_right": 718.0,
+      "confidence": 0.6846836805343628
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 415.0,
+      "y_top_left": 72.0,
+      "x_bottom_right": 838.0,
+      "y_bottom_right": 716.0,
+      "confidence": 0.9274083971977234
+    }
+  },
+  "73.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 410.0,
+      "y_top_left": 166.0,
+      "x_bottom_right": 427.0,
+      "y_bottom_right": 192.0,
+      "confidence": 0.5312680006027222
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 507.0,
+      "y_top_left": 290.0,
+      "x_bottom_right": 526.0,
+      "y_bottom_right": 352.0,
+      "confidence": 0.5919516086578369
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 583.0,
+      "y_top_left": 176.0,
+      "x_bottom_right": 597.0,
+      "y_bottom_right": 215.0,
+      "confidence": 0.6739549040794373
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 584.0,
+      "y_top_left": 689.0,
+      "x_bottom_right": 621.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.7191517353057861
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 1189.0,
+      "y_top_left": 226.0,
+      "x_bottom_right": 1210.0,
+      "y_bottom_right": 280.0,
+      "confidence": 0.7554347515106201
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 782.0,
+      "y_top_left": 169.0,
+      "x_bottom_right": 796.0,
+      "y_bottom_right": 209.0,
+      "confidence": 0.7598525285720825
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 513.0,
+      "y_top_left": 301.0,
+      "x_bottom_right": 541.0,
+      "y_bottom_right": 361.0,
+      "confidence": 0.771083414554596
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 1020.0,
+      "y_top_left": 190.0,
+      "x_bottom_right": 1039.0,
+      "y_bottom_right": 232.0,
+      "confidence": 0.7848548889160156
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 60.0,
+      "y_top_left": 543.0,
+      "x_bottom_right": 111.0,
+      "y_bottom_right": 643.0,
+      "confidence": 0.7941336631774902
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 453.0,
+      "y_top_left": 229.0,
+      "x_bottom_right": 470.0,
+      "y_bottom_right": 276.0,
+      "confidence": 0.8260524868965149
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 267.0,
+      "y_top_left": 227.0,
+      "x_bottom_right": 283.0,
+      "y_bottom_right": 277.0,
+      "confidence": 0.8292961716651917
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 826.0,
+      "y_top_left": 262.0,
+      "x_bottom_right": 846.0,
+      "y_bottom_right": 320.0,
+      "confidence": 0.8357582688331604
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 1070.0,
+      "y_top_left": 313.0,
+      "x_bottom_right": 1095.0,
+      "y_bottom_right": 381.0,
+      "confidence": 0.839587390422821
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 380.0,
+      "y_top_left": 271.0,
+      "x_bottom_right": 401.0,
+      "y_bottom_right": 327.0,
+      "confidence": 0.8439755439758301
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 543.0,
+      "x_bottom_right": 36.0,
+      "y_bottom_right": 649.0,
+      "confidence": 0.852310299873352
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 1127.0,
+      "y_top_left": 423.0,
+      "x_bottom_right": 1160.0,
+      "y_bottom_right": 507.0,
+      "confidence": 0.8795372843742371
+    }
+  },
+  "74.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 786.0,
+      "y_top_left": 170.0,
+      "x_bottom_right": 801.0,
+      "y_bottom_right": 207.0,
+      "confidence": 0.5645594596862793
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 359.0,
+      "y_top_left": 157.0,
+      "x_bottom_right": 382.0,
+      "y_bottom_right": 194.0,
+      "confidence": 0.6352709531784058
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 588.0,
+      "y_top_left": 692.0,
+      "x_bottom_right": 626.0,
+      "y_bottom_right": 720.0,
+      "confidence": 0.6431266665458679
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 1190.0,
+      "y_top_left": 225.0,
+      "x_bottom_right": 1211.0,
+      "y_bottom_right": 280.0,
+      "confidence": 0.6699346303939819
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 565.0,
+      "y_top_left": 178.0,
+      "x_bottom_right": 579.0,
+      "y_bottom_right": 216.0,
+      "confidence": 0.6813730597496033
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 469.0,
+      "y_top_left": 284.0,
+      "x_bottom_right": 489.0,
+      "y_bottom_right": 338.0,
+      "confidence": 0.7237353324890137
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 998.0,
+      "y_top_left": 191.0,
+      "x_bottom_right": 1015.0,
+      "y_bottom_right": 234.0,
+      "confidence": 0.7605032920837402
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 467.0,
+      "y_top_left": 225.0,
+      "x_bottom_right": 483.0,
+      "y_bottom_right": 272.0,
+      "confidence": 0.7763400673866272
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 489.0,
+      "y_top_left": 300.0,
+      "x_bottom_right": 515.0,
+      "y_bottom_right": 359.0,
+      "confidence": 0.792800784111023
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 355.0,
+      "y_top_left": 269.0,
+      "x_bottom_right": 376.0,
+      "y_bottom_right": 322.0,
+      "confidence": 0.8293466567993164
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 1061.0,
+      "y_top_left": 319.0,
+      "x_bottom_right": 1084.0,
+      "y_bottom_right": 389.0,
+      "confidence": 0.8314493298530579
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 827.0,
+      "y_top_left": 258.0,
+      "x_bottom_right": 846.0,
+      "y_bottom_right": 315.0,
+      "confidence": 0.8463079929351807
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 285.0,
+      "y_top_left": 223.0,
+      "x_bottom_right": 303.0,
+      "y_bottom_right": 274.0,
+      "confidence": 0.8489629030227661
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 1165.0,
+      "y_top_left": 441.0,
+      "x_bottom_right": 1197.0,
+      "y_bottom_right": 528.0,
+      "confidence": 0.8943575620651245
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 545.0,
+      "x_bottom_right": 56.0,
+      "y_bottom_right": 650.0,
+      "confidence": 0.9444050788879395
+    }
+  },
+  "75.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 969.0,
+      "y_top_left": 192.0,
+      "x_bottom_right": 984.0,
+      "y_bottom_right": 234.0,
+      "confidence": 0.5195617079734802
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1191.0,
+      "y_top_left": 226.0,
+      "x_bottom_right": 1214.0,
+      "y_bottom_right": 282.0,
+      "confidence": 0.5466300249099731
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 322.0,
+      "y_top_left": 155.0,
+      "x_bottom_right": 341.0,
+      "y_bottom_right": 194.0,
+      "confidence": 0.588814914226532
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 589.0,
+      "y_top_left": 693.0,
+      "x_bottom_right": 627.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.6387878656387329
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 790.0,
+      "y_top_left": 170.0,
+      "x_bottom_right": 805.0,
+      "y_bottom_right": 208.0,
+      "confidence": 0.6753429174423218
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 486.0,
+      "y_top_left": 222.0,
+      "x_bottom_right": 499.0,
+      "y_bottom_right": 267.0,
+      "confidence": 0.7271258234977722
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 544.0,
+      "y_top_left": 179.0,
+      "x_bottom_right": 559.0,
+      "y_bottom_right": 217.0,
+      "confidence": 0.7376375198364258
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 307.0,
+      "y_top_left": 221.0,
+      "x_bottom_right": 321.0,
+      "y_bottom_right": 270.0,
+      "confidence": 0.7842423319816589
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 463.0,
+      "y_top_left": 295.0,
+      "x_bottom_right": 484.0,
+      "y_bottom_right": 354.0,
+      "confidence": 0.7922987937927246
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 818.0,
+      "y_top_left": 252.0,
+      "x_bottom_right": 839.0,
+      "y_bottom_right": 308.0,
+      "confidence": 0.8134075999259949
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 324.0,
+      "y_top_left": 265.0,
+      "x_bottom_right": 347.0,
+      "y_bottom_right": 320.0,
+      "confidence": 0.842268168926239
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 441.0,
+      "y_top_left": 280.0,
+      "x_bottom_right": 462.0,
+      "y_bottom_right": 334.0,
+      "confidence": 0.8433113694190979
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 1050.0,
+      "y_top_left": 325.0,
+      "x_bottom_right": 1075.0,
+      "y_bottom_right": 393.0,
+      "confidence": 0.8601362705230713
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 1196.0,
+      "y_top_left": 457.0,
+      "x_bottom_right": 1232.0,
+      "y_bottom_right": 547.0,
+      "confidence": 0.8722960352897644
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 82.0,
+      "y_top_left": 537.0,
+      "x_bottom_right": 136.0,
+      "y_bottom_right": 635.0,
+      "confidence": 0.8976512551307678
+    }
+  },
+  "76.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 760.0,
+      "y_top_left": 170.0,
+      "x_bottom_right": 773.0,
+      "y_bottom_right": 205.0,
+      "confidence": 0.39320170879364014
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 556.0,
+      "y_top_left": 694.0,
+      "x_bottom_right": 594.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.5336381793022156
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 502.0,
+      "y_top_left": 178.0,
+      "x_bottom_right": 513.0,
+      "y_bottom_right": 216.0,
+      "confidence": 0.5883743762969971
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 1151.0,
+      "y_top_left": 225.0,
+      "x_bottom_right": 1174.0,
+      "y_bottom_right": 278.0,
+      "confidence": 0.6119657158851624
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 305.0,
+      "y_top_left": 219.0,
+      "x_bottom_right": 321.0,
+      "y_bottom_right": 268.0,
+      "confidence": 0.7340390086174011
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 907.0,
+      "y_top_left": 192.0,
+      "x_bottom_right": 927.0,
+      "y_bottom_right": 231.0,
+      "confidence": 0.7551493048667908
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 260.0,
+      "y_top_left": 267.0,
+      "x_bottom_right": 276.0,
+      "y_bottom_right": 322.0,
+      "confidence": 0.7670143842697144
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 410.0,
+      "y_top_left": 291.0,
+      "x_bottom_right": 429.0,
+      "y_bottom_right": 348.0,
+      "confidence": 0.7785354852676392
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 476.0,
+      "y_top_left": 218.0,
+      "x_bottom_right": 492.0,
+      "y_bottom_right": 261.0,
+      "confidence": 0.8129076361656189
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 390.0,
+      "y_top_left": 274.0,
+      "x_bottom_right": 410.0,
+      "y_bottom_right": 327.0,
+      "confidence": 0.8191949725151062
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 774.0,
+      "y_top_left": 248.0,
+      "x_bottom_right": 795.0,
+      "y_bottom_right": 302.0,
+      "confidence": 0.8269371390342712
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 1004.0,
+      "y_top_left": 327.0,
+      "x_bottom_right": 1031.0,
+      "y_bottom_right": 397.0,
+      "confidence": 0.8337754607200623
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 1185.0,
+      "y_top_left": 463.0,
+      "x_bottom_right": 1217.0,
+      "y_bottom_right": 554.0,
+      "confidence": 0.8895034790039062
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 141.0,
+      "y_top_left": 538.0,
+      "x_bottom_right": 197.0,
+      "y_bottom_right": 634.0,
+      "confidence": 0.9183641076087952
+    }
+  },
+  "77.0": {
+    "0": {
+      "class": "SPORTS_BALL",
+      "x_top_left": 1257.0,
+      "y_top_left": 304.0,
+      "x_bottom_right": 1279.0,
+      "y_bottom_right": 323.0,
+      "confidence": 0.3178180158138275
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1246.0,
+      "y_top_left": 144.0,
+      "x_bottom_right": 1280.0,
+      "y_bottom_right": 244.0,
+      "confidence": 0.3561495244503021
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1.0,
+      "y_top_left": 171.0,
+      "x_bottom_right": 130.0,
+      "y_bottom_right": 656.0,
+      "confidence": 0.3712743818759918
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 1114.0,
+      "y_top_left": 262.0,
+      "x_bottom_right": 1176.0,
+      "y_bottom_right": 309.0,
+      "confidence": 0.38263776898384094
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 229.0,
+      "y_top_left": 162.0,
+      "x_bottom_right": 425.0,
+      "y_bottom_right": 655.0,
+      "confidence": 0.40502023696899414
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 236.0,
+      "y_top_left": 165.0,
+      "x_bottom_right": 430.0,
+      "y_bottom_right": 344.0,
+      "confidence": 0.4467228353023529
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 1137.0,
+      "y_top_left": 120.0,
+      "x_bottom_right": 1223.0,
+      "y_bottom_right": 263.0,
+      "confidence": 0.49828141927719116
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 304.0,
+      "y_top_left": 115.0,
+      "x_bottom_right": 406.0,
+      "y_bottom_right": 235.0,
+      "confidence": 0.5181569457054138
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 1060.0,
+      "y_top_left": 190.0,
+      "x_bottom_right": 1147.0,
+      "y_bottom_right": 307.0,
+      "confidence": 0.5335783958435059
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 196.0,
+      "y_top_left": 131.0,
+      "x_bottom_right": 279.0,
+      "y_bottom_right": 232.0,
+      "confidence": 0.5717523694038391
+    },
+    "10": {
+      "class": "SPORTS_BALL",
+      "x_top_left": 537.0,
+      "y_top_left": 527.0,
+      "x_bottom_right": 651.0,
+      "y_bottom_right": 630.0,
+      "confidence": 0.6979284286499023
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 106.0,
+      "y_top_left": 158.0,
+      "x_bottom_right": 239.0,
+      "y_bottom_right": 347.0,
+      "confidence": 0.7018926739692688
+    },
+    "12": {
+      "class": "SPORTS_BALL",
+      "x_top_left": 434.0,
+      "y_top_left": 529.0,
+      "x_bottom_right": 521.0,
+      "y_bottom_right": 649.0,
+      "confidence": 0.720354437828064
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 408.0,
+      "y_top_left": 142.0,
+      "x_bottom_right": 560.0,
+      "y_bottom_right": 340.0,
+      "confidence": 0.7450379133224487
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 1171.0,
+      "y_top_left": 189.0,
+      "x_bottom_right": 1271.0,
+      "y_bottom_right": 320.0,
+      "confidence": 0.7765408754348755
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 180.0,
+      "x_bottom_right": 110.0,
+      "y_bottom_right": 346.0,
+      "confidence": 0.7899507284164429
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 576.0,
+      "y_top_left": 72.0,
+      "x_bottom_right": 802.0,
+      "y_bottom_right": 663.0,
+      "confidence": 0.8724654316902161
+    },
+    "17": {
+      "class": "SPORTS_BALL",
+      "x_top_left": 549.0,
+      "y_top_left": 584.0,
+      "x_bottom_right": 635.0,
+      "y_bottom_right": 663.0,
+      "confidence": 0.935477614402771
+    },
+    "18": {
+      "class": "PERSON",
+      "x_top_left": 765.0,
+      "y_top_left": 0.0,
+      "x_bottom_right": 1086.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.9553341269493103
+    }
+  },
+  "78.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 969.0,
+      "y_top_left": 193.0,
+      "x_bottom_right": 1040.0,
+      "y_bottom_right": 323.0,
+      "confidence": 0.2959336042404175
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 291.0,
+      "y_top_left": 207.0,
+      "x_bottom_right": 402.0,
+      "y_bottom_right": 306.0,
+      "confidence": 0.29868197441101074
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 100.0,
+      "y_top_left": 229.0,
+      "x_bottom_right": 155.0,
+      "y_bottom_right": 322.0,
+      "confidence": 0.32962408661842346
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 1177.0,
+      "y_top_left": 187.0,
+      "x_bottom_right": 1279.0,
+      "y_bottom_right": 342.0,
+      "confidence": 0.34060952067375183
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 941.0,
+      "y_top_left": 325.0,
+      "x_bottom_right": 995.0,
+      "y_bottom_right": 365.0,
+      "confidence": 0.35840651392936707
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 895.0,
+      "y_top_left": 262.0,
+      "x_bottom_right": 974.0,
+      "y_bottom_right": 361.0,
+      "confidence": 0.43117865920066833
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 856.0,
+      "y_top_left": 226.0,
+      "x_bottom_right": 922.0,
+      "y_bottom_right": 321.0,
+      "confidence": 0.45327475666999817
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 116.0,
+      "y_top_left": 333.0,
+      "x_bottom_right": 178.0,
+      "y_bottom_right": 395.0,
+      "confidence": 0.45674359798431396
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 142.0,
+      "y_top_left": 233.0,
+      "x_bottom_right": 259.0,
+      "y_bottom_right": 361.0,
+      "confidence": 0.4581057131290436
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 171.0,
+      "y_top_left": 304.0,
+      "x_bottom_right": 260.0,
+      "y_bottom_right": 390.0,
+      "confidence": 0.5240811705589294
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 1062.0,
+      "y_top_left": 185.0,
+      "x_bottom_right": 1181.0,
+      "y_bottom_right": 323.0,
+      "confidence": 0.535504162311554
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 193.0,
+      "y_top_left": 190.0,
+      "x_bottom_right": 279.0,
+      "y_bottom_right": 295.0,
+      "confidence": 0.5419149994850159
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 1129.0,
+      "y_top_left": 280.0,
+      "x_bottom_right": 1199.0,
+      "y_bottom_right": 381.0,
+      "confidence": 0.55237877368927
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 255.0,
+      "y_top_left": 205.0,
+      "x_bottom_right": 405.0,
+      "y_bottom_right": 394.0,
+      "confidence": 0.580706000328064
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 815.0,
+      "y_top_left": 274.0,
+      "x_bottom_right": 937.0,
+      "y_bottom_right": 363.0,
+      "confidence": 0.6399096250534058
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 1045.0,
+      "y_top_left": 281.0,
+      "x_bottom_right": 1161.0,
+      "y_bottom_right": 381.0,
+      "confidence": 0.6532289981842041
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 764.0,
+      "y_top_left": 196.0,
+      "x_bottom_right": 854.0,
+      "y_bottom_right": 349.0,
+      "confidence": 0.6813649535179138
+    },
+    "17": {
+      "class": "SPORTS_BALL",
+      "x_top_left": 407.0,
+      "y_top_left": 562.0,
+      "x_bottom_right": 528.0,
+      "y_bottom_right": 672.0,
+      "confidence": 0.7438105344772339
+    },
+    "18": {
+      "class": "PERSON",
+      "x_top_left": 988.0,
+      "y_top_left": 250.0,
+      "x_bottom_right": 1074.0,
+      "y_bottom_right": 371.0,
+      "confidence": 0.7582146525382996
+    },
+    "19": {
+      "class": "PERSON",
+      "x_top_left": 1197.0,
+      "y_top_left": 248.0,
+      "x_bottom_right": 1280.0,
+      "y_bottom_right": 382.0,
+      "confidence": 0.8052263855934143
+    },
+    "20": {
+      "class": "PERSON",
+      "x_top_left": 11.0,
+      "y_top_left": 222.0,
+      "x_bottom_right": 132.0,
+      "y_bottom_right": 395.0,
+      "confidence": 0.8536620140075684
+    },
+    "21": {
+      "class": "PERSON",
+      "x_top_left": 497.0,
+      "y_top_left": 1.0,
+      "x_bottom_right": 804.0,
+      "y_bottom_right": 715.0,
+      "confidence": 0.9498172402381897
+    },
+    "22": {
+      "class": "SPORTS_BALL",
+      "x_top_left": 421.0,
+      "y_top_left": 616.0,
+      "x_bottom_right": 499.0,
+      "y_bottom_right": 690.0,
+      "confidence": 0.9568914771080017
+    }
+  },
+  "79.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1182.0,
+      "y_top_left": 335.0,
+      "x_bottom_right": 1232.0,
+      "y_bottom_right": 390.0,
+      "confidence": 0.3524186909198761
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1152.0,
+      "y_top_left": 193.0,
+      "x_bottom_right": 1269.0,
+      "y_bottom_right": 306.0,
+      "confidence": 0.5110506415367126
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 261.0,
+      "y_top_left": 216.0,
+      "x_bottom_right": 359.0,
+      "y_bottom_right": 334.0,
+      "confidence": 0.5161546468734741
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 1.0,
+      "y_top_left": 247.0,
+      "x_bottom_right": 99.0,
+      "y_bottom_right": 397.0,
+      "confidence": 0.5215076804161072
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 353.0,
+      "y_top_left": 250.0,
+      "x_bottom_right": 442.0,
+      "y_bottom_right": 402.0,
+      "confidence": 0.557682454586029
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 154.0,
+      "y_top_left": 189.0,
+      "x_bottom_right": 250.0,
+      "y_bottom_right": 311.0,
+      "confidence": 0.5670211315155029
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 1112.0,
+      "y_top_left": 295.0,
+      "x_bottom_right": 1172.0,
+      "y_bottom_right": 388.0,
+      "confidence": 0.5881355404853821
+    },
+    "7": {
+      "class": "SPORTS_BALL",
+      "x_top_left": 371.0,
+      "y_top_left": 570.0,
+      "x_bottom_right": 492.0,
+      "y_bottom_right": 678.0,
+      "confidence": 0.6130046844482422
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 182.0,
+      "y_top_left": 295.0,
+      "x_bottom_right": 276.0,
+      "y_bottom_right": 400.0,
+      "confidence": 0.629496157169342
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 255.0,
+      "y_top_left": 284.0,
+      "x_bottom_right": 394.0,
+      "y_bottom_right": 402.0,
+      "confidence": 0.6581184267997742
+    },
+    "10": {
+      "class": "SPORTS_BALL",
+      "x_top_left": 1074.0,
+      "y_top_left": 585.0,
+      "x_bottom_right": 1122.0,
+      "y_bottom_right": 636.0,
+      "confidence": 0.6724082827568054
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 1011.0,
+      "y_top_left": 292.0,
+      "x_bottom_right": 1128.0,
+      "y_bottom_right": 389.0,
+      "confidence": 0.6852172017097473
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 775.0,
+      "y_top_left": 274.0,
+      "x_bottom_right": 911.0,
+      "y_bottom_right": 377.0,
+      "confidence": 0.722846269607544
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 104.0,
+      "y_top_left": 238.0,
+      "x_bottom_right": 221.0,
+      "y_bottom_right": 402.0,
+      "confidence": 0.7484743595123291
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 957.0,
+      "y_top_left": 257.0,
+      "x_bottom_right": 1042.0,
+      "y_bottom_right": 386.0,
+      "confidence": 0.7578747272491455
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 1165.0,
+      "y_top_left": 257.0,
+      "x_bottom_right": 1277.0,
+      "y_bottom_right": 387.0,
+      "confidence": 0.7753955721855164
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 441.0,
+      "y_top_left": 3.0,
+      "x_bottom_right": 804.0,
+      "y_bottom_right": 716.0,
+      "confidence": 0.8209570646286011
+    },
+    "17": {
+      "class": "SPORTS_BALL",
+      "x_top_left": 383.0,
+      "y_top_left": 622.0,
+      "x_bottom_right": 464.0,
+      "y_bottom_right": 697.0,
+      "confidence": 0.9391170144081116
+    }
+  },
+  "80.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1065.0,
+      "y_top_left": 177.0,
+      "x_bottom_right": 1080.0,
+      "y_bottom_right": 203.0,
+      "confidence": 0.29582470655441284
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1239.0,
+      "y_top_left": 212.0,
+      "x_bottom_right": 1253.0,
+      "y_bottom_right": 225.0,
+      "confidence": 0.30942556262016296
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1093.0,
+      "y_top_left": 228.0,
+      "x_bottom_right": 1106.0,
+      "y_bottom_right": 281.0,
+      "confidence": 0.49990591406822205
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 910.0,
+      "y_top_left": 197.0,
+      "x_bottom_right": 927.0,
+      "y_bottom_right": 239.0,
+      "confidence": 0.6998381614685059
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 467.0,
+      "y_top_left": 189.0,
+      "x_bottom_right": 480.0,
+      "y_bottom_right": 228.0,
+      "confidence": 0.7532889246940613
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 734.0,
+      "y_top_left": 178.0,
+      "x_bottom_right": 750.0,
+      "y_bottom_right": 215.0,
+      "confidence": 0.7673466801643372
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 500.0,
+      "y_top_left": 231.0,
+      "x_bottom_right": 516.0,
+      "y_bottom_right": 277.0,
+      "confidence": 0.7785680294036865
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 361.0,
+      "y_top_left": 226.0,
+      "x_bottom_right": 377.0,
+      "y_bottom_right": 273.0,
+      "confidence": 0.8051096796989441
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 266.0,
+      "y_top_left": 291.0,
+      "x_bottom_right": 289.0,
+      "y_bottom_right": 345.0,
+      "confidence": 0.8296014666557312
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 1136.0,
+      "y_top_left": 475.0,
+      "x_bottom_right": 1157.0,
+      "y_bottom_right": 561.0,
+      "confidence": 0.8331770896911621
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 714.0,
+      "y_top_left": 242.0,
+      "x_bottom_right": 733.0,
+      "y_bottom_right": 294.0,
+      "confidence": 0.836344838142395
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 317.0,
+      "y_top_left": 301.0,
+      "x_bottom_right": 338.0,
+      "y_bottom_right": 359.0,
+      "confidence": 0.8389973044395447
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 187.0,
+      "y_top_left": 278.0,
+      "x_bottom_right": 210.0,
+      "y_bottom_right": 336.0,
+      "confidence": 0.882620632648468
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 868.0,
+      "y_top_left": 353.0,
+      "x_bottom_right": 900.0,
+      "y_bottom_right": 423.0,
+      "confidence": 0.8953308463096619
+    }
+  },
+  "81.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1241.0,
+      "y_top_left": 211.0,
+      "x_bottom_right": 1253.0,
+      "y_bottom_right": 225.0,
+      "confidence": 0.26043814420700073
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1089.0,
+      "y_top_left": 181.0,
+      "x_bottom_right": 1105.0,
+      "y_bottom_right": 206.0,
+      "confidence": 0.388449490070343
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1070.0,
+      "y_top_left": 233.0,
+      "x_bottom_right": 1088.0,
+      "y_bottom_right": 281.0,
+      "confidence": 0.6931861042976379
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 474.0,
+      "y_top_left": 238.0,
+      "x_bottom_right": 494.0,
+      "y_bottom_right": 280.0,
+      "confidence": 0.7144384384155273
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 927.0,
+      "y_top_left": 196.0,
+      "x_bottom_right": 944.0,
+      "y_bottom_right": 236.0,
+      "confidence": 0.7260544300079346
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 460.0,
+      "y_top_left": 191.0,
+      "x_bottom_right": 477.0,
+      "y_bottom_right": 228.0,
+      "confidence": 0.7514004707336426
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 734.0,
+      "y_top_left": 178.0,
+      "x_bottom_right": 749.0,
+      "y_bottom_right": 215.0,
+      "confidence": 0.7583628296852112
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 239.0,
+      "y_top_left": 296.0,
+      "x_bottom_right": 263.0,
+      "y_bottom_right": 352.0,
+      "confidence": 0.7919597625732422
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 834.0,
+      "y_top_left": 362.0,
+      "x_bottom_right": 855.0,
+      "y_bottom_right": 436.0,
+      "confidence": 0.8208639025688171
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 208.0,
+      "y_top_left": 269.0,
+      "x_bottom_right": 228.0,
+      "y_bottom_right": 324.0,
+      "confidence": 0.824910581111908
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 345.0,
+      "y_top_left": 228.0,
+      "x_bottom_right": 361.0,
+      "y_bottom_right": 276.0,
+      "confidence": 0.8279013633728027
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 702.0,
+      "y_top_left": 244.0,
+      "x_bottom_right": 717.0,
+      "y_bottom_right": 294.0,
+      "confidence": 0.834467887878418
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 292.0,
+      "y_top_left": 302.0,
+      "x_bottom_right": 319.0,
+      "y_bottom_right": 359.0,
+      "confidence": 0.8630169034004211
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 1103.0,
+      "y_top_left": 470.0,
+      "x_bottom_right": 1133.0,
+      "y_bottom_right": 561.0,
+      "confidence": 0.9090176224708557
+    }
+  },
+  "82.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1129.0,
+      "y_top_left": 182.0,
+      "x_bottom_right": 1147.0,
+      "y_bottom_right": 209.0,
+      "confidence": 0.33026939630508423
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 957.0,
+      "y_top_left": 194.0,
+      "x_bottom_right": 971.0,
+      "y_bottom_right": 237.0,
+      "confidence": 0.6386010646820068
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 425.0,
+      "y_top_left": 241.0,
+      "x_bottom_right": 442.0,
+      "y_bottom_right": 282.0,
+      "confidence": 0.6850807666778564
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 444.0,
+      "y_top_left": 194.0,
+      "x_bottom_right": 461.0,
+      "y_bottom_right": 230.0,
+      "confidence": 0.6884756088256836
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 225.0,
+      "y_top_left": 265.0,
+      "x_bottom_right": 247.0,
+      "y_bottom_right": 313.0,
+      "confidence": 0.6887559294700623
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 1016.0,
+      "y_top_left": 239.0,
+      "x_bottom_right": 1041.0,
+      "y_bottom_right": 286.0,
+      "confidence": 0.7382979989051819
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 718.0,
+      "y_top_left": 179.0,
+      "x_bottom_right": 739.0,
+      "y_bottom_right": 216.0,
+      "confidence": 0.7420396208763123
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 224.0,
+      "y_top_left": 299.0,
+      "x_bottom_right": 248.0,
+      "y_bottom_right": 358.0,
+      "confidence": 0.7765328288078308
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 685.0,
+      "y_top_left": 244.0,
+      "x_bottom_right": 699.0,
+      "y_bottom_right": 293.0,
+      "confidence": 0.8217460513114929
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 330.0,
+      "y_top_left": 228.0,
+      "x_bottom_right": 351.0,
+      "y_bottom_right": 277.0,
+      "confidence": 0.8313401937484741
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 260.0,
+      "y_top_left": 304.0,
+      "x_bottom_right": 292.0,
+      "y_bottom_right": 360.0,
+      "confidence": 0.8775972127914429
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 781.0,
+      "y_top_left": 369.0,
+      "x_bottom_right": 811.0,
+      "y_bottom_right": 444.0,
+      "confidence": 0.878221869468689
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 1100.0,
+      "y_top_left": 473.0,
+      "x_bottom_right": 1132.0,
+      "y_bottom_right": 562.0,
+      "confidence": 0.8903937935829163
+    }
+  },
+  "83.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1264.0,
+      "y_top_left": 214.0,
+      "x_bottom_right": 1277.0,
+      "y_bottom_right": 228.0,
+      "confidence": 0.3110862374305725
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1167.0,
+      "y_top_left": 190.0,
+      "x_bottom_right": 1182.0,
+      "y_bottom_right": 216.0,
+      "confidence": 0.4026643931865692
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 403.0,
+      "y_top_left": 198.0,
+      "x_bottom_right": 418.0,
+      "y_bottom_right": 236.0,
+      "confidence": 0.6333549618721008
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 971.0,
+      "y_top_left": 196.0,
+      "x_bottom_right": 987.0,
+      "y_bottom_right": 238.0,
+      "confidence": 0.6610040664672852
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 938.0,
+      "y_top_left": 243.0,
+      "x_bottom_right": 958.0,
+      "y_bottom_right": 291.0,
+      "confidence": 0.6962242722511292
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 202.0,
+      "y_top_left": 270.0,
+      "x_bottom_right": 223.0,
+      "y_bottom_right": 317.0,
+      "confidence": 0.706115186214447
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 358.0,
+      "y_top_left": 244.0,
+      "x_bottom_right": 375.0,
+      "y_bottom_right": 288.0,
+      "confidence": 0.7337735891342163
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 657.0,
+      "y_top_left": 246.0,
+      "x_bottom_right": 675.0,
+      "y_bottom_right": 295.0,
+      "confidence": 0.754807710647583
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 212.0,
+      "y_top_left": 303.0,
+      "x_bottom_right": 240.0,
+      "y_bottom_right": 361.0,
+      "confidence": 0.7615295052528381
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 662.0,
+      "y_top_left": 187.0,
+      "x_bottom_right": 678.0,
+      "y_bottom_right": 227.0,
+      "confidence": 0.7661299109458923
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 238.0,
+      "y_top_left": 307.0,
+      "x_bottom_right": 270.0,
+      "y_bottom_right": 364.0,
+      "confidence": 0.8094690442085266
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 303.0,
+      "y_top_left": 237.0,
+      "x_bottom_right": 334.0,
+      "y_bottom_right": 280.0,
+      "confidence": 0.8615134954452515
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 746.0,
+      "y_top_left": 373.0,
+      "x_bottom_right": 772.0,
+      "y_bottom_right": 449.0,
+      "confidence": 0.9014819860458374
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 1145.0,
+      "y_top_left": 462.0,
+      "x_bottom_right": 1184.0,
+      "y_bottom_right": 546.0,
+      "confidence": 0.9066301584243774
+    }
+  },
+  "84.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1246.0,
+      "y_top_left": 184.0,
+      "x_bottom_right": 1264.0,
+      "y_bottom_right": 211.0,
+      "confidence": 0.28343436121940613
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1214.0,
+      "y_top_left": 216.0,
+      "x_bottom_right": 1233.0,
+      "y_bottom_right": 252.0,
+      "confidence": 0.28363415598869324
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1148.0,
+      "y_top_left": 200.0,
+      "x_bottom_right": 1165.0,
+      "y_bottom_right": 241.0,
+      "confidence": 0.41424834728240967
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 1218.0,
+      "y_top_left": 216.0,
+      "x_bottom_right": 1233.0,
+      "y_bottom_right": 235.0,
+      "confidence": 0.4356130361557007
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 176.0,
+      "y_top_left": 312.0,
+      "x_bottom_right": 192.0,
+      "y_bottom_right": 368.0,
+      "confidence": 0.45122256875038147
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 562.0,
+      "y_top_left": 202.0,
+      "x_bottom_right": 578.0,
+      "y_bottom_right": 241.0,
+      "confidence": 0.577431857585907
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 940.0,
+      "y_top_left": 205.0,
+      "x_bottom_right": 957.0,
+      "y_bottom_right": 242.0,
+      "confidence": 0.6696141362190247
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 321.0,
+      "y_top_left": 212.0,
+      "x_bottom_right": 334.0,
+      "y_bottom_right": 248.0,
+      "confidence": 0.6710460782051086
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 262.0,
+      "y_top_left": 257.0,
+      "x_bottom_right": 280.0,
+      "y_bottom_right": 303.0,
+      "confidence": 0.7259654998779297
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 826.0,
+      "y_top_left": 257.0,
+      "x_bottom_right": 845.0,
+      "y_bottom_right": 305.0,
+      "confidence": 0.7628815174102783
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 221.0,
+      "y_top_left": 246.0,
+      "x_bottom_right": 239.0,
+      "y_bottom_right": 292.0,
+      "confidence": 0.7980989217758179
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 179.0,
+      "y_top_left": 312.0,
+      "x_bottom_right": 216.0,
+      "y_bottom_right": 371.0,
+      "confidence": 0.8118100166320801
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 585.0,
+      "y_top_left": 249.0,
+      "x_bottom_right": 603.0,
+      "y_bottom_right": 300.0,
+      "confidence": 0.8243231177330017
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 128.0,
+      "y_top_left": 286.0,
+      "x_bottom_right": 154.0,
+      "y_bottom_right": 341.0,
+      "confidence": 0.8381494879722595
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 740.0,
+      "y_top_left": 374.0,
+      "x_bottom_right": 768.0,
+      "y_bottom_right": 446.0,
+      "confidence": 0.8514391183853149
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 1207.0,
+      "y_top_left": 436.0,
+      "x_bottom_right": 1240.0,
+      "y_bottom_right": 513.0,
+      "confidence": 0.880424439907074
+    }
+  },
+  "85.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1153.0,
+      "y_top_left": 221.0,
+      "x_bottom_right": 1166.0,
+      "y_bottom_right": 257.0,
+      "confidence": 0.2516993582248688
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1177.0,
+      "y_top_left": 190.0,
+      "x_bottom_right": 1193.0,
+      "y_bottom_right": 216.0,
+      "confidence": 0.2549687325954437
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1246.0,
+      "y_top_left": 225.0,
+      "x_bottom_right": 1260.0,
+      "y_bottom_right": 250.0,
+      "confidence": 0.335799902677536
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 1224.0,
+      "y_top_left": 223.0,
+      "x_bottom_right": 1240.0,
+      "y_bottom_right": 247.0,
+      "confidence": 0.3422645032405853
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 94.0,
+      "y_top_left": 324.0,
+      "x_bottom_right": 107.0,
+      "y_bottom_right": 384.0,
+      "confidence": 0.3535744249820709
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 1115.0,
+      "y_top_left": 208.0,
+      "x_bottom_right": 1129.0,
+      "y_bottom_right": 237.0,
+      "confidence": 0.3683190643787384
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 885.0,
+      "y_top_left": 208.0,
+      "x_bottom_right": 898.0,
+      "y_bottom_right": 247.0,
+      "confidence": 0.5311599969863892
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 97.0,
+      "y_top_left": 262.0,
+      "x_bottom_right": 116.0,
+      "y_bottom_right": 309.0,
+      "confidence": 0.5702636241912842
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 136.0,
+      "y_top_left": 274.0,
+      "x_bottom_right": 152.0,
+      "y_bottom_right": 319.0,
+      "confidence": 0.5780445337295532
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 205.0,
+      "y_top_left": 223.0,
+      "x_bottom_right": 220.0,
+      "y_bottom_right": 260.0,
+      "confidence": 0.5874508619308472
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 700.0,
+      "y_top_left": 269.0,
+      "x_bottom_right": 715.0,
+      "y_bottom_right": 319.0,
+      "confidence": 0.7087475061416626
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 497.0,
+      "y_top_left": 264.0,
+      "x_bottom_right": 514.0,
+      "y_bottom_right": 309.0,
+      "confidence": 0.7530302405357361
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 444.0,
+      "y_top_left": 215.0,
+      "x_bottom_right": 456.0,
+      "y_bottom_right": 256.0,
+      "confidence": 0.7880670428276062
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 97.0,
+      "y_top_left": 325.0,
+      "x_bottom_right": 128.0,
+      "y_bottom_right": 384.0,
+      "confidence": 0.799540102481842
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 7.0,
+      "y_top_left": 308.0,
+      "x_bottom_right": 37.0,
+      "y_bottom_right": 365.0,
+      "confidence": 0.8441784977912903
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 1180.0,
+      "y_top_left": 426.0,
+      "x_bottom_right": 1221.0,
+      "y_bottom_right": 493.0,
+      "confidence": 0.8460882306098938
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 707.0,
+      "y_top_left": 377.0,
+      "x_bottom_right": 733.0,
+      "y_bottom_right": 448.0,
+      "confidence": 0.8688132762908936
+    }
+  },
+  "86.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1245.0,
+      "y_top_left": 223.0,
+      "x_bottom_right": 1262.0,
+      "y_bottom_right": 247.0,
+      "confidence": 0.25266167521476746
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1197.0,
+      "y_top_left": 190.0,
+      "x_bottom_right": 1214.0,
+      "y_bottom_right": 216.0,
+      "confidence": 0.3724578619003296
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1165.0,
+      "y_top_left": 213.0,
+      "x_bottom_right": 1184.0,
+      "y_bottom_right": 237.0,
+      "confidence": 0.3748554587364197
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 63.0,
+      "y_top_left": 328.0,
+      "x_bottom_right": 79.0,
+      "y_bottom_right": 384.0,
+      "confidence": 0.39121779799461365
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 905.0,
+      "y_top_left": 206.0,
+      "x_bottom_right": 920.0,
+      "y_bottom_right": 249.0,
+      "confidence": 0.6414514183998108
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 149.0,
+      "y_top_left": 226.0,
+      "x_bottom_right": 165.0,
+      "y_bottom_right": 264.0,
+      "confidence": 0.6632243394851685
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 55.0,
+      "y_top_left": 280.0,
+      "x_bottom_right": 86.0,
+      "y_bottom_right": 326.0,
+      "confidence": 0.7637989521026611
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 397.0,
+      "y_top_left": 222.0,
+      "x_bottom_right": 417.0,
+      "y_bottom_right": 263.0,
+      "confidence": 0.7743818759918213
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 640.0,
+      "y_top_left": 277.0,
+      "x_bottom_right": 655.0,
+      "y_bottom_right": 327.0,
+      "confidence": 0.7987473607063293
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 483.0,
+      "y_top_left": 263.0,
+      "x_bottom_right": 499.0,
+      "y_bottom_right": 313.0,
+      "confidence": 0.8107276558876038
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 66.0,
+      "y_top_left": 329.0,
+      "x_bottom_right": 98.0,
+      "y_bottom_right": 387.0,
+      "confidence": 0.8209158778190613
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 17.0,
+      "y_top_left": 265.0,
+      "x_bottom_right": 49.0,
+      "y_bottom_right": 317.0,
+      "confidence": 0.8298202157020569
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 701.0,
+      "y_top_left": 380.0,
+      "x_bottom_right": 725.0,
+      "y_bottom_right": 450.0,
+      "confidence": 0.8644102215766907
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 1085.0,
+      "y_top_left": 411.0,
+      "x_bottom_right": 1126.0,
+      "y_bottom_right": 481.0,
+      "confidence": 0.8732678294181824
+    }
+  },
+  "87.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1247.0,
+      "y_top_left": 222.0,
+      "x_bottom_right": 1263.0,
+      "y_bottom_right": 238.0,
+      "confidence": 0.2878475785255432
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 974.0,
+      "y_top_left": 206.0,
+      "x_bottom_right": 990.0,
+      "y_bottom_right": 247.0,
+      "confidence": 0.5384012460708618
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 147.0,
+      "y_top_left": 224.0,
+      "x_bottom_right": 162.0,
+      "y_bottom_right": 262.0,
+      "confidence": 0.5828728675842285
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 267.0,
+      "x_bottom_right": 19.0,
+      "y_bottom_right": 313.0,
+      "confidence": 0.6320341229438782
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 56.0,
+      "y_top_left": 319.0,
+      "x_bottom_right": 85.0,
+      "y_bottom_right": 368.0,
+      "confidence": 0.6794211864471436
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 616.0,
+      "y_top_left": 280.0,
+      "x_bottom_right": 631.0,
+      "y_bottom_right": 333.0,
+      "confidence": 0.7614129185676575
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 28.0,
+      "y_top_left": 272.0,
+      "x_bottom_right": 54.0,
+      "y_bottom_right": 322.0,
+      "confidence": 0.7967925071716309
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 87.0,
+      "y_top_left": 327.0,
+      "x_bottom_right": 116.0,
+      "y_bottom_right": 383.0,
+      "confidence": 0.8001740574836731
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 711.0,
+      "y_top_left": 387.0,
+      "x_bottom_right": 742.0,
+      "y_bottom_right": 451.0,
+      "confidence": 0.8048587441444397
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 516.0,
+      "y_top_left": 263.0,
+      "x_bottom_right": 532.0,
+      "y_bottom_right": 313.0,
+      "confidence": 0.8217650055885315
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 410.0,
+      "y_top_left": 224.0,
+      "x_bottom_right": 427.0,
+      "y_bottom_right": 266.0,
+      "confidence": 0.8316614627838135
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 1006.0,
+      "y_top_left": 405.0,
+      "x_bottom_right": 1049.0,
+      "y_bottom_right": 478.0,
+      "confidence": 0.8739537596702576
+    }
+  },
+  "88.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 854.0,
+      "y_top_left": 258.0,
+      "x_bottom_right": 978.0,
+      "y_bottom_right": 449.0,
+      "confidence": 0.30219247937202454
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 292.0,
+      "y_top_left": 586.0,
+      "x_bottom_right": 350.0,
+      "y_bottom_right": 700.0,
+      "confidence": 0.36050286889076233
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 879.0,
+      "y_top_left": 360.0,
+      "x_bottom_right": 1011.0,
+      "y_bottom_right": 554.0,
+      "confidence": 0.3632781207561493
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 939.0,
+      "y_top_left": 623.0,
+      "x_bottom_right": 1067.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.4014974534511566
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 1056.0,
+      "y_top_left": 604.0,
+      "x_bottom_right": 1172.0,
+      "y_bottom_right": 720.0,
+      "confidence": 0.48643431067466736
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 137.0,
+      "y_top_left": 618.0,
+      "x_bottom_right": 291.0,
+      "y_bottom_right": 720.0,
+      "confidence": 0.5298486948013306
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 257.0,
+      "y_top_left": 654.0,
+      "x_bottom_right": 353.0,
+      "y_bottom_right": 720.0,
+      "confidence": 0.5429791212081909
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 351.0,
+      "y_top_left": 623.0,
+      "x_bottom_right": 440.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.5879628658294678
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 902.0,
+      "y_top_left": 49.0,
+      "x_bottom_right": 1043.0,
+      "y_bottom_right": 348.0,
+      "confidence": 0.6132072806358337
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 623.0,
+      "y_top_left": 152.0,
+      "x_bottom_right": 910.0,
+      "y_bottom_right": 716.0,
+      "confidence": 0.8930847644805908
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 375.0,
+      "y_top_left": 54.0,
+      "x_bottom_right": 687.0,
+      "y_bottom_right": 714.0,
+      "confidence": 0.9374715685844421
+    }
+  },
+  "89.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 1104.0,
+      "y_top_left": 218.0,
+      "x_bottom_right": 1120.0,
+      "y_bottom_right": 261.0,
+      "confidence": 0.4673486053943634
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 596.0,
+      "y_top_left": 272.0,
+      "x_bottom_right": 609.0,
+      "y_bottom_right": 317.0,
+      "confidence": 0.6400899887084961
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 93.0,
+      "y_top_left": 265.0,
+      "x_bottom_right": 114.0,
+      "y_bottom_right": 310.0,
+      "confidence": 0.6567729115486145
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 95.0,
+      "y_top_left": 304.0,
+      "x_bottom_right": 118.0,
+      "y_bottom_right": 350.0,
+      "confidence": 0.6690636277198792
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 178.0,
+      "y_top_left": 218.0,
+      "x_bottom_right": 199.0,
+      "y_bottom_right": 271.0,
+      "confidence": 0.7297689318656921
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 129.0,
+      "y_top_left": 316.0,
+      "x_bottom_right": 154.0,
+      "y_bottom_right": 369.0,
+      "confidence": 0.7836154103279114
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 578.0,
+      "y_top_left": 283.0,
+      "x_bottom_right": 601.0,
+      "y_bottom_right": 337.0,
+      "confidence": 0.8005794882774353
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 31.0,
+      "y_top_left": 264.0,
+      "x_bottom_right": 52.0,
+      "y_bottom_right": 311.0,
+      "confidence": 0.8146461844444275
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 454.0,
+      "y_top_left": 234.0,
+      "x_bottom_right": 471.0,
+      "y_bottom_right": 277.0,
+      "confidence": 0.8430806398391724
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 1212.0,
+      "y_top_left": 517.0,
+      "x_bottom_right": 1262.0,
+      "y_bottom_right": 614.0,
+      "confidence": 0.855059027671814
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 834.0,
+      "y_top_left": 399.0,
+      "x_bottom_right": 877.0,
+      "y_bottom_right": 467.0,
+      "confidence": 0.887897253036499
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 651.0,
+      "y_top_left": 384.0,
+      "x_bottom_right": 682.0,
+      "y_bottom_right": 453.0,
+      "confidence": 0.8933970332145691
+    }
+  },
+  "90.0": {
+    "0": {
+      "class": "TENNIS_RACKET",
+      "x_top_left": 1168.0,
+      "y_top_left": 575.0,
+      "x_bottom_right": 1190.0,
+      "y_bottom_right": 595.0,
+      "confidence": 0.3549005091190338
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 59.0,
+      "y_top_left": 265.0,
+      "x_bottom_right": 75.0,
+      "y_bottom_right": 308.0,
+      "confidence": 0.5291686058044434
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 122.0,
+      "y_top_left": 266.0,
+      "x_bottom_right": 143.0,
+      "y_bottom_right": 303.0,
+      "confidence": 0.5325064063072205
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 722.0,
+      "y_top_left": 694.0,
+      "x_bottom_right": 759.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.6522218585014343
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 195.0,
+      "y_top_left": 232.0,
+      "x_bottom_right": 216.0,
+      "y_bottom_right": 273.0,
+      "confidence": 0.6676816344261169
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 453.0,
+      "y_top_left": 241.0,
+      "x_bottom_right": 470.0,
+      "y_bottom_right": 280.0,
+      "confidence": 0.6922025680541992
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 125.0,
+      "y_top_left": 299.0,
+      "x_bottom_right": 154.0,
+      "y_bottom_right": 361.0,
+      "confidence": 0.7371276617050171
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 9.0,
+      "y_top_left": 332.0,
+      "x_bottom_right": 36.0,
+      "y_bottom_right": 388.0,
+      "confidence": 0.7960708141326904
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 597.0,
+      "y_top_left": 382.0,
+      "x_bottom_right": 621.0,
+      "y_bottom_right": 446.0,
+      "confidence": 0.8142039775848389
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 566.0,
+      "y_top_left": 284.0,
+      "x_bottom_right": 590.0,
+      "y_bottom_right": 337.0,
+      "confidence": 0.8236362338066101
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 618.0,
+      "y_top_left": 276.0,
+      "x_bottom_right": 632.0,
+      "y_bottom_right": 322.0,
+      "confidence": 0.851546049118042
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 755.0,
+      "y_top_left": 389.0,
+      "x_bottom_right": 794.0,
+      "y_bottom_right": 455.0,
+      "confidence": 0.8847616910934448
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 1184.0,
+      "y_top_left": 528.0,
+      "x_bottom_right": 1220.0,
+      "y_bottom_right": 629.0,
+      "confidence": 0.894891083240509
+    }
+  },
+  "91.0": {
+    "0": {
+      "class": "TENNIS_RACKET",
+      "x_top_left": 1163.0,
+      "y_top_left": 598.0,
+      "x_bottom_right": 1187.0,
+      "y_bottom_right": 619.0,
+      "confidence": 0.2571882903575897
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 241.0,
+      "y_top_left": 224.0,
+      "x_bottom_right": 256.0,
+      "y_bottom_right": 255.0,
+      "confidence": 0.3116108179092407
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 166.0,
+      "y_top_left": 259.0,
+      "x_bottom_right": 187.0,
+      "y_bottom_right": 304.0,
+      "confidence": 0.3538341820240021
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 167.0,
+      "y_top_left": 291.0,
+      "x_bottom_right": 189.0,
+      "y_bottom_right": 334.0,
+      "confidence": 0.4685951769351959
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 94.0,
+      "y_top_left": 260.0,
+      "x_bottom_right": 108.0,
+      "y_bottom_right": 306.0,
+      "confidence": 0.5963035225868225
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 229.0,
+      "y_top_left": 235.0,
+      "x_bottom_right": 244.0,
+      "y_bottom_right": 272.0,
+      "confidence": 0.6591504216194153
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 576.0,
+      "y_top_left": 287.0,
+      "x_bottom_right": 600.0,
+      "y_bottom_right": 332.0,
+      "confidence": 0.6975625157356262
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 459.0,
+      "y_top_left": 242.0,
+      "x_bottom_right": 472.0,
+      "y_bottom_right": 283.0,
+      "confidence": 0.767713725566864
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 151.0,
+      "y_top_left": 307.0,
+      "x_bottom_right": 173.0,
+      "y_bottom_right": 354.0,
+      "confidence": 0.7868938446044922
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 1181.0,
+      "y_top_left": 554.0,
+      "x_bottom_right": 1211.0,
+      "y_bottom_right": 657.0,
+      "confidence": 0.8054640293121338
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 641.0,
+      "y_top_left": 280.0,
+      "x_bottom_right": 660.0,
+      "y_bottom_right": 326.0,
+      "confidence": 0.8315876126289368
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 568.0,
+      "y_top_left": 375.0,
+      "x_bottom_right": 592.0,
+      "y_bottom_right": 437.0,
+      "confidence": 0.8334203958511353
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 46.0,
+      "y_top_left": 326.0,
+      "x_bottom_right": 73.0,
+      "y_bottom_right": 380.0,
+      "confidence": 0.8543012738227844
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 717.0,
+      "y_top_left": 382.0,
+      "x_bottom_right": 752.0,
+      "y_bottom_right": 446.0,
+      "confidence": 0.9067457914352417
+    }
+  },
+  "92.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 223.0,
+      "y_top_left": 247.0,
+      "x_bottom_right": 239.0,
+      "y_bottom_right": 292.0,
+      "confidence": 0.36191216111183167
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 300.0,
+      "y_top_left": 272.0,
+      "x_bottom_right": 322.0,
+      "y_bottom_right": 322.0,
+      "confidence": 0.4547789990901947
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 367.0,
+      "y_top_left": 222.0,
+      "x_bottom_right": 393.0,
+      "y_bottom_right": 259.0,
+      "confidence": 0.49625200033187866
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 74.0,
+      "y_top_left": 212.0,
+      "x_bottom_right": 94.0,
+      "y_bottom_right": 258.0,
+      "confidence": 0.6084098219871521
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 590.0,
+      "y_top_left": 235.0,
+      "x_bottom_right": 607.0,
+      "y_bottom_right": 280.0,
+      "confidence": 0.7319158315658569
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 765.0,
+      "y_top_left": 284.0,
+      "x_bottom_right": 791.0,
+      "y_bottom_right": 334.0,
+      "confidence": 0.7405415177345276
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 665.0,
+      "y_top_left": 281.0,
+      "x_bottom_right": 687.0,
+      "y_bottom_right": 332.0,
+      "confidence": 0.7554798126220703
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 272.0,
+      "y_top_left": 295.0,
+      "x_bottom_right": 292.0,
+      "y_bottom_right": 347.0,
+      "confidence": 0.7825766801834106
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 169.0,
+      "y_top_left": 311.0,
+      "x_bottom_right": 194.0,
+      "y_bottom_right": 367.0,
+      "confidence": 0.8135948777198792
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 659.0,
+      "y_top_left": 375.0,
+      "x_bottom_right": 698.0,
+      "y_bottom_right": 444.0,
+      "confidence": 0.8316327929496765
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 84.0,
+      "y_top_left": 371.0,
+      "x_bottom_right": 109.0,
+      "y_bottom_right": 438.0,
+      "confidence": 0.8394713997840881
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 827.0,
+      "y_top_left": 385.0,
+      "x_bottom_right": 853.0,
+      "y_bottom_right": 457.0,
+      "confidence": 0.8834092020988464
+    }
+  },
+  "93.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 484.0,
+      "y_top_left": 246.0,
+      "x_bottom_right": 504.0,
+      "y_bottom_right": 290.0,
+      "confidence": 0.37112510204315186
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 233.0,
+      "y_top_left": 215.0,
+      "x_bottom_right": 249.0,
+      "y_bottom_right": 254.0,
+      "confidence": 0.40919169783592224
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 85.0,
+      "y_top_left": 227.0,
+      "x_bottom_right": 102.0,
+      "y_bottom_right": 271.0,
+      "confidence": 0.479310542345047
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 63.0,
+      "y_top_left": 254.0,
+      "x_bottom_right": 85.0,
+      "y_bottom_right": 319.0,
+      "confidence": 0.5643422603607178
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 489.0,
+      "y_top_left": 275.0,
+      "x_bottom_right": 510.0,
+      "y_bottom_right": 327.0,
+      "confidence": 0.6602024435997009
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 534.0,
+      "y_top_left": 223.0,
+      "x_bottom_right": 548.0,
+      "y_bottom_right": 264.0,
+      "confidence": 0.6676968932151794
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 371.0,
+      "y_top_left": 241.0,
+      "x_bottom_right": 389.0,
+      "y_bottom_right": 293.0,
+      "confidence": 0.6855010390281677
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 799.0,
+      "y_top_left": 240.0,
+      "x_bottom_right": 819.0,
+      "y_bottom_right": 291.0,
+      "confidence": 0.7465487122535706
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 926.0,
+      "y_top_left": 298.0,
+      "x_bottom_right": 945.0,
+      "y_bottom_right": 352.0,
+      "confidence": 0.7604819536209106
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 429.0,
+      "y_top_left": 297.0,
+      "x_bottom_right": 450.0,
+      "y_bottom_right": 357.0,
+      "confidence": 0.7861922383308411
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 321.0,
+      "y_top_left": 305.0,
+      "x_bottom_right": 347.0,
+      "y_bottom_right": 367.0,
+      "confidence": 0.801127552986145
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 811.0,
+      "y_top_left": 288.0,
+      "x_bottom_right": 840.0,
+      "y_bottom_right": 344.0,
+      "confidence": 0.8261505365371704
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 818.0,
+      "y_top_left": 399.0,
+      "x_bottom_right": 848.0,
+      "y_bottom_right": 479.0,
+      "confidence": 0.8584684729576111
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 229.0,
+      "y_top_left": 376.0,
+      "x_bottom_right": 259.0,
+      "y_bottom_right": 449.0,
+      "confidence": 0.85869300365448
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 1042.0,
+      "y_top_left": 406.0,
+      "x_bottom_right": 1069.0,
+      "y_bottom_right": 486.0,
+      "confidence": 0.8797073364257812
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 9.0,
+      "y_top_left": 371.0,
+      "x_bottom_right": 40.0,
+      "y_bottom_right": 444.0,
+      "confidence": 0.9022637605667114
+    }
+  },
+  "94.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 52.0,
+      "y_top_left": 186.0,
+      "x_bottom_right": 71.0,
+      "y_bottom_right": 227.0,
+      "confidence": 0.2706155776977539
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 924.0,
+      "y_top_left": 289.0,
+      "x_bottom_right": 949.0,
+      "y_bottom_right": 333.0,
+      "confidence": 0.4830944836139679
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 546.0,
+      "y_top_left": 217.0,
+      "x_bottom_right": 563.0,
+      "y_bottom_right": 261.0,
+      "confidence": 0.5547753572463989
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 373.0,
+      "y_top_left": 242.0,
+      "x_bottom_right": 391.0,
+      "y_bottom_right": 294.0,
+      "confidence": 0.6851330995559692
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 558.0,
+      "y_top_left": 243.0,
+      "x_bottom_right": 578.0,
+      "y_bottom_right": 294.0,
+      "confidence": 0.6894002556800842
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 77.0,
+      "y_top_left": 222.0,
+      "x_bottom_right": 94.0,
+      "y_bottom_right": 276.0,
+      "confidence": 0.7458745241165161
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 912.0,
+      "y_top_left": 314.0,
+      "x_bottom_right": 952.0,
+      "y_bottom_right": 382.0,
+      "confidence": 0.7535727024078369
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 246.0,
+      "y_top_left": 206.0,
+      "x_bottom_right": 277.0,
+      "y_bottom_right": 257.0,
+      "confidence": 0.7840953469276428
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 96.0,
+      "y_top_left": 249.0,
+      "x_bottom_right": 117.0,
+      "y_bottom_right": 314.0,
+      "confidence": 0.7954012155532837
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 622.0,
+      "y_top_left": 213.0,
+      "x_bottom_right": 648.0,
+      "y_bottom_right": 257.0,
+      "confidence": 0.8062191009521484
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 439.0,
+      "y_top_left": 308.0,
+      "x_bottom_right": 462.0,
+      "y_bottom_right": 375.0,
+      "confidence": 0.8200838565826416
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 42.0,
+      "y_top_left": 249.0,
+      "x_bottom_right": 66.0,
+      "y_bottom_right": 312.0,
+      "confidence": 0.8349083065986633
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 902.0,
+      "y_top_left": 242.0,
+      "x_bottom_right": 921.0,
+      "y_bottom_right": 301.0,
+      "confidence": 0.844832718372345
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 362.0,
+      "y_top_left": 299.0,
+      "x_bottom_right": 385.0,
+      "y_bottom_right": 367.0,
+      "confidence": 0.8503090739250183
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 543.0,
+      "y_top_left": 283.0,
+      "x_bottom_right": 569.0,
+      "y_bottom_right": 340.0,
+      "confidence": 0.8527379631996155
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 223.0,
+      "y_top_left": 394.0,
+      "x_bottom_right": 256.0,
+      "y_bottom_right": 480.0,
+      "confidence": 0.8767078518867493
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 1153.0,
+      "y_top_left": 421.0,
+      "x_bottom_right": 1184.0,
+      "y_bottom_right": 512.0,
+      "confidence": 0.915606677532196
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 883.0,
+      "y_top_left": 425.0,
+      "x_bottom_right": 919.0,
+      "y_bottom_right": 518.0,
+      "confidence": 0.9166298508644104
+    }
+  },
+  "95.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 352.0,
+      "y_top_left": 208.0,
+      "x_bottom_right": 374.0,
+      "y_bottom_right": 259.0,
+      "confidence": 0.5460878610610962
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 479.0,
+      "y_top_left": 204.0,
+      "x_bottom_right": 502.0,
+      "y_bottom_right": 255.0,
+      "confidence": 0.5956881642341614
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 3.0,
+      "y_top_left": 245.0,
+      "x_bottom_right": 27.0,
+      "y_bottom_right": 311.0,
+      "confidence": 0.6115065217018127
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 11.0,
+      "y_top_left": 220.0,
+      "x_bottom_right": 37.0,
+      "y_bottom_right": 275.0,
+      "confidence": 0.6350107789039612
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 608.0,
+      "y_top_left": 201.0,
+      "x_bottom_right": 632.0,
+      "y_bottom_right": 260.0,
+      "confidence": 0.6708250641822815
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 261.0,
+      "y_top_left": 204.0,
+      "x_bottom_right": 291.0,
+      "y_bottom_right": 258.0,
+      "confidence": 0.6880488991737366
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 340.0,
+      "y_top_left": 242.0,
+      "x_bottom_right": 375.0,
+      "y_bottom_right": 291.0,
+      "confidence": 0.791517436504364
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 557.0,
+      "y_top_left": 235.0,
+      "x_bottom_right": 585.0,
+      "y_bottom_right": 294.0,
+      "confidence": 0.8086994290351868
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 85.0,
+      "y_top_left": 234.0,
+      "x_bottom_right": 114.0,
+      "y_bottom_right": 301.0,
+      "confidence": 0.8175927400588989
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 368.0,
+      "y_top_left": 291.0,
+      "x_bottom_right": 395.0,
+      "y_bottom_right": 368.0,
+      "confidence": 0.8200768828392029
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 410.0,
+      "y_top_left": 314.0,
+      "x_bottom_right": 434.0,
+      "y_bottom_right": 389.0,
+      "confidence": 0.8422894477844238
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 1256.0,
+      "y_top_left": 438.0,
+      "x_bottom_right": 1280.0,
+      "y_bottom_right": 543.0,
+      "confidence": 0.844777524471283
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 541.0,
+      "y_top_left": 284.0,
+      "x_bottom_right": 568.0,
+      "y_bottom_right": 348.0,
+      "confidence": 0.8684998750686646
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 972.0,
+      "y_top_left": 236.0,
+      "x_bottom_right": 997.0,
+      "y_bottom_right": 302.0,
+      "confidence": 0.8701735138893127
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 936.0,
+      "y_top_left": 451.0,
+      "x_bottom_right": 974.0,
+      "y_bottom_right": 559.0,
+      "confidence": 0.881883978843689
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 896.0,
+      "y_top_left": 318.0,
+      "x_bottom_right": 930.0,
+      "y_bottom_right": 400.0,
+      "confidence": 0.885538637638092
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 1051.0,
+      "y_top_left": 289.0,
+      "x_bottom_right": 1087.0,
+      "y_bottom_right": 371.0,
+      "confidence": 0.8930954337120056
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 180.0,
+      "y_top_left": 411.0,
+      "x_bottom_right": 219.0,
+      "y_bottom_right": 512.0,
+      "confidence": 0.8993102312088013
+    }
+  },
+  "96.0": {
+    "0": {
+      "class": "BASEBALL_GLOVE",
+      "x_top_left": 1017.0,
+      "y_top_left": 331.0,
+      "x_bottom_right": 1033.0,
+      "y_bottom_right": 352.0,
+      "confidence": 0.26734694838523865
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 41.0,
+      "y_top_left": 153.0,
+      "x_bottom_right": 68.0,
+      "y_bottom_right": 214.0,
+      "confidence": 0.34598031640052795
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 349.0,
+      "y_top_left": 185.0,
+      "x_bottom_right": 371.0,
+      "y_bottom_right": 244.0,
+      "confidence": 0.4340762197971344
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 647.0,
+      "y_top_left": 185.0,
+      "x_bottom_right": 664.0,
+      "y_bottom_right": 252.0,
+      "confidence": 0.4357658326625824
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 547.0,
+      "y_top_left": 183.0,
+      "x_bottom_right": 565.0,
+      "y_bottom_right": 245.0,
+      "confidence": 0.5093548893928528
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 366.0,
+      "y_top_left": 195.0,
+      "x_bottom_right": 391.0,
+      "y_bottom_right": 269.0,
+      "confidence": 0.6812248826026917
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 206.0,
+      "y_top_left": 221.0,
+      "x_bottom_right": 237.0,
+      "y_bottom_right": 281.0,
+      "confidence": 0.7113939523696899
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 199.0,
+      "x_bottom_right": 26.0,
+      "y_bottom_right": 267.0,
+      "confidence": 0.7557607889175415
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 635.0,
+      "y_top_left": 219.0,
+      "x_bottom_right": 657.0,
+      "y_bottom_right": 285.0,
+      "confidence": 0.7564367651939392
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 573.0,
+      "y_top_left": 272.0,
+      "x_bottom_right": 602.0,
+      "y_bottom_right": 334.0,
+      "confidence": 0.7849962711334229
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 1104.0,
+      "y_top_left": 227.0,
+      "x_bottom_right": 1128.0,
+      "y_bottom_right": 303.0,
+      "confidence": 0.7951439619064331
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 55.0,
+      "y_top_left": 234.0,
+      "x_bottom_right": 81.0,
+      "y_bottom_right": 300.0,
+      "confidence": 0.8066149950027466
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 1251.0,
+      "y_top_left": 287.0,
+      "x_bottom_right": 1280.0,
+      "y_bottom_right": 378.0,
+      "confidence": 0.8426414132118225
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 464.0,
+      "y_top_left": 307.0,
+      "x_bottom_right": 497.0,
+      "y_bottom_right": 392.0,
+      "confidence": 0.8635672330856323
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 993.0,
+      "y_top_left": 316.0,
+      "x_bottom_right": 1033.0,
+      "y_bottom_right": 404.0,
+      "confidence": 0.8761548399925232
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 426.0,
+      "y_top_left": 283.0,
+      "x_bottom_right": 461.0,
+      "y_bottom_right": 362.0,
+      "confidence": 0.8762504458427429
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 217.0,
+      "y_top_left": 415.0,
+      "x_bottom_right": 256.0,
+      "y_bottom_right": 525.0,
+      "confidence": 0.8803313970565796
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 321.0,
+      "y_top_left": 216.0,
+      "x_bottom_right": 361.0,
+      "y_bottom_right": 276.0,
+      "confidence": 0.880639374256134
+    },
+    "18": {
+      "class": "PERSON",
+      "x_top_left": 1105.0,
+      "y_top_left": 478.0,
+      "x_bottom_right": 1165.0,
+      "y_bottom_right": 605.0,
+      "confidence": 0.9218090772628784
+    }
+  },
+  "97.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 462.0,
+      "y_top_left": 172.0,
+      "x_bottom_right": 486.0,
+      "y_bottom_right": 231.0,
+      "confidence": 0.29642823338508606
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 84.0,
+      "y_top_left": 143.0,
+      "x_bottom_right": 118.0,
+      "y_bottom_right": 206.0,
+      "confidence": 0.3809681534767151
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 712.0,
+      "y_top_left": 177.0,
+      "x_bottom_right": 735.0,
+      "y_bottom_right": 239.0,
+      "confidence": 0.4681980013847351
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 747.0,
+      "y_top_left": 179.0,
+      "x_bottom_right": 770.0,
+      "y_bottom_right": 228.0,
+      "confidence": 0.4923006296157837
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 211.0,
+      "y_top_left": 240.0,
+      "x_bottom_right": 257.0,
+      "y_bottom_right": 310.0,
+      "confidence": 0.6683804392814636
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 738.0,
+      "y_top_left": 215.0,
+      "x_bottom_right": 764.0,
+      "y_bottom_right": 285.0,
+      "confidence": 0.7248541712760925
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 578.0,
+      "y_top_left": 270.0,
+      "x_bottom_right": 604.0,
+      "y_bottom_right": 342.0,
+      "confidence": 0.7263725399971008
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 349.0,
+      "y_top_left": 205.0,
+      "x_bottom_right": 378.0,
+      "y_bottom_right": 277.0,
+      "confidence": 0.7298318147659302
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 320.0,
+      "y_top_left": 215.0,
+      "x_bottom_right": 355.0,
+      "y_bottom_right": 293.0,
+      "confidence": 0.7717559337615967
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 495.0,
+      "y_top_left": 300.0,
+      "x_bottom_right": 532.0,
+      "y_bottom_right": 384.0,
+      "confidence": 0.7770614624023438
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 263.0,
+      "x_bottom_right": 37.0,
+      "y_bottom_right": 353.0,
+      "confidence": 0.7863985300064087
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 1245.0,
+      "y_top_left": 235.0,
+      "x_bottom_right": 1278.0,
+      "y_bottom_right": 314.0,
+      "confidence": 0.8151283264160156
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 447.0,
+      "y_top_left": 211.0,
+      "x_bottom_right": 482.0,
+      "y_bottom_right": 294.0,
+      "confidence": 0.8354276418685913
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 554.0,
+      "y_top_left": 282.0,
+      "x_bottom_right": 588.0,
+      "y_bottom_right": 371.0,
+      "confidence": 0.843486487865448
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 265.0,
+      "y_top_left": 419.0,
+      "x_bottom_right": 307.0,
+      "y_bottom_right": 532.0,
+      "confidence": 0.8572901487350464
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 17.0,
+      "y_top_left": 193.0,
+      "x_bottom_right": 51.0,
+      "y_bottom_right": 266.0,
+      "confidence": 0.862995445728302
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 1141.0,
+      "y_top_left": 312.0,
+      "x_bottom_right": 1182.0,
+      "y_bottom_right": 414.0,
+      "confidence": 0.8941593170166016
+    }
+  },
+  "98.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 341.0,
+      "y_top_left": 207.0,
+      "x_bottom_right": 367.0,
+      "y_bottom_right": 268.0,
+      "confidence": 0.5043766498565674
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 143.0,
+      "y_top_left": 144.0,
+      "x_bottom_right": 174.0,
+      "y_bottom_right": 208.0,
+      "confidence": 0.5804494023323059
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 497.0,
+      "y_top_left": 171.0,
+      "x_bottom_right": 522.0,
+      "y_bottom_right": 236.0,
+      "confidence": 0.6695838570594788
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 874.0,
+      "y_top_left": 181.0,
+      "x_bottom_right": 902.0,
+      "y_bottom_right": 248.0,
+      "confidence": 0.6964455246925354
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 837.0,
+      "y_top_left": 200.0,
+      "x_bottom_right": 868.0,
+      "y_bottom_right": 258.0,
+      "confidence": 0.7545828819274902
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 375.0,
+      "y_top_left": 213.0,
+      "x_bottom_right": 403.0,
+      "y_bottom_right": 303.0,
+      "confidence": 0.8061695098876953
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 329.0,
+      "y_top_left": 227.0,
+      "x_bottom_right": 362.0,
+      "y_bottom_right": 317.0,
+      "confidence": 0.8104355335235596
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 48.0,
+      "y_top_left": 254.0,
+      "x_bottom_right": 77.0,
+      "y_bottom_right": 344.0,
+      "confidence": 0.826549232006073
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 498.0,
+      "y_top_left": 227.0,
+      "x_bottom_right": 532.0,
+      "y_bottom_right": 307.0,
+      "confidence": 0.8354700207710266
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 27.0,
+      "y_top_left": 204.0,
+      "x_bottom_right": 59.0,
+      "y_bottom_right": 283.0,
+      "confidence": 0.8360504508018494
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 1.0,
+      "y_top_left": 263.0,
+      "x_bottom_right": 44.0,
+      "y_bottom_right": 362.0,
+      "confidence": 0.83717942237854
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 641.0,
+      "y_top_left": 277.0,
+      "x_bottom_right": 677.0,
+      "y_bottom_right": 349.0,
+      "confidence": 0.8705449104309082
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 797.0,
+      "y_top_left": 220.0,
+      "x_bottom_right": 828.0,
+      "y_bottom_right": 299.0,
+      "confidence": 0.8796935677528381
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 477.0,
+      "y_top_left": 291.0,
+      "x_bottom_right": 509.0,
+      "y_bottom_right": 382.0,
+      "confidence": 0.8833974003791809
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 1228.0,
+      "y_top_left": 248.0,
+      "x_bottom_right": 1270.0,
+      "y_bottom_right": 337.0,
+      "confidence": 0.8858776688575745
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 611.0,
+      "y_top_left": 291.0,
+      "x_bottom_right": 642.0,
+      "y_bottom_right": 387.0,
+      "confidence": 0.8882300853729248
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 1094.0,
+      "y_top_left": 300.0,
+      "x_bottom_right": 1134.0,
+      "y_bottom_right": 400.0,
+      "confidence": 0.900372326374054
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 234.0,
+      "y_top_left": 420.0,
+      "x_bottom_right": 285.0,
+      "y_bottom_right": 540.0,
+      "confidence": 0.9136550426483154
+    }
+  },
+  "99.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 111.0,
+      "y_top_left": 140.0,
+      "x_bottom_right": 142.0,
+      "y_bottom_right": 205.0,
+      "confidence": 0.6294588446617126
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 438.0,
+      "y_top_left": 173.0,
+      "x_bottom_right": 468.0,
+      "y_bottom_right": 239.0,
+      "confidence": 0.7253134250640869
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 951.0,
+      "y_top_left": 201.0,
+      "x_bottom_right": 978.0,
+      "y_bottom_right": 267.0,
+      "confidence": 0.7763782739639282
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 993.0,
+      "y_top_left": 193.0,
+      "x_bottom_right": 1029.0,
+      "y_bottom_right": 257.0,
+      "confidence": 0.817511260509491
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 714.0,
+      "y_top_left": 272.0,
+      "x_bottom_right": 752.0,
+      "y_bottom_right": 345.0,
+      "confidence": 0.8523346185684204
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 1243.0,
+      "y_top_left": 296.0,
+      "x_bottom_right": 1280.0,
+      "y_bottom_right": 380.0,
+      "confidence": 0.8615338802337646
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 371.0,
+      "y_top_left": 239.0,
+      "x_bottom_right": 415.0,
+      "y_bottom_right": 326.0,
+      "confidence": 0.8673278093338013
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 419.0,
+      "y_top_left": 290.0,
+      "x_bottom_right": 454.0,
+      "y_bottom_right": 381.0,
+      "confidence": 0.8681469559669495
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 312.0,
+      "y_top_left": 223.0,
+      "x_bottom_right": 364.0,
+      "y_bottom_right": 296.0,
+      "confidence": 0.8697532415390015
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 958.0,
+      "y_top_left": 281.0,
+      "x_bottom_right": 1004.0,
+      "y_bottom_right": 368.0,
+      "confidence": 0.8810601830482483
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 14.0,
+      "y_top_left": 249.0,
+      "x_bottom_right": 54.0,
+      "y_bottom_right": 336.0,
+      "confidence": 0.8819604516029358
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 808.0,
+      "y_top_left": 226.0,
+      "x_bottom_right": 855.0,
+      "y_bottom_right": 298.0,
+      "confidence": 0.8999956846237183
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 503.0,
+      "y_top_left": 217.0,
+      "x_bottom_right": 551.0,
+      "y_bottom_right": 296.0,
+      "confidence": 0.9033606648445129
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 1188.0,
+      "y_top_left": 248.0,
+      "x_bottom_right": 1239.0,
+      "y_bottom_right": 332.0,
+      "confidence": 0.9040066003799438
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 176.0,
+      "y_top_left": 431.0,
+      "x_bottom_right": 232.0,
+      "y_bottom_right": 551.0,
+      "confidence": 0.9050945043563843
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 608.0,
+      "y_top_left": 303.0,
+      "x_bottom_right": 667.0,
+      "y_bottom_right": 388.0,
+      "confidence": 0.912956178188324
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 227.0,
+      "y_top_left": 239.0,
+      "x_bottom_right": 283.0,
+      "y_bottom_right": 324.0,
+      "confidence": 0.9247034192085266
+    }
+  },
+  "100.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 294.0,
+      "y_top_left": 219.0,
+      "x_bottom_right": 319.0,
+      "y_bottom_right": 288.0,
+      "confidence": 0.6543341279029846
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 317.0,
+      "y_top_left": 175.0,
+      "x_bottom_right": 343.0,
+      "y_bottom_right": 239.0,
+      "confidence": 0.7594074010848999
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 727.0,
+      "y_top_left": 233.0,
+      "x_bottom_right": 756.0,
+      "y_bottom_right": 296.0,
+      "confidence": 0.7725032567977905
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 1011.0,
+      "y_top_left": 202.0,
+      "x_bottom_right": 1051.0,
+      "y_bottom_right": 267.0,
+      "confidence": 0.8178680539131165
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 474.0,
+      "y_top_left": 211.0,
+      "x_bottom_right": 497.0,
+      "y_bottom_right": 288.0,
+      "confidence": 0.8409513831138611
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 950.0,
+      "y_top_left": 205.0,
+      "x_bottom_right": 994.0,
+      "y_bottom_right": 267.0,
+      "confidence": 0.8561810851097107
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 54.0,
+      "y_top_left": 433.0,
+      "x_bottom_right": 101.0,
+      "y_bottom_right": 550.0,
+      "confidence": 0.8612560033798218
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 710.0,
+      "y_top_left": 258.0,
+      "x_bottom_right": 745.0,
+      "y_bottom_right": 330.0,
+      "confidence": 0.8629791736602783
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 253.0,
+      "y_top_left": 244.0,
+      "x_bottom_right": 295.0,
+      "y_bottom_right": 327.0,
+      "confidence": 0.8667678236961365
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 1127.0,
+      "y_top_left": 226.0,
+      "x_bottom_right": 1161.0,
+      "y_bottom_right": 308.0,
+      "confidence": 0.8784227967262268
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 280.0,
+      "y_top_left": 290.0,
+      "x_bottom_right": 327.0,
+      "y_bottom_right": 377.0,
+      "confidence": 0.8846096396446228
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 1164.0,
+      "y_top_left": 270.0,
+      "x_bottom_right": 1213.0,
+      "y_bottom_right": 362.0,
+      "confidence": 0.8948700428009033
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 859.0,
+      "y_top_left": 253.0,
+      "x_bottom_right": 897.0,
+      "y_bottom_right": 338.0,
+      "confidence": 0.9034860730171204
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 612.0,
+      "y_top_left": 289.0,
+      "x_bottom_right": 652.0,
+      "y_bottom_right": 380.0,
+      "confidence": 0.9091343283653259
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 114.0,
+      "y_top_left": 239.0,
+      "x_bottom_right": 165.0,
+      "y_bottom_right": 324.0,
+      "confidence": 0.93876713514328
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 1219.0,
+      "y_top_left": 529.0,
+      "x_bottom_right": 1272.0,
+      "y_bottom_right": 675.0,
+      "confidence": 0.9567613005638123
+    }
+  },
+  "101.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 358.0,
+      "y_top_left": 192.0,
+      "x_bottom_right": 387.0,
+      "y_bottom_right": 253.0,
+      "confidence": 0.777987003326416
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1204.0,
+      "y_top_left": 238.0,
+      "x_bottom_right": 1231.0,
+      "y_bottom_right": 319.0,
+      "confidence": 0.7966943979263306
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 444.0,
+      "y_top_left": 229.0,
+      "x_bottom_right": 492.0,
+      "y_bottom_right": 298.0,
+      "confidence": 0.8094838261604309
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 741.0,
+      "y_top_left": 268.0,
+      "x_bottom_right": 775.0,
+      "y_bottom_right": 341.0,
+      "confidence": 0.8097900152206421
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 945.0,
+      "y_top_left": 212.0,
+      "x_bottom_right": 985.0,
+      "y_bottom_right": 268.0,
+      "confidence": 0.8404321670532227
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 487.0,
+      "y_top_left": 214.0,
+      "x_bottom_right": 522.0,
+      "y_bottom_right": 287.0,
+      "confidence": 0.8522555828094482
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 705.0,
+      "y_top_left": 226.0,
+      "x_bottom_right": 739.0,
+      "y_bottom_right": 290.0,
+      "confidence": 0.8542121052742004
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 236.0,
+      "y_top_left": 254.0,
+      "x_bottom_right": 268.0,
+      "y_bottom_right": 336.0,
+      "confidence": 0.86064612865448
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 1045.0,
+      "y_top_left": 218.0,
+      "x_bottom_right": 1076.0,
+      "y_bottom_right": 289.0,
+      "confidence": 0.8683456778526306
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 1248.0,
+      "y_top_left": 278.0,
+      "x_bottom_right": 1280.0,
+      "y_bottom_right": 372.0,
+      "confidence": 0.8843740820884705
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 136.0,
+      "y_top_left": 250.0,
+      "x_bottom_right": 175.0,
+      "y_bottom_right": 335.0,
+      "confidence": 0.890434205532074
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 906.0,
+      "y_top_left": 251.0,
+      "x_bottom_right": 934.0,
+      "y_bottom_right": 333.0,
+      "confidence": 0.8916488289833069
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 89.0,
+      "y_top_left": 450.0,
+      "x_bottom_right": 135.0,
+      "y_bottom_right": 565.0,
+      "confidence": 0.9067172408103943
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 626.0,
+      "y_top_left": 299.0,
+      "x_bottom_right": 659.0,
+      "y_bottom_right": 388.0,
+      "confidence": 0.9157314300537109
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 300.0,
+      "y_top_left": 301.0,
+      "x_bottom_right": 347.0,
+      "y_bottom_right": 384.0,
+      "confidence": 0.9297255873680115
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 1198.0,
+      "y_top_left": 521.0,
+      "x_bottom_right": 1249.0,
+      "y_bottom_right": 659.0,
+      "confidence": 0.9402257800102234
+    }
+  },
+  "102.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 839.0,
+      "y_top_left": 193.0,
+      "x_bottom_right": 862.0,
+      "y_bottom_right": 252.0,
+      "confidence": 0.6885247826576233
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 369.0,
+      "y_top_left": 195.0,
+      "x_bottom_right": 389.0,
+      "y_bottom_right": 262.0,
+      "confidence": 0.7381346821784973
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 610.0,
+      "y_top_left": 220.0,
+      "x_bottom_right": 641.0,
+      "y_bottom_right": 282.0,
+      "confidence": 0.7446122169494629
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 960.0,
+      "y_top_left": 216.0,
+      "x_bottom_right": 984.0,
+      "y_bottom_right": 279.0,
+      "confidence": 0.7611779570579529
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 718.0,
+      "y_top_left": 264.0,
+      "x_bottom_right": 749.0,
+      "y_bottom_right": 342.0,
+      "confidence": 0.8100637793540955
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 719.0,
+      "y_top_left": 211.0,
+      "x_bottom_right": 747.0,
+      "y_bottom_right": 277.0,
+      "confidence": 0.8239818215370178
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 944.0,
+      "y_top_left": 250.0,
+      "x_bottom_right": 975.0,
+      "y_bottom_right": 324.0,
+      "confidence": 0.8317180871963501
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 388.0,
+      "y_top_left": 211.0,
+      "x_bottom_right": 419.0,
+      "y_bottom_right": 281.0,
+      "confidence": 0.8548017740249634
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 197.0,
+      "y_top_left": 247.0,
+      "x_bottom_right": 226.0,
+      "y_bottom_right": 332.0,
+      "confidence": 0.8817362189292908
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 337.0,
+      "y_top_left": 299.0,
+      "x_bottom_right": 369.0,
+      "y_bottom_right": 382.0,
+      "confidence": 0.8869808316230774
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 148.0,
+      "y_top_left": 455.0,
+      "x_bottom_right": 200.0,
+      "y_bottom_right": 575.0,
+      "confidence": 0.9078008532524109
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 130.0,
+      "y_top_left": 250.0,
+      "x_bottom_right": 169.0,
+      "y_bottom_right": 334.0,
+      "confidence": 0.9095973968505859
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 535.0,
+      "y_top_left": 306.0,
+      "x_bottom_right": 561.0,
+      "y_bottom_right": 395.0,
+      "confidence": 0.9097368121147156
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 1161.0,
+      "y_top_left": 511.0,
+      "x_bottom_right": 1207.0,
+      "y_bottom_right": 646.0,
+      "confidence": 0.9314125776290894
+    }
+  },
+  "103.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 714.0,
+      "y_top_left": 192.0,
+      "x_bottom_right": 741.0,
+      "y_bottom_right": 241.0,
+      "confidence": 0.4841785728931427
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 643.0,
+      "y_top_left": 208.0,
+      "x_bottom_right": 683.0,
+      "y_bottom_right": 267.0,
+      "confidence": 0.7273341417312622
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 397.0,
+      "y_top_left": 213.0,
+      "x_bottom_right": 422.0,
+      "y_bottom_right": 282.0,
+      "confidence": 0.752919614315033
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 737.0,
+      "y_top_left": 268.0,
+      "x_bottom_right": 761.0,
+      "y_bottom_right": 338.0,
+      "confidence": 0.7900454998016357
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 836.0,
+      "y_top_left": 206.0,
+      "x_bottom_right": 868.0,
+      "y_bottom_right": 267.0,
+      "confidence": 0.7980112433433533
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 734.0,
+      "y_top_left": 217.0,
+      "x_bottom_right": 773.0,
+      "y_bottom_right": 278.0,
+      "confidence": 0.8029370307922363
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 364.0,
+      "y_top_left": 209.0,
+      "x_bottom_right": 396.0,
+      "y_bottom_right": 262.0,
+      "confidence": 0.8051586747169495
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 384.0,
+      "y_top_left": 293.0,
+      "x_bottom_right": 414.0,
+      "y_bottom_right": 375.0,
+      "confidence": 0.8543569445610046
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 996.0,
+      "y_top_left": 241.0,
+      "x_bottom_right": 1025.0,
+      "y_bottom_right": 321.0,
+      "confidence": 0.8900874257087708
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 217.0,
+      "y_top_left": 241.0,
+      "x_bottom_right": 250.0,
+      "y_bottom_right": 322.0,
+      "confidence": 0.9051910042762756
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 154.0,
+      "y_top_left": 250.0,
+      "x_bottom_right": 185.0,
+      "y_bottom_right": 331.0,
+      "confidence": 0.9081084728240967
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 465.0,
+      "y_top_left": 309.0,
+      "x_bottom_right": 503.0,
+      "y_bottom_right": 395.0,
+      "confidence": 0.9142050743103027
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 239.0,
+      "y_top_left": 443.0,
+      "x_bottom_right": 296.0,
+      "y_bottom_right": 559.0,
+      "confidence": 0.9332122206687927
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 1109.0,
+      "y_top_left": 498.0,
+      "x_bottom_right": 1153.0,
+      "y_bottom_right": 630.0,
+      "confidence": 0.9464037418365479
+    }
+  },
+  "104.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 680.0,
+      "y_top_left": 188.0,
+      "x_bottom_right": 705.0,
+      "y_bottom_right": 223.0,
+      "confidence": 0.3663186728954315
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 659.0,
+      "y_top_left": 184.0,
+      "x_bottom_right": 684.0,
+      "y_bottom_right": 228.0,
+      "confidence": 0.42245352268218994
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 242.0,
+      "x_bottom_right": 11.0,
+      "y_bottom_right": 306.0,
+      "confidence": 0.5077860951423645
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 472.0,
+      "y_top_left": 198.0,
+      "x_bottom_right": 493.0,
+      "y_bottom_right": 253.0,
+      "confidence": 0.6007013320922852
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 452.0,
+      "y_top_left": 205.0,
+      "x_bottom_right": 489.0,
+      "y_bottom_right": 268.0,
+      "confidence": 0.7466089129447937
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 768.0,
+      "y_top_left": 212.0,
+      "x_bottom_right": 804.0,
+      "y_bottom_right": 276.0,
+      "confidence": 0.7520390152931213
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 804.0,
+      "y_top_left": 272.0,
+      "x_bottom_right": 834.0,
+      "y_bottom_right": 337.0,
+      "confidence": 0.7672366499900818
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 508.0,
+      "y_top_left": 278.0,
+      "x_bottom_right": 540.0,
+      "y_bottom_right": 358.0,
+      "confidence": 0.8596510291099548
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 793.0,
+      "y_top_left": 193.0,
+      "x_bottom_right": 823.0,
+      "y_bottom_right": 254.0,
+      "confidence": 0.8639861941337585
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 337.0,
+      "y_top_left": 226.0,
+      "x_bottom_right": 380.0,
+      "y_bottom_right": 296.0,
+      "confidence": 0.8642095923423767
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 391.0,
+      "y_top_left": 414.0,
+      "x_bottom_right": 440.0,
+      "y_bottom_right": 529.0,
+      "confidence": 0.8745625019073486
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 447.0,
+      "y_top_left": 297.0,
+      "x_bottom_right": 491.0,
+      "y_bottom_right": 382.0,
+      "confidence": 0.8914564251899719
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 253.0,
+      "y_top_left": 247.0,
+      "x_bottom_right": 286.0,
+      "y_bottom_right": 329.0,
+      "confidence": 0.9016801714897156
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 1103.0,
+      "y_top_left": 231.0,
+      "x_bottom_right": 1132.0,
+      "y_bottom_right": 310.0,
+      "confidence": 0.9093436598777771
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 1145.0,
+      "y_top_left": 489.0,
+      "x_bottom_right": 1201.0,
+      "y_bottom_right": 617.0,
+      "confidence": 0.9295794367790222
+    }
+  },
+  "105.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 740.0,
+      "y_top_left": 158.0,
+      "x_bottom_right": 771.0,
+      "y_bottom_right": 210.0,
+      "confidence": 0.5187535881996155
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 415.0,
+      "x_bottom_right": 13.0,
+      "y_bottom_right": 511.0,
+      "confidence": 0.6627616286277771
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 821.0,
+      "y_top_left": 168.0,
+      "x_bottom_right": 852.0,
+      "y_bottom_right": 224.0,
+      "confidence": 0.6698269844055176
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 893.0,
+      "y_top_left": 175.0,
+      "x_bottom_right": 922.0,
+      "y_bottom_right": 243.0,
+      "confidence": 0.7244512438774109
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 38.0,
+      "y_top_left": 139.0,
+      "x_bottom_right": 64.0,
+      "y_bottom_right": 206.0,
+      "confidence": 0.7397193312644958
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 594.0,
+      "y_top_left": 172.0,
+      "x_bottom_right": 635.0,
+      "y_bottom_right": 233.0,
+      "confidence": 0.8232024908065796
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 475.0,
+      "y_top_left": 173.0,
+      "x_bottom_right": 518.0,
+      "y_bottom_right": 244.0,
+      "confidence": 0.8274829983711243
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 403.0,
+      "y_top_left": 196.0,
+      "x_bottom_right": 443.0,
+      "y_bottom_right": 278.0,
+      "confidence": 0.8384945392608643
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 662.0,
+      "y_top_left": 264.0,
+      "x_bottom_right": 702.0,
+      "y_bottom_right": 347.0,
+      "confidence": 0.8545246720314026
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 868.0,
+      "y_top_left": 199.0,
+      "x_bottom_right": 913.0,
+      "y_bottom_right": 268.0,
+      "confidence": 0.8694913387298584
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 73.0,
+      "y_top_left": 190.0,
+      "x_bottom_right": 106.0,
+      "y_bottom_right": 262.0,
+      "confidence": 0.8787764310836792
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 943.0,
+      "y_top_left": 262.0,
+      "x_bottom_right": 986.0,
+      "y_bottom_right": 341.0,
+      "confidence": 0.8838228583335876
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 546.0,
+      "y_top_left": 398.0,
+      "x_bottom_right": 586.0,
+      "y_bottom_right": 509.0,
+      "confidence": 0.8957114219665527
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 476.0,
+      "y_top_left": 276.0,
+      "x_bottom_right": 508.0,
+      "y_bottom_right": 371.0,
+      "confidence": 0.8957422971725464
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 340.0,
+      "y_top_left": 233.0,
+      "x_bottom_right": 389.0,
+      "y_bottom_right": 322.0,
+      "confidence": 0.9109667539596558
+    }
+  },
+  "106.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 866.0,
+      "y_top_left": 141.0,
+      "x_bottom_right": 887.0,
+      "y_bottom_right": 213.0,
+      "confidence": 0.5727522969245911
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 14.0,
+      "y_top_left": 125.0,
+      "x_bottom_right": 41.0,
+      "y_bottom_right": 195.0,
+      "confidence": 0.5731344819068909
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 513.0,
+      "y_top_left": 152.0,
+      "x_bottom_right": 559.0,
+      "y_bottom_right": 218.0,
+      "confidence": 0.6818062663078308
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 899.0,
+      "y_top_left": 159.0,
+      "x_bottom_right": 919.0,
+      "y_bottom_right": 229.0,
+      "confidence": 0.7181403040885925
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 37.0,
+      "y_top_left": 172.0,
+      "x_bottom_right": 73.0,
+      "y_bottom_right": 239.0,
+      "confidence": 0.8140459656715393
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 308.0,
+      "y_top_left": 186.0,
+      "x_bottom_right": 343.0,
+      "y_bottom_right": 268.0,
+      "confidence": 0.8303441405296326
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 393.0,
+      "y_top_left": 158.0,
+      "x_bottom_right": 437.0,
+      "y_bottom_right": 225.0,
+      "confidence": 0.840672492980957
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 964.0,
+      "y_top_left": 261.0,
+      "x_bottom_right": 1001.0,
+      "y_bottom_right": 350.0,
+      "confidence": 0.8533531427383423
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 801.0,
+      "y_top_left": 186.0,
+      "x_bottom_right": 847.0,
+      "y_bottom_right": 261.0,
+      "confidence": 0.8631442785263062
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 521.0,
+      "y_top_left": 386.0,
+      "x_bottom_right": 561.0,
+      "y_bottom_right": 501.0,
+      "confidence": 0.8637008666992188
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 648.0,
+      "y_top_left": 257.0,
+      "x_bottom_right": 698.0,
+      "y_bottom_right": 345.0,
+      "confidence": 0.8973425626754761
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 232.0,
+      "y_top_left": 219.0,
+      "x_bottom_right": 282.0,
+      "y_bottom_right": 311.0,
+      "confidence": 0.9068435430526733
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 403.0,
+      "y_top_left": 268.0,
+      "x_bottom_right": 458.0,
+      "y_bottom_right": 364.0,
+      "confidence": 0.9194773435592651
+    }
+  },
+  "107.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 868.0,
+      "y_top_left": 139.0,
+      "x_bottom_right": 890.0,
+      "y_bottom_right": 210.0,
+      "confidence": 0.5795006155967712
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 643.0,
+      "y_top_left": 142.0,
+      "x_bottom_right": 669.0,
+      "y_bottom_right": 208.0,
+      "confidence": 0.5841942429542542
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 890.0,
+      "y_top_left": 157.0,
+      "x_bottom_right": 912.0,
+      "y_bottom_right": 225.0,
+      "confidence": 0.6928923726081848
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 17.0,
+      "y_top_left": 157.0,
+      "x_bottom_right": 49.0,
+      "y_bottom_right": 237.0,
+      "confidence": 0.6962180733680725
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 404.0,
+      "y_top_left": 157.0,
+      "x_bottom_right": 454.0,
+      "y_bottom_right": 219.0,
+      "confidence": 0.7987731695175171
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 340.0,
+      "y_top_left": 143.0,
+      "x_bottom_right": 374.0,
+      "y_bottom_right": 219.0,
+      "confidence": 0.8340485095977783
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 238.0,
+      "y_top_left": 182.0,
+      "x_bottom_right": 271.0,
+      "y_bottom_right": 263.0,
+      "confidence": 0.8380951285362244
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 740.0,
+      "y_top_left": 185.0,
+      "x_bottom_right": 777.0,
+      "y_bottom_right": 262.0,
+      "confidence": 0.8500261902809143
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 489.0,
+      "y_top_left": 375.0,
+      "x_bottom_right": 530.0,
+      "y_bottom_right": 491.0,
+      "confidence": 0.8627768158912659
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 964.0,
+      "y_top_left": 267.0,
+      "x_bottom_right": 1000.0,
+      "y_bottom_right": 357.0,
+      "confidence": 0.8887765407562256
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 412.0,
+      "y_top_left": 260.0,
+      "x_bottom_right": 456.0,
+      "y_bottom_right": 355.0,
+      "confidence": 0.902758777141571
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 625.0,
+      "y_top_left": 257.0,
+      "x_bottom_right": 673.0,
+      "y_bottom_right": 345.0,
+      "confidence": 0.9050416946411133
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 149.0,
+      "y_top_left": 207.0,
+      "x_bottom_right": 193.0,
+      "y_bottom_right": 297.0,
+      "confidence": 0.9119638204574585
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 1129.0,
+      "y_top_left": 467.0,
+      "x_bottom_right": 1200.0,
+      "y_bottom_right": 618.0,
+      "confidence": 0.9229263663291931
+    }
+  },
+  "108.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 399.0,
+      "y_top_left": 21.0,
+      "x_bottom_right": 745.0,
+      "y_bottom_right": 717.0,
+      "confidence": 0.3969564735889435
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 555.0,
+      "y_top_left": 20.0,
+      "x_bottom_right": 1136.0,
+      "y_bottom_right": 713.0,
+      "confidence": 0.7698904871940613
+    }
+  },
+  "109.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 744.0,
+      "y_top_left": 3.0,
+      "x_bottom_right": 1267.0,
+      "y_bottom_right": 596.0,
+      "confidence": 0.565471351146698
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 0.0,
+      "y_top_left": 138.0,
+      "x_bottom_right": 300.0,
+      "y_bottom_right": 715.0,
+      "confidence": 0.7086436152458191
+    },
+    "2": {
+      "class": "CHAIR",
+      "x_top_left": 1049.0,
+      "y_top_left": 610.0,
+      "x_bottom_right": 1279.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.7175606489181519
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 277.0,
+      "y_top_left": 429.0,
+      "x_bottom_right": 531.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.7804527282714844
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 401.0,
+      "y_top_left": 35.0,
+      "x_bottom_right": 1070.0,
+      "y_bottom_right": 712.0,
+      "confidence": 0.9536446332931519
+    }
+  },
+  "110.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 769.0,
+      "y_top_left": 203.0,
+      "x_bottom_right": 989.0,
+      "y_bottom_right": 468.0,
+      "confidence": 0.294882595539093
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1.0,
+      "y_top_left": 598.0,
+      "x_bottom_right": 124.0,
+      "y_bottom_right": 719.0,
+      "confidence": 0.41106167435646057
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 1120.0,
+      "y_top_left": 492.0,
+      "x_bottom_right": 1280.0,
+      "y_bottom_right": 718.0,
+      "confidence": 0.6081496477127075
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 982.0,
+      "y_top_left": 3.0,
+      "x_bottom_right": 1279.0,
+      "y_bottom_right": 713.0,
+      "confidence": 0.7968283891677856
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 1.0,
+      "y_top_left": 107.0,
+      "x_bottom_right": 549.0,
+      "y_bottom_right": 715.0,
+      "confidence": 0.898620069026947
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 447.0,
+      "y_top_left": 59.0,
+      "x_bottom_right": 1090.0,
+      "y_bottom_right": 712.0,
+      "confidence": 0.9475923180580139
+    }
+  },
+  "111.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 338.0,
+      "y_top_left": 354.0,
+      "x_bottom_right": 628.0,
+      "y_bottom_right": 716.0,
+      "confidence": 0.4882253110408783
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 63.0,
+      "y_top_left": 25.0,
+      "x_bottom_right": 493.0,
+      "y_bottom_right": 577.0,
+      "confidence": 0.5484286546707153
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 779.0,
+      "y_top_left": 3.0,
+      "x_bottom_right": 1093.0,
+      "y_bottom_right": 493.0,
+      "confidence": 0.7546996474266052
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 933.0,
+      "y_top_left": 149.0,
+      "x_bottom_right": 1279.0,
+      "y_bottom_right": 716.0,
+      "confidence": 0.8474454879760742
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 499.0,
+      "y_top_left": 73.0,
+      "x_bottom_right": 972.0,
+      "y_bottom_right": 711.0,
+      "confidence": 0.9261844754219055
+    }
+  },
+  "112.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 394.0,
+      "y_top_left": 616.0,
+      "x_bottom_right": 632.0,
+      "y_bottom_right": 720.0,
+      "confidence": 0.3777560293674469
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 1.0,
+      "y_top_left": 298.0,
+      "x_bottom_right": 446.0,
+      "y_bottom_right": 717.0,
+      "confidence": 0.5184130668640137
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 619.0,
+      "y_top_left": 329.0,
+      "x_bottom_right": 908.0,
+      "y_bottom_right": 716.0,
+      "confidence": 0.7928521633148193
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 432.0,
+      "y_top_left": 3.0,
+      "x_bottom_right": 895.0,
+      "y_bottom_right": 632.0,
+      "confidence": 0.8472867608070374
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 762.0,
+      "y_top_left": 36.0,
+      "x_bottom_right": 1279.0,
+      "y_bottom_right": 712.0,
+      "confidence": 0.9478061199188232
+    }
+  },
+  "113.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 814.0,
+      "y_top_left": 224.0,
+      "x_bottom_right": 832.0,
+      "y_bottom_right": 264.0,
+      "confidence": 0.38933801651000977
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 451.0,
+      "y_top_left": 219.0,
+      "x_bottom_right": 468.0,
+      "y_bottom_right": 257.0,
+      "confidence": 0.4924614429473877
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 187.0,
+      "y_top_left": 204.0,
+      "x_bottom_right": 212.0,
+      "y_bottom_right": 265.0,
+      "confidence": 0.518800675868988
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 371.0,
+      "y_top_left": 217.0,
+      "x_bottom_right": 390.0,
+      "y_bottom_right": 256.0,
+      "confidence": 0.5339242219924927
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 174.0,
+      "y_top_left": 234.0,
+      "x_bottom_right": 190.0,
+      "y_bottom_right": 282.0,
+      "confidence": 0.563300609588623
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 676.0,
+      "y_top_left": 241.0,
+      "x_bottom_right": 692.0,
+      "y_bottom_right": 293.0,
+      "confidence": 0.7199661135673523
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 1251.0,
+      "y_top_left": 250.0,
+      "x_bottom_right": 1279.0,
+      "y_bottom_right": 310.0,
+      "confidence": 0.7515214681625366
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 725.0,
+      "y_top_left": 247.0,
+      "x_bottom_right": 746.0,
+      "y_bottom_right": 298.0,
+      "confidence": 0.7556421160697937
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 9.0,
+      "y_top_left": 239.0,
+      "x_bottom_right": 25.0,
+      "y_bottom_right": 301.0,
+      "confidence": 0.7938271164894104
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 1107.0,
+      "y_top_left": 260.0,
+      "x_bottom_right": 1124.0,
+      "y_bottom_right": 322.0,
+      "confidence": 0.8071922659873962
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 126.0,
+      "y_top_left": 233.0,
+      "x_bottom_right": 147.0,
+      "y_bottom_right": 293.0,
+      "confidence": 0.8162792921066284
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 590.0,
+      "y_top_left": 288.0,
+      "x_bottom_right": 612.0,
+      "y_bottom_right": 351.0,
+      "confidence": 0.8285324573516846
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 295.0,
+      "y_top_left": 231.0,
+      "x_bottom_right": 320.0,
+      "y_bottom_right": 285.0,
+      "confidence": 0.8297229409217834
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 645.0,
+      "y_top_left": 287.0,
+      "x_bottom_right": 668.0,
+      "y_bottom_right": 349.0,
+      "confidence": 0.8340535759925842
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 897.0,
+      "y_top_left": 293.0,
+      "x_bottom_right": 919.0,
+      "y_bottom_right": 352.0,
+      "confidence": 0.8359581828117371
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 523.0,
+      "y_top_left": 330.0,
+      "x_bottom_right": 545.0,
+      "y_bottom_right": 401.0,
+      "confidence": 0.8769710063934326
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 611.0,
+      "y_top_left": 366.0,
+      "x_bottom_right": 644.0,
+      "y_bottom_right": 448.0,
+      "confidence": 0.8794997930526733
+    }
+  },
+  "114.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 778.0,
+      "y_top_left": 214.0,
+      "x_bottom_right": 799.0,
+      "y_bottom_right": 263.0,
+      "confidence": 0.5326080918312073
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 408.0,
+      "y_top_left": 210.0,
+      "x_bottom_right": 430.0,
+      "y_bottom_right": 258.0,
+      "confidence": 0.5619444847106934
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 167.0,
+      "y_top_left": 204.0,
+      "x_bottom_right": 192.0,
+      "y_bottom_right": 289.0,
+      "confidence": 0.5630334615707397
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 340.0,
+      "y_top_left": 218.0,
+      "x_bottom_right": 359.0,
+      "y_bottom_right": 257.0,
+      "confidence": 0.5793795585632324
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 136.0,
+      "y_top_left": 221.0,
+      "x_bottom_right": 159.0,
+      "y_bottom_right": 271.0,
+      "confidence": 0.7643735408782959
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 665.0,
+      "y_top_left": 248.0,
+      "x_bottom_right": 686.0,
+      "y_bottom_right": 296.0,
+      "confidence": 0.7910642027854919
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 710.0,
+      "y_top_left": 247.0,
+      "x_bottom_right": 728.0,
+      "y_bottom_right": 300.0,
+      "confidence": 0.7912408709526062
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 15.0,
+      "y_top_left": 241.0,
+      "x_bottom_right": 34.0,
+      "y_bottom_right": 302.0,
+      "confidence": 0.8125526905059814
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 1231.0,
+      "y_top_left": 245.0,
+      "x_bottom_right": 1265.0,
+      "y_bottom_right": 305.0,
+      "confidence": 0.8271698951721191
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 562.0,
+      "y_top_left": 287.0,
+      "x_bottom_right": 585.0,
+      "y_bottom_right": 348.0,
+      "confidence": 0.8538219332695007
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 634.0,
+      "y_top_left": 288.0,
+      "x_bottom_right": 659.0,
+      "y_bottom_right": 349.0,
+      "confidence": 0.856359601020813
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 578.0,
+      "y_top_left": 361.0,
+      "x_bottom_right": 605.0,
+      "y_bottom_right": 442.0,
+      "confidence": 0.8592969179153442
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 1071.0,
+      "y_top_left": 261.0,
+      "x_bottom_right": 1097.0,
+      "y_bottom_right": 321.0,
+      "confidence": 0.8620384335517883
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 274.0,
+      "y_top_left": 230.0,
+      "x_bottom_right": 301.0,
+      "y_bottom_right": 286.0,
+      "confidence": 0.8740218877792358
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 893.0,
+      "y_top_left": 290.0,
+      "x_bottom_right": 916.0,
+      "y_bottom_right": 351.0,
+      "confidence": 0.8756688833236694
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 77.0,
+      "y_top_left": 232.0,
+      "x_bottom_right": 106.0,
+      "y_bottom_right": 290.0,
+      "confidence": 0.8844388723373413
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 492.0,
+      "y_top_left": 324.0,
+      "x_bottom_right": 521.0,
+      "y_bottom_right": 396.0,
+      "confidence": 0.8921571373939514
+    }
+  },
+  "115.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 842.0,
+      "y_top_left": 218.0,
+      "x_bottom_right": 856.0,
+      "y_bottom_right": 257.0,
+      "confidence": 0.3496112525463104
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 661.0,
+      "y_top_left": 244.0,
+      "x_bottom_right": 677.0,
+      "y_bottom_right": 294.0,
+      "confidence": 0.38258346915245056
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 360.0,
+      "y_top_left": 217.0,
+      "x_bottom_right": 384.0,
+      "y_bottom_right": 258.0,
+      "confidence": 0.48655739426612854
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 309.0,
+      "y_top_left": 218.0,
+      "x_bottom_right": 325.0,
+      "y_bottom_right": 259.0,
+      "confidence": 0.5175350904464722
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 735.0,
+      "y_top_left": 216.0,
+      "x_bottom_right": 761.0,
+      "y_bottom_right": 262.0,
+      "confidence": 0.7006914019584656
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 662.0,
+      "y_top_left": 287.0,
+      "x_bottom_right": 681.0,
+      "y_bottom_right": 345.0,
+      "confidence": 0.7208521962165833
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 193.0,
+      "y_top_left": 236.0,
+      "x_bottom_right": 217.0,
+      "y_bottom_right": 292.0,
+      "confidence": 0.7394102215766907
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 1260.0,
+      "y_top_left": 232.0,
+      "x_bottom_right": 1280.0,
+      "y_bottom_right": 294.0,
+      "confidence": 0.7614646553993225
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 261.0,
+      "y_top_left": 235.0,
+      "x_bottom_right": 281.0,
+      "y_bottom_right": 286.0,
+      "confidence": 0.7832902073860168
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 693.0,
+      "y_top_left": 249.0,
+      "x_bottom_right": 715.0,
+      "y_bottom_right": 302.0,
+      "confidence": 0.7955197691917419
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 56.0,
+      "y_top_left": 226.0,
+      "x_bottom_right": 81.0,
+      "y_bottom_right": 284.0,
+      "confidence": 0.7971866130828857
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 527.0,
+      "y_top_left": 282.0,
+      "x_bottom_right": 545.0,
+      "y_bottom_right": 345.0,
+      "confidence": 0.8333691954612732
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 21.0,
+      "y_top_left": 242.0,
+      "x_bottom_right": 48.0,
+      "y_bottom_right": 304.0,
+      "confidence": 0.8423675298690796
+    },
+    "13": {
+      "class": "PERSON",
+      "x_top_left": 95.0,
+      "y_top_left": 223.0,
+      "x_bottom_right": 122.0,
+      "y_bottom_right": 272.0,
+      "confidence": 0.8478078246116638
+    },
+    "14": {
+      "class": "PERSON",
+      "x_top_left": 535.0,
+      "y_top_left": 360.0,
+      "x_bottom_right": 564.0,
+      "y_bottom_right": 442.0,
+      "confidence": 0.8621004819869995
+    },
+    "15": {
+      "class": "PERSON",
+      "x_top_left": 890.0,
+      "y_top_left": 289.0,
+      "x_bottom_right": 915.0,
+      "y_bottom_right": 343.0,
+      "confidence": 0.8822687864303589
+    },
+    "16": {
+      "class": "PERSON",
+      "x_top_left": 1045.0,
+      "y_top_left": 256.0,
+      "x_bottom_right": 1070.0,
+      "y_bottom_right": 319.0,
+      "confidence": 0.8906881213188171
+    },
+    "17": {
+      "class": "PERSON",
+      "x_top_left": 473.0,
+      "y_top_left": 318.0,
+      "x_bottom_right": 503.0,
+      "y_bottom_right": 388.0,
+      "confidence": 0.8950091004371643
+    }
+  },
+  "116.0": {
+    "0": {
+      "class": "PERSON",
+      "x_top_left": 263.0,
+      "y_top_left": 214.0,
+      "x_bottom_right": 278.0,
+      "y_bottom_right": 259.0,
+      "confidence": 0.43739446997642517
+    },
+    "1": {
+      "class": "PERSON",
+      "x_top_left": 288.0,
+      "y_top_left": 216.0,
+      "x_bottom_right": 314.0,
+      "y_bottom_right": 259.0,
+      "confidence": 0.4690752625465393
+    },
+    "2": {
+      "class": "PERSON",
+      "x_top_left": 466.0,
+      "y_top_left": 284.0,
+      "x_bottom_right": 494.0,
+      "y_bottom_right": 343.0,
+      "confidence": 0.6747887134552002
+    },
+    "3": {
+      "class": "PERSON",
+      "x_top_left": 627.0,
+      "y_top_left": 248.0,
+      "x_bottom_right": 654.0,
+      "y_bottom_right": 305.0,
+      "confidence": 0.7510731816291809
+    },
+    "4": {
+      "class": "PERSON",
+      "x_top_left": 455.0,
+      "y_top_left": 311.0,
+      "x_bottom_right": 488.0,
+      "y_bottom_right": 380.0,
+      "confidence": 0.7754967212677002
+    },
+    "5": {
+      "class": "PERSON",
+      "x_top_left": 242.0,
+      "y_top_left": 234.0,
+      "x_bottom_right": 260.0,
+      "y_bottom_right": 289.0,
+      "confidence": 0.7766333222389221
+    },
+    "6": {
+      "class": "PERSON",
+      "x_top_left": 42.0,
+      "y_top_left": 221.0,
+      "x_bottom_right": 65.0,
+      "y_bottom_right": 272.0,
+      "confidence": 0.7884520888328552
+    },
+    "7": {
+      "class": "PERSON",
+      "x_top_left": 18.0,
+      "y_top_left": 221.0,
+      "x_bottom_right": 37.0,
+      "y_bottom_right": 279.0,
+      "confidence": 0.7954490780830383
+    },
+    "8": {
+      "class": "PERSON",
+      "x_top_left": 196.0,
+      "y_top_left": 238.0,
+      "x_bottom_right": 224.0,
+      "y_bottom_right": 295.0,
+      "confidence": 0.8264904618263245
+    },
+    "9": {
+      "class": "PERSON",
+      "x_top_left": 678.0,
+      "y_top_left": 278.0,
+      "x_bottom_right": 700.0,
+      "y_bottom_right": 338.0,
+      "confidence": 0.8436220288276672
+    },
+    "10": {
+      "class": "PERSON",
+      "x_top_left": 1015.0,
+      "y_top_left": 253.0,
+      "x_bottom_right": 1035.0,
+      "y_bottom_right": 316.0,
+      "confidence": 0.8490085601806641
+    },
+    "11": {
+      "class": "PERSON",
+      "x_top_left": 871.0,
+      "y_top_left": 269.0,
+      "x_bottom_right": 898.0,
+      "y_bottom_right": 322.0,
+      "confidence": 0.8533216118812561
+    },
+    "12": {
+      "class": "PERSON",
+      "x_top_left": 485.0,
+      "y_top_left": 355.0,
+      "x_bottom_right": 517.0,
+      "y_bottom_right": 434.0,
+      "confidence": 0.8748095631599426
+    }
+  }
+}
