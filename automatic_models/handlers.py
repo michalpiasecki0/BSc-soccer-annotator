@@ -34,9 +34,8 @@ class VideoHandler:
     def save_results_to_files(self):
         general_path = Path(self.output_path)
 
-        for name in ['homographies','objects']:
+        for name in ['homographies','objects', 'lines', 'fields']:
             if self.results[name]:
-
                 with open(f'{str(general_path / name)}.json', 'w') as f:
                     json.dump(self.results[name], f)
 
@@ -91,9 +90,6 @@ class VideoHandler:
                     self.results['fields'][idx] = field
                     self.results['lines'][idx] = lines
                     self.results['homographies'][idx] = homography
-                    #self.fields[idx] = field
-                    #self.lines[idx] = lines
-                    #self.homographies[idx] = homography
                     print(f'{idx} was processed.')
             else:
                 print('You must divide video and create image handlers before invoking Lines & FIeld Detection')
@@ -148,9 +144,7 @@ class ImageHandler:
                                        torch_backends_cudnn_enabled: bool = False,
                                        desired_homography: str = 'orig',
                                        **kwargs):
-        line_detector = LineDetector(image_array=self.image_array,
-                                     constant_var_use_cuda=constant_var_use_cuda,
-                                     torch_backends_cudnn_enabled=torch_backends_cudnn_enabled)
+        line_detector = LineDetector(image_array=self.image_array)
         self.field, self.lines, self.homography = line_detector(desired_homography=desired_homography)
         return self.field, self.lines, self.homography
 

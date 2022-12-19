@@ -39,7 +39,7 @@ def divide_video_into_frames(video_path: str,
 
     frames: Dict[str, np.ndarray] = {}
     frame_number = 0
-    iterator = 0
+    iterator = math.floor(fps / desired_frequency)
 
     success, frame = capture.read()
     while success:
