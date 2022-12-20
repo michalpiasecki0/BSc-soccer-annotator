@@ -11,11 +11,18 @@ def parse_args():
     argument_parser.add_argument('--start_point', type=float, help='Starting point to divide video')
     return argument_parser.parse_args()
 
-
 def perform_models(video_path: str,
                    output_path: str,
                    frequency: float,
-                   start_point: float):
+                   start_point: float = 0) -> None:
+    """
+
+    :param video_path: path to a video file (currently mp4 format is supported)
+    :param output_path: path to output folder, where all model results are saved
+    :param frequency: fps for models (e.G )
+    :param start_point: starting point
+    :return:
+    """
     video_handler = VideoHandler(video_path=video_path,
                                  output_path=output_path,
                                  desired_frequency=frequency,
@@ -26,8 +33,7 @@ def perform_models(video_path: str,
     video_handler.save_results_to_files()
 
 if __name__ == '__main__':
-    args = parse_args()
-    perform_models(video_path=args.video_path,
-                   output_path=args.output_path,
-                   frequency=args.frequency,
-                   start_point=args.start_point)
+    perform_models(video_path='data/test.mp4',
+                   output_path='../matches/2022-03-1_team1_team2',
+                   frequency=1/5,
+                   start_point=0)
