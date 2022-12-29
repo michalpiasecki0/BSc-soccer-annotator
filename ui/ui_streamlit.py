@@ -12,7 +12,7 @@ import cv2
 from base64 import b64encode
 import json
 from tempfile import NamedTemporaryFile
-from execute_scrapper import run_script
+# from execute_scrapper import run_script
 
 # streamlit configs
 st.set_page_config(
@@ -101,10 +101,10 @@ with sidebar:
         scrapData = st.form_submit_button('Get data')
         if scrapData:
             # initialize data scraping
-            try:
-                run_script(matchDate, firstTeam, secondTeam)
-            except:
-                st.error('No data could be found')
+#             try:
+#                 run_script(matchDate, firstTeam, secondTeam)
+#             except:
+#                 st.error('No data could be found')
 
             st.session_state['scrapedData'] = json.load(
                 open(matchDirectory + '/scrapped_data.json')
