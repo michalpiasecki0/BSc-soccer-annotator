@@ -3,7 +3,7 @@ opencv_python==4.6.0.66
 pandas==1.5.2
 Pillow==9.3.0
 streamlit==1.15.1
-streamlit_aggrid==0.3.3
+st_aggrid==0.3.3
 streamlit_drawable_canvas==0.9.2
 streamlit_player==0.1.5
 youtube_dl==2021.12.17
