@@ -12,6 +12,7 @@ import cv2
 from base64 import b64encode
 import json
 from tempfile import NamedTemporaryFile
+
 # from execute_scrapper import run_script
 
 # streamlit configs
@@ -236,11 +237,11 @@ if 'scrapedData' in st.session_state:
 
 firstRow = st.columns([2.5, 5, 2.5])
 with firstRow[0]:
-    videoHeight = 350
-    videoPlayer = st_player(url=videoURL,
-                            events=['onProgress', 'onPause'],
-                            key='video',
-                            height=videoHeight)
+    videoPlayer = st_player(
+        url=videoURL,
+        events=['onProgress', 'onPause'],
+        key='video'
+    )
     videoMode = st.empty()
 
     secondsOfVideoPlayed = videoPlayer[1]['playedSeconds'] if videoPlayer[1] is not None else 0.0
@@ -431,8 +432,15 @@ with firstRow[1]:
         }
 
         currentFrame = get_frame(secondsOfVideoPlayed)
-        frameHeight = videoHeight + 300
-        frameWidth = frameHeight * (currentFrame.width / currentFrame.height) if currentFrame else 1.5
+        frameWidth = st.slider(
+            'Set frame canvas width',
+            min_value=100,
+            max_value=3000,
+            value=500,
+            step=10,
+            key='frameWidth'
+        )
+        frameHeight = frameWidth * (currentFrame.height / currentFrame.width) if currentFrame else 0.5
         scaleWidth = frameWidth / currentFrame.width
         scaleHeight = frameHeight / currentFrame.height
         teamsColors = {
