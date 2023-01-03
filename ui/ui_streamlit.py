@@ -93,7 +93,10 @@ with sidebar:
 
     with st.form(key='scraper_form'):
         st.write('Getting data about the match')
-        matchDate = st.date_input('Choose the date of the match', value=datetime.date(2019, 8, 17))
+        matchDate = st.date_input(
+            'Choose the date of the match',
+            value=datetime.date(2019, 8, 17)
+        )
         sidebarColumns = st.columns(2)
         with sidebarColumns[0]:
             firstTeam = st.text_input('The first team', value='Celta Vigo')
@@ -113,14 +116,15 @@ with sidebar:
 
     with st.form(key='automatic_annotation'):
         st.write('Getting automatic annotations')
-        annotationDirectories = os.listdir(matchDirectory + '/annotations/')
-        annotationDirectory = matchDirectory + '/annotations/' + st.selectbox(
-            'Select directory with annotations',
-            annotationDirectories
-        )
+        if videoSourceType == 'File':
+            annotationDirectories = os.listdir(matchDirectory + '/annotations/')
+            annotationDirectory = matchDirectory + '/annotations/' + st.selectbox(
+                'Select directory with annotations',
+                annotationDirectories
+            )
         annotate = st.form_submit_button('Get annotations')
-        if annotate:
-            # initialize automatic annotation
+        if annotate and videoSourceType == 'File':
+            # read annotations from files
             st.session_state[PLAYER_ANNOTATION] = json.load(
                 open(os.path.join(annotationDirectory, 'objects.json'))
             )
@@ -653,13 +657,16 @@ with firstRow[1]:
     elif annotationType == EVENT_ANNOTATION:
         selectedEvent = st.selectbox(
             'Choose event',
-            ['-'] + list(events['Actions']))
+            ['-'] + list(events['Actions'])
+        )
         selectedTeam = st.selectbox(
             'Choose team',
-            ['-'] + list(players.columns[[1, 2]]))
+            ['-'] + list(players.columns[[1, 2]])
+        )
         selectedPlayer = st.selectbox(
             'Choose player',
-            ['-'] + list(players[selectedTeam]) if selectedTeam != '-' else ['-'])
+            ['-'] + list(players[selectedTeam]) if selectedTeam != '-' else ['-']
+        )
         submitAnnotation = st.button('Add annotation')
         if EVENT_ANNOTATION not in st.session_state:
             st.session_state[EVENT_ANNOTATION] = pd.read_csv('ui/data/default/event_annotations.csv')
@@ -688,7 +695,7 @@ with firstRow[2]:
     )
 
     saveAnnotations = st.button('Save annotations')
-    if saveAnnotations:
+    if saveAnnotations and videoSourceType == 'File':
         datetimeStr = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
         dirName = matchDirectory + '/annotations/annotations_' + datetimeStr
         os.mkdir(dirName)
