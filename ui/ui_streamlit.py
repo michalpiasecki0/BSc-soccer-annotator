@@ -34,7 +34,7 @@ ADD_ANNOTATIONS = 'Adding annotations'
 # loading default data
 players = pd.read_csv('ui/data/default/players.csv')
 events = pd.read_csv('ui/data/default/events.csv')
-lines = pd.read_csv('ui/data/default/lines.csv')
+lines = pd.read_csv('ui/data/default/lines.csv', header=None)
 fieldAnnotations = pd.read_csv('ui/data/default/field_annotations.csv')
 lineAnnotations = pd.read_csv('ui/data/default/line_annotations.csv')
 playerAnnotations = pd.read_csv('ui/data/default/player_annotations.csv')
