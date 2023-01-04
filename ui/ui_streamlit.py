@@ -99,9 +99,9 @@ with sidebar:
         )
         sidebarColumns = st.columns(2)
         with sidebarColumns[0]:
-            firstTeam = st.text_input('The first team', value='Celta Vigo')
+            firstTeam = st.text_input('The first team', value='Team1')
         with sidebarColumns[1]:
-            secondTeam = st.text_input('The second team', value='Real Madrid')
+            secondTeam = st.text_input('The second team', value='Team2')
         scrapData = st.form_submit_button('Get data')
         if scrapData:
             # initialize data scraping
