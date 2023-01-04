@@ -3,11 +3,8 @@ Line & Field Detector, which is responsible for Lines Detection, Field Detection
 """
 import json
 import cv2
-import numpy as np
-import torch
 from dataclasses import dataclass
-from typing import Optional
-from pathlib import Path
+from typing import Optional, Dict
 from shapely.geometry import LineString, Polygon
 
 from lines_and_field_detection.utils import utils, warp, image_utils, constant_var
@@ -22,6 +19,7 @@ class LineDetectorConfig:
     """
     Dataclass used for storing model configuration for Lines and Field detection
     """
+    name: str = 'Optimization Based Image Registration'
     template_path: str = PATH_TO_AUTOMATIC_MODELS + '/lines_and_field_detection/data/template.png'
     lines_coordinates_path = PATH_TO_AUTOMATIC_MODELS + '/lines_and_field_detection/data/lines_coordinates.json'
     out_dir: str = PATH_TO_AUTOMATIC_MODELS + '/lines_and_field_detection/out'
@@ -38,15 +36,15 @@ class LineDetectorConfig:
     need_spectral_norm_error_model: bool = True
     need_spectral_norm_upstream: bool = False
     optim_criterion: str = 'l1loss'
-    optim_iters: int = 200
+    optim_iters: int = 20
     optim_method: str = 'stn'
     optim_type: str = 'adam'
     prevent_neg: str = 'sigmoid'
     warp_dim: int = 8
     warp_type: str = 'homography'
-    constant_var_use_cuda = False
-    torch_backends_cudnn_enabled = False
-    desired_homography = 'optim'
+    constant_var_use_cuda: bool = False
+    torch_backends_cudnn_enabled: bool = False
+    desired_homography: str = 'optim'
 
 
 class LineDetector:
@@ -69,29 +67,30 @@ class LineDetector:
     """
     def __init__(self,
                  image_array: np.ndarray,
-                 **kwargs):
+                 model_config: Optional[Dict] = None):
 
         self.config = LineDetectorConfig()
+        self.image_array = image_array
+        if model_config:
+            for key, value in model_config.items():
+                setattr(self.config, key, value)
+
         constant_var.USE_CUDA = self.config.constant_var_use_cuda
         torch.backends_cudnn_enabled = self.config.torch_backends_cudnn_enabled
 
-        self.image_array = image_array
-        for key, value in kwargs:
-            self.config.key = value
         self.template_image = cv2.imread(self.config.template_path)
         with open(self.config.lines_coordinates_path, 'r') as f:
             self.template_line_coords = json.load(f)
-
         self.homography: Optional[np.ndarray] = None
         self.homography_inv: Optional[np.ndarray] = None
         self.lines = {}
         self.field: Optional[np.ndarray] = None
+        print(self.config)
 
-    def __call__(self, desired_homography: str = 'orig'):
+    def __call__(self):
         """
         Perform operations on input image using homography method. Method updates instance field, lines and homography
         attributes and returns them in particular order.
-        :param desired_homography: method for calculating homography. Possible options: 'orig', 'optim'
         :return: tuple (detected_field, detected_lines, homography)
         """
         if self.config.desired_homography not in ['orig', 'optim']:
@@ -106,7 +105,7 @@ class LineDetector:
         self.get_field()
         self.get_lines()
 
-        return self.field, self.lines, self.homography_inv.tolist()
+        return self.field, self.lines, self.homography_inv.tolist(), self.config
 
     def get_field(self) -> np.ndarray:
         """

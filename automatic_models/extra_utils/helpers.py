@@ -2,7 +2,6 @@
 import math
 import cv2
 import numpy as np
-import shutil
 from typing import Tuple, Optional, List, Dict
 from pathlib import Path
 
@@ -34,10 +33,8 @@ def divide_video_into_frames(video_path: str,
                         value""")
 
     output_path = Path(output_folder)
-    if output_path.exists():
-        # if folder already exists, we clear it up
-        shutil.rmtree(output_path)
-    output_path.mkdir(parents=True)
+    if not output_path.exists() and save_raw_frames:
+        output_path.mkdir(parents=True)
 
     frames: Dict[str, np.ndarray] = {}
     frame_number = 0
@@ -47,7 +44,7 @@ def divide_video_into_frames(video_path: str,
     while success:
         if iterator == math.floor(fps / desired_frequency):
             if save_raw_frames:
-            cv2.imwrite(f'{output_folder}/frame_{frame_number}.jpg', frame)
+                cv2.imwrite(f'{output_folder}/frame_{frame_number}.jpg', frame)
             frames[frame_number] = frame
             frame_number += 1
             iterator = 0
@@ -55,6 +52,7 @@ def divide_video_into_frames(video_path: str,
             iterator += 1
         success, frame = capture.read()
     return frames
+
 
 def mask_defined_color_pixels(image: np.ndarray,
                               convert_format: str,
@@ -80,7 +78,6 @@ def mask_defined_color_pixels(image: np.ndarray,
     elif convert_format == 'HLS':
         converted = cv2.cvtColor(image, cv2.COLOR_BGR2HLS)
 
-
     mask = cv2.inRange(converted, min_range, max_range)
 
     im_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -88,25 +85,25 @@ def mask_defined_color_pixels(image: np.ndarray,
     im_gray[mask == 0] = 0
     return im_gray
 
+
 def write_list_to_txt(elements: list,
                       output_path: str) -> None:
+    """
+    Write list to txt file (each element is put in next line)
+    """
     with open(output_path, 'w') as f:
         for element in elements:
             f.write(f'{element}\n')
+
 
 def convert_numpy_to_bitmask(array: np.ndarray) -> np.ndarray:
     """
     Convert image into bit array, where 1 indicates pixels with non-zero values
     :param array: numpy image, either grayscale or coloured
-    :return: bitm
+    :return: bit-mask array
     """
     assert isinstance(array, np.ndarray)
     if len(array.shape) == 3:
         return np.any(array > 0, axis=2).astype(np.int)
     elif len(array.shape) == 2:
         return (array > 0).astype(np.int)
-
-if __name__ == '__main__':
-    divide_video_into_frames(video_path='./../data/barcelona_valencia.mp4',
-                             desired_frequency=0.01,
-                             output_folder='/home/skocznapanda/programming/BSc-soccer-annotator/automatic_models/notebooks/frames')
