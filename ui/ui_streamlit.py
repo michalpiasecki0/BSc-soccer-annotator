@@ -5,7 +5,7 @@ import streamlit as st
 from st_aggrid import AgGrid, GridOptionsBuilder
 import pandas as pd
 from streamlit_drawable_canvas import st_canvas
-from PIL import Image
+from PIL import Image, ImageDraw
 from streamlit_player import st_player
 from youtube_dl import YoutubeDL
 import cv2
@@ -686,6 +686,19 @@ with firstRow[1]:
         annotations = eventAnnotations.append(st.session_state[EVENT_ANNOTATION])
 
 with firstRow[2]:
+    if annotationType == LINE_ANNOTATION and annotationEditingMode == ADD_ANNOTATIONS:
+        linesCoordinates = json.load(
+            open('automatic_models/lines_and_field_detection/data/lines_coordinates.json')
+        )
+        pitchImage = Image.open('automatic_models/lines_and_field_detection/data/template.png')
+        pitchImageDraw = ImageDraw.Draw(pitchImage)
+        lineCoordinates = [
+            (linesCoordinates[selectedLine][0][0], linesCoordinates[selectedLine][0][1]),
+            (linesCoordinates[selectedLine][1][0], linesCoordinates[selectedLine][1][1])
+        ]
+        pitchImageDraw.line(lineCoordinates, fill='red', width=10)
+        st.image(pitchImage)
+
     gridOptionsBuilder = GridOptionsBuilder.from_dataframe(annotations)
     gridOptionsBuilder.configure_default_column(editable=True)
     ag_events = AgGrid(
