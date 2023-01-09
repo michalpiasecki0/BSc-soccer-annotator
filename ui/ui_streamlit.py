@@ -159,9 +159,7 @@ with sidebar:
                 st.warning('no objects.json file found')
 
             if os.path.exists(os.path.join(annotationDirectory, 'lines.json')):
-                st.session_state[LINE_ANNOTATION] = json.load(
-                    open(os.path.join(annotationDirectory, 'lines.json'))
-                )
+                st.session_state[LINE_ANNOTATION] = {}
                 st.session_state['lines_names'] = {}
                 for key, value in json.load(
                         open(os.path.join(annotationDirectory, 'lines.json'))
@@ -191,9 +189,7 @@ with sidebar:
                 st.warning('no lines.json file found')
 
             if os.path.exists(os.path.join(annotationDirectory, 'fields.json')):
-                st.session_state[FIELD_ANNOTATION] = json.load(
-                    open(os.path.join(annotationDirectory, 'fields.json'))
-                )
+                st.session_state[FIELD_ANNOTATION] = {}
                 for key, value in json.load(
                         open(os.path.join(annotationDirectory, 'fields.json'))
                 ).items():
@@ -208,6 +204,15 @@ with sidebar:
                 st.info('fields.json file loaded')
             else:
                 st.warning('no fields.json file found')
+
+            # if os.path.exists(os.path.join(annotationDirectory, 'actions.json')):
+            #     st.session_state[EVENT_ANNOTATION] = json.load(
+            #         open(os.path.join(annotationDirectory, 'actions.json'))
+            #     )
+            #
+            #     st.info('actions.json file loaded')
+            # else:
+            #     st.warning('no actions.json file found')
 
 if 'scrapedData' in st.session_state:
     scrapedData = st.session_state['scrapedData']
