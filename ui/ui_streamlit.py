@@ -83,13 +83,14 @@ with sidebar:
             'Select a match',
             matchDirectories
         )
-        videoFile = open(matchDirectory + '/video.mp4', 'rb')
-        if videoFile is not None:
+        if os.path.exists(matchDirectory + '/video.mp4'):
+            videoFile = open(matchDirectory + '/video.mp4', 'rb')
             videoBytes = videoFile.read()
             videoData = b64encode(videoBytes).decode()
             mimeType = "video/mp4"
             videoURL = [{"type": mimeType, "src": f"data:{mimeType};base64,{videoData}"}]
         else:
+            st.error('No video file found!')
             st.stop()
 
     with st.form(key='scraper_form'):
@@ -111,9 +112,12 @@ with sidebar:
             # except:
             #     st.error('No data could be found')
 
-            st.session_state['scrapedData'] = json.load(
-                open(matchDirectory + '/scrapped_data.json')
-            )
+            if os.path.exists(matchDirectory + '/scrapped_data.json'):
+                st.session_state['scrapedData'] = json.load(
+                    open(matchDirectory + '/scrapped_data.json')
+                )
+            else:
+                st.error('No scraped data found!')
 
     with st.form(key='automatic_annotation'):
         st.write('Getting automatic annotations')
@@ -126,69 +130,84 @@ with sidebar:
         annotate = st.form_submit_button('Get annotations')
         if annotate and videoSourceType == 'File':
             # read annotations from files
-            st.session_state[PLAYER_ANNOTATION] = json.load(
-                open(os.path.join(annotationDirectory, 'objects.json'))
-            )
-            st.session_state['player_info'] = {}
-            for key, value in st.session_state[PLAYER_ANNOTATION].items():
-                st.session_state['player_info'][key] = {}
-                for key2, value2 in value.items():
-                    if value2['class'] == 'PERSON':
-                        st.session_state['player_info'][key][
-                            (value2['x_top_left'] // 10,
-                             value2['y_top_left'] // 10,
-                             value2['x_bottom_right'] // 10,
-                             value2['y_bottom_right'] // 10)
-                        ] = (
-                            value2['confidence'],
-                            value2['Team'] if 'Team' in value2 else '-',
-                            value2['Player'] if 'Player' in value2 else '-'
-                        )
+            if os.path.exists(os.path.join(annotationDirectory, 'objects.json')):
+                st.session_state[PLAYER_ANNOTATION] = json.load(
+                    open(os.path.join(annotationDirectory, 'objects.json'))
+                )
+                st.session_state['player_info'] = {}
+                for key, value in st.session_state[PLAYER_ANNOTATION].items():
+                    st.session_state['player_info'][key] = {}
+                    for key2, value2 in value.items():
+                        if value2['class'] == 'PERSON':
+                            st.session_state['player_info'][key][
+                                (value2['x_top_left'] // 10,
+                                 value2['y_top_left'] // 10,
+                                 value2['x_bottom_right'] // 10,
+                                 value2['y_bottom_right'] // 10)
+                            ] = (
+                                value2['confidence'],
+                                value2['Team'] if 'Team' in value2 else '-',
+                                value2['Player'] if 'Player' in value2 else '-'
+                            )
 
-            st.session_state[BALL_ANNOTATION] = json.load(
-                open(os.path.join(annotationDirectory, 'objects.json'))
-            )
+                st.session_state[BALL_ANNOTATION] = json.load(
+                    open(os.path.join(annotationDirectory, 'objects.json'))
+                )
 
-            st.session_state[LINE_ANNOTATION] = json.load(
-                open(os.path.join(annotationDirectory, 'lines.json'))
-            )
-            st.session_state['lines_names'] = {}
-            for key, value in json.load(
+                st.info('objects.json file loaded')
+            else:
+                st.warning('no objects.json file found')
+
+            if os.path.exists(os.path.join(annotationDirectory, 'lines.json')):
+                st.session_state[LINE_ANNOTATION] = json.load(
                     open(os.path.join(annotationDirectory, 'lines.json'))
-            ).items():
-                i = 0
-                d = {}
-                st.session_state['lines_names'][key] = {}
-                for key2, value2 in value.items():
-                    d[str(i)] = {
-                        'line': key2,
-                        'x1': value2[0][0],
-                        'y1': value2[0][1],
-                        'x2': value2[1][0],
-                        'y2': value2[1][1]
-                    }
-                    i += 1
-                    st.session_state['lines_names'][key][
-                        (value2[0][0] // 10,
-                         value2[0][1] // 10,
-                         value2[1][0] // 10,
-                         value2[1][1] // 10)
-                    ] = key2
-                st.session_state[LINE_ANNOTATION][key] = d
+                )
+                st.session_state['lines_names'] = {}
+                for key, value in json.load(
+                        open(os.path.join(annotationDirectory, 'lines.json'))
+                ).items():
+                    i = 0
+                    d = {}
+                    st.session_state['lines_names'][key] = {}
+                    for key2, value2 in value.items():
+                        d[str(i)] = {
+                            'line': key2,
+                            'x1': value2[0][0],
+                            'y1': value2[0][1],
+                            'x2': value2[1][0],
+                            'y2': value2[1][1]
+                        }
+                        i += 1
+                        st.session_state['lines_names'][key][
+                            (value2[0][0] // 10,
+                             value2[0][1] // 10,
+                             value2[1][0] // 10,
+                             value2[1][1] // 10)
+                        ] = key2
+                    st.session_state[LINE_ANNOTATION][key] = d
 
-            st.session_state[FIELD_ANNOTATION] = json.load(
-                open(os.path.join(annotationDirectory, 'fields.json'))
-            )
-            for key, value in json.load(
+                st.info('lines.json file loaded')
+            else:
+                st.warning('no lines.json file found')
+
+            if os.path.exists(os.path.join(annotationDirectory, 'fields.json')):
+                st.session_state[FIELD_ANNOTATION] = json.load(
                     open(os.path.join(annotationDirectory, 'fields.json'))
-            ).items():
-                i = 1
-                d = {}
-                for xy in value:
-                    d['x' + str(i)] = xy[0]
-                    d['y' + str(i)] = xy[1]
-                    i += 1
-                st.session_state[FIELD_ANNOTATION][key] = {'0': d}
+                )
+                for key, value in json.load(
+                        open(os.path.join(annotationDirectory, 'fields.json'))
+                ).items():
+                    i = 1
+                    d = {}
+                    for xy in value:
+                        d['x' + str(i)] = xy[0]
+                        d['y' + str(i)] = xy[1]
+                        i += 1
+                    st.session_state[FIELD_ANNOTATION][key] = {'0': d}
+
+                st.info('fields.json file loaded')
+            else:
+                st.warning('no fields.json file found')
 
 if 'scrapedData' in st.session_state:
     scrapedData = st.session_state['scrapedData']
