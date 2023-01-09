@@ -352,6 +352,8 @@ with firstRow[2]:
          ADD_ANNOTATIONS],
         horizontal=True
     )
+    if annotationEditingMode == MODIFY_ANNOTATIONS and annotationType != EVENT_ANNOTATION:
+        st.info('Double-click an object in the frame to remove it.')
 
 # with st.expander('Editing', expanded=False):
 #     secondRow = st.columns([1, 2, 1, 1, 6])
