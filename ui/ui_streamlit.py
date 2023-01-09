@@ -221,7 +221,7 @@ if 'scrapedData' in st.session_state:
         newEvent = {
             "videoTime": str(substitution[1]),
             "gamePart": '1' if int(substitution[1]) < 45 else '2',
-            "label": "Substitution",
+            "label": "Substitution - " + substitution[2],
             "team": firstTeam,
             'player': substitution[0]
         }
@@ -233,7 +233,7 @@ if 'scrapedData' in st.session_state:
         newEvent = {
             "videoTime": str(substitution[1]),
             "gamePart": '1' if int(substitution[1]) < 45 else '2',
-            "label": "Substitution",
+            "label": "Substitution - " + substitution[2],
             "team": secondTeam,
             'player': substitution[0]
         }
