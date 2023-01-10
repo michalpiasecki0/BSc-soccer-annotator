@@ -719,7 +719,7 @@ with firstRow[2]:
         linesCoordinates = json.load(
             open('automatic_models/lines_and_field_detection/data/lines_coordinates.json')
         )
-        pitchImage = Image.open('automatic_models/lines_and_field_detection/data/template.png')
+        pitchImage = Image.open('automatic_models/lines_and_field_detection/data/templateLineNames.png')
         pitchImageDraw = ImageDraw.Draw(pitchImage)
         lineCoordinates = [
             (linesCoordinates[selectedLine][0][0], linesCoordinates[selectedLine][0][1]),
