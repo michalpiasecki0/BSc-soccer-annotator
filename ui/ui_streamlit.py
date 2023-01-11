@@ -12,7 +12,6 @@ import cv2
 from base64 import b64encode
 import json
 from tempfile import NamedTemporaryFile
-from screeninfo import get_monitors
 import match_folder_structure_validator
 
 # from execute_scrapper import run_script
@@ -514,13 +513,11 @@ with firstRow[1]:
         }
 
         currentFrame = get_frame(secondsOfVideoPlayed)
-        monitors = get_monitors()
-        monitorWidth = monitors[0].width
         frameWidth = st.slider(
             'Set frame canvas width',
             min_value=100,
             max_value=3000,
-            value=int(monitorWidth * 0.4),
+            value=500,
             step=10,
             key='frameWidth'
         )
