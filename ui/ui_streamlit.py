@@ -14,8 +14,12 @@ import json
 from tempfile import NamedTemporaryFile
 from screeninfo import get_monitors
 import match_folder_structure_validator
+from automatic_models.main import perform_models
+from pathlib import Path
 
-# from execute_scrapper import run_script
+sys.path.append(str(Path.cwd() / '..' / 'automatic_models'))
+sys.path.append(str(Path.cwd() / '..' / 'automatic_models' / 'object_detection' / 'yolo'))
+
 
 # streamlit configs
 st.set_page_config(
@@ -257,10 +261,26 @@ with sidebar:
                 #     st.warning('no actions.json file found')
 
     with st.form(key='automatic_annotation'):
-        st.write('Getting automatic annotations')
         annotationDirectories = os.listdir(os.path.join(matchDirectory, 'annotations'))
-        annotate = st.form_submit_button('Get annotations')
+        st.write('Getting automatic annotations')
+        col1, col2 = st.columns(2)
+        with col1:
+            models_frequency = st.text_input("Model's frequency", value='0.1')
+        with col2:
+            models_start_point = st.text_input("Video start point", value='0')
+        annotation_name = st.text_input('Annotation name', value='model_annotation')
+        model_config = st.text_input("Configuration for models", placeholder='Field not necesarry')
+        annotate = st.form_submit_button(label='Get annotations')
         if annotate:
+            perform_models(video_path=matchDirectory + '/video.mp4',
+                           output_path=matchDirectory + '/annotations/' + annotation_name,
+                           frequency=float(models_frequency),
+                           start_point=float(models_start_point),
+                           models_config_path=model_config,
+                           saving_strategy='overwrite')
+
+
+
             # TODO
             # initializing automatic annotation
             pass
