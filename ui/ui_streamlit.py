@@ -358,16 +358,16 @@ with firstRow[1]:
         with videoModeContainer:
             videoModeType = st.radio(
                 '',
-                ['Video player', 'Frame by frame'],
+                ['Video player', 'Frame by frame', 'By annotations'],
                 key='videoModeType'
             )
+            if 'capturedVideo' in st.session_state:
+                max_frames = st.session_state['capturedVideo'].get(cv2.CAP_PROP_FRAME_COUNT)
+                video_fps = st.session_state['capturedVideo'].get(cv2.CAP_PROP_FPS)
+            else:
+                max_frames = 100
+                video_fps = 30
             if videoModeType == 'Frame by frame':
-                if 'capturedVideo' in st.session_state:
-                    max_frames = st.session_state['capturedVideo'].get(cv2.CAP_PROP_FRAME_COUNT)
-                    video_fps = st.session_state['capturedVideo'].get(cv2.CAP_PROP_FPS)
-                else:
-                    max_frames = 100
-                    video_fps = 30
 
                 st.write(f'Video FPS rate is {video_fps}.')
 
@@ -417,6 +417,28 @@ with firstRow[1]:
                 )
 
                 secondsOfVideoPlayed = frameNumber / video_fps
+
+            elif videoModeType == 'By annotations' and annotationType in st.session_state:
+                annotationSecond = st.select_slider(
+                    'Select second with annotations',
+                    st.session_state[annotationType].keys(),
+                    key='annotationSecond'
+                )
+
+                def next_annotation_button_on_click():
+                    current_annotations = list(st.session_state[annotationType].keys())
+                    current_annotation_index = current_annotations.index(annotationSecond)
+                    if current_annotation_index < len(current_annotations) - 1:
+                        next_annotation = current_annotations[current_annotation_index + 1]
+                        st.session_state['annotationSecond'] = next_annotation
+
+
+                nextAnnotationButton = st.button(
+                    'Next annotation',
+                    on_click=next_annotation_button_on_click
+                )
+
+                secondsOfVideoPlayed = float(annotationSecond)
 
     secondsRoundedStr = str(float(secondsOfVideoPlayed))
 
