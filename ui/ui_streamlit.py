@@ -353,6 +353,9 @@ with firstRow[1]:
     elif annotationType == EVENT_ANNOTATION:
         annotations = eventAnnotations
 
+    if 'selectedAnnotation' not in st.session_state:
+        st.session_state['selectedAnnotation'] = None
+
     if annotationType != EVENT_ANNOTATION:
         videoModeContainer = videoMode.container()
         with videoModeContainer:
@@ -424,6 +427,7 @@ with firstRow[1]:
                     st.session_state[annotationType].keys(),
                     key='annotationSecond'
                 )
+
 
                 def next_annotation_button_on_click():
                     current_annotations = list(st.session_state[annotationType].keys())
@@ -802,11 +806,17 @@ with firstRow[2]:
 
     gridOptionsBuilder = GridOptionsBuilder.from_dataframe(annotations)
     gridOptionsBuilder.configure_default_column(editable=True)
-    ag_events = AgGrid(
+    if annotationEditingMode == MODIFY_ANNOTATIONS:
+        gridOptionsBuilder.configure_selection(selection_mode='single')
+    annotationsTable = AgGrid(
         data=annotations,
         gridOptions=gridOptionsBuilder.build(),
         fit_columns_on_grid_load=True
     )
+    if annotationEditingMode == MODIFY_ANNOTATIONS and len(annotationsTable['selected_rows']) > 0:
+        st.session_state['selectedAnnotation'] = annotationsTable['selected_rows'][0]
+    else:
+        st.session_state['selectedAnnotation'] = None
 
     saveAnnotations = st.button('Save annotations')
     if saveAnnotations:
