@@ -1,4 +1,5 @@
 from requests_html import HTMLSession
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver import Chrome
 import datetime
 import pandas as pd
@@ -10,17 +11,39 @@ from unidecode import unidecode
 import re
 import json
 import os
-
+from csv import DictReader
+import time
 
 def initialize_session_footballdatabase():
-    driver = Chrome(executable_path="/././chromedriver")
+    options = Options()
+    options.add_argument("user-agent=foo")
+    driver = Chrome(executable_path="ui/chromedriver", options=options)
     session = HTMLSession()
+    driver.get("https://www.footballdatabase.eu/en/")
+    path = os.path.join('ui','cookies_data','cookies.csv')
+    cookies = get_cookies(path)
+    for i in cookies:
+        driver.add_cookie(i)
+    driver.refresh()
+    driver.implicitly_wait(3)
     return session, driver
+
+def get_cookies(file):
+    with open(file, encoding = 'utf-8-sig') as f:
+        dict_reader = DictReader(f)
+        list_of_dicts = list(dict_reader)
+    return list_of_dicts
 
 
 def initialize_login_session(driver, session):
-    # for now left empty, login to the website will be implemented
-    pass
+    driver.get("https://www.footballdatabase.eu/en/")
+    cookies = get_cookies("ui/cookies_data/cookies.csv")
+    for i in cookies:
+        driver.add_cookie(i)
+    driver.refresh()
+    driver.implicitly_wait(3)
+
+    return session, driver
 
 
 # date format is YYYY-MM-DD
@@ -38,8 +61,11 @@ def get_game_id_and_href(data, session, driver):
             element = re.split('/', element)
             element = element[4]
             element = re.split('-', element)
-            # checking conditions
+        # checking conditions
             if (element[1] == team1 and element[2] == team2) or (element[2] == team1 and element[1] == team2):
+                return element[0]
+            elif (matches_tuples[i][0] == team1 and matches_tuples[i][1] == team2) or (
+                    matches_tuples[i][1] == team1 and matches_tuples[i][0] == team2):
                 return element[0]
         return -1
 
@@ -48,10 +74,35 @@ def get_game_id_and_href(data, session, driver):
     team2 = data[2]
     url_full = 'https://www.footballdatabase.eu/en/results/-/{match_date}'.format(match_date=date)
     driver.get(url_full)
+    driver.implicitly_wait(5)
     elements = driver.find_elements(By.CSS_SELECTOR, "a.plus")
-    for i, element in enumerate(elements):
-        driver.execute_script("arguments[0].click();", element)
+    # checking alredy active
     soup = BeautifulSoup(driver.page_source, 'lxml')
+    asf = soup.select('a.plus')
+    true_arr = []
+    for element in asf:
+        if len(element.select('svg.moins')) == 0:
+            true_arr.append(1)
+        else:
+            true_arr.append(0)
+    for i, element in enumerate(elements):
+        if true_arr[i] == 0:
+            continue
+        driver.execute_script("arguments[0].click();", element)
+
+    driver.implicitly_wait(10)
+    time.sleep(5)
+    soup = BeautifulSoup(driver.page_source, 'lxml')
+
+    matches_tuples = []
+    game = soup.select("div.module.gamelist")
+    lines = game[0].select("tr.line")
+    for line in lines:
+        club_left = unidecode(line.select('td.club.left')[0].text)
+        club_right = unidecode(line.select('td.club.right')[0].text)
+        temp_tuple = (club_left, club_right)
+        matches_tuples.append(temp_tuple)
+
     scores = soup.select('td.score')
     links = []
     for score in scores:
@@ -59,9 +110,9 @@ def get_game_id_and_href(data, session, driver):
     hrefs = [link['href'] for link in links]
     id = search_for_match_id(team1, team2)
     id = '/en/match/overview/' + str(id)
-    key_dict = {'reference_core': 'https://www.footballdatabase.eu', 'match_id': id, 'team_1': team1,
-                'team_2': team2}
-    reference_link = "{reference_core}{match_id}/{team_1}-{team_2}".format(**key_dict)
+    key_dict = {'reference_core': 'https://www.footballdatabase.eu', 'match_id': id, 'team_1': team1, 'team_2': team2}
+    reference_link = "{reference_core}{match_id}".format(**key_dict)
+
     return id, reference_link
 
 
@@ -220,17 +271,15 @@ def get_match_page_session_and_data(session, driver, reference_link):
 
 def save_to_JSON(to_json_dict, match_string):
     try:
-        file = os.path.join('..\matches', match_string)
+        file = os.path.join('matches', match_string)
         os.makedirs(file)
     except FileExistsError:
         # directory already exists
         pass
-    #file = '/././matches/{match_string}'.format(match_string = match_string) + '/' + 'scrapped_data.json'
-    file = os.path.join('..\matches',match_string,'scrapped_data.json')
+    print("Checkpoint 1")
+    file = os.path.join('matches',match_string,'scrapped_data.json')
+    print("Checkpoint 2")
     with open(file, "w+") as outfile:
         print('Opening {file}'.format(file = str(file)))
         json.dump(to_json_dict, outfile)
-
-
-def execute_all(date, team1, team2):
-    pass
+    print("Checkpoint 3")

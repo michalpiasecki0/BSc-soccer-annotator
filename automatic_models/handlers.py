@@ -1,13 +1,14 @@
+import shutil
 import json
 import numpy as np
 import cv2
 from pathlib import Path
-from typing import Dict, Optional
+from typing import List, Dict, Optional
 
 from automatic_models.extra_utils.helpers import divide_video_into_frames
 from automatic_models.lines_and_field_detection.lines_and_field_detector import LineDetector
 from automatic_models.object_detection.object_detector import ObjectDetector
-
+#from detect import detect_2
 
 class VideoHandler:
     def __init__(self, video_path: str,
@@ -20,20 +21,25 @@ class VideoHandler:
         self.starting_point = starting_point
         self.frames: Optional[Dict[int, np.ndarray]] = None
         self.image_handlers: Optional[Dict[int, ImageHandler]] = None
+        #self.events: Optional[Dict] = None
+        #self.lines: Optional[Dict] = None
+        #self.fields: Optional[Dict] = None
+        #self.homographies: Optional[Dict] = None
+        #self.objects_detected: Optional[Dict] = None
         self.results = {'events': {},
                         'lines': {},
                         'fields': {},
                         'homographies': {},
                         'objects': {}}
-        self.meta_data = {'frequency': desired_frequency,
-                          }
-
     def save_results_to_files(self):
         general_path = Path(self.output_path)
-        for name in ['homographies', 'objects', 'lines', 'fields']:
+
+        for name in ['homographies','objects']:
             if self.results[name]:
+
                 with open(f'{str(general_path / name)}.json', 'w') as f:
                     json.dump(self.results[name], f)
+
 
     def save_one_result(self, result_type: str,):
         general_path = Path(self.output_path)
@@ -47,6 +53,9 @@ class VideoHandler:
             for idx, value in result.items():
                 if isinstance(value, np.ndarray):
                     np.save(str(path_to_resources / str(idx)) + '.npy', value)
+
+
+
 
     def divide_video(self):
         if self.frames:
@@ -82,6 +91,9 @@ class VideoHandler:
                     self.results['fields'][idx] = field
                     self.results['lines'][idx] = lines
                     self.results['homographies'][idx] = homography
+                    #self.fields[idx] = field
+                    #self.lines[idx] = lines
+                    #self.homographies[idx] = homography
                     print(f'{idx} was processed.')
             else:
                 print('You must divide video and create image handlers before invoking Lines & FIeld Detection')
@@ -136,7 +148,9 @@ class ImageHandler:
                                        torch_backends_cudnn_enabled: bool = False,
                                        desired_homography: str = 'orig',
                                        **kwargs):
-        line_detector = LineDetector(image_array=self.image_array)
+        line_detector = LineDetector(image_array=self.image_array,
+                                     constant_var_use_cuda=constant_var_use_cuda,
+                                     torch_backends_cudnn_enabled=torch_backends_cudnn_enabled)
         self.field, self.lines, self.homography = line_detector(desired_homography=desired_homography)
         return self.field, self.lines, self.homography
 
