@@ -130,7 +130,7 @@ with sidebar:
         if videoSourceType == 'File':
             matchDate = st.date_input(
                 'Choose the date of the match',
-                value=datetime.date(2019, 8, 17)
+                value=datetime.datetime.strptime(matchDirectory[8:18], '%Y-%m-%d')
             )
             sidebarColumns = st.columns(2)
             with sidebarColumns[0]:
