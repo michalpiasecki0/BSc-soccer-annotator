@@ -1,45 +1,83 @@
-import shutil
 import json
 import numpy as np
 import cv2
+import dataclasses
 from pathlib import Path
-from typing import List, Dict, Optional
+from typing import Dict, Optional
+from datetime import datetime
 
 from automatic_models.extra_utils.helpers import divide_video_into_frames
 from automatic_models.lines_and_field_detection.lines_and_field_detector import LineDetector
 from automatic_models.object_detection.object_detector import ObjectDetector
-#from detect import detect_2
+
 
 class VideoHandler:
-    def __init__(self, video_path: str,
+    """
+    VideoHandler is responsible for high level interaction between video and models.
+    Parameters:
+    :param video_path: path to video
+    :param desired_frequency: desired amount of frames per second
+    """
+    def __init__(self,
+                 video_path: str,
                  desired_frequency: float,
-                 starting_point: float,
-                 output_path: str):
+                 output_path: str,
+                 starting_point: float = 0,
+                 saving_strategy: str = 'overwrite',
+                 models_config_path: str = None):
+
+        if not Path(video_path).exists():
+            raise Exception(f"Video path {video_path} does not exist.")
+
+        self.model_configs = {}
+        if models_config_path:
+            with open(models_config_path, 'r') as f:
+                try:
+                    self.model_configs = json.load(f)
+                except FileNotFoundError:
+                    print(f'File {models_config_path} does not exist.')
+                    self.model_configs = {}
+                except json.JSONDecodeError:
+                    print(f'Unable to update models from {models_config_path}.\n'
+                          f'Model Configuration file is not formatted properly.')
+                    self.model_configs = {}
+
         self.video_path = video_path
         self.output_path = output_path
+        if not Path(output_path).exists():
+            Path(output_path).mkdir(parents=True)
         self.desired_frequency = desired_frequency
         self.starting_point = starting_point
         self.frames: Optional[Dict[int, np.ndarray]] = None
         self.image_handlers: Optional[Dict[int, ImageHandler]] = None
-        #self.events: Optional[Dict] = None
-        #self.lines: Optional[Dict] = None
-        #self.fields: Optional[Dict] = None
-        #self.homographies: Optional[Dict] = None
-        #self.objects_detected: Optional[Dict] = None
         self.results = {'events': {},
                         'lines': {},
                         'fields': {},
                         'homographies': {},
                         'objects': {}}
-    def save_results_to_files(self):
+        self.meta_data = {'frequency': desired_frequency}
+        self.saving_strategy = saving_strategy
+
+    def save_results_to_files(self) -> None:
+        """
+        Save obtained results to files in an output folder.
+        """
+        def get_files_naming(output_path: Path, data_type: str, strategy: str) -> str:
+            file_name = f'{str(output_path / data_type)}'
+            if strategy == 'add':
+                file_name += f'_{datetime.now().strftime("%m_%d_%Y_%H:%M:%S")}'
+            file_name += '.json'
+            return file_name
+
+        assert self.saving_strategy in ['overwrite', 'add']
         general_path = Path(self.output_path)
-
-        for name in ['homographies','objects']:
+        for name in ['homographies', 'objects', 'lines', 'fields']:
             if self.results[name]:
-
-                with open(f'{str(general_path / name)}.json', 'w') as f:
+                file_path = get_files_naming(general_path, name, self.saving_strategy)
+                with open(file_path, 'w') as f:
                     json.dump(self.results[name], f)
-
+            with open(get_files_naming(general_path, 'meta_data', self.saving_strategy), 'w') as f:
+                json.dump(self.meta_data, f)
 
     def save_one_result(self, result_type: str,):
         general_path = Path(self.output_path)
@@ -54,10 +92,11 @@ class VideoHandler:
                 if isinstance(value, np.ndarray):
                     np.save(str(path_to_resources / str(idx)) + '.npy', value)
 
-
-
-
     def divide_video(self):
+        """
+        Divide given video into equally spaced frames.
+        :return:
+        """
         if self.frames:
             print('Video is already divided')
         else:
@@ -73,42 +112,44 @@ class VideoHandler:
         """TO DO"""
         pass
 
-    def detect_lines_and_fields(self,
-                                constant_var_use_cuda: bool = False,
-                                torch_backends_cudnn_enabled: bool = False,
-                                desired_homography: str = 'orig',
-                                **kwargs):
+    def detect_lines_and_fields(self):
         if self.results['fields']:
             print('Fields and lines are already calculated')
         else:
             if self.image_handlers:
                 for idx, image_handler in self.image_handlers.items():
-                    field, lines, homography = image_handler.get_lines_field_and_homography(
-                        constant_var_use_cuda=constant_var_use_cuda,
-                        torch_backends_cudnn_enabled=torch_backends_cudnn_enabled,
-                        desired_homography=desired_homography
-                    )
+                    field, lines, homography, config = \
+                        image_handler.get_lines_field_and_homography(
+                            model_config=self.model_configs.get('lines_field_homo_model'))
                     self.results['fields'][idx] = field
                     self.results['lines'][idx] = lines
                     self.results['homographies'][idx] = homography
-                    #self.fields[idx] = field
-                    #self.lines[idx] = lines
-                    #self.homographies[idx] = homography
                     print(f'{idx} was processed.')
+                    if not self.meta_data.get('lines_field_homo_model'):
+                        # add object detection config to meta-data
+                        model_dict = dataclasses.asdict(config)
+                        for name in ['template_path', 'out_dir']:
+                            del model_dict[name]
+                        self.meta_data['lines_field_homo_model'] = model_dict
             else:
                 print('You must divide video and create image handlers before invoking Lines & FIeld Detection')
 
-
     def detect_objects(self):
+        """
+        Detect players on a field
+        """
         if self.results['objects']:
             print('Fields and lines are already calculated')
         else:
             if self.image_handlers:
                 for idx, image_handler in self.image_handlers.items():
-                    objects = image_handler.get_objects()
+                    objects, config = \
+                        image_handler.get_objects(model_config=self.model_configs.get('object_detection_model'))
+                    if not self.meta_data.get('object_detection_model'):
+                        # add object detection config to meta-data
+                        self.meta_data['object_detection_model'] = dataclasses.asdict(config)
 
                     self.results['objects'][idx] = objects
-
                     print(f'{idx} was processed.')
             else:
                 print('You must divide video and create image handlers before invoking Object Detection')
@@ -128,30 +169,18 @@ class ImageHandler:
         self.homography = None
         self.objects = None
 
-    def __str__(self):
-        pass
-
-    def get_time(self):
-        """TO DO """
-        pass
-
-    def get_objects(self):
+    def get_objects(self, model_config: Optional[Dict] = None):
         object_detector = ObjectDetector(idx=self.idx,
-                                         image_array=self.image_array)
+                                         image_array=self.image_array,
+                                         model_config=model_config)
         object_detector()
         self.objects = object_detector.results
-        return self.objects
+        return self.objects, object_detector.config
 
-
-    def get_lines_field_and_homography(self,
-                                       constant_var_use_cuda: bool = False,
-                                       torch_backends_cudnn_enabled: bool = False,
-                                       desired_homography: str = 'orig',
-                                       **kwargs):
+    def get_lines_field_and_homography(self, model_config: Optional[Dict] = None):
         line_detector = LineDetector(image_array=self.image_array,
-                                     constant_var_use_cuda=constant_var_use_cuda,
-                                     torch_backends_cudnn_enabled=torch_backends_cudnn_enabled)
-        self.field, self.lines, self.homography = line_detector(desired_homography=desired_homography)
-        return self.field, self.lines, self.homography
+                                     model_config=model_config)
+        self.field, self.lines, self.homography, config = line_detector()
+        return self.field, self.lines, self.homography, config
 
 
