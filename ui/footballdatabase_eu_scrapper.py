@@ -16,11 +16,15 @@ import time
 
 def initialize_session_footballdatabase():
     options = Options()
+    #options.add_argument("--start-maximized")
     options.add_argument("user-agent=foo")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
     driver = Chrome(executable_path="ui/chromedriver", options=options)
+    driver.minimize_window()
     session = HTMLSession()
     driver.get("https://www.footballdatabase.eu/en/")
-    path = os.path.join('ui','cookies_data','cookies.csv')
+    path = os.path.join('ui', 'cookies_data', 'cookies.csv')
     cookies = get_cookies(path)
     for i in cookies:
         driver.add_cookie(i)
