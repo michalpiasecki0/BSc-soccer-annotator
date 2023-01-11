@@ -324,7 +324,6 @@ with firstRow[0]:
     videoMode = st.empty()
 
     secondsOfVideoPlayed = videoPlayer[1]['playedSeconds'] if videoPlayer[1] is not None else 0.0
-    secondsRoundedStr = str(float(int(secondsOfVideoPlayed)))
 
 with firstRow[1]:
     annotationType = st.radio(
@@ -418,6 +417,8 @@ with firstRow[1]:
                 )
 
                 secondsOfVideoPlayed = frameNumber / video_fps
+
+    secondsRoundedStr = str(float(secondsOfVideoPlayed))
 
 with firstRow[2]:
     annotationEditingMode = st.radio(
