@@ -119,7 +119,7 @@ if authentication_status:
 
         st.write(os.getcwd())
         for el in os.listdir():
-            print(el)
+            st.write(el)
         st.write('Choosing a video to annotate')
         videoSourceType = st.radio(
             'Video Source',
