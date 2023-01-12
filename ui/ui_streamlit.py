@@ -14,7 +14,6 @@ from base64 import b64encode
 import json
 from tempfile import NamedTemporaryFile
 import match_folder_structure_validator
-from automatic_models.main import perform_models
 from pathlib import Path
 from execute_scrapper import run_script
 from read_team_options import read_teams_options
@@ -26,6 +25,7 @@ sys.path.append(str(Path.cwd() / '..'))
 sys.path.append(str(Path.cwd() / '..' / 'automatic_models'))
 sys.path.append(str(Path.cwd() / '..' / 'automatic_models' / 'object_detection' / 'yolo'))
 print(sys.path)
+from automatic_models.main import perform_models
 
 # streamlit configs
 st.set_page_config(
