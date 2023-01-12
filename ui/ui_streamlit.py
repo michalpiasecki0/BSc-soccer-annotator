@@ -118,7 +118,7 @@ if authentication_status:
             if FIELD_ANNOTATION in st.session_state:
                 del st.session_state[FIELD_ANNOTATION]
 
-
+        st.write(sys.path)
         st.write('Choosing a video to annotate')
         videoSourceType = st.radio(
             'Video Source',
