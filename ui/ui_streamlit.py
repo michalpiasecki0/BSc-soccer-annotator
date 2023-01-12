@@ -21,10 +21,10 @@ import streamlit_authenticator as stauth
 import database as db
 from footballdatabase_eu_scrapper import get_data_from_GUI
 
-sys.path.append(str(Path.cwd() / '..'))
-sys.path.append(str(Path.cwd() / 'automatic_models'))
-sys.path.append(str(Path.cwd() / 'automatic_models' / 'object_detection' / 'yolo'))
-#from automatic_models.main import perform_models
+#sys.path.append(str(Path.cwd() / '..'))
+#sys.path.append(str(Path.cwd() / 'automatic_models'))
+#sys.path.append(str(Path.cwd() / 'automatic_models' / 'object_detection' / 'yolo'))
+from automatic_models.automatic_models_api import perform_models
 
 # streamlit configs
 st.set_page_config(
