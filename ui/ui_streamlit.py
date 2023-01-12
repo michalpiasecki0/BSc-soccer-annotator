@@ -78,10 +78,18 @@ for uname, name, pwd in zip(usernames, names, hashed_passwords):
     user_dict = {"name": name, "password": pwd}
     credentials["usernames"].update({uname: user_dict})
 
-
-authenticator = stauth.Authenticate(credentials, "cookies", 'cookies_named', cookie_expiry_days= 5)
+title_placeholder = st.empty()
+info_placeholder = st.empty()
+authenticator = stauth.Authenticate(credentials, "cookies", 'cookies_named', cookie_expiry_days=5)
 
 name, authentication_status, username = authenticator.login("Login", "main")
+
+
+if authentication_status in [None, False]:
+    with title_placeholder:
+        st.title('Soccer annotator')
+    with info_placeholder:
+        st.write('PLease login in or register to start using an app.')
 
 if authentication_status == False:
     st.error("Username/password is incorrect")
@@ -91,7 +99,7 @@ if authentication_status == None:
 
 if authentication_status:
     st.title('Soccer Annotator')
-
+    st.write('Annotation tool for video matches.')
     sidebar = st.sidebar
     authenticator.logout("Logout", "sidebar")
     st.sidebar.title(f"Welcome {name}")
@@ -114,9 +122,9 @@ if authentication_status:
         st.write('Choosing a video to annotate')
         videoSourceType = st.radio(
             'Video Source',
-            ['Local file', 'URL'],
+            ['File', 'URL', 'Upload local file'],
             horizontal=True,
-            # on_change=video_on_change,
+            #on_change=video_on_change,
             key='videoSourceType'
         )
         if videoSourceType == 'URL':
@@ -152,15 +160,18 @@ if authentication_status:
                 st.stop()
             else:
                 matchDirectory = st.session_state['matchDirectory']
+
         elif videoSourceType == 'File':
             matchDirectories = os.listdir('matches/')
             matchDirectory = os.path.join(
                 'matches',
                 st.selectbox(
                     'Select a match',
-                    matchDirectories
-                )
-            )
+                    matchDirectories))
+            if st.session_state.get('matchDirectory') and st.session_state['matchDirectory'] != matchDirectory:
+                video_on_change()
+            st.session_state['matchDirectory'] = matchDirectory
+
             if os.path.exists(os.path.join(matchDirectory, 'video.mp4')):
                 videoFile = open(os.path.join(matchDirectory, 'video.mp4'), 'rb')
                 videoBytes = videoFile.read()
@@ -169,6 +180,41 @@ if authentication_status:
                 videoURL = [{"type": mimeType, "src": f"data:{mimeType};base64,{videoData}"}]
             else:
                 st.error('No video file found!')
+                st.stop()
+
+
+        elif videoSourceType == 'Upload local file':
+            with st.form(key='get_video_from_local'):
+                file_uploader = st.file_uploader(label='Upload your video')
+                st.write('Supply data about the match')
+                matchDate = st.date_input('Choose the date of the match')
+                sidebarColumns = st.columns(2)
+                with sidebarColumns[0]:
+                    firstTeam = st.text_input('The first team', value='Team1')
+                with sidebarColumns[1]:
+                    secondTeam = st.text_input('The second team', value='Team2')
+                loadVideo = st.form_submit_button('Load video')
+                if loadVideo:
+                    # TODO
+                    # add data verification
+                    video_on_change()
+                    matchDirectory = match_folder_structure_validator.input_match(
+                        firstTeam,
+                        secondTeam,
+                        matchDate
+                    )
+                    bytes = file_uploader.getvalue()
+                    with open(matchDirectory + '/video.mp4', 'wb') as binary_file:
+                        binary_file.write(bytes)
+                    st.info('File correctly saved. Choose File option to start annotating')
+
+                    st.session_state['matchDirectory'] = matchDirectory
+
+            if 'matchDirectory' not in st.session_state:
+                st.warning('Load a video to start annotating.')
+                st.stop()
+            else:
+                matchDirectory = st.session_state['matchDirectory']
                 st.stop()
 
         if not (os.path.exists(os.path.join(matchDirectory, 'annotations')) and os.path.isdir(
@@ -402,7 +448,6 @@ if authentication_status:
             eventAnnotations = eventAnnotations.append(newEvent, ignore_index=True)
 
     firstRow = st.columns([2.5, 5, 2.6])
-    secondRow = st.columns([1,5,5])
     with firstRow[0]:
         videoPlayer = st_player(
             url=videoURL,
@@ -608,8 +653,7 @@ if authentication_status:
 
         capturedVideo = st.session_state['capturedVideo']
 
-
-        @st.cache(max_entries=1)
+        #@st.cache(max_entries=1)
         def get_frame(played):
             capturedVideo.set(cv2.CAP_PROP_POS_MSEC, played * 1000)
             check, frame = capturedVideo.read()
@@ -980,7 +1024,7 @@ if authentication_status:
             )
             save_annotations({'actions': eventsDict}, 'actions')
 
-if authentication_status == False or authentication_status is None:
+if authentication_status is False or authentication_status is None:
     st.title('Registration Form')
     registration_form = st.form(key='form-1', clear_on_submit=True)
     name_reg = registration_form.text_input('Enter your name:')
