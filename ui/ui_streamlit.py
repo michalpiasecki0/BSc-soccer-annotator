@@ -118,6 +118,8 @@ if authentication_status:
                 del st.session_state[FIELD_ANNOTATION]
 
         st.write(os.getcwd())
+        for el in os.listdir():
+            print(el)
         st.write('Choosing a video to annotate')
         videoSourceType = st.radio(
             'Video Source',
