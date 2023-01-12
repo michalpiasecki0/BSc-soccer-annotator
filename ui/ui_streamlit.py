@@ -22,8 +22,8 @@ import database as db
 from footballdatabase_eu_scrapper import get_data_from_GUI
 
 sys.path.append(str(Path.cwd() / '..'))
-sys.path.append(str(Path.cwd() / '..' / 'automatic_models'))
-sys.path.append(str(Path.cwd() / '..' / 'automatic_models' / 'object_detection' / 'yolo'))
+sys.path.append(str(Path.cwd() / 'automatic_models'))
+sys.path.append(str(Path.cwd() / 'automatic_models' / 'object_detection' / 'yolo'))
 print(sys.path)
 #from automatic_models.main import perform_models
 
