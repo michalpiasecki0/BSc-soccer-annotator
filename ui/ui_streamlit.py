@@ -24,7 +24,7 @@ from footballdatabase_eu_scrapper import get_data_from_GUI
 sys.path.append(str(Path.cwd() / '..'))
 sys.path.append(str(Path.cwd() / 'automatic_models'))
 sys.path.append(str(Path.cwd() / 'automatic_models' / 'object_detection' / 'yolo'))
-from automatic_models.main import perform_models
+#from automatic_models.main import perform_models
 
 # streamlit configs
 st.set_page_config(
@@ -117,7 +117,7 @@ if authentication_status:
             if FIELD_ANNOTATION in st.session_state:
                 del st.session_state[FIELD_ANNOTATION]
 
-        st.write(sys.path)
+        st.write(os.getcwd())
         st.write('Choosing a video to annotate')
         videoSourceType = st.radio(
             'Video Source',
