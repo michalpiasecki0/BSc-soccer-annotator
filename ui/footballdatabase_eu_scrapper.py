@@ -14,9 +14,10 @@ import os
 from csv import DictReader
 import time
 
+
 def initialize_session_footballdatabase():
     options = Options()
-    #options.add_argument("--start-maximized")
+    # options.add_argument("--start-maximized")
     options.add_argument("user-agent=foo")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
@@ -29,11 +30,12 @@ def initialize_session_footballdatabase():
     for i in cookies:
         driver.add_cookie(i)
     driver.refresh()
-    driver.implicitly_wait(3)
+    driver.implicitly_wait(1)
     return session, driver
 
+
 def get_cookies(file):
-    with open(file, encoding = 'utf-8-sig') as f:
+    with open(file, encoding='utf-8-sig') as f:
         dict_reader = DictReader(f)
         list_of_dicts = list(dict_reader)
     return list_of_dicts
@@ -45,7 +47,6 @@ def initialize_login_session(driver, session):
     for i in cookies:
         driver.add_cookie(i)
     driver.refresh()
-    driver.implicitly_wait(3)
 
     return session, driver
 
@@ -65,7 +66,7 @@ def get_game_id_and_href(data, session, driver):
             element = re.split('/', element)
             element = element[4]
             element = re.split('-', element)
-        # checking conditions
+            # checking conditions
             if (element[1] == team1 and element[2] == team2) or (element[2] == team1 and element[1] == team2):
                 return element[0]
             elif (matches_tuples[i][0] == team1 and matches_tuples[i][1] == team2) or (
@@ -78,24 +79,16 @@ def get_game_id_and_href(data, session, driver):
     team2 = data[2]
     url_full = 'https://www.footballdatabase.eu/en/results/-/{match_date}'.format(match_date=date)
     driver.get(url_full)
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(2)
     elements = driver.find_elements(By.CSS_SELECTOR, "a.plus")
     # checking alredy active
     soup = BeautifulSoup(driver.page_source, 'lxml')
     asf = soup.select('a.plus')
-    true_arr = []
-    for element in asf:
+    for element, element_active in zip(asf, elements):
         if len(element.select('svg.moins')) == 0:
-            true_arr.append(1)
-        else:
-            true_arr.append(0)
-    for i, element in enumerate(elements):
-        if true_arr[i] == 0:
-            continue
-        driver.execute_script("arguments[0].click();", element)
+            driver.execute_script("arguments[0].click();", element_active)
 
-    driver.implicitly_wait(10)
-    time.sleep(5)
+    driver.implicitly_wait(2)
     soup = BeautifulSoup(driver.page_source, 'lxml')
 
     matches_tuples = []
@@ -103,7 +96,13 @@ def get_game_id_and_href(data, session, driver):
     lines = game[0].select("tr.line")
     for line in lines:
         club_left = unidecode(line.select('td.club.left')[0].text)
+        club_left = unidecode(club_left).replace(" ", "_")
+        club_left = club_left.lower()
+        # ------- #
         club_right = unidecode(line.select('td.club.right')[0].text)
+        club_right = unidecode(club_right).replace(" ", "_")
+        club_right = club_right.lower()
+        # ------- #
         temp_tuple = (club_left, club_right)
         matches_tuples.append(temp_tuple)
 
@@ -127,7 +126,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
     # <---- getting score ---->
     def get_score():
         text = requests.get(reference_link).text
-        soup = BeautifulSoup(text,features="lxml")
+        soup = BeautifulSoup(text, features="lxml")
         temp = soup.find_all('div', class_="score0")
         return temp[0].find_all('h2')[0].text
 
@@ -135,7 +134,8 @@ def get_match_page_session_and_data(session, driver, reference_link):
     def get_country_stadium():
         temp = soup.find_all('div', class_='location')
         temp_2 = re.split('-', temp[0].find_all('p')[0].text)
-        return unidecode(temp_2[2].replace(" ", "")), unidecode(temp_2[0].replace(" ", "") + " " + temp_2[1].replace(" ", ""))
+        return unidecode(temp_2[0].replace(" ", "") + " " + temp_2[1].replace(" ", "")), unidecode(
+            temp_2[2].replace(" ", ""))
 
     # <--- getting first eleven playing players for both teams ---->
     def get_first_eleven_both_teams():
@@ -170,10 +170,10 @@ def get_match_page_session_and_data(session, driver, reference_link):
     # <--- getting team managers ---->
     def get_team_managers():
         temp = soup.find_all('div', class_='section entraineur toggleteam1')
-        temp = temp[0].find_all('a')
+        temp = temp[0].find_all('a')[0]
 
         temp_2 = soup.find_all('div', class_='section entraineur toggleteam2')
-        temp_2 = temp_2[0].find_all('a')
+        temp_2 = temp_2[0].find_all('a')[0]
 
         return unidecode(temp.text), unidecode(temp_2.text)
 
@@ -192,40 +192,40 @@ def get_match_page_session_and_data(session, driver, reference_link):
             return z[len(z) // 2:]
 
         temp = soup.find_all('div', class_='playerTitulaire outplayer')
-        table = temp[2].find_all('table')
-        df1 = pd.read_html(str(table))[0][["Substitutes.3", "Substitutes.4"]]
-        df1["Substitutes.3"] = df1["Substitutes.3"].apply(unidecode)
-        df1['type'] = 'up'
-        x = list(df1.itertuples(index=False, name=None))
 
-        temp = soup.find_all('div', class_='playerTitulaire outplayer')
-        table = temp[0].find_all('table')
-        df1 = pd.read_html(str(table))[0][["First 11.3", "First 11.4"]]
-        df1 = df1[df1['First 11.4'].notna()]
-        df1["First 11.4"] = df1["First 11.4"].apply(correct_concat_numbers)
-        df1["First 11.3"] = df1["First 11.3"].apply(unidecode)
-        df1['type'] = 'down'
-        y = list(df1.itertuples(index=False, name=None))
+        table_for_two_first = temp[2].find_all('table')
+        df_for_two_first = pd.read_html(str(table_for_two_first))[0][["Substitutes.3", "Substitutes.4"]]
+        df_for_two_first["Substitutes.3"] = df_for_two_first["Substitutes.3"].apply(unidecode)
+        df_for_two_first['type'] = 'up'
+        x = list(df_for_two_first.itertuples(index=False, name=None))
+        # ------------------- #
+        table_for_one_first = temp[0].find_all('table')
+        df_for_one_first = pd.read_html(str(table_for_one_first))[0][["First 11.3", "First 11.4"]]
+        df_for_one_first = df_for_one_first[df_for_one_first['First 11.4'].notna()]
+        df_for_one_first["First 11.4"] = df_for_one_first["First 11.4"].apply(correct_concat_numbers)
+        df_for_one_first["First 11.3"] = df_for_one_first["First 11.3"].apply(unidecode)
+        df_for_one_first['type'] = 'down'
+        y = list(df_for_one_first.itertuples(index=False, name=None))
+        # ------------------ #
         team_1_substitutions = x + y
 
-        temp = soup.find_all('div', class_='playerTitulaire outplayer')
-        table = temp[3].find_all('table')
-        df1 = pd.read_html(str(table))[0][["Substitutes.3", "Substitutes.4"]]
-        df1["Substitutes.3"] = df1["Substitutes.3"].apply(unidecode)
-        df1['type'] = 'up'
-        x = list(df1.itertuples(index=False, name=None))
+        table_for_two_second = temp[3].find_all('table')
+        df_for_two_second = pd.read_html(str(table_for_two_second))[0][["Substitutes.3", "Substitutes.4"]]
+        df_for_two_second["Substitutes.3"] = df_for_two_second["Substitutes.3"].apply(unidecode)
+        df_for_two_second['type'] = 'up'
+        x = list(df_for_two_second.itertuples(index=False, name=None))
 
-        temp = soup.find_all('div', class_='playerTitulaire outplayer')
-        table = temp[1].find_all('table')
-        df1 = pd.read_html(str(table))[0][["First 11.3", "First 11.4"]]
-        df1 = df1[df1['First 11.4'].notna()]
-        df1["First 11.4"] = df1["First 11.4"].apply(correct_concat_numbers)
-        df1["First 11.3"] = df1["First 11.3"].apply(unidecode)
-        df1['type'] = 'down'
-        y = list(df1.itertuples(index=False, name=None))
+        table_for_one_second = temp[1].find_all('table')
+        df_for_one_second = pd.read_html(str(table_for_one_second))[0][["First 11.3", "First 11.4"]]
+        df_for_one_second = df_for_one_second[df_for_one_second['First 11.4'].notna()]
+        df_for_one_second["First 11.4"] = df_for_one_second["First 11.4"].apply(correct_concat_numbers)
+        df_for_one_second["First 11.3"] = df_for_one_second["First 11.3"].apply(unidecode)
+        df_for_one_second['type'] = 'down'
+        y = list(df_for_one_second.itertuples(index=False, name=None))
+        # ------------------ #
         team_2_substitutions = x + y
-        return team_1_substitutions, team_2_substitutions
 
+        return team_1_substitutions, team_2_substitutions
 
     def intent_to_get_data(data_get_func):
         try:
@@ -265,10 +265,13 @@ def get_match_page_session_and_data(session, driver, reference_link):
     except Exception:
         substitutions_team_1, substitutions_team_2 = '', ''
 
-    dict_return = {'score' : score,'stadium_name':stadium,'country':country,'first_eleven_team_1':first_eleven_team_1,
-                   'first_eleven_team_2':first_eleven_team_2,'match_length':match_length,'scores_team_1':scores_team_1,
-                   'scores_team_2':scores_team_2,'team_manager_1':team_manager_1,'team_manager_2':team_manager_2,
-                   'referee':referee,'substitutions_team_1':substitutions_team_1,'substitutions_team_2':substitutions_team_2}
+    dict_return = {'score': score, 'stadium_name': stadium, 'country': country,
+                   'first_eleven_team_1': first_eleven_team_1,
+                   'first_eleven_team_2': first_eleven_team_2, 'match_length': match_length,
+                   'scores_team_1': scores_team_1,
+                   'scores_team_2': scores_team_2, 'team_manager_1': team_manager_1, 'team_manager_2': team_manager_2,
+                   'referee': referee, 'substitutions_team_1': substitutions_team_1,
+                   'substitutions_team_2': substitutions_team_2}
 
     return dict_return
 
@@ -281,9 +284,9 @@ def save_to_JSON(to_json_dict, match_string):
         # directory already exists
         pass
     print("Checkpoint 1")
-    file = os.path.join('matches',match_string,'scrapped_data.json')
+    file = os.path.join('matches', match_string, 'scrapped_data.json')
     print("Checkpoint 2")
     with open(file, "w+") as outfile:
-        print('Opening {file}'.format(file = str(file)))
+        print('Opening {file}'.format(file=str(file)))
         json.dump(to_json_dict, outfile)
     print("Checkpoint 3")

@@ -14,7 +14,6 @@ from base64 import b64encode
 import json
 from tempfile import NamedTemporaryFile
 import match_folder_structure_validator
-from automatic_models.main import perform_models
 from pathlib import Path
 from execute_scrapper import run_script
 from read_team_options import read_teams_options
@@ -25,6 +24,7 @@ from footballdatabase_eu_scrapper import get_data_from_GUI
 
 sys.path.append(str(Path.cwd() / '..' / 'automatic_models'))
 sys.path.append(str(Path.cwd() / '..' / 'automatic_models' / 'object_detection' / 'yolo'))
+from automatic_models.main import perform_models
 
 
 # streamlit configs
