@@ -1,6 +1,5 @@
 from footballdatabase_eu_scrapper import *
 
-
 def run_script(date,team1,team2):
     print("In scrapper")
     session, driver = initialize_session_footballdatabase()

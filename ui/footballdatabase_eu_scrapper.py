@@ -1,7 +1,6 @@
 from requests_html import HTMLSession
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver import Chrome
-import datetime
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -12,8 +11,6 @@ import re
 import json
 import os
 from csv import DictReader
-import time
-
 
 def initialize_session_footballdatabase():
     options = Options()
@@ -79,7 +76,7 @@ def get_game_id_and_href(data, session, driver):
     team2 = data[2]
     url_full = 'https://www.footballdatabase.eu/en/results/-/{match_date}'.format(match_date=date)
     driver.get(url_full)
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(1)
     elements = driver.find_elements(By.CSS_SELECTOR, "a.plus")
     # checking alredy active
     soup = BeautifulSoup(driver.page_source, 'lxml')
@@ -88,7 +85,7 @@ def get_game_id_and_href(data, session, driver):
         if len(element.select('svg.moins')) == 0:
             driver.execute_script("arguments[0].click();", element_active)
 
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(1)
     soup = BeautifulSoup(driver.page_source, 'lxml')
 
     matches_tuples = []
@@ -122,11 +119,10 @@ def get_game_id_and_href(data, session, driver):
 def get_match_page_session_and_data(session, driver, reference_link):
     driver.get(reference_link)
     soup = BeautifulSoup(driver.page_source, 'lxml')
+    temp = soup.find_all('div', class_='playerTitulaire outplayer')
 
     # <---- getting score ---->
     def get_score():
-        text = requests.get(reference_link).text
-        soup = BeautifulSoup(text, features="lxml")
         temp = soup.find_all('div', class_="score0")
         return temp[0].find_all('h2')[0].text
 
@@ -138,8 +134,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
             temp_2[2].replace(" ", ""))
 
     # <--- getting first eleven playing players for both teams ---->
-    def get_first_eleven_both_teams():
-        temp = soup.find_all('div', class_='playerTitulaire outplayer')
+    def get_first_eleven_both_teams(temp):
         table = temp[0].find_all('table')
         team_1 = pd.read_html(str(table))[0]
 
@@ -183,15 +178,13 @@ def get_match_page_session_and_data(session, driver, reference_link):
         return unidecode(temp[0].text.replace(" ", "", 1))
 
     # <--- getting substitutions ---->
-    def get_substitutions():
+    def get_substitutions(temp):
         def correct_concat_numbers(z):
             # potential problem with games that last more than 100 minutes !!!
             if len(str(int(z))) < 3:
                 return int(z)
             z = str(int(z))
             return z[len(z) // 2:]
-
-        temp = soup.find_all('div', class_='playerTitulaire outplayer')
 
         table_for_two_first = temp[2].find_all('table')
         df_for_two_first = pd.read_html(str(table_for_two_first))[0][["Substitutes.3", "Substitutes.4"]]
@@ -242,7 +235,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
         stadium, country = '', ''
 
     try:
-        first_eleven_team_1, first_eleven_team_2 = get_first_eleven_both_teams()
+        first_eleven_team_1, first_eleven_team_2 = get_first_eleven_both_teams(temp)
     except Exception:
         first_eleven_team_1, first_eleven_team_2 = '', ''
 
@@ -261,7 +254,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
     referee = intent_to_get_data(get_referee)
 
     try:
-        substitutions_team_1, substitutions_team_2 = get_substitutions()
+        substitutions_team_1, substitutions_team_2 = get_substitutions(temp)
     except Exception:
         substitutions_team_1, substitutions_team_2 = '', ''
 
