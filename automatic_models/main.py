@@ -1,3 +1,5 @@
+"""This module serves as general API with automatic_models module"""
+
 from handlers import VideoHandler
 from argparse import ArgumentParser
 
@@ -38,15 +40,16 @@ def perform_models(video_path: str,
                                  saving_strategy=saving_strategy,
                                  models_config_path=models_config_path)
     video_handler.divide_video()
+    video_handler.annotate_events()
     video_handler.detect_lines_and_fields()
     video_handler.detect_objects()
     video_handler.save_results_to_files()
 
 
 if __name__ == '__main__':
-    perform_models(video_path='data/test.mp4',
-                   output_path='../matches/test',
+    perform_models(video_path='./data/output_5min.mp4',
+                   output_path='./data/test_18_01',
                    frequency=1/20,
                    start_point=0,
                    saving_strategy='overwrite',
-                   models_config_path='./data/models_config.json')
+                   models_config_path='./data/configs/models_config.json')

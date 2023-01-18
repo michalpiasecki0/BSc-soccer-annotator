@@ -1,3 +1,5 @@
+"""This module implements handlers, which are responsible for high-level interaction with models."""
+
 import json
 import numpy as np
 import cv2
@@ -9,14 +11,21 @@ from datetime import datetime
 from automatic_models.extra_utils.helpers import divide_video_into_frames
 from automatic_models.lines_and_field_detection.lines_and_field_detector import LineDetector
 from automatic_models.object_detection.object_detector import ObjectDetector
+from automatic_models.event_annotation.event_annotator import EventAnnotator
 
 
 class VideoHandler:
     """
     VideoHandler is responsible for high level interaction between video and models.
-    Parameters:
+    Init Parameters:
     :param video_path: path to video
     :param desired_frequency: desired amount of frames per second
+    :param output_path: path to saving folder
+    :param starting_point: [seconds] indicates when ObjectDetector and Line/Field Detector will start performing.
+    E.g if starting_point = 15. Both models will start annotating from 15 sec of video
+    :param saving_strategy: overwrite - results in folder will be overwritten by new model, add -> results will be added
+    at the end of files in folder
+    :param models_config_path: optional path to json file, which might be used to specify model parameters
     """
     def __init__(self,
                  video_path: str,
@@ -71,7 +80,7 @@ class VideoHandler:
 
         assert self.saving_strategy in ['overwrite', 'add']
         general_path = Path(self.output_path)
-        for name in ['homographies', 'objects', 'lines', 'fields']:
+        for name in ['homographies', 'objects', 'lines', 'fields', 'events']:
             if self.results[name]:
                 file_path = get_files_naming(general_path, name, self.saving_strategy)
                 with open(file_path, 'w') as f:
@@ -79,23 +88,9 @@ class VideoHandler:
             with open(get_files_naming(general_path, 'meta_data', self.saving_strategy), 'w') as f:
                 json.dump(self.meta_data, f)
 
-    def save_one_result(self, result_type: str,):
-        general_path = Path(self.output_path)
-        result = self.results[result_type]
-        if not result:
-            print('Nothing is saved. These results have not been generated yet.')
-        else:
-            path_to_resources = (general_path / result_type)
-            if not path_to_resources.exists():
-                path_to_resources.mkdir(parents=True)
-            for idx, value in result.items():
-                if isinstance(value, np.ndarray):
-                    np.save(str(path_to_resources / str(idx)) + '.npy', value)
-
     def divide_video(self):
         """
         Divide given video into equally spaced frames.
-        :return:
         """
         if self.frames:
             print('Video is already divided')
@@ -109,10 +104,26 @@ class VideoHandler:
                     ImageHandler(idx=self.starting_point + idx * (1 / self.desired_frequency), image_array=frame)
 
     def annotate_events(self):
-        """TO DO"""
-        pass
+        """
+        Perform event annotation using Event Annotator. Results will be held in self.results['events'].
+        """
+        event_annotator = EventAnnotator(video_path=self.video_path,
+                                         model_config=self.model_configs.get('event_annotation_model'))
+        self.results['events'], event_config = event_annotator()
+
+        self.meta_data['event_annotation_model'] = \
+            {
+                'model_name': event_config.model_name,
+                'framerate': event_config.framerate,
+                'confidence_threshold': event_config.confidence_threshold,
+                'device': event_config.device,
+                'save_predictions': event_config.save_predictions
+            }
 
     def detect_lines_and_fields(self):
+        """
+        Perform lines and field detection.
+        """
         if self.results['fields']:
             print('Fields and lines are already calculated')
         else:
@@ -136,7 +147,7 @@ class VideoHandler:
 
     def detect_objects(self):
         """
-        Detect players on a field
+        Perform object detection using Object Detector. Results will be held in self.results['objects'].
         """
         if self.results['objects']:
             print('Fields and lines are already calculated')
@@ -156,6 +167,9 @@ class VideoHandler:
 
 
 class ImageHandler:
+    """
+    ImageHandler is responsible for managing models on one image.
+    """
     def __init__(self,
                  idx: Optional[str],
                  image_path: Optional[str] = None,
