@@ -1,6 +1,6 @@
 import torch
 from dataclasses import dataclass
-from CALF.inference.main import main
+from automatic_models.event_annotation.CALF.inference.main import main
 from typing import Optional, Dict
 
 
