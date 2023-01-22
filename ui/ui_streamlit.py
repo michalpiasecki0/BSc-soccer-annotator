@@ -691,7 +691,7 @@ if authentication_status:
                             'Choose player',
                             players[selectedTeam] if selectedTeam != '-' else ['-', 'Referee']
                         )
-                canvasFillColor = teamsColors[selectedTeam] if selectedTeam in teamsColors else "rgba(255, 165, 0, 0.3)"
+                        canvasFillColor = teamsColors[selectedTeam] if selectedTeam in teamsColors else "rgba(255, 165, 0, 0.3)"
                 if PLAYER_ANNOTATION in st.session_state and secondsRoundedStr in st.session_state[PLAYER_ANNOTATION]:
                     for index, data in st.session_state[PLAYER_ANNOTATION][secondsRoundedStr].items():
                         if data['class'] != 'PERSON':
@@ -1001,6 +1001,7 @@ if authentication_status:
                     secondsRoundedStr: st.session_state['currentAnnotations']
                 }
 
+    if True:
         saveAnnotations = st.button('Save annotations')
         if saveAnnotations:
             datetimeStr = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
