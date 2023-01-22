@@ -1,3 +1,5 @@
+"""Script responsible for handling event annotation."""
+
 import torch
 from dataclasses import dataclass
 from automatic_models.event_annotation.CALF.inference.main import main
@@ -34,9 +36,10 @@ class EventAnnotatorConfig:
     max_epochs: int = 1000
     model_name: str = 'CALF_benchmark'
     framerate: int = 2 # modify
-    confidence_threshold: float = 0.7 # modify
-    device: str = 'cpu' # gpu/cpu modify
-    save_predictions: bool = False # modify
+    confidence_threshold: float = 0.7  # modify
+    device: str = 'cpu'  # gpu/cpu modify
+    save_predictions: bool = False  # modify
+    convert_to_bsc_soccer: bool = True
 
 
 class EventAnnotator:
@@ -60,17 +63,22 @@ class EventAnnotator:
 
     def __call__(self):
         self.results = main(self.config)
+        if self.config.convert_to_bsc_soccer:
+            print('tal')
+            self.results = EventAnnotator._convert_to_bs_soccer_format(self.results)
         return self.results, self.config
 
-    def _convert_to_bs_soccer_format(self):
-        if self.results:
+    @staticmethod
+    def _convert_to_bs_soccer_format(results: dict):
+        if results:
             new_format = {'actions': []}
-            for event in self.results['predictions']:
+            for event in results['predictions']:
                 new_format['actions'].append({
                     "videoTime": str.split(event['gameTime'], sep='- ')[1],
                     "gamePart": "",
-                    "gameTime": "",
                     "label": event['label'],
                     "team": "",
-                    "player": ""
+                    "player": "",
+                    "gameTime": str.split(event['gameTime'], sep='- ')[1]
                 })
+            return new_format
