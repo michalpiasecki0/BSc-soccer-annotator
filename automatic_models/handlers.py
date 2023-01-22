@@ -64,7 +64,7 @@ class VideoHandler:
         self.starting_point = starting_point
         self.frames: Optional[Dict[int, np.ndarray]] = None
         self.image_handlers: Optional[Dict[int, ImageHandler]] = None
-        self.results = {'events': {},
+        self.results = {'actions': {},
                         'lines': {},
                         'fields': {},
                         'homographies': {},
@@ -86,7 +86,7 @@ class VideoHandler:
             return file_name
 
         general_path = Path(self.output_path)
-        for name in ['homographies', 'objects', 'lines', 'fields', 'events']:
+        for name in ['homographies', 'objects', 'lines', 'fields', 'actions']:
             if self.results[name]:
                 file_path = get_files_naming(general_path, name, self.saving_strategy)
                 with open(file_path, 'w') as f:
@@ -116,7 +116,7 @@ class VideoHandler:
         if self.image_handlers:
             event_annotator = EventAnnotator(video_path=self.video_path,
                                              model_config=self.model_configs.get('event_annotation_model'))
-            self.results['events'], event_config = event_annotator()
+            self.results['actions'], event_config = event_annotator()
 
             self.meta_data['event_annotation_model'] = \
                 {
