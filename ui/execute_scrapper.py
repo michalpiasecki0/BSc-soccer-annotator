@@ -1,6 +1,15 @@
 from footballdatabase_eu_scrapper import *
 
 def run_script(date,team1,team2):
+    '''
+    This function is responsible for running the whole data scrapping process. There is no return
+    value, instead the data is saved into the appropriate folder structure.
+
+    :param date: This is the date of the match. The formatting required is YYYY-MM-DD
+    :param team1: The name of the first team participating in the match
+    :param team2: The name of the second team participating in the match
+    '''
+
     print("In scrapper")
     session, driver = initialize_session_footballdatabase()
     print("Session iniciated")
