@@ -1,8 +1,6 @@
-from requests_html import HTMLSession
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver import Chrome
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
 from requests_html import HTMLSession
 from selenium.webdriver.common.by import By
@@ -13,8 +11,11 @@ import os
 from csv import DictReader
 
 def initialize_session_footballdatabase():
+    '''
+    This function initializes dynamic session with the webpage using selenium and beautifulsoup.
+    :return: Session object for beautifulsoup and driver object for selenium.
+    '''
     options = Options()
-    # options.add_argument("--start-maximized")
     options.add_argument("user-agent=foo")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
@@ -32,6 +33,13 @@ def initialize_session_footballdatabase():
 
 
 def get_cookies(file):
+    '''
+    This function gets the cookies stored in a csv file to the website that is used in the scrapping process and
+    processes them to be readable by the website. (Cookies are necessary to input into website in order to function
+    optimally)
+    :param: File - the path to the file where the .csv with the cookies is stored. :return: List os
+    dictionaries with keys and values for the cookies.
+    '''
     with open(file, encoding='utf-8-sig') as f:
         dict_reader = DictReader(f)
         list_of_dicts = list(dict_reader)
@@ -39,6 +47,12 @@ def get_cookies(file):
 
 
 def initialize_login_session(driver, session):
+    '''
+    This function sets up the session and inputs the cookies into the session.
+    :param driver: The driver object for selenium.
+    :param session: The session driver for beautifulsoup.
+    :return: Updated version of the session and driver objects.
+    '''
     driver.get("https://www.footballdatabase.eu/en/")
     cookies = get_cookies("ui/cookies_data/cookies.csv")
     for i in cookies:
@@ -50,6 +64,13 @@ def initialize_login_session(driver, session):
 
 # date format is YYYY-MM-DD
 def get_data_from_GUI(date, team1, team2):
+    '''
+    This function formats the data and the names of the teams in order to be usable in the following functions.
+    :param date: The date the match took place taken from the GUI (format YYY-MM-DD).
+    :param team1: The name of the first team.
+    :param team2: The name of the second team.
+    :return: The formatted string tuple (triplet) of the date, team1 and team2.
+    '''
     team1 = unidecode(team1).replace(" ", "_")
     team1 = team1.lower()
     team2 = unidecode(team2).replace(" ", "_")
@@ -58,7 +79,20 @@ def get_data_from_GUI(date, team1, team2):
 
 
 def get_game_id_and_href(data, session, driver):
+    '''
+    This function searches for the game id of the game on the website and returns reference link to the page.
+    :param data: Touple (triplet) containing (in this order) the date, team name 1, team name 2.
+    :param session: The session object for beautifulsoup.
+    :param driver: The driver object for selenium.
+    :return: Id for the game on the corresponding webpage and link to the game page.
+    '''
     def search_for_match_id(team1, team2):
+        '''
+        This is an auxiliary function to search through the string of games in the web resources.
+        :param team1: The name of the first team.
+        :param team2: The name of the second team.
+        :return: Returns -1 if the game (hence match id) was not found and the id if it was found in the array.
+        '''
         for i, element in enumerate(hrefs):
             element = re.split('/', element)
             element = element[4]
@@ -117,17 +151,32 @@ def get_game_id_and_href(data, session, driver):
 
 
 def get_match_page_session_and_data(session, driver, reference_link):
+    '''
+    This function retrieves all the data from the page and creates a dictionary containing all the required elements.
+    :param session: Session object for beautifulsoup.
+    :param driver: Driver object for selenium.
+    :param reference_link: The reference link (hyperlink) to the game page in the web domain.
+    :return: Dictionary containing all the keys and their respective values for required data in the scrapping.
+    '''
     driver.get(reference_link)
     soup = BeautifulSoup(driver.page_source, 'lxml')
     temp = soup.find_all('div', class_='playerTitulaire outplayer')
 
     # <---- getting score ---->
     def get_score():
+        '''
+        Auxiliary function to retrieve score of the match from the web page.
+        :return: The score in the string format.
+        '''
         temp = soup.find_all('div', class_="score0")
         return temp[0].find_all('h2')[0].text
 
     # <--- getting country and stadium ---->
     def get_country_stadium():
+        '''
+        Auxiliary function to retrieve country and the stadium name of the match from the web page.
+        :return: Tuple in the format (string country name, string stadium name).
+        '''
         temp = soup.find_all('div', class_='location')
         temp_2 = re.split('-', temp[0].find_all('p')[0].text)
         return unidecode(temp_2[0].replace(" ", "") + " " + temp_2[1].replace(" ", "")), unidecode(
@@ -135,6 +184,11 @@ def get_match_page_session_and_data(session, driver, reference_link):
 
     # <--- getting first eleven playing players for both teams ---->
     def get_first_eleven_both_teams(temp):
+        '''
+        Auxiliary function to retrieve the first eleven players of both teams the match from the web page.
+        :param temp: The beautifulsoup table to be passed in order to optimize the code.
+        :return: Two lists containing the names of the players. Respectively the first team and second team players.
+        '''
         table = temp[0].find_all('table')
         team_1 = pd.read_html(str(table))[0]
 
@@ -145,11 +199,19 @@ def get_match_page_session_and_data(session, driver, reference_link):
 
     # <--- getting match length ---->
     def get_match_length():
+        '''
+        Placeholder due to the lack of information of the match length (to be developed in the future).
+        :return: Empty sting.
+        '''
         # no information about match length given on the website
         return ''
 
     # <--- getting player scores and times ---->
     def get_players_scores():
+        '''
+        Auxiliary function to retrieve who and at what time scored in the match.
+        :return: Two lists containing tuples of (player, score time) which indicates who and when scored a goal.
+        '''
         temp = soup.find_all('div', class_='scorerTeam1')
         # list of tuples (player, time)
         scores_team1 = []
@@ -164,6 +226,10 @@ def get_match_page_session_and_data(session, driver, reference_link):
 
     # <--- getting team managers ---->
     def get_team_managers():
+        '''
+        Auxiliary function to retrieve managers of the teams from the match from the web page.
+        :return: Tuple in the format (string manager of team1, string manager of team2).
+        '''
         temp = soup.find_all('div', class_='section entraineur toggleteam1')
         temp = temp[0].find_all('a')[0]
 
@@ -174,13 +240,23 @@ def get_match_page_session_and_data(session, driver, reference_link):
 
     # <--- getting match referee ---->
     def get_referee():
+        '''
+        Auxiliary function to retrieve referee of the match from the web page.
+        :return: String with the referee name and surname.
+        '''
         temp = soup.find_all('p', class_='nameReferee')
         return unidecode(temp[0].text.replace(" ", "", 1))
 
     # <--- getting substitutions ---->
     def get_substitutions(temp):
+        '''
+        This function gets all the substitutions that occurred in the match for both teams.
+        :param temp: The beautifulsoup table to be passed in order to optimize the code.
+        :return: Two lists (for team1 and team2 respectively) containing the tuples
+        in the format (player, time, up/down), where up indicates that player came to the field and down that player
+        went down from the field in the substitution.
+        '''
         def correct_concat_numbers(z):
-            # potential problem with games that last more than 100 minutes !!!
             if len(str(int(z))) < 3:
                 return int(z)
             z = str(int(z))
@@ -221,6 +297,11 @@ def get_match_page_session_and_data(session, driver, reference_link):
         return team_1_substitutions, team_2_substitutions
 
     def intent_to_get_data(data_get_func):
+        '''
+        Function designed to softly get data should it not be available on the web page.
+        :param data_get_func: One of the auxiliary functions to get data.
+        :return: Data that the function would normally return.
+        '''
         try:
             data = data_get_func()
         except Exception:
@@ -270,6 +351,11 @@ def get_match_page_session_and_data(session, driver, reference_link):
 
 
 def save_to_JSON(to_json_dict, match_string):
+    '''
+    This function saves the scrapped data to the folder structure in the JSON format.
+    :param to_json_dict: The dictionary containing the data that are to be saved to the folder structure.
+    :param match_string: The string representing the match (date-team1_team2).
+    '''
     try:
         file = os.path.join('matches', match_string)
         os.makedirs(file)
