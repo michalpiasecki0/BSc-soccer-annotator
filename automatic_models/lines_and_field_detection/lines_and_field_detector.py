@@ -1,10 +1,14 @@
 """
-Line & Field Detector, which is responsible for Lines Detection, Field Detection, Homography calculation
+Line & Field Detector, which is responsible for Homography calculation, Lines Detection and Field Detection.
+All code in this folder except for `lines_and_field_detector` was implemented by authors of this repository.
+https://github.com/vcg-uvic/sportsfield_release?fbclid=IwAR3_eErOdxlP2QN8KujvDP1sXGRm2knhx112mLx77Z0phlQGLMcd9weDW2w
 """
 import json
 import cv2
 from dataclasses import dataclass
-from typing import Optional, Dict
+from typing import Optional, Dict, Tuple
+
+import torch
 from shapely.geometry import LineString, Polygon
 
 from lines_and_field_detection.utils import utils, warp, image_utils, constant_var
@@ -51,9 +55,9 @@ class LineDetector:
     """
     LineDetector is responsible for detecting lines, segmenting field and calculating homography from given image.
     For an image input (image_width x image_height x channels) LineDetector outputs following objects:
-    1) detected_field: numpy array with shape (image_width x image_height) containing 1 and 0's. 1: field, 0: no field
-    2) detected_lines: numpy array with shape (image_width x image_height) containing 1 and 0's. 1: lines, 0: no lines
-    3) homography: numpy array with shape [3x3] representing homography matrix
+    1) homography matrix, which defines transformation from input image to bird's view football pitch image
+    1) detected_field: numpy array with points corresponding to field polygon: shape [Nx2]
+    2) detected_lines: dictionary with all detected lines defined by their two extremities
     This is achieved using architecture provided by Optimizing Through Learned Errors for Accurate Sports Field
     Registration - WACV 2020
     (https://github.com/vcg-uvic/sportsfield_release?fbclid=IwAR3_eErOdxlP2QN8KujvDP1sXGRm2knhx112mLx77Z0phlQGLMcd9weDW2w)
@@ -85,13 +89,12 @@ class LineDetector:
         self.homography_inv: Optional[np.ndarray] = None
         self.lines = {}
         self.field: Optional[np.ndarray] = None
-        print(self.config)
 
-    def __call__(self):
+    def __call__(self) -> Tuple[np.ndarray, Dict, np.ndarray, Dict]:
         """
         Perform operations on input image using homography method. Method updates instance field, lines and homography
         attributes and returns them in particular order.
-        :return: tuple (detected_field, detected_lines, homography)
+        :return: tuple (detected_field, detected_lines, homography, config)
         """
         if self.config.desired_homography not in ['orig', 'optim']:
             raise Exception('Invalid homography type. Please choose from {orig, optim}')
@@ -100,7 +103,7 @@ class LineDetector:
 
         self.get_orig_optim_homography(desired=self.config.desired_homography)
 
-        # warped_img = self.produce_images_on_homography(self.homography)
+        # warped_img = self.produce_images_on_homography(self.homography) u
 
         self.get_field()
         self.get_lines()
@@ -109,7 +112,7 @@ class LineDetector:
 
     def get_field(self) -> np.ndarray:
         """
-        Find polygons which define pitch shape on a video frame
+        Find polygons which define pitch shape on a video frame.
         """
         out_shape = (self.image_array.shape[1], self.image_array.shape[0])
         template_shape = (self.template_image.shape[1], self.template_image.shape[0])
@@ -133,7 +136,7 @@ class LineDetector:
         for name, coords in self.template_line_coords.items():
             new_coords = self._map_line_to_frame(line_point_1=np.array(coords[0]),
                                                  line_point_2=np.array(coords[1]),
-                                                 H_inv=self.homography_inv,
+                                                 h_inv=self.homography_inv,
                                                  out_shape=(self.image_array.shape[1], self.image_array.shape[0]),
                                                  template_shape=(self.template_image.shape[1],
                                                                  self.template_image.shape[0]))
@@ -141,39 +144,9 @@ class LineDetector:
                 self.lines[name] = [[int(new_coords[0, 0]), int(new_coords[0, 1])],
                                     [int(new_coords[1, 0]), int(new_coords[1, 1])]]
 
-    def _get_lines(self, warped_image, threshold_value_for_red_channel: int = 0.7) -> np.ndarray:
-        """
-        Create bit-image segmenting lines.
-        :param warped_image: image after applying models
-        :param threshold_value_for_red_channel: minimal pixel value in red channel to classified as line
-        :return: np.array (image_width x image_height) with 1 values indicating field
-        """
-        lines = warped_image.copy()
-        mask = lines[:, :, 0] < threshold_value_for_red_channel
-        lines[mask] = 0
-        lines[~mask] = 1
-        self.lines = convert_numpy_to_bitmask(lines)
-
-    def produce_images_on_homography(self, homography):
-        """
-        Produce image with lines and field, having homography matrix
-        :param homography: homography matrix
-        :return: Transforomed image
-        """
-        original_array = self.image_array.copy()
-        original_array = cv2.cvtColor(original_array, cv2.COLOR_BGR2RGB) / 255.0
-        out_shape = original_array.shape[0:2]
-
-        template_image = self._preprocess_template_image(ask_configs=False)
-
-        warped_tmp_orig = warp.warp_image(template_image, homography, out_shape=out_shape)[0]
-        warped_tmp_orig = utils.torch_img_to_np_img(warped_tmp_orig)
-
-        return warped_tmp_orig
-
     def get_orig_optim_homography(self, desired: str = 'orig'):
         """
-        Calculate homography
+        Calculate homography using one of t
         :param desired: homography type. Possible options: {'orig', 'optim'}
         :return: None
         """
@@ -188,6 +161,25 @@ class LineDetector:
         elif desired == 'optim':
             self.homography = optim_homography.detach().numpy()
         self.homography_inv = np.linalg.inv(self.homography)
+
+    def produce_images_on_homography(self, homography: torch.Tensor):
+        """
+        Produce image with lines and field, having homography matrix
+        :param homography: homography matrix
+        :return: Transforomed image
+        """
+        if isinstance(homography, np.ndarray):
+            homography = torch.Tensor(homography)
+        original_array = self.image_array.copy()
+        original_array = cv2.cvtColor(original_array, cv2.COLOR_BGR2RGB) / 255.0
+        out_shape = original_array.shape[0:2]
+
+        template_image = self._preprocess_template_image(ask_configs=False)
+
+        warped_tmp_orig = warp.warp_image(template_image, homography, out_shape=out_shape)[0]
+        warped_tmp_orig = utils.torch_img_to_np_img(warped_tmp_orig)
+
+        return warped_tmp_orig
 
 
     def _preprocess_field_image(self):
@@ -224,8 +216,8 @@ class LineDetector:
 
         return template_image
 
-    def _check_point_within_boundaries(self,
-                                       point: np.ndarray,
+    @staticmethod
+    def _check_point_within_boundaries(point: np.ndarray,
                                        boundaries: tuple):
         """
         Check if point lies inside an image of shape boundaries[0] x boundaries[1]
@@ -265,25 +257,25 @@ class LineDetector:
     def _map_line_to_frame(self,
                            line_point_1: np.ndarray,
                            line_point_2: np.ndarray,
-                           H_inv: np.ndarray,
+                           h_inv: np.ndarray,
                            out_shape: tuple,
                            template_shape=(1050, 680)) -> Optional[np.array]:
         """
         Map line from template (more precisely its two extremities) onto frame using homography.
         :param line_point_1: np.array([x, y]): coordinates of first extremity
         :param line_point_2: np.array([x, y]): coordinates of second extremity
-        :param H_inv: homography matrix from template to frame
+        :param h_inv: homography matrix from template to frame
         :param out_shape: video frame shape: (width x height)
         :param template_shape: template shape: (width x height)
         :returns: if both extremities are mapped withing new frame they are returned, Otherwise, function tries to find
         extremities on a new frame. If no part of line was mapped onto frame, None is returned.
         """
         point_1_new = self._map_template_point_to_frame(line_point_1,
-                                                        H_inv=H_inv,
+                                                        H_inv=h_inv,
                                                         out_shape=out_shape,
                                                         template_shape=template_shape)
         point_2_new = self._map_template_point_to_frame(line_point_2,
-                                                        H_inv=H_inv,
+                                                        H_inv=h_inv,
                                                         out_shape=out_shape,
                                                         template_shape=template_shape)
         flag_1 = self._check_point_within_boundaries(point_1_new, out_shape)
