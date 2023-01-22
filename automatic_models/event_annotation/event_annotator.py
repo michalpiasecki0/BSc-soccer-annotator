@@ -61,3 +61,16 @@ class EventAnnotator:
     def __call__(self):
         self.results = main(self.config)
         return self.results, self.config
+
+    def _convert_to_bs_soccer_format(self):
+        if self.results:
+            new_format = {'actions': []}
+            for event in self.results['predictions']:
+                new_format['actions'].append({
+                    "videoTime": str.split(event['gameTime'], sep='- ')[1],
+                    "gamePart": "",
+                    "gameTime": "",
+                    "label": event['label'],
+                    "team": "",
+                    "player": ""
+                })
