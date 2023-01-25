@@ -15,7 +15,7 @@ def print_opt(opt):
     args.sort()
     for arg in args:
         content_list += [arg.rjust(25, ' ') + '  ' + str(getattr(opt, arg))]
-    utils.print_notification(content_list, 'OPTIONS')
+    #utils.print_notification(content_list, 'OPTIONS')
 
 
 def confirm_opt(opt):
