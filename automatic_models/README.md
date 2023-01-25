@@ -53,13 +53,13 @@ If someone doesn't want to run script from CLI, one can also modify function par
 
 
 ## General package overview
-Here, I provide general descrption for most important files/folders in `automatic_models`
+Here, I provide general descrption for most important files/folders in `automatic_models`  
 [main.py](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/automatic_models/main.py): API for automatic models  
 [handlers.py](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/automatic_models/handlers.py): implementation of handlers, which take care of high-level interaction between video,images and models  
 [object_detection](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/object_detection): implementation of Players, Ball detection  
-[model_tests](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests): implemtation of tests for models  
 [lines_and_field_detection](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/lines_and_field_detection): implementation of field annotation and lines detection  
-[event_annotation](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/event_annotation): implementation of event annotation  
+[event_annotation](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/event_annotation): implementation of event annotation   
+[model_tests](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests): implemtation of tests for models  
 
 
 
