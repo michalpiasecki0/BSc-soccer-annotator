@@ -46,8 +46,6 @@ Example run:
 `python automatic_models/main.py --video_path automatic_models/data/not_on_repo/videos/output_5min.mp4 --output_path ./data/test_22_01/ --frequency 0.05 --starting_point 0 --saving_strategy overwrite --models_config_path automatic_models/data/configs/basic_config.json --perform_events true --perform_objects true --perform_lines_fields true`
 `
 
-### Modify function in lines
-
 If someone doesn't want to run script from CLI, one can also modify function parameters and run it from IDE.
 
 
