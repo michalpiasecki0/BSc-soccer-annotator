@@ -1,4 +1,15 @@
-## This module serves for automatic processing of football video matches.
+# Automatic models module
+
+## Description
+This module aims to automatize annotations for football video matches.
+In particular it automatizes following tasks:
+1. Player and ball detection
+2. Event Annotation
+3. Field lines detection
+4. Football field segmentation
+
+## Usage 
+In order to use this module make sure, you have completed installation steps mentioned on [main page]https://github.com/michalpiasecki0/BSc-soccer-annotator
 
 It might be used standalone or together with Manual Annotator packed in `ui/ui_streamlit`.
 
