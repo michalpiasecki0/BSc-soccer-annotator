@@ -1,10 +1,10 @@
 {
   "lines_field_homo_model": {
     "name": "Optimization Based Image Registration",
-    "optim_iters": 1,
+    "optim_iters": 200,
     "constant_var_use_cuda": false,
     "torch_backends_cudnn_enabled": false,
-    "desired_homography": "orig"
+    "desired_homography": "optim"
   },
   "object_detection_model": {
     "conf_threshold": 0.4

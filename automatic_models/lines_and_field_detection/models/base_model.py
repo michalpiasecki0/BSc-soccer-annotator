@@ -56,7 +56,7 @@ class BaseModel(abc.ABC):
         content_list = []
         content_list += ['Weights loaded for {0}'.format(self.name)]
         content_list += ['From: {0}'.format(checkpoint_path)]
-        utils.print_notification(content_list)
+        #utils.print_notification(content_list)
 
     @abc.abstractmethod
     def _get_checkpoint_path(self):
@@ -85,4 +85,4 @@ class BaseModel(abc.ABC):
             content_list += ['Using GN for resnet, number of groups: {0}'.format(resnet_config.group_norm)]
         content_list += ['Imagenet pretrain weights for resnet: {0}'.format(
             resnet_config.pretrained)]
-        utils.print_notification(content_list)
+        # utils.print_notification(content_list)
