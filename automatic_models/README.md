@@ -77,6 +77,8 @@ In particular [object_detector.py](https://github.com/michalpiasecki0/BSc-soccer
 is responsible for handling players and balls detection for each video frame. Current architecture (YOLOv7) is writen in [yolo](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/object_detection/yolo) folder
 #### Architecture
 [YOLOv7](https://github.com/WongKinYiu/yolov7) is currently used to handle this topic. For more details, you can read [article](https://arxiv.org/abs/2207.02696).
+#### Example result
+![Example of Players Annotation](data/templates/img/yolo_ex.jpg)
 
 ### Field lines detection & Football field segmentation
 #### Short description
@@ -88,7 +90,7 @@ This part is implemented in [lines_and_field detection](https://github.com/micha
 It is reponsible for calling model to calculate homography matrix. Having homography matrix, it performs mapping linepoints from template into video frame and calculating football field polygon. Other directories in [lines_and_field_detection](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/lines_and_field_detection) are responsible for implementation of model for homography calculation.
 #### Architecture
 Architecture for homography calculation is [Optimization based Image Registration](https://github.com/vcg-uvic/sportsfield_release). Interestingly, authors of this work, use two deep network models in decoupled fashion. First model is used to estimate homography matrix, and second model is used to regress error after original and projected image are warped.
-
+#### Example result
 ![](models_tests/data/2017-05-21%20-%2021-00%20Barcelona%204%20-%202%20Eibar/results_optim_200/lines_images/10.png)
 
 
@@ -100,6 +102,8 @@ This task was really challenging for me, so I decided to just use architecture p
 This part is implemented in [event_annotation](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/event_annotation) folder.
 #### Architecture 
 Description can be found here: [CALF](https://github.com/SoccerNet/sn-spotting/tree/main/Benchmarks/CALF)
+#### Example result
+![Example of Players Annotation](data/templates/img/actions_ex.png)
 
 ## Results
 
@@ -116,7 +120,6 @@ Here are the results of best models:
 These results can be found in following folders:
 1. [2019-05-france](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests/data/2019-05-france/results_optim_200)
 2. [Barcelona Eibar](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests/data/2017-05-21%20-%2021-00%20Barcelona%204%20-%202%20Eibar/results_optim_200)
-
 
 
 

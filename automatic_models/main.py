@@ -1,7 +1,10 @@
 """This module serves as general API with automatic_models module"""
+import sys
 
-from handlers import VideoHandler
+from automatic_models.handlers import VideoHandler
 from argparse import ArgumentParser
+
+import time
 
 
 def parse_args():
@@ -36,9 +39,9 @@ def perform_models(video_path: str,
                    starting_point: float = 0,
                    models_config_path: str = None,
                    saving_strategy: str = 'overwrite',
-                   perform_events: bool = True,
+                   perform_events: bool = False,
                    perform_objects: bool = True,
-                   perform_lines_fields: bool = True
+                   perform_lines_fields: bool = False
                    ) -> None:
     """
     Perform automatic processing on video.
@@ -80,24 +83,26 @@ def perform_models(video_path: str,
 
 
 if __name__ == '__main__':
-    perform_models(video_path='./data/output_5min.mp4',
-                   output_path='./data/test_22_01',
-                   frequency=0.05,
-                   starting_point=0,
-                   saving_strategy='overwrite',
-                   models_config_path='./data/configs/models_config.json',
-                   perform_events=True,
-                   perform_objects=False,
-                   perform_lines_fields=False)
 
-    '''
-    args = parse_args()
-    print(args)
+    if len(sys.argv) > 1:
+        args = parse_args()
+        perform_models(video_path=args.video_path,
+                       output_path=args.output_path,
+                       frequency=args.frequency,
+                       starting_point=args.starting_point,
+                       saving_strategy=args.saving_strategy,
+                       models_config_path=args.models_config_path,
+                       perform_events=args.perform_events,
+                       perform_objects=args.perform_objects,
+                       perform_lines_fields=args.perform_lines_fields)
+    else:
+        perform_models(video_path='automatic_models/data/not_on_repo/videos/output_5min.mp4',
+                       output_path='./data/test_22_01',
+                       frequency=0.05,
+                       starting_point=0,
+                       saving_strategy='overwrite',
+                       models_config_path='automatic_models/data/configs/basic_config.json',
+                       perform_events=False,
+                       perform_objects=True,
+                       perform_lines_fields=False)
 
-    perform_models(video_path=args.video_path,
-                   output_path=args.output_path,
-                   frequency=args.frequency,
-                   starting_point=args.starting_point,
-                   saving_strategy=args.saving_strategy,
-                   models_config_path=args.models_config_path)
-    '''
