@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Optional, Dict
 from automatic_models.handlers import VideoHandler, ImageHandler
 from automatic_models.models_tests.test_utils import preprocess_labels_soccernet, \
-    get_bbox_from_two_points_model_notation, show_save_image_with_lines
+    get_bbox_from_two_points_model_notation, show_save_image_with_lines, get_lines_from_test
 from automatic_models.models_tests.metrics import acc_p_all_lines, avg_iou_frame, \
     ratio_balls_detected, ratio_players_detected
 
@@ -20,7 +20,8 @@ class ModelTester(VideoHandler):
     def __init__(self,
                  match_folder: str,
                  models_config_path: str = None,
-                 save_folder: Optional[str] = None):
+                 save_folder: Optional[str] = None,
+                 data_schema: str = 'match_schema'):
 
         if not Path(match_folder).exists():
             raise Exception(f"Video path {match_folder} does not exist.")
@@ -32,6 +33,7 @@ class ModelTester(VideoHandler):
         else:
             self.save_folder = None
 
+        self.data_schema = data_schema
         self.model_configs = {}
         if models_config_path:
             with open(models_config_path, 'r') as f:
@@ -49,13 +51,27 @@ class ModelTester(VideoHandler):
         self.match_folder = match_folder
         self.frames: Optional[Dict[int, np.ndarray]] = None
         self.image_handlers = dict()
-        for valid_path in self._get_only_valid_images():
-            self.image_handlers[valid_path.stem] = ImageHandler(idx=valid_path.stem,
-                                                                image_array=cv2.imread(str(valid_path)))
 
-        with open(str(Path(match_folder) / 'Labels-v3.json')) as f:
-            ground_truths = json.load(f)
-            self.ground_truths = preprocess_labels_soccernet(ground_truths)
+        if self.data_schema == 'match_schema':
+
+            for valid_path in self._get_only_valid_images():
+                self.image_handlers[valid_path.stem] = ImageHandler(idx=valid_path.stem,
+                                                                    image_array=cv2.imread(str(valid_path)))
+
+            with open(str(Path(match_folder) / 'Labels-v3.json')) as f:
+                ground_truths = json.load(f)
+                self.ground_truths = preprocess_labels_soccernet(ground_truths)
+        elif self.data_schema == 'lines_test':
+            self.ground_truths = {}
+            for path in Path(self.match_folder).iterdir():
+                if path.suffix == '.jpg':
+                    self.image_handlers[path.stem] = ImageHandler(idx=path.stem,
+                                                                  image_array=cv2.imread(str(path)))
+                elif path.suffix == '.json' and path.stem != 'match_info':
+                    with open(str(path), 'r') as f:
+                        lines = json.load(f)
+                    self.ground_truths[path.stem] = get_lines_from_test(lines)
+
 
         self.results = {'actions': {},
                         'lines': {},

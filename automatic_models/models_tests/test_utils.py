@@ -63,6 +63,18 @@ def get_all_lines(lines: list):
                 [(line['points'][0], line['points'][1]), (line['points'][2], line['points'][3])]
     return result
 
+def get_lines_from_test(lines: dict):
+    result = dict()
+    for line_name, points in lines.items():
+        if str.upper(line_name) in LINES_DICT:
+            result[str.upper(line_name)] = \
+                [
+                    [points[0]['x'], points[0]['y']],
+                    [points[1]['x'], points[1]['y']]
+                ]
+    return result
+
+
 
 def show_save_image_with_lines(img_array: np.ndarray,
                                lines: dict,
