@@ -117,8 +117,9 @@ Here are the results of best models:
 
 Metrics description:
 1. `acc@x` - accuracy for line extremities, point is considered true positive, if lies in distance smaller than `x` to ground truth point
-2. `IOU` - intersection over union. Used in object detection, having two bounding boxes (predicted and ground truth), calculates its intersection / union
-3. `detection ratio`: calculates number of detected instances / all ground truth instances
+2. `IOU` - intersection over union. Used in object detection, having two bounding boxes (predicted and ground truth), calculates their intersection 
+divided by union
+3. `detection ratio`: calculates number of detected instances divided by all ground truth instances
 
 These results can be found in following folders:
 1. [2019-05-france](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests/data/2019-05-france/results_optim_200)
