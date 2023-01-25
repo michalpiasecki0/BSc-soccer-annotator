@@ -115,6 +115,11 @@ Here are the results of best models:
 | Barcelona Eibar |   0.18        | 0.43   |   0.71   |   0.81  |   0.79      |        297 / 325          |       1 / 19          |
 
 
+Metrics description:
+1. acc@x - accuracy for line extremities, point is considered true positive, if lies in distance smaller than `x` to ground truth point
+2. IOU - intersection over union. Used in object detection, having two bounding boxes (predicted and ground truth), calculates its intersection / union
+3. Object detection ratio: calculates number of detected instances / all ground truth instances
+
 These results can be found in following folders:
 1. [2019-05-france](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests/data/2019-05-france/results_optim_200)
 2. [Barcelona Eibar](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests/data/2017-05-21%20-%2021-00%20Barcelona%204%20-%202%20Eibar/results_optim_200)
