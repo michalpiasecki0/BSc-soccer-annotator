@@ -38,6 +38,7 @@ List of possible arguments:
 `-p_e`, `--perform_events`: If True model will perform event annotation   
 `-p_o`, `--perform_objects`: If True model will perform object detection  
 `-p_lf`, `--perform_lines_fields`: If True model will perform field segmentation and lines detection  
+`-img`, `--save_images`: If True images with predictions will be saved in output folder
 
 To get more details about arguments (E.g which are required/optional) go to [main.py](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/automatic_models/main.py) lines (9-30)  
 

@@ -29,7 +29,8 @@ def parse_args():
                                  help='If True model will perform object detection')
     argument_parser.add_argument('-p_lf', '--perform_lines_fields', default=True, type=bool,
                                  help='If True model will perform field segmentation and lines detection')
-
+    argument_parser.add_argument('-img', '--save_images', default=True, type=bool,
+                                 help='If True images with predictions will be saved in output folder')
     return argument_parser.parse_args()
 
 
@@ -97,7 +98,8 @@ if __name__ == '__main__':
                        models_config_path=args.models_config_path,
                        perform_events=args.perform_events,
                        perform_objects=args.perform_objects,
-                       perform_lines_fields=args.perform_lines_fields)
+                       perform_lines_fields=args.perform_lines_fields,
+                       save_imgs=args.save_images)
     else:
         perform_models(video_path='data/not_on_repo/videos/test.mp4',
                        output_path='./data/test_22_01',
