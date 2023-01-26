@@ -41,7 +41,8 @@ def perform_models(video_path: str,
                    saving_strategy: str = 'overwrite',
                    perform_events: bool = False,
                    perform_objects: bool = True,
-                   perform_lines_fields: bool = False
+                   perform_lines_fields: bool = False,
+                   save_imgs: bool = False
                    ) -> None:
     """
     Perform automatic processing on video.
@@ -56,13 +57,15 @@ def perform_models(video_path: str,
     :param perform_events: If true, model performs event annotation
     :param perform_objects: If true model performs object detection
     :param perform_lines_fields: If true model performs lines and field detection
+    :param save_imgs: if true images of predictions are saved
     """
     video_handler = VideoHandler(video_path=video_path,
                                  output_path=output_path,
                                  desired_frequency=frequency,
                                  starting_point=starting_point,
                                  saving_strategy=saving_strategy,
-                                 models_config_path=models_config_path)
+                                 models_config_path=models_config_path,
+                                 save_imgs=save_imgs)
     video_handler.divide_video()
 
     if perform_events:
@@ -96,13 +99,14 @@ if __name__ == '__main__':
                        perform_objects=args.perform_objects,
                        perform_lines_fields=args.perform_lines_fields)
     else:
-        perform_models(video_path='automatic_models/data/not_on_repo/videos/output_5min.mp4',
+        perform_models(video_path='data/not_on_repo/videos/test.mp4',
                        output_path='./data/test_22_01',
-                       frequency=0.05,
+                       frequency=0.1,
                        starting_point=0,
                        saving_strategy='overwrite',
-                       models_config_path='automatic_models/data/configs/basic_config.json',
+                       models_config_path='data/configs/basic_config.json',
                        perform_events=False,
                        perform_objects=True,
-                       perform_lines_fields=False)
+                       perform_lines_fields=True,
+                       save_imgs=True)
 

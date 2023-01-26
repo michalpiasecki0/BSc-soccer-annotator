@@ -8,7 +8,8 @@ from pathlib import Path
 from typing import Dict, Optional
 from datetime import datetime
 
-from automatic_models.extra_utils.helpers import divide_video_into_frames
+from automatic_models.extra_utils.helpers import divide_video_into_frames, \
+    show_save_image_with_lines, show_save_objects_with_bboxes
 from automatic_models.lines_and_field_detection.lines_and_field_detector import LineDetector
 from automatic_models.object_detection.object_detector import ObjectDetector
 from automatic_models.event_annotation.event_annotator import EventAnnotator
@@ -33,7 +34,8 @@ class VideoHandler:
                  output_path: str,
                  starting_point: float = 0,
                  saving_strategy: str = 'overwrite',
-                 models_config_path: str = None):
+                 models_config_path: Optional[str] = None,
+                 save_imgs: bool = False):
 
         if not Path(video_path).exists():
             raise Exception(f"Video path {video_path} does not exist.")
@@ -42,6 +44,7 @@ class VideoHandler:
         assert isinstance(starting_point, float) or isinstance(starting_point, int)
         assert saving_strategy in ['overwrite', 'add']
 
+        self.save_images = save_imgs
         self.model_configs = {}
         if models_config_path:
             with open(models_config_path, 'r') as f:
@@ -140,6 +143,12 @@ class VideoHandler:
                 self.results['fields'][idx] = field
                 self.results['lines'][idx] = lines
                 self.results['homographies'][idx] = homography
+                if self.save_images:
+                    if not (Path(self.output_path) / 'img_lines').exists():
+                        (Path(self.output_path) / 'img_lines').mkdir()
+                    show_save_image_with_lines(img_array=image_handler.image_array,
+                                               lines=lines,
+                                               save_fig_path=str(Path(self.output_path) / 'img_lines' / f'{idx}.png'))
                 print(f'{idx} was processed.')
                 if not self.meta_data.get('lines_field_homo_model'):
                     # add object detection config to meta-data only on first image processed
@@ -159,6 +168,13 @@ class VideoHandler:
             for idx, image_handler in self.image_handlers.items():
                 objects, config = image_handler.get_objects(
                     model_config=self.model_configs.get('object_detection_model'))
+                if self.save_images:
+                    if not (Path(self.output_path) / 'img_objects').exists():
+                        (Path(self.output_path) / 'img_objects').mkdir()
+                    show_save_objects_with_bboxes(img_array=image_handler.image_array,
+                                                  objects=objects,
+                                                  save_fig_path=str(Path(self.output_path) / 'img_objects' /
+                                                                    f'{idx}.png'))
                 if not self.meta_data.get('object_detection_model'):
                     # add object detection config to meta-data only on first image handler
                     self.meta_data['object_detection_model'] = dataclasses.asdict(config)

@@ -2,8 +2,11 @@
 import math
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 from typing import Tuple, Optional, List, Dict
 from pathlib import Path
+from matplotlib.patches import Rectangle
+from matplotlib.collections import PatchCollection
 
 
 def divide_video_into_frames(video_path: str,
@@ -107,3 +110,54 @@ def convert_numpy_to_bitmask(array: np.ndarray) -> np.ndarray:
         return np.any(array > 0, axis=2).astype(np.int)
     elif len(array.shape) == 2:
         return (array > 0).astype(np.int)
+
+
+def show_save_image_with_lines(img_array: np.ndarray,
+                               lines: dict,
+                               save_fig_path: Optional[str],
+                               fig_size: tuple = (12, 7),
+                               color: str = 'royalblue'
+                               ):
+    """
+    Show image with predicted lines on it.
+    If save_fig provided image is saved in some location
+    """
+    rgb = img_array[:, :, ::-1].copy()  # convert image from bgr to rgb
+
+    fig = plt.figure(frameon=False)
+    fig.set_size_inches(12, 7)
+
+    ax = plt.Axes(fig, [0., 0., 1., 1.])
+    ax.set_axis_off()
+    fig.add_axes(ax)
+    ax.imshow(rgb, aspect='auto')
+    for line_name, coords in lines.items():
+        plt.plot([coords[0][0], coords[1][0]], [coords[0][1], coords[1][1]], linewidth=3, color=color)
+    if save_fig_path:
+        fig.savefig(save_fig_path)
+
+
+def show_save_objects_with_bboxes(img_array: np.ndarray,
+                                  objects: dict,
+                                  save_fig_path: Optional[str],
+                                  fig_size: tuple = (12, 7),
+                                  color: str = 'royalblue'
+                                  ):
+
+    rgb = img_array[:, :, ::-1].copy()  # convert image from bgr to rgb
+
+    fig = plt.figure(frameon=False)
+    fig.set_size_inches(12, 7)
+
+    ax = plt.Axes(fig, [0., 0., 1., 1.])
+    ax.set_axis_off()
+    fig.add_axes(ax)
+    ax.imshow(rgb, aspect='auto')
+    rectangles = [Rectangle(xy=(object_dict['x_top_left'], object_dict['y_bottom_right']),
+                            width=(object_dict['x_bottom_right'] - object_dict['x_top_left']),
+                            height=(object_dict['y_top_left'] - object_dict['y_bottom_right']))
+                  for object_dict in objects.values()]
+    pc = PatchCollection(rectangles, facecolor=color, alpha=0.2, edgecolor=color)
+    ax.add_collection(pc)
+    if save_fig_path:
+        fig.savefig(save_fig_path)
