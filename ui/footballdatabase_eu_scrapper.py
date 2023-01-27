@@ -9,8 +9,9 @@ import re
 import json
 import os
 from csv import DictReader
+import time
 
-def initialize_session_footballdatabase():
+def initialize_session_footballdatabase(path_default = "ui/cookies_data/cookies.csv"):
     '''
     This function initializes dynamic session with the webpage using selenium and beautifulsoup.
     :return: Session object for beautifulsoup and driver object for selenium.
@@ -23,7 +24,10 @@ def initialize_session_footballdatabase():
     driver.minimize_window()
     session = HTMLSession()
     driver.get("https://www.footballdatabase.eu/en/")
-    path = os.path.join('ui', 'cookies_data', 'cookies.csv')
+    if path_default.__eq__("ui/cookies_data/cookies.csv"):
+        path = os.path.join('ui', 'cookies_data', 'cookies.csv')
+    else:
+        path = path_default
     cookies = get_cookies(path)
     for i in cookies:
         driver.add_cookie(i)
@@ -46,7 +50,7 @@ def get_cookies(file):
     return list_of_dicts
 
 
-def initialize_login_session(driver, session):
+def initialize_login_session(driver, session, path_default = "ui/cookies_data/cookies.csv"):
     '''
     This function sets up the session and inputs the cookies into the session.
     :param driver: The driver object for selenium.
@@ -54,7 +58,11 @@ def initialize_login_session(driver, session):
     :return: Updated version of the session and driver objects.
     '''
     driver.get("https://www.footballdatabase.eu/en/")
-    cookies = get_cookies("ui/cookies_data/cookies.csv")
+    if path_default.__eq__("ui/cookies_data/cookies.csv"):
+        path = os.path.join('ui', 'cookies_data', 'cookies.csv')
+    else:
+        path = path_default
+    cookies = get_cookies(path)
     for i in cookies:
         driver.add_cookie(i)
     driver.refresh()
@@ -98,6 +106,7 @@ def get_game_id_and_href(data, session, driver):
             element = element[4]
             element = re.split('-', element)
             # checking conditions
+            print(matches_tuples[i])
             if (element[1] == team1 and element[2] == team2) or (element[2] == team1 and element[1] == team2):
                 return element[0]
             elif (matches_tuples[i][0] == team1 and matches_tuples[i][1] == team2) or (
@@ -118,8 +127,8 @@ def get_game_id_and_href(data, session, driver):
     for element, element_active in zip(asf, elements):
         if len(element.select('svg.moins')) == 0:
             driver.execute_script("arguments[0].click();", element_active)
+            time.sleep(2)
 
-    driver.implicitly_wait(1)
     soup = BeautifulSoup(driver.page_source, 'lxml')
 
     matches_tuples = []
