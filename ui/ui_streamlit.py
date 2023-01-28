@@ -132,14 +132,25 @@ if authentication_status:
                 with sidebarColumns[1]:
                     secondTeam = st.text_input('The second team', value='Team2')
                 loadVideo = st.form_submit_button('Load video')
-                if loadVideo:
-                    # TODO add data verification
+                if loadVideo and firstTeam and secondTeam:
                     reset_video_data()
                     matchDirectory = match_folder_structure_validator.input_match(
                         firstTeam,
                         secondTeam,
                         matchDate
                     )
+                    configFilePath = os.path.join(matchDirectory, 'config.json')
+                    if not os.path.exists(configFilePath):
+                        config = json.load(open('ui/data/template_config.json'))
+                    else:
+                        config = json.load(open(configFilePath))
+                    config["url_youtube"] = videoURL
+                    with open(configFilePath, 'w') as file:
+                        json.dump(
+                            config,
+                            file,
+                            indent=2
+                        )
                     st.session_state['matchDirectory'] = matchDirectory
             if 'matchDirectory' not in st.session_state:
                 st.warning('Load a video to start annotating.')
@@ -149,6 +160,9 @@ if authentication_status:
 
         elif videoSourceType == 'File':
             matchDirectories = os.listdir('matches/')
+            if len(matchDirectories) == 0:
+                st.error('No videos to annotate')
+                st.stop()
             matchDirectory = os.path.join(
                 'matches',
                 st.selectbox(
@@ -156,27 +170,41 @@ if authentication_status:
                     matchDirectories
                 )
             )
-            videoFiles = filter(
+            videoFiles = list(filter(
                 lambda file_name: file_name.endswith('.mp4'),
                 os.listdir(matchDirectory)
-            )
-            videoFileName = st.selectbox(
-                'Select a video',
-                videoFiles
-            )
-            if st.session_state.get('matchDirectory') and st.session_state['matchDirectory'] != matchDirectory:
-                reset_video_data()
-            st.session_state['matchDirectory'] = matchDirectory
-
-            if os.path.exists(os.path.join(matchDirectory, videoFileName)):
+            ))
+            configFilePath = os.path.join(matchDirectory, 'config.json')
+            if not os.path.exists(configFilePath):
+                config = json.load(open('ui/data/template_config.json'))
+            else:
+                config = json.load(open(configFilePath))
+            if len(videoFiles) > 0:
+                config['url_local'] = list(map(lambda file_name: os.path.join(matchDirectory, file_name), videoFiles))
+                with open(configFilePath, 'w') as file:
+                    json.dump(
+                        config,
+                        file,
+                        indent=2
+                    )
+                videoFileName = st.selectbox(
+                    'Select a video',
+                    videoFiles
+                )
                 videoFile = open(os.path.join(matchDirectory, videoFileName), 'rb')
                 videoBytes = videoFile.read()
                 videoData = b64encode(videoBytes).decode()
                 mimeType = "video/mp4"
                 videoURL = [{"type": mimeType, "src": f"data:{mimeType};base64,{videoData}"}]
+            elif config['url_youtube']:
+                videoURL = config['url_youtube']
             else:
                 st.error('No video file found!')
                 st.stop()
+
+            if st.session_state.get('matchDirectory') and st.session_state['matchDirectory'] != matchDirectory:
+                reset_video_data()
+            st.session_state['matchDirectory'] = matchDirectory
 
         elif videoSourceType == 'Upload local file':
             with st.form(key='get_video_from_local'):
@@ -189,20 +217,30 @@ if authentication_status:
                 with sidebarColumns[1]:
                     secondTeam = st.text_input('The second team', value='Team2')
                 loadVideo = st.form_submit_button('Load video')
-                if loadVideo:
-                    # TODO add data verification
+                if loadVideo and firstTeam and secondTeam:
                     reset_video_data()
                     matchDirectory = match_folder_structure_validator.input_match(
                         firstTeam,
                         secondTeam,
                         matchDate
                     )
-                    bytes = file_uploader.getvalue()
+                    videoBytes = file_uploader.getvalue()
                     dateStr = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
                     with open(os.path.join(matchDirectory, 'video' + dateStr + '.mp4'), 'wb') as binary_file:
-                        binary_file.write(bytes)
+                        binary_file.write(videoBytes)
                     st.info('File correctly saved. Choose File option to start annotating')
-
+                    configFilePath = os.path.join(matchDirectory, 'config.json')
+                    if not os.path.exists(configFilePath):
+                        config = json.load(open('ui/data/template_config.json'))
+                    else:
+                        config = json.load(open(configFilePath))
+                    config["url_local"] = [os.path.join(matchDirectory, 'video' + dateStr + '.mp4')]
+                    with open(configFilePath, 'w') as file:
+                        json.dump(
+                            config,
+                            file,
+                            indent=2
+                        )
                     st.session_state['matchDirectory'] = matchDirectory
 
             if 'matchDirectory' not in st.session_state:
@@ -465,8 +503,8 @@ if authentication_status:
             [
                 'Video player', 'Frame by frame', 'By annotations'
             ] if st.session_state[
-                                 'annotationType'
-                             ] != EVENT_ANNOTATION and st.session_state['annotationType'] in st.session_state else [
+                     'annotationType'
+                 ] != EVENT_ANNOTATION and st.session_state['annotationType'] in st.session_state else [
                 'Video player', 'Frame by frame'
             ],
             key='videoModeType'
