@@ -492,7 +492,9 @@ if authentication_status:
         with open(zipFileName, 'rb') as zipFile:
             downloadAnnotations = st.download_button(
                 'Download annotations',
-                zipFile
+                zipFile,
+                file_name="annotations.zip",
+                mime="application/zip"
             )
         players.columns = ['_', firstTeam, secondTeam]
 
