@@ -23,9 +23,10 @@ import database as db
 from footballdatabase_eu_scrapper import get_data_from_GUI
 
 
-sys.path.append(str(Path.cwd() / '..' / 'automatic_models'))
-sys.path.append(str(Path.cwd() / '..' / 'automatic_models' / 'object_detection' / 'yolo'))
-from automatic_models.main import perform_models
+# DISABLED
+# sys.path.append(str(Path.cwd() / '..' / 'automatic_models'))
+# sys.path.append(str(Path.cwd() / '..' / 'automatic_models' / 'object_detection' / 'yolo'))
+# from automatic_models.main import perform_models
 
 
 # streamlit configs
@@ -53,7 +54,6 @@ lineAnnotations = pd.read_csv('ui/data/default/line_annotations.csv')
 playerAnnotations = pd.read_csv('ui/data/default/player_annotations.csv')
 ballAnnotations = pd.read_csv('ui/data/default/ball_annotations.csv')
 eventAnnotations = pd.read_csv('ui/data/default/event_annotations.csv')
-videoFileName = 'video.mp4'
 
 # loading teams data
 teams_options = read_teams_options("ui/teams_data/Teams_names_array.txt")
@@ -192,7 +192,7 @@ if authentication_status:
 
         elif videoSourceType == 'Upload local file':
             with st.form(key='get_video_from_local'):
-                file_uploader = st.file_uploader(label='Upload your video')
+                file_uploader = st.file_uploader(label='Upload your video', type='mp4')
                 st.write('Supply data about the match')
                 matchDate = st.date_input('Choose the date of the match')
                 sidebarColumns = st.columns(2)
@@ -210,7 +210,8 @@ if authentication_status:
                         matchDate
                     )
                     bytes = file_uploader.getvalue()
-                    with open(os.path.join(matchDirectory, videoFileName), 'wb') as binary_file:
+                    dateStr = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+                    with open(os.path.join(matchDirectory, 'video' + dateStr + '.mp4'), 'wb') as binary_file:
                         binary_file.write(bytes)
                     st.info('File correctly saved. Choose File option to start annotating')
 
@@ -427,27 +428,30 @@ if authentication_status:
                     else:
                         st.warning('no actions.json file found')
 
-        with st.form(key='automatic_annotation'):
-            annotationDirectories = os.listdir(os.path.join(matchDirectory, 'annotations'))
-            st.write('Getting automatic annotations')
-            col1, col2 = st.columns(2)
-            with col1:
-                models_frequency = st.text_input("Model's frequency", value='0.1')
-            with col2:
-                models_start_point = st.text_input("Video start point", value='0')
-            annotation_name = st.text_input('Annotation name', value='model_annotation')
-            model_config = st.text_input("Configuration for models", placeholder='Field not necesarry')
-            annotate = st.form_submit_button(label='Get annotations')
-            if annotate:
-                perform_models(video_path=os.path.join(matchDirectory, videoFileName),
-                               output_path=matchDirectory + '/annotations/' + annotation_name,
-                               frequency=float(models_frequency),
-                               start_point=float(models_start_point),
-                               models_config_path=model_config,
-                               saving_strategy='overwrite',
-                               perform_events=True,
-                               perform_objects=True,
-                               perform_lines_fields=True)
+        if videoSourceType == 'File':
+            with st.form(key='automatic_annotation'):
+                annotationDirectories = os.listdir(os.path.join(matchDirectory, 'annotations'))
+                st.write('Getting automatic annotations')
+                col1, col2 = st.columns(2)
+                with col1:
+                    models_frequency = st.text_input("Model's frequency", value='0.1')
+                with col2:
+                    models_start_point = st.text_input("Video start point", value='0')
+                annotation_name = st.text_input('Annotation name', value='model_annotation')
+                model_config = st.text_input("Configuration for models", placeholder='Field not necesarry')
+                annotate = st.form_submit_button(label='Get annotations')
+                if annotate:
+                    # DISABLED
+                    pass
+                    # perform_models(video_path=os.path.join(matchDirectory, videoFileName),
+                    #                output_path=matchDirectory + '/annotations/' + annotation_name,
+                    #                frequency=float(models_frequency),
+                    #                start_point=float(models_start_point),
+                    #                models_config_path=model_config,
+                    #                saving_strategy='overwrite',
+                    #                perform_events=True,
+                    #                perform_objects=True,
+                    #                perform_lines_fields=True)
 
         zipFileName = 'zippedAnnotations.zip'
         with ZipFile(zipFileName, 'w') as zipFile:
@@ -503,10 +507,10 @@ if authentication_status:
 
             st.write(f'Video FPS rate is {video_fps}.')
 
-            frameInterval = st.slider(
+            frameInterval = st.number_input(
                 'Frame interval',
                 min_value=1,
-                max_value=100,
+                max_value=int(max_frames),
                 value=int(video_fps * st.session_state[
                     'secondsInterval']) if 'secondsInterval' in st.session_state else 1,
                 key='frameInterval'
@@ -521,10 +525,10 @@ if authentication_status:
                 key='frameNumber'
             )
 
-            secondsInterval = st.slider(
+            secondsInterval = st.number_input(
                 'Seconds interval',
                 min_value=1 / video_fps,
-                max_value=100 / video_fps,
+                max_value=max_frames / video_fps,
                 value=st.session_state['frameInterval'] / video_fps,
                 key='secondsInterval'
             )
@@ -539,8 +543,14 @@ if authentication_status:
 
 
             def next_frame_button_on_click():
-                st.session_state['frameNumber'] += frameInterval
-                st.session_state['secondsNumber'] += secondsInterval
+                st.session_state['frameNumber'] = min(
+                    st.session_state['frameNumber'] + frameInterval,
+                    int(max_frames)
+                )
+                st.session_state['secondsNumber'] = min(
+                    st.session_state['secondsNumber'] + secondsInterval,
+                    max_frames / video_fps
+                )
 
 
             nextFrameButton = st.button(
@@ -549,13 +559,6 @@ if authentication_status:
             )
 
             secondsOfVideoPlayed = frameNumber / video_fps
-
-            if st.session_state.get('annotationType') == EVENT_ANNOTATION:
-                with uiColumns[1]:
-                    st.video(
-                        os.path.join(matchDirectory, videoFileName),
-                        start_time=int(secondsOfVideoPlayed)
-                    )
 
         elif videoModeType == 'By annotations':
             annotationSecond = st.select_slider(
@@ -659,13 +662,16 @@ if authentication_status:
                 return None
 
 
+        currentFrame = get_frame(secondsOfVideoPlayed)
+        if not currentFrame:
+            st.stop()
+
         if annotationType != EVENT_ANNOTATION:
             initialDrawing = {
                 "version": "4.4.0",
                 "objects": []
             }
 
-            currentFrame = get_frame(secondsOfVideoPlayed)
             frameWidth = st.slider(
                 'Set frame canvas width',
                 min_value=100,
@@ -888,6 +894,8 @@ if authentication_status:
             confirmAnnotations = st.button('Confirm annotations')
 
         elif annotationType == EVENT_ANNOTATION:
+            if videoModeType != 'Video player':
+                st.image(currentFrame)
             with uiColumns[2]:
                 selectedEvent = st.selectbox(
                     'Choose event',
