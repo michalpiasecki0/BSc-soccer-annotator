@@ -986,72 +986,83 @@ if authentication_status:
 
     gridOptionsBuilder = GridOptionsBuilder.from_dataframe(annotations)
     gridOptionsBuilder.configure_default_column(editable=True)
-    if annotationEditingMode == MODIFY_ANNOTATIONS:
-        gridOptionsBuilder.configure_selection(selection_mode='single')
-        if annotationType == EVENT_ANNOTATION:
-            gridOptionsBuilder.configure_column(
-                'label',
-                cellEditor='agRichSelectCellEditor',
-                cellEditorParams={'values': ['-'] + list(events['Actions'])},
-                cellEditorPopup=True
-            )
-            gridOptionsBuilder.configure_column(
-                'team',
-                cellEditor='agRichSelectCellEditor',
-                cellEditorParams={'values': ['-'] + list(players.columns[[1, 2]])},
-                cellEditorPopup=True
-            )
-            gridOptionsBuilder.configure_column(
-                'player',
-                cellEditor='agRichSelectCellEditor',
-                cellEditorParams={
-                    'values': ['-'] + list(players[players.columns[1]]) + list(players[players.columns[2]])
-                },
-                cellEditorPopup=True
-            )
-        elif annotationType == LINE_ANNOTATION:
-            gridOptionsBuilder.configure_column(
-                'line',
-                cellEditor='agRichSelectCellEditor',
-                cellEditorParams={'values': list(lines[lines.columns[0]])},
-                cellEditorPopup=True
-            )
-        elif annotationType == PLAYER_ANNOTATION:
-            gridOptionsBuilder.configure_column(
-                'Team',
-                cellEditor='agRichSelectCellEditor',
-                cellEditorParams={'values': ['-'] + list(players.columns[[1, 2]])},
-                cellEditorPopup=True
-            )
-            gridOptionsBuilder.configure_column(
-                'Player',
-                cellEditor='agRichSelectCellEditor',
-                cellEditorParams={
-                    'values':
-                        ['-', 'Referee'] + list(players[players.columns[1]]) + list(players[players.columns[2]])
-                },
-                cellEditorPopup=True
-            )
-        gridOptionsBuilder.configure_grid_options(enableRangeSelection=True)
+    gridOptionsBuilder.configure_selection(selection_mode='single')
+    if annotationType == EVENT_ANNOTATION:
+        gridOptionsBuilder.configure_column(
+            'label',
+            cellEditor='agRichSelectCellEditor',
+            cellEditorParams={'values': ['-'] + list(events['Actions'])},
+            cellEditorPopup=True
+        )
+        gridOptionsBuilder.configure_column(
+            'team',
+            cellEditor='agRichSelectCellEditor',
+            cellEditorParams={'values': ['-'] + list(players.columns[[1, 2]])},
+            cellEditorPopup=True
+        )
+        gridOptionsBuilder.configure_column(
+            'player',
+            cellEditor='agRichSelectCellEditor',
+            cellEditorParams={
+                'values': ['-'] + list(players[players.columns[1]]) + list(players[players.columns[2]])
+            },
+            cellEditorPopup=True
+        )
+    elif annotationType == LINE_ANNOTATION:
+        gridOptionsBuilder.configure_column(
+            'line',
+            cellEditor='agRichSelectCellEditor',
+            cellEditorParams={'values': list(lines[lines.columns[0]])},
+            cellEditorPopup=True
+        )
+    elif annotationType == PLAYER_ANNOTATION:
+        gridOptionsBuilder.configure_column(
+            'Team',
+            cellEditor='agRichSelectCellEditor',
+            cellEditorParams={'values': ['-'] + list(players.columns[[1, 2]])},
+            cellEditorPopup=True
+        )
+        gridOptionsBuilder.configure_column(
+            'Player',
+            cellEditor='agRichSelectCellEditor',
+            cellEditorParams={
+                'values':
+                    ['-', 'Referee'] + list(players[players.columns[1]]) + list(players[players.columns[2]])
+            },
+            cellEditorPopup=True
+        )
+    gridOptionsBuilder.configure_grid_options(enableRangeSelection=True)
     annotationsTable = AgGrid(
         data=annotations,
         gridOptions=gridOptionsBuilder.build(),
         fit_columns_on_grid_load=True
     )
-    if annotationEditingMode == MODIFY_ANNOTATIONS and len(annotationsTable['selected_rows']) > 0:
+    if len(annotationsTable['selected_rows']) > 0:
         st.session_state['selectedAnnotation'] = annotationsTable['selected_rows'][0]
     else:
         st.session_state['selectedAnnotation'] = None
-    if confirmAnnotations:
+    st.write(annotationsTable['data'].to_dict(orient='index'))
+    deleteAnnotation = st.button(
+        'Delete selected annotation',
+        key='deleteAnnotation'
+    )
+    if confirmAnnotations or (deleteAnnotation and len(annotationsTable['selected_rows']) > 0):
         if annotationType == EVENT_ANNOTATION:
             st.session_state[annotationType]['actions'] = annotationsTable['data'].to_dict(orient='records')
+            if deleteAnnotation:
+                st.session_state[annotationType]['actions'].pop(
+                    annotationsTable['selected_rows'][0]['_selectedRowNodeInfo']['nodeRowIndex']
+                )
         else:
             st.session_state['currentAnnotations'] = annotationsTable['data'].to_dict(orient='index')
+            if deleteAnnotation:
+                del st.session_state['currentAnnotations'][
+                    annotationsTable['selected_rows'][0]['_selectedRowNodeInfo']['nodeRowIndex']]
             if annotationType in st.session_state:
-                st.session_state[annotationType][secondsRoundedStr] = annotationsTable['data'].to_dict(orient='index')
+                st.session_state[annotationType][secondsRoundedStr] = st.session_state['currentAnnotations']
             else:
                 st.session_state[annotationType] = {
-                    secondsRoundedStr: annotationsTable['data'].to_dict(orient='index')
+                    secondsRoundedStr: st.session_state['currentAnnotations']
                 }
 
     if True:
