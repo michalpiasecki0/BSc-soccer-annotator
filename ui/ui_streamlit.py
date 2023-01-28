@@ -444,7 +444,10 @@ if authentication_status:
                                frequency=float(models_frequency),
                                start_point=float(models_start_point),
                                models_config_path=model_config,
-                               saving_strategy='overwrite')
+                               saving_strategy='overwrite',
+                               perform_events=True,
+                               perform_objects=True,
+                               perform_lines_fields=True)
 
         zipFileName = 'zippedAnnotations.zip'
         with ZipFile(zipFileName, 'w') as zipFile:
