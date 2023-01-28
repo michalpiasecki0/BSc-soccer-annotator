@@ -22,7 +22,6 @@ import streamlit_authenticator as stauth
 import database as db
 from footballdatabase_eu_scrapper import get_data_from_GUI
 
-
 # DISABLED
 # sys.path.append(str(Path.cwd() / '..' / 'automatic_models'))
 # sys.path.append(str(Path.cwd() / '..' / 'automatic_models' / 'object_detection' / 'yolo'))
@@ -42,6 +41,7 @@ FIELD_ANNOTATION = 'Field annotation'
 LINE_ANNOTATION = 'Line annotation'
 PLAYER_ANNOTATION = 'Player annotation'
 BALL_ANNOTATION = 'Ball annotation'
+ANNOTATION_TYPES = [EVENT_ANNOTATION, FIELD_ANNOTATION, LINE_ANNOTATION, PLAYER_ANNOTATION, BALL_ANNOTATION]
 MODIFY_ANNOTATIONS = 'Modifying annotations'
 ADD_ANNOTATIONS = 'Adding annotations'
 
@@ -83,17 +83,16 @@ authenticator = stauth.Authenticate(credentials, "cookies", 'cookies_named', coo
 
 name, authentication_status, username = authenticator.login("Login", "main")
 
-if authentication_status in [None, False]:
+if not authentication_status:
     with title_placeholder:
         st.title('Soccer annotator')
     with info_placeholder:
         st.write('PLease login in or register to start using an app.')
 
-if authentication_status == False:
-    st.error("Username/password is incorrect")
-
-if authentication_status == None:
-    st.warning("Enter your username and password")
+    if authentication_status is None:
+        st.warning("Enter your username and password")
+    else:
+        st.error("Username/password is incorrect")
 
 if authentication_status:
     st.title('Soccer Annotator')
@@ -102,21 +101,10 @@ if authentication_status:
     authenticator.logout("Logout", "sidebar")
     st.sidebar.title(f"Welcome {name}")
     with sidebar:
-        def video_on_change():
-            if 'capturedVideo' in st.session_state:
-                del st.session_state['capturedVideo']
-            if 'scrapedData' in st.session_state:
-                del st.session_state['scrapedData']
-            if PLAYER_ANNOTATION in st.session_state:
-                del st.session_state[PLAYER_ANNOTATION]
-            if BALL_ANNOTATION in st.session_state:
-                del st.session_state[BALL_ANNOTATION]
-            if LINE_ANNOTATION in st.session_state:
-                del st.session_state[LINE_ANNOTATION]
-            if FIELD_ANNOTATION in st.session_state:
-                del st.session_state[FIELD_ANNOTATION]
-            if EVENT_ANNOTATION in st.session_state:
-                del st.session_state[EVENT_ANNOTATION]
+        def reset_video_data():
+            for obj in ANNOTATION_TYPES + ['capturedVideo', 'scrapedData']:
+                if obj in st.session_state:
+                    del st.session_state[obj]
 
 
         st.write('Choosing a video to annotate')
@@ -146,7 +134,7 @@ if authentication_status:
                 loadVideo = st.form_submit_button('Load video')
                 if loadVideo:
                     # TODO add data verification
-                    video_on_change()
+                    reset_video_data()
                     matchDirectory = match_folder_structure_validator.input_match(
                         firstTeam,
                         secondTeam,
@@ -177,7 +165,7 @@ if authentication_status:
                 videoFiles
             )
             if st.session_state.get('matchDirectory') and st.session_state['matchDirectory'] != matchDirectory:
-                video_on_change()
+                reset_video_data()
             st.session_state['matchDirectory'] = matchDirectory
 
             if os.path.exists(os.path.join(matchDirectory, videoFileName)):
@@ -203,7 +191,7 @@ if authentication_status:
                 loadVideo = st.form_submit_button('Load video')
                 if loadVideo:
                     # TODO add data verification
-                    video_on_change()
+                    reset_video_data()
                     matchDirectory = match_folder_structure_validator.input_match(
                         firstTeam,
                         secondTeam,
@@ -476,8 +464,9 @@ if authentication_status:
             '',
             [
                 'Video player', 'Frame by frame', 'By annotations'
-            ] if st.session_state['annotationType'
-                 ] != EVENT_ANNOTATION and st.session_state['annotationType'] in st.session_state else [
+            ] if st.session_state[
+                                 'annotationType'
+                             ] != EVENT_ANNOTATION and st.session_state['annotationType'] in st.session_state else [
                 'Video player', 'Frame by frame'
             ],
             key='videoModeType'
@@ -588,13 +577,7 @@ if authentication_status:
     with uiColumns[2]:
         annotationType = st.radio(
             'Choose annotation type',
-            [
-                EVENT_ANNOTATION,
-                FIELD_ANNOTATION,
-                LINE_ANNOTATION,
-                PLAYER_ANNOTATION,
-                BALL_ANNOTATION
-            ],
+            ANNOTATION_TYPES,
             index=0,
             horizontal=True,
             key='annotationType'
@@ -700,7 +683,8 @@ if authentication_status:
                             'Choose player',
                             players[selectedTeam] if selectedTeam != '-' else ['-', 'Referee']
                         )
-                        canvasFillColor = teamsColors[selectedTeam] if selectedTeam in teamsColors else "rgba(255, 165, 0, 0.3)"
+                        canvasFillColor = teamsColors[
+                            selectedTeam] if selectedTeam in teamsColors else "rgba(255, 165, 0, 0.3)"
                 if PLAYER_ANNOTATION in st.session_state and secondsRoundedStr in st.session_state[PLAYER_ANNOTATION]:
                     for index, data in st.session_state[PLAYER_ANNOTATION][secondsRoundedStr].items():
                         if data['class'] != 'PERSON':
