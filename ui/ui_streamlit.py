@@ -765,7 +765,9 @@ if authentication_status:
                     with uiColumns[2]:
                         selectedLine = st.selectbox(
                             'Choose line',
-                            lines
+                            json.load(
+                                open('automatic_models/lines_and_field_detection/data/lines_coordinates.json')
+                            ).keys()
                         )
                 if LINE_ANNOTATION in st.session_state and secondsRoundedStr in st.session_state[LINE_ANNOTATION]:
                     for index, data in st.session_state[LINE_ANNOTATION][secondsRoundedStr].items():
@@ -1041,7 +1043,6 @@ if authentication_status:
         st.session_state['selectedAnnotation'] = annotationsTable['selected_rows'][0]
     else:
         st.session_state['selectedAnnotation'] = None
-    st.write(annotationsTable['data'].to_dict(orient='index'))
     deleteAnnotation = st.button(
         'Delete selected annotation',
         key='deleteAnnotation'
