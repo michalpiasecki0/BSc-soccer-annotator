@@ -127,13 +127,75 @@ The data that is being stored in the database is user's credentials, namely:
 - username (key hence must be unique)
 - name of the user
 - password (hashed)
-- email  
+- email
 User inputs their credentials in the registration form, that is defined in the ui, namely here: [Registration form](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/ui_streamlit.py#L1082).  
 ![](images/Registration_form.PNG).  
-After successfully creating the account, user may login, with the login form, which is located here: [Login form](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/ui_streamlit.py#L68).  
+After successfully creating the account, user may log in, with the login form, which is located here: [Login form](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/ui_streamlit.py#L68).  
 All the defined modules that implement communication with the database are located here: [Database utilities](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/Scrapper/database.py).  
 Because Deta is a cloud service, there is no need to install any additional software, only a python module is required, which
 has been issued in *requirements.txt*.  
+When the user successfully went through the log in process, in the application their credentials are being stored in 
+variables during the streamlit session. These variables include:  
+- name - holds the name (only for display) of the user during the streamlit session
+- username - holds the username during the streamlit session
+- email - holds the email of the user during the streamlit session
 
+## Setting up your default Deta user database
+If the user wishes to set up their own database with user and administer it, then they should follow the given steps:  
+- Navigate to the website [Deta](https://www.deta.sh/)
+- Create an account and log in 
+- In the left panel navigate to label *Project Keys*
+- Click button *Create Key*. **ATTENTION**. The key will be shown to you only once, save it by coping "Project Key" value.
+- create a new file in the ui folder called `.env.txt`, don't delete the old `.env.txt` file (should it exist) as it
+contains your old key to the database. Better rename it to `.env_old.txt` or save it somewhere else.
+- Open the file and input the following value `DETA_KEY = YOUR_COPIED_DETA_KEY`
+- Save the file and your database is now set
+- *Note*. Before using the application with your new database, you should input at least one user in order to database to be set.
+- You may now administer your database through the dashboard located in your Deta account (Bases label)
+To know more please read the docs that are available on [DOCS](https://docs.deta.sh/docs/home/)
+
+
+## Running Scrapper on a match folder standalone
+Should the user want to run the scrapper as a standalone version on a directory of matches (directory containing folders
+with formatting of a match as for our application (i.e following the expression date_team1_team2, where date is in formatting
+YYYY-MM-DD)) then they should follow the succeeding steps:  
+- navigate to the Scrapper directory in the project in the cmd
+- run the following command `python Standalone_run.py "match_folder"`, where the match_folder is the folder in question
+containing subfolders with the naming convention of date_team1_team2  
+- wait for the execution of the script, the scrapped data will be saved in the corresponding folders
+
+Example of the run:  
+![](images/aut_run.PNG)  
+
+Where the folder in question had the following structure:  
+![](images/struc.PNG)  
+The python script *Standalone_run.py* is responsible for running the scrapper without the need of the GUI and iterates
+through the folder and scraps data based on the folder names.
+
+## Standalone installation manual
+If the user wishes to install only the standalone version of the scrapper, they should follow the instuction below:  
+1. Clone directory to a folder : `git clone git@github.com:michalpiasecki0/BSc-soccer-annotator.git`
+2. Move to cloned directory `cd <path_to_cloned_dir>`
+3. Move to the scrapper directory in the cloned directory `cd Scrapper`
+4. Install requirements: `pip install -r requirements.txt`
+5. To run the script write in cmd `python Standalone_run.py "match_folder"`, where the match_folder is the folder in question
+containing subfolders with the naming convention of date_team1_team2  
+
+## Acceptance tests for the scrapper
+Here I present acceptance test for the scrapper with the respect to the line where they are located in the code:  
+
+| Requirement                      | Reference to the code                                                                                                                                                                                          |
+|----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Connecting to the webpage        | [github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L17](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L17)   |
+| Initializing session             | [github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L56](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L56)   |
+| Getting data from GUI            | [github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L77](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L77)   |
+| Getting the match id             | [github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L92](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L92)   |
+| Getting score of the match       | [github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L189](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L189) |
+| Getting country name and staduim | [github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L198](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L198) |
+| Getting players scores           | [github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L233](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L233) |
+| Getting team managers            | [github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L251](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L251) |
+| Getting referee data             | [github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L265](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L265) |
+| Getting substitutions data       | [github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L274](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L274) |
+| Saving to JSON                   | [github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L377](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/ui/footballdatabase_eu_scrapper.py#L377) |
 
 

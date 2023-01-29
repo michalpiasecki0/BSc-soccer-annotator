@@ -25,7 +25,7 @@ from footballdatabase_eu_scrapper import get_data_from_GUI
 
 sys.path.append(str(Path.cwd() / '..' / 'automatic_models'))
 sys.path.append(str(Path.cwd() / '..' / 'automatic_models' / 'object_detection' / 'yolo'))
-from automatic_models.main import perform_models
+#from automatic_models.main import perform_models
 
 
 # streamlit configs
@@ -180,6 +180,12 @@ if authentication_status:
                 video_on_change()
             st.session_state['matchDirectory'] = matchDirectory
 
+            try:
+                os.path.exists(os.path.join(matchDirectory, videoFileName))
+            except TypeError:
+                st.error('No video file has been input, please upload local file to the match')
+                st.stop()
+
             if os.path.exists(os.path.join(matchDirectory, videoFileName)):
                 videoFile = open(os.path.join(matchDirectory, videoFileName), 'rb')
                 videoBytes = videoFile.read()
@@ -235,10 +241,13 @@ if authentication_status:
                     value=datetime.datetime.strptime(matchDirectory[8:18], '%Y-%m-%d')
                 )
                 sidebarColumns = st.columns(2)
+                Teams_split = matchDirectory.split('_')
+                Team_split_1 = Teams_split[1]
+                Team_split_2 = Teams_split[2]
                 with sidebarColumns[0]:
-                    firstTeam = st.text_input('The first team', value='Team1')
+                    firstTeam = st.text_input('The first team', value = Team_split_1.capitalize())
                 with sidebarColumns[1]:
-                    secondTeam = st.text_input('The second team', value='Team2')
+                    secondTeam = st.text_input('The second team', value = Team_split_2.capitalize())
             scrapData = st.form_submit_button('Get data')
             if scrapData:
                 # initialize data scraping

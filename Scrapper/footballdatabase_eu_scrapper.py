@@ -373,11 +373,12 @@ def get_match_page_session_and_data(session, driver, reference_link):
     return dict_return
 
 
-def save_to_JSON(to_json_dict, match_string):
+def save_to_JSON(to_json_dict, match_string, default_path = "matches"):
     '''
     This function saves the scrapped data to the folder structure in the JSON format.
     :param to_json_dict: The dictionary containing the data that are to be saved to the folder structure.
     :param match_string: The string representing the match (date-team1_team2).
+    :param default_path: Where the data should be saved, by default it is saved in matches folder.
     '''
     try:
         file = os.path.join('matches', match_string)
@@ -386,7 +387,7 @@ def save_to_JSON(to_json_dict, match_string):
         # directory already exists
         pass
     print("Checkpoint 1")
-    file = os.path.join('matches', match_string, 'scrapped_data.json')
+    file = os.path.join(default_path, match_string, 'scrapped_data.json')
     print("Checkpoint 2")
     with open(file, "w+") as outfile:
         print('Opening {file}'.format(file=str(file)))
