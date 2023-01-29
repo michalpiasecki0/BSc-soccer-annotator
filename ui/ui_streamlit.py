@@ -23,6 +23,9 @@ import database as db
 from footballdatabase_eu_scrapper import get_data_from_GUI
 
 # DISABLED
+# automatic_models_path = os.path.join(os.path.split(__file__)[0], '..')
+# if automatic_models_path not in sys.path:
+#     sys.path.append(automatic_models_path)
 # sys.path.append(str(Path.cwd() / '..' / 'automatic_models'))
 # sys.path.append(str(Path.cwd() / '..' / 'automatic_models' / 'object_detection' / 'yolo'))
 # from automatic_models.main import perform_models
