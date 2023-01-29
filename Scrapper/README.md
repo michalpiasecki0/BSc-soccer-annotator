@@ -173,7 +173,7 @@ The python script *Standalone_run.py* is responsible for running the scrapper wi
 through the folder and scraps data based on the folder names.
 
 ## Standalone installation manual
-If the user wishes to install only the standalone version of the scrapper, they should follow the instuction below:  
+If the user wishes to install only the standalone version of the scrapper, they should follow the instuction below (make sure to run the commands on python 3.10 version):  
 1. Clone directory to a folder : `git clone git@github.com:michalpiasecki0/BSc-soccer-annotator.git`
 2. Move to cloned directory `cd <path_to_cloned_dir>`
 3. Move to the scrapper directory in the cloned directory `cd Scrapper`
