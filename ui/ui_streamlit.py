@@ -1,31 +1,31 @@
 import datetime
+import json
 import os
-import sys
-import streamlit as st
 import re
-from st_aggrid import AgGrid, GridOptionsBuilder
+import sys
+from base64 import b64encode
+from zipfile import ZipFile
+
+import cv2
 import pandas as pd
-from streamlit_drawable_canvas import st_canvas
+import streamlit as st
+import streamlit_authenticator as stauth
 from PIL import Image, ImageDraw
+from st_aggrid import AgGrid, GridOptionsBuilder
+from streamlit_drawable_canvas import st_canvas
 from streamlit_player import st_player
 from youtube_dl import YoutubeDL
-import cv2
-from base64 import b64encode
-import json
-from tempfile import NamedTemporaryFile
-import match_folder_structure_validator
-from zipfile import ZipFile
-from pathlib import Path
-from execute_scrapper import run_script
-from read_team_options import read_teams_options
-import streamlit_authenticator as stauth
+
 import database as db
+import match_folder_structure_validator
+from execute_scrapper import run_script
 from footballdatabase_eu_scrapper import get_data_from_GUI
+from read_team_options import read_teams_options
 
 # DISABLED
-# automatic_models_path = os.path.join(os.path.split(__file__)[0], '..')
-# if automatic_models_path not in sys.path:
-#     sys.path.append(automatic_models_path)
+automatic_models_path = os.path.join(os.path.split(__file__)[0], '..')
+if automatic_models_path not in sys.path:
+    sys.path.append(automatic_models_path)
 # sys.path.append(str(Path.cwd() / '..' / 'automatic_models'))
 # sys.path.append(str(Path.cwd() / '..' / 'automatic_models' / 'object_detection' / 'yolo'))
 # from automatic_models.main import perform_models
