@@ -51,7 +51,7 @@ ADD_ANNOTATIONS = 'Adding annotations'
 # loading default data
 players = pd.read_csv('ui/data/default/players.csv')
 events = pd.read_csv('ui/data/default/events.csv')
-lines = pd.read_csv('ui/data/default/lines.csv', header=None)
+lines = list(json.load(open('automatic_models/lines_and_field_detection/data/lines_coordinates.json')).keys())
 fieldAnnotations = pd.read_csv('ui/data/default/field_annotations.csv')
 lineAnnotations = pd.read_csv('ui/data/default/line_annotations.csv')
 playerAnnotations = pd.read_csv('ui/data/default/player_annotations.csv')
@@ -768,9 +768,7 @@ if authentication_status:
                     with uiColumns[2]:
                         selectedLine = st.selectbox(
                             'Choose line',
-                            json.load(
-                                open('automatic_models/lines_and_field_detection/data/lines_coordinates.json')
-                            ).keys()
+                            lines
                         )
                 if LINE_ANNOTATION in st.session_state and secondsRoundedStr in st.session_state[LINE_ANNOTATION]:
                     for index, data in st.session_state[LINE_ANNOTATION][secondsRoundedStr].items():
@@ -1017,7 +1015,7 @@ if authentication_status:
         gridOptionsBuilder.configure_column(
             'line',
             cellEditor='agRichSelectCellEditor',
-            cellEditorParams={'values': list(lines[lines.columns[0]])},
+            cellEditorParams={'values': lines},
             cellEditorPopup=True
         )
     elif annotationType == PLAYER_ANNOTATION:
@@ -1069,80 +1067,79 @@ if authentication_status:
                     secondsRoundedStr: st.session_state['currentAnnotations']
                 }
 
-    if True:
-        saveAnnotations = st.button('Save annotations')
-        if saveAnnotations:
-            datetimeStr = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-            dirName = os.path.join(matchDirectory, 'annotations/annotations_' + datetimeStr)
-            os.mkdir(dirName)
-            filenameEnding = '.json'
+    saveAnnotations = st.button('Save annotations')
+    if saveAnnotations:
+        datetimeStr = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+        dirName = os.path.join(matchDirectory, 'annotations/annotations_' + datetimeStr)
+        os.mkdir(dirName)
+        filenameEnding = '.json'
 
 
-            def save_annotations(annotations_data, file_name):
-                with open(os.path.join(dirName, file_name + filenameEnding), 'w') as f:
-                    json.dump(
-                        annotations_data,
-                        f,
-                        indent=2
-                    )
+        def save_annotations(annotations_data, file_name):
+            with open(os.path.join(dirName, file_name + filenameEnding), 'w') as f:
+                json.dump(
+                    annotations_data,
+                    f,
+                    indent=2
+                )
 
 
-            if PLAYER_ANNOTATION in st.session_state and BALL_ANNOTATION in st.session_state:
-                objectAnnotations = st.session_state[PLAYER_ANNOTATION]
-                for second, objects in st.session_state[BALL_ANNOTATION].items():
-                    if second in st.session_state[PLAYER_ANNOTATION]:
-                        index = str(int(max(st.session_state[PLAYER_ANNOTATION][second].keys())) + 1)
-                        objectAnnotations[second][index] = objects[min(objects.keys())]
-                    else:
-                        objectAnnotations[second] = objects
-                save_annotations(objectAnnotations, 'objects')
-            elif PLAYER_ANNOTATION in st.session_state:
-                save_annotations(st.session_state[PLAYER_ANNOTATION], 'objects')
-            elif BALL_ANNOTATION in st.session_state:
-                save_annotations(st.session_state[BALL_ANNOTATION], 'objects')
-            else:
-                save_annotations({}, 'objects')
+        if PLAYER_ANNOTATION in st.session_state and BALL_ANNOTATION in st.session_state:
+            objectAnnotations = st.session_state[PLAYER_ANNOTATION]
+            for second, objects in st.session_state[BALL_ANNOTATION].items():
+                if second in st.session_state[PLAYER_ANNOTATION]:
+                    index = str(int(max(st.session_state[PLAYER_ANNOTATION][second].keys())) + 1)
+                    objectAnnotations[second][index] = objects[min(objects.keys())]
+                else:
+                    objectAnnotations[second] = objects
+            save_annotations(objectAnnotations, 'objects')
+        elif PLAYER_ANNOTATION in st.session_state:
+            save_annotations(st.session_state[PLAYER_ANNOTATION], 'objects')
+        elif BALL_ANNOTATION in st.session_state:
+            save_annotations(st.session_state[BALL_ANNOTATION], 'objects')
+        else:
+            save_annotations({}, 'objects')
 
-            if LINE_ANNOTATION in st.session_state:
-                reformattedLines = {}
-                for second, line_annotations in st.session_state[LINE_ANNOTATION].items():
-                    lines_dict = {}
-                    for key, line in line_annotations.items():
-                        lines_dict[line['line']] = [
-                            [
-                                line['x1'],
-                                line['y1']
-                            ],
-                            [
-                                line['x2'],
-                                line['y2']
-                            ]
+        if LINE_ANNOTATION in st.session_state:
+            reformattedLines = {}
+            for second, line_annotations in st.session_state[LINE_ANNOTATION].items():
+                lines_dict = {}
+                for key, line in line_annotations.items():
+                    lines_dict[line['line']] = [
+                        [
+                            line['x1'],
+                            line['y1']
+                        ],
+                        [
+                            line['x2'],
+                            line['y2']
                         ]
-                    reformattedLines[second] = lines_dict
-                save_annotations(reformattedLines, 'lines')
-            else:
-                save_annotations({}, 'lines')
+                    ]
+                reformattedLines[second] = lines_dict
+            save_annotations(reformattedLines, 'lines')
+        else:
+            save_annotations({}, 'lines')
 
-            if FIELD_ANNOTATION in st.session_state:
-                reformattedFields = {}
-                for second, field in st.session_state[FIELD_ANNOTATION].items():
-                    coordinates_list = []
-                    for i in range(len(field['0']) // 2):
-                        coordinates_list.append(
-                            [
-                                field['0']['x' + str(i + 1)],
-                                field['0']['y' + str(i + 1)]
-                            ]
-                        )
-                    reformattedFields[second] = coordinates_list
-                save_annotations(reformattedFields, 'fields')
-            else:
-                save_annotations({}, 'fields')
+        if FIELD_ANNOTATION in st.session_state:
+            reformattedFields = {}
+            for second, field in st.session_state[FIELD_ANNOTATION].items():
+                coordinates_list = []
+                for i in range(len(field['0']) // 2):
+                    coordinates_list.append(
+                        [
+                            field['0']['x' + str(i + 1)],
+                            field['0']['y' + str(i + 1)]
+                        ]
+                    )
+                reformattedFields[second] = coordinates_list
+            save_annotations(reformattedFields, 'fields')
+        else:
+            save_annotations({}, 'fields')
 
-            if EVENT_ANNOTATION in st.session_state:
-                save_annotations(st.session_state[EVENT_ANNOTATION], 'actions')
-            else:
-                save_annotations({'actions': []}, 'actions')
+        if EVENT_ANNOTATION in st.session_state:
+            save_annotations(st.session_state[EVENT_ANNOTATION], 'actions')
+        else:
+            save_annotations({'actions': []}, 'actions')
 
 if authentication_status is False or authentication_status is None:
     st.title('Registration Form')
