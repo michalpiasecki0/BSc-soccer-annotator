@@ -651,7 +651,6 @@ if authentication_status:
         ) if annotationType != EVENT_ANNOTATION else MODIFY_ANNOTATIONS
 
         if annotationType != EVENT_ANNOTATION and annotationEditingMode == MODIFY_ANNOTATIONS:
-            # TODO add more tutorial messages
             st.info('Double-click an object in the frame to remove it.')
 
     with uiColumns[1]:
@@ -981,6 +980,11 @@ if authentication_status:
             ]
             pitchImageDraw.line(lineCoordinates, fill='red', width=10)
             st.image(pitchImage)
+        elif annotationType == FIELD_ANNOTATION and annotationEditingMode == ADD_ANNOTATIONS:
+            st.info(
+                'To annotate the field, click the subsequent corners of the polygon, and then right click to finish.'
+            )
+        st.warning('Remember to confirm your changes with the CONFIRM ANNOTATIONS button!')
 
     gridOptionsBuilder = GridOptionsBuilder.from_dataframe(annotations)
     gridOptionsBuilder.configure_default_column(editable=True)
@@ -1039,11 +1043,13 @@ if authentication_status:
         st.session_state['selectedAnnotation'] = annotationsTable['selected_rows'][0]
     else:
         st.session_state['selectedAnnotation'] = None
-    deleteAnnotation = st.button(
-        'Delete selected annotation',
-        key='deleteAnnotation'
-    )
-    if confirmAnnotations or (deleteAnnotation and len(annotationsTable['selected_rows']) > 0):
+
+    if len(annotationsTable['selected_rows']) > 0:
+        deleteAnnotation = st.button(
+            'Delete selected annotation',
+            key='deleteAnnotation'
+        )
+    if confirmAnnotations or (len(annotationsTable['selected_rows']) > 0 and deleteAnnotation):
         if annotationType == EVENT_ANNOTATION:
             st.session_state[annotationType]['actions'] = annotationsTable['data'].to_dict(orient='records')
             if deleteAnnotation:
