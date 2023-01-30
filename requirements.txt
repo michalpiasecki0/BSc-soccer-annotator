@@ -33,6 +33,7 @@ Shapely==1.8.5.post1
 skimage==0.0
 SoccerNet==0.1.36
 streamlit==1.13.0
+streamlit-aggrid==0.3.3
 streamlit_authenticator==0.2.1
 streamlit_drawable_canvas==0.9.2
 streamlit_lottie==0.0.3
