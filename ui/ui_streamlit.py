@@ -35,7 +35,12 @@ if automatic_models_path not in sys.path:
 st.set_page_config(
     page_title='Soccer annotator',
     page_icon=':soccer:',
-    layout="wide"
+    layout="wide",
+    menu_items={
+            'Get Help': 'https://github.com/michalpiasecki0/BSc-soccer-annotator/wiki/Tutorial',
+            'Report a bug': "https://github.com/michalpiasecki0/BSc-soccer-annotator/issues",
+            'About': "https://github.com/michalpiasecki0/BSc-soccer-annotator/wiki"
+        }
 )
 
 # annotation types
