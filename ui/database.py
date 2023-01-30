@@ -1,9 +1,9 @@
 from deta import Deta
 from dotenv import load_dotenv
+import os
 
-load_dotenv("App_final/ui/.env")
-#DETA_KEY = os.getenv("DETA_KEY")
-DETA_KEY = 'a0so00po_wMBVb6Ni88dvp3UxJ9EUSa6QtbfBwkWn'
+load_dotenv(".env.txt")
+DETA_KEY = os.getenv("DETA_KEY")
 deta = Deta(DETA_KEY)
 db = deta.Base("Application_user_db")
 

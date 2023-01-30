@@ -10,8 +10,11 @@ import json
 import os
 from csv import DictReader
 import time
+from scipy.spatial.distance import hamming
+import math
 
-def initialize_session_footballdatabase(path_default = "ui/cookies_data/cookies.csv"):
+
+def initialize_session_footballdatabase(path_default="ui/cookies_data/cookies.csv"):
     '''
     This function initializes dynamic session with the webpage using selenium and beautifulsoup.
     :return: Session object for beautifulsoup and driver object for selenium.
@@ -50,7 +53,7 @@ def get_cookies(file):
     return list_of_dicts
 
 
-def initialize_login_session(driver, session, path_default = "ui/cookies_data/cookies.csv"):
+def initialize_login_session(driver, session, path_default="ui/cookies_data/cookies.csv"):
     '''
     This function sets up the session and inputs the cookies into the session.
     :param driver: The driver object for selenium.
@@ -94,6 +97,7 @@ def get_game_id_and_href(data, session, driver):
     :param driver: The driver object for selenium.
     :return: Id for the game on the corresponding webpage and link to the game page.
     '''
+
     def search_for_match_id(team1, team2):
         '''
         This is an auxiliary function to search through the string of games in the web resources.
@@ -101,16 +105,26 @@ def get_game_id_and_href(data, session, driver):
         :param team2: The name of the second team.
         :return: Returns -1 if the game (hence match id) was not found and the id if it was found in the array.
         '''
+
+        if len(team1) > len(team2):
+            threshold = math.ceil(len(team2)/4)
+        else:
+            threshold = math.ceil(len(team1)/4)
+        threshold = float(threshold)
         for i, element in enumerate(hrefs):
             element = re.split('/', element)
             element = element[4]
             element = re.split('-', element)
             # checking conditions
-            print(matches_tuples[i])
             if (element[1] == team1 and element[2] == team2) or (element[2] == team1 and element[1] == team2):
                 return element[0]
             elif (matches_tuples[i][0] == team1 and matches_tuples[i][1] == team2) or (
                     matches_tuples[i][1] == team1 and matches_tuples[i][0] == team2):
+                return element[0]
+            elif (((hamming_execute_complete(matches_tuples[i][0], team1) <= threshold) and (
+                    (hamming_execute_complete(matches_tuples[i][1], team2)) <= threshold)
+                   or ((hamming_execute_complete(matches_tuples[i][1], team1) <= threshold) and (
+                            (hamming_execute_complete(matches_tuples[i][0], team2)) <= threshold)))):
                 return element[0]
         return -1
 
@@ -127,7 +141,7 @@ def get_game_id_and_href(data, session, driver):
     for element, element_active in zip(asf, elements):
         if len(element.select('svg.moins')) == 0:
             driver.execute_script("arguments[0].click();", element_active)
-            time.sleep(2)
+            time.sleep(1)
 
     soup = BeautifulSoup(driver.page_source, 'lxml')
 
@@ -265,6 +279,7 @@ def get_match_page_session_and_data(session, driver, reference_link):
         in the format (player, time, up/down), where up indicates that player came to the field and down that player
         went down from the field in the substitution.
         '''
+
         def correct_concat_numbers(z):
             if len(str(int(z))) < 3:
                 return int(z)
@@ -378,3 +393,49 @@ def save_to_JSON(to_json_dict, match_string):
         print('Opening {file}'.format(file=str(file)))
         json.dump(to_json_dict, outfile)
     print("Checkpoint 3")
+
+
+def hamming_execute_complete(string1, string2):
+    '''
+    This function calculates the hamming distance between two strings that are not necessary the same length.
+    The difference in length corresponds to 1 hamming distance for every unit of length difference.
+    :param string1: First string to calculate hamming distance.
+    :param string2: Second string to calculate hamming distance.
+    :return: Hamming distance as a floating number.
+    '''
+    def which_longer(string1, string2):
+        '''
+        Auxiliary function that checks which string is longer.
+        :param string1: First string to compare.
+        :param string2: Second string to compare.
+        :return: Returns the shorter string.
+        '''
+        if len(string1) > len(string2):
+            return string1
+        else:
+            return string2
+
+    def equalize_string_length(string1, string2):
+        '''
+        Auxiliary function that add non-equal characters to the shorter string to make both strings equal length .
+        :param string1: First string to equalize length.
+        :param string2: Second string to equalize length.
+        :return: A shorter string with concatenated characters so that is the equal length as the second string.
+        '''
+        if len(string1) > len(string2):
+            longer_string = string1
+            shorter_string = string2
+        else:
+            longer_string = string2
+            shorter_string = string1
+        difference = len(longer_string) - len(shorter_string)
+        new_string = shorter_string
+        for i in range(difference):
+            new_string += chr(ord('a') + i)
+        return new_string
+
+    string_longer = which_longer(string1, string2)
+    string_shorter = equalize_string_length(string1, string2)
+    hamming_distance = hamming(list(string_shorter), list(string_longer)) * len(string_shorter)
+
+    return hamming_distance
