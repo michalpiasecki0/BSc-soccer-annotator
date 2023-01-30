@@ -627,22 +627,17 @@ if authentication_status:
             horizontal=True,
             key='annotationType'
         )
-        if annotationType == FIELD_ANNOTATION:
-            canvasDrawingMode = 'polygon'
-            annotations = fieldAnnotations
-        elif annotationType == LINE_ANNOTATION:
-            canvasDrawingMode = 'line'
-            annotations = lineAnnotations
-        elif annotationType == PLAYER_ANNOTATION:
-            canvasDrawingMode = 'rect'
-            annotations = playerAnnotations
-        elif annotationType == BALL_ANNOTATION:
-            canvasDrawingMode = 'rect'
-            annotations = ballAnnotations
-        elif annotationType == EVENT_ANNOTATION:
-            annotations = eventAnnotations
-            if EVENT_ANNOTATION not in st.session_state:
-                st.session_state[EVENT_ANNOTATION] = {"actions": []}
+        annotationType2DrawingMode = {
+            FIELD_ANNOTATION: ('polygon', fieldAnnotations),
+            LINE_ANNOTATION: ('line', lineAnnotations),
+            PLAYER_ANNOTATION: ('rect', playerAnnotations),
+            BALL_ANNOTATION: ('rect', ballAnnotations),
+            EVENT_ANNOTATION: ('', eventAnnotations)
+        }
+        canvasDrawingMode, annotations = annotationType2DrawingMode[annotationType]
+
+        if annotationType == EVENT_ANNOTATION and EVENT_ANNOTATION not in st.session_state:
+            st.session_state[EVENT_ANNOTATION] = {"actions": []}
 
         if 'selectedAnnotation' not in st.session_state:
             st.session_state['selectedAnnotation'] = None
