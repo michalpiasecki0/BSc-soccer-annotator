@@ -37,13 +37,13 @@ st.set_page_config(
     page_icon=':soccer:',
     layout="wide",
     menu_items={
-            'Get Help': 'https://github.com/michalpiasecki0/BSc-soccer-annotator/wiki/Tutorial',
-            'Report a bug': "https://github.com/michalpiasecki0/BSc-soccer-annotator/issues",
-            'About': "https://github.com/michalpiasecki0/BSc-soccer-annotator/wiki"
-        }
+        'Get Help': 'https://github.com/michalpiasecki0/BSc-soccer-annotator/wiki/Tutorial',
+        'Report a bug': "https://github.com/michalpiasecki0/BSc-soccer-annotator/issues",
+        'About': "https://github.com/michalpiasecki0/BSc-soccer-annotator/wiki"
+    }
 )
 
-# annotation types
+# annotation type names
 EVENT_ANNOTATION = 'Event annotation'
 FIELD_ANNOTATION = 'Field annotation'
 LINE_ANNOTATION = 'Line annotation'
@@ -103,12 +103,14 @@ if not authentication_status:
         st.error("Username/password is incorrect")
 
 if authentication_status:
+    # the beginning of the ui rendering
     st.title('Soccer Annotator')
     st.write('Annotation tool for video matches.')
     sidebar = st.sidebar
     authenticator.logout("Logout", "sidebar")
     st.sidebar.title(f"Welcome {name}")
     with sidebar:
+        # a function used on video change
         def reset_video_data():
             for obj in ANNOTATION_TYPES + ['capturedVideo', 'scrapedData']:
                 if obj in st.session_state:
@@ -257,11 +259,11 @@ if authentication_status:
 
             if 'matchDirectory' not in st.session_state:
                 st.warning('Load a video to start annotating.')
-                st.stop()
             else:
                 matchDirectory = st.session_state['matchDirectory']
-                st.stop()
+            st.stop()
 
+        # create a directory for annotations if there isn't one
         if not (os.path.exists(os.path.join(matchDirectory, 'annotations')) and os.path.isdir(
                 os.path.join(matchDirectory, 'annotations'))):
             os.mkdir(os.path.join(matchDirectory, 'annotations'))
@@ -289,13 +291,15 @@ if authentication_status:
                             secondTeam = dict_concatenated[str(secondTeam)]
                         run_script(matchDate, firstTeam, secondTeam)
                         data = get_data_from_GUI(matchDate, firstTeam, secondTeam)
-                        match_date_string = str(data[0]) + '_' + str(data[1]).replace('_', '') + '_' + str(data[2]).replace(
+                        match_date_string = str(data[0]) + '_' + str(data[1]).replace('_', '') + '_' + str(
+                            data[2]).replace(
                             '_', '')
                         path_to_scrapped_data = os.path.join('matches', match_date_string, 'scrapped_data.json')
-                        st.success('Acquired the data!')
+                    st.success('Acquired the data!')
                 except:
                     st.error('No data could be found')
 
+            # loading scraped data if exists
             if os.path.exists(
                     os.path.join(matchDirectory, 'scrapped_data.json')
             ) and 'scrapedData' not in st.session_state:
@@ -384,6 +388,7 @@ if authentication_status:
                 if len(annotationDirectories) == 0:
                     st.error('No saved annotations to load!')
                 else:
+                    # converting annotations to uniform format
                     if os.path.exists(os.path.join(annotationDirectory, 'objects.json')):
                         st.session_state[PLAYER_ANNOTATION] = json.load(
                             open(os.path.join(annotationDirectory, 'objects.json'))
@@ -495,6 +500,7 @@ if authentication_status:
                     #                    perform_lines_fields=True)
                     # st.success('Finished annotating!')
 
+        # create a file with annotations to download
         zipFileName = 'zippedAnnotations.zip'
         with ZipFile(zipFileName, 'w') as zipFile:
             # Iterate over all the files in directory
@@ -504,6 +510,7 @@ if authentication_status:
                     filePath = os.path.join(folderName, filename)
                     # Add file to zip
                     zipFile.write(filePath, filePath)
+        # downloading annotations
         with open(zipFileName, 'rb') as zipFile:
             downloadAnnotations = st.download_button(
                 'Download annotations',
@@ -513,10 +520,12 @@ if authentication_status:
             )
         players.columns = ['_', firstTeam, secondTeam]
 
+    # the main part of the interface
     uiColumns = st.columns([2.5, 5, 2.6])
     with uiColumns[0]:
-        if 'annotationType' not in st.session_state:
+        if 'annotationType' not in st.session_state:  # setting default annotation type
             st.session_state['annotationType'] = EVENT_ANNOTATION
+
         videoModeType = st.radio(
             '',
             [
@@ -531,7 +540,7 @@ if authentication_status:
         if 'capturedVideo' in st.session_state:
             max_frames = st.session_state['capturedVideo'].get(cv2.CAP_PROP_FRAME_COUNT)
             video_fps = st.session_state['capturedVideo'].get(cv2.CAP_PROP_FPS)
-        else:
+        else:  # setting default placeholder values if video is not yet loaded
             max_frames = 100
             video_fps = 30
 
@@ -546,11 +555,9 @@ if authentication_status:
                     events=['onProgress'],
                     key='video'
                 )
-
             secondsOfVideoPlayed = videoPlayer[1]['playedSeconds'] if videoPlayer[1] is not None else 0.0
 
         elif videoModeType == 'Frame by frame':
-
             st.write(f'Video FPS rate is {video_fps}.')
 
             frameInterval = st.number_input(
@@ -629,16 +636,16 @@ if authentication_status:
 
             secondsOfVideoPlayed = float(annotationSecond)
 
-    secondsRoundedStr = str(float(secondsOfVideoPlayed))
+    secondsRoundedStr = str(float(secondsOfVideoPlayed))  # formatted seconds to get annotations
 
     with uiColumns[2]:
         annotationType = st.radio(
             'Choose annotation type',
             ANNOTATION_TYPES,
-            index=0,
             horizontal=True,
             key='annotationType'
         )
+        # setting values for every annotation type
         annotationType2DrawingMode = {
             FIELD_ANNOTATION: ('polygon', fieldAnnotations),
             LINE_ANNOTATION: ('line', lineAnnotations),
@@ -648,9 +655,9 @@ if authentication_status:
         }
         canvasDrawingMode, annotations = annotationType2DrawingMode[annotationType]
 
+        # assuring objects are initialized
         if annotationType == EVENT_ANNOTATION and EVENT_ANNOTATION not in st.session_state:
             st.session_state[EVENT_ANNOTATION] = {"actions": []}
-
         if 'selectedAnnotation' not in st.session_state:
             st.session_state['selectedAnnotation'] = None
 
@@ -666,15 +673,14 @@ if authentication_status:
             st.info('Double-click an object in the frame to remove it.')
 
     with uiColumns[1]:
+        # create the cv2.CaptureVideo object
         if 'capturedVideo' not in st.session_state:
             if videoSourceType == 'URL' or (videoSourceType == 'File' and not videoFileName):
                 ydl = YoutubeDL()
                 video_data = ydl.extract_info(videoURL, download=False)
-
                 # link with video and audio
                 direct_video_url = [_format['url'] for _format in video_data['formats']
                                     if _format['acodec'] != 'none' and _format['vcodec'] != 'none'][-1]
-
                 capture = cv2.VideoCapture(direct_video_url)
             elif videoSourceType == 'File' and videoFileName:
                 # temporaryFile = NamedTemporaryFile(delete=False)
@@ -685,8 +691,8 @@ if authentication_status:
         capturedVideo = st.session_state['capturedVideo']
 
 
-        def get_frame(played):
-            capturedVideo.set(cv2.CAP_PROP_POS_MSEC, played * 1000)
+        def get_frame(played_seconds):
+            capturedVideo.set(cv2.CAP_PROP_POS_MSEC, played_seconds * 1000)
             check, frame = capturedVideo.read()
             if check:
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -700,6 +706,7 @@ if authentication_status:
         if not currentFrame:
             st.stop()
 
+        # creating the canvas to draw annotations on
         if annotationType != EVENT_ANNOTATION:
             initialDrawing = {
                 "version": "4.4.0",
@@ -723,6 +730,7 @@ if authentication_status:
                 secondTeam: "rgba(165, 0, 255, 0.3)"
             }
             canvasFillColor = teamsColors['-']
+            # creating input fields and converting annotations to canvas objects
             if annotationType == PLAYER_ANNOTATION:
                 if annotationEditingMode == ADD_ANNOTATIONS:
                     with uiColumns[2]:
@@ -828,7 +836,7 @@ if authentication_status:
                                 initialDrawing['objects'].append(point)
                             break
 
-            canvas_frame = st_canvas(
+            canvasFrame = st_canvas(
                 fill_color=canvasFillColor,
                 background_image=currentFrame,
                 update_streamlit=True,
@@ -839,14 +847,15 @@ if authentication_status:
                 initial_drawing=initialDrawing
             )
 
-            if canvas_frame.json_data is not None:
+            if canvasFrame.json_data is not None:
+                # converting canvas objects back to annotations
                 annotationsDict = {}
                 if annotationType == PLAYER_ANNOTATION:
                     if 'player_info' not in st.session_state:
                         st.session_state['player_info'] = {}
                     if secondsRoundedStr not in st.session_state['player_info']:
                         st.session_state['player_info'][secondsRoundedStr] = {}
-                    for i, player in enumerate(canvas_frame.json_data['objects']):
+                    for i, player in enumerate(canvasFrame.json_data['objects']):
                         annotationsDict[str(i)] = {
                             'class': 'PERSON',
                             'Team': firstTeam if player['fill'] == teamsColors[firstTeam] else (
@@ -878,7 +887,7 @@ if authentication_status:
                         annotationsDict[str(i)]['Player'] = \
                             st.session_state['player_info'][secondsRoundedStr][coor_tuple][2]
                 elif annotationType == BALL_ANNOTATION:
-                    for i, ball in enumerate(canvas_frame.json_data['objects']):
+                    for i, ball in enumerate(canvasFrame.json_data['objects']):
                         annotationsDict[str(i)] = {
                             'class': 'SPORTSBALL',
                             'x_top_left': round(ball['left'] / scaleWidth),
@@ -892,7 +901,7 @@ if authentication_status:
                         st.session_state['lines_names'] = {}
                     if secondsRoundedStr not in st.session_state['lines_names']:
                         st.session_state['lines_names'][secondsRoundedStr] = {}
-                    for i, line in enumerate(canvas_frame.json_data['objects']):
+                    for i, line in enumerate(canvasFrame.json_data['objects']):
                         annotationsDict[str(i)] = {
                             'line': '-',
                             'x1': round((line['x1'] * line['scaleX'] + line['left']) / scaleWidth),
@@ -912,7 +921,7 @@ if authentication_status:
                         annotationsDict[str(i)]['line'] = st.session_state['lines_names'][secondsRoundedStr][coor_tuple]
                 elif annotationType == FIELD_ANNOTATION:
                     if annotationEditingMode == ADD_ANNOTATIONS:
-                        for i, field in enumerate(canvas_frame.json_data['objects']):
+                        for i, field in enumerate(canvasFrame.json_data['objects']):
                             annotationsDict[str(i)] = {}
                             for j, point in enumerate(field['path']):
                                 if point[0] != 'z':
@@ -921,9 +930,9 @@ if authentication_status:
                                     annotationsDict[str(i)]['y' + str(j + 1)] = \
                                         round(point[2] * field['scaleY'] / scaleHeight)
                     elif annotationEditingMode == MODIFY_ANNOTATIONS:
-                        if len(canvas_frame.json_data['objects']) > 0:
+                        if len(canvasFrame.json_data['objects']) > 0:
                             annotationsDict['0'] = {}
-                        for i, point in enumerate(canvas_frame.json_data['objects']):
+                        for i, point in enumerate(canvasFrame.json_data['objects']):
                             annotationsDict['0']['x' + str(i + 1)] = \
                                 round((point['left'] + point['radius']) * point['scaleX'] / scaleWidth)
                             annotationsDict['0']['y' + str(i + 1)] = \
@@ -933,14 +942,8 @@ if authentication_status:
                     annotations = pd.DataFrame.from_dict(
                         annotationsDict,
                         orient='index')
-                elif annotationType == PLAYER_ANNOTATION:
-                    annotations = playerAnnotations
-                elif annotationType == BALL_ANNOTATION:
-                    annotations = ballAnnotations
-                elif annotationType == LINE_ANNOTATION:
-                    annotations = lineAnnotations
-                elif annotationType == FIELD_ANNOTATION:
-                    annotations = fieldAnnotations
+                else:
+                    annotations = annotationType2DrawingMode[annotationType][1]
 
                 st.session_state['currentAnnotations'] = annotationsDict
 
@@ -980,6 +983,7 @@ if authentication_status:
         confirmAnnotations = st.button('Confirm annotations')
 
     with uiColumns[2]:
+        # getting image with line names and selected line
         if annotationType == LINE_ANNOTATION and annotationEditingMode == ADD_ANNOTATIONS:
             linesCoordinates = json.load(
                 open('automatic_models/lines_and_field_detection/data/lines_coordinates.json')
@@ -998,6 +1002,7 @@ if authentication_status:
             )
         st.warning('Remember to confirm your changes with the CONFIRM ANNOTATIONS button!')
 
+    # configuring the table with annotations
     gridOptionsBuilder = GridOptionsBuilder.from_dataframe(annotations)
     gridOptionsBuilder.configure_default_column(editable=True)
     gridOptionsBuilder.configure_selection(selection_mode='single')
@@ -1046,6 +1051,7 @@ if authentication_status:
             cellEditorPopup=True
         )
     gridOptionsBuilder.configure_grid_options(enableRangeSelection=True)
+    # creating annotations table
     annotationsTable = AgGrid(
         data=annotations,
         gridOptions=gridOptionsBuilder.build(),
@@ -1061,6 +1067,7 @@ if authentication_status:
             'Delete selected annotation',
             key='deleteAnnotation'
         )
+    # saving current annotations
     if confirmAnnotations or (len(annotationsTable['selected_rows']) > 0 and deleteAnnotation):
         if annotationType == EVENT_ANNOTATION:
             st.session_state[annotationType]['actions'] = annotationsTable['data'].to_dict(orient='records')
@@ -1098,6 +1105,7 @@ if authentication_status:
             st.success(f'{file_name + filenameEnding} saved!')
 
 
+        # converting annotations to required formats
         if PLAYER_ANNOTATION in st.session_state and BALL_ANNOTATION in st.session_state:
             objectAnnotations = st.session_state[PLAYER_ANNOTATION]
             for second, objects in st.session_state[BALL_ANNOTATION].items():
