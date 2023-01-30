@@ -160,6 +160,7 @@ if authentication_status:
                             indent=2
                         )
                     st.session_state['matchDirectory'] = matchDirectory
+                    st.success('Video loaded!')
             if 'matchDirectory' not in st.session_state:
                 st.warning('Load a video to start annotating.')
                 st.stop()
@@ -251,6 +252,8 @@ if authentication_status:
                             indent=2
                         )
                     st.session_state['matchDirectory'] = matchDirectory
+                    st.success('Video loaded!')
+                    st.info('Go to *File* page to start annotating.')
 
             if 'matchDirectory' not in st.session_state:
                 st.warning('Load a video to start annotating.')
@@ -279,15 +282,17 @@ if authentication_status:
             if scrapData:
                 # initialize data scraping
                 try:
-                    if firstTeam in dict_concatenated:
-                        firstTeam = dict_concatenated[str(firstTeam)]
-                    if secondTeam in dict_concatenated:
-                        secondTeam = dict_concatenated[str(secondTeam)]
-                    run_script(matchDate, firstTeam, secondTeam)
-                    data = get_data_from_GUI(matchDate, firstTeam, secondTeam)
-                    match_date_string = str(data[0]) + '_' + str(data[1]).replace('_', '') + '_' + str(data[2]).replace(
-                        '_', '')
-                    path_to_scrapped_data = os.path.join('matches', match_date_string, 'scrapped_data.json')
+                    with st.spinner('Scraping the data...'):
+                        if firstTeam in dict_concatenated:
+                            firstTeam = dict_concatenated[str(firstTeam)]
+                        if secondTeam in dict_concatenated:
+                            secondTeam = dict_concatenated[str(secondTeam)]
+                        run_script(matchDate, firstTeam, secondTeam)
+                        data = get_data_from_GUI(matchDate, firstTeam, secondTeam)
+                        match_date_string = str(data[0]) + '_' + str(data[1]).replace('_', '') + '_' + str(data[2]).replace(
+                            '_', '')
+                        path_to_scrapped_data = os.path.join('matches', match_date_string, 'scrapped_data.json')
+                        st.success('Acquired the data!')
                 except:
                     st.error('No data could be found')
 
@@ -403,7 +408,7 @@ if authentication_status:
                             open(os.path.join(annotationDirectory, 'objects.json'))
                         )
 
-                        st.info('objects.json file loaded')
+                        st.success('objects.json file loaded')
                     else:
                         st.warning('no objects.json file found')
 
@@ -433,7 +438,7 @@ if authentication_status:
                                 ] = key2
                             st.session_state[LINE_ANNOTATION][key] = d
 
-                        st.info('lines.json file loaded')
+                        st.success('lines.json file loaded')
                     else:
                         st.warning('no lines.json file found')
 
@@ -450,7 +455,7 @@ if authentication_status:
                                 i += 1
                             st.session_state[FIELD_ANNOTATION][key] = {'0': d}
 
-                        st.info('fields.json file loaded')
+                        st.success('fields.json file loaded')
                     else:
                         st.warning('no fields.json file found')
 
@@ -459,7 +464,7 @@ if authentication_status:
                             open(os.path.join(annotationDirectory, 'actions.json'))
                         )
 
-                        st.info('actions.json file loaded')
+                        st.success('actions.json file loaded')
                     else:
                         st.warning('no actions.json file found')
 
@@ -478,15 +483,17 @@ if authentication_status:
                 if annotate:
                     # DISABLED
                     pass
-                    # perform_models(video_path=os.path.join(matchDirectory, videoFileName),
-                    #                output_path=matchDirectory + '/annotations/' + annotation_name,
-                    #                frequency=float(models_frequency),
-                    #                start_point=float(models_start_point),
-                    #                models_config_path=model_config,
-                    #                saving_strategy='overwrite',
-                    #                perform_events=True,
-                    #                perform_objects=True,
-                    #                perform_lines_fields=True)
+                    # with st.spinner('Annotating...'):
+                    #     perform_models(video_path=os.path.join(matchDirectory, videoFileName),
+                    #                    output_path=matchDirectory + '/annotations/' + annotation_name,
+                    #                    frequency=float(models_frequency),
+                    #                    start_point=float(models_start_point),
+                    #                    models_config_path=model_config,
+                    #                    saving_strategy='overwrite',
+                    #                    perform_events=True,
+                    #                    perform_objects=True,
+                    #                    perform_lines_fields=True)
+                    # st.success('Finished annotating!')
 
         zipFileName = 'zippedAnnotations.zip'
         with ZipFile(zipFileName, 'w') as zipFile:
@@ -1088,6 +1095,7 @@ if authentication_status:
                     f,
                     indent=2
                 )
+            st.success(f'{file_name + filenameEnding} saved!')
 
 
         if PLAYER_ANNOTATION in st.session_state and BALL_ANNOTATION in st.session_state:
