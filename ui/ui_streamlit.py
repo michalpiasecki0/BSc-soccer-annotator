@@ -23,11 +23,12 @@ from execute_scrapper import run_script
 from footballdatabase_eu_scrapper import get_data_from_GUI
 from read_team_options import read_teams_options
 
-bs_soccer = str((Path('./') / '..').resolve())
-automatic_models_path = str((Path('./') / '..' / 'automatic_models').resolve())
-yolo_path = str((Path('./') / '..' / 'automatic_models' / 'object_detection' / 'yolo').resolve())
+bs_soccer = str((Path('./')).resolve())
+automatic_models_path = str((Path('./') / 'automatic_models').resolve())
+yolo_path = str((Path('./') / 'automatic_models' / 'object_detection' / 'yolo').resolve())
 
 for path in (bs_soccer, automatic_models_path, yolo_path):
+    print(path)
     if path not in sys.path:
         sys.path.append(path)
 
