@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Tuple, Dict, Optional, Any
 from detect import detect_2
 from labels import COCOLabels
-from extra_utils.constants import PATH_TO_AUTOMATIC_MODELS
+from automatic_models.extra_utils.constants import PATH_TO_AUTOMATIC_MODELS
 
 @dataclass
 class ObjectDetectorConfig:

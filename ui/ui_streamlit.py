@@ -5,6 +5,7 @@ import re
 import sys
 from base64 import b64encode
 from zipfile import ZipFile
+from pathlib import Path
 
 import cv2
 import pandas as pd
@@ -22,11 +23,14 @@ from execute_scrapper import run_script
 from footballdatabase_eu_scrapper import get_data_from_GUI
 from read_team_options import read_teams_options
 
-automatic_models_path = os.path.join(os.path.split(__file__)[0], '..')
-if automatic_models_path not in sys.path:
-    sys.path.append(automatic_models_path)
-# sys.path.append(str(Path.cwd() / '..' / 'automatic_models'))
-# sys.path.append(str(Path.cwd() / '..' / 'automatic_models' / 'object_detection' / 'yolo'))
+bs_soccer = str((Path('./') / '..').resolve())
+automatic_models_path = str((Path('./') / '..' / 'automatic_models').resolve())
+yolo_path = str((Path('./') / '..' / 'automatic_models' / 'object_detection' / 'yolo').resolve())
+
+for path in (bs_soccer, automatic_models_path, yolo_path):
+    if path not in sys.path:
+        sys.path.append(path)
+
 from automatic_models.main import perform_models
 
 
@@ -484,23 +488,29 @@ if authentication_status:
                     models_frequency = st.text_input("Model's frequency", value='0.1')
                 with col2:
                     models_start_point = st.text_input("Video start point", value='0')
+                c1, c2, c3 = st.columns(3)
+                with c1:
+                    annotate_events = st.checkbox(label='Annotate events', value=False)
+                with c2:
+                    annotate_objects = st.checkbox(label='Annotate objects', value=False)
+                with c3:
+                    annotate_lines = st.checkbox(label='Annotate lines&fields', value=False)
                 annotation_name = st.text_input('Annotation name', value='model_annotation')
                 model_config = st.text_input("Configuration for models", placeholder='Field not necesarry')
                 annotate = st.form_submit_button(label='Get annotations')
                 if annotate:
-                    # DISABLED
-                    pass
-                    # with st.spinner('Annotating...'):
-                    #     perform_models(video_path=os.path.join(matchDirectory, videoFileName),
-                    #                    output_path=matchDirectory + '/annotations/' + annotation_name,
-                    #                    frequency=float(models_frequency),
-                    #                    start_point=float(models_start_point),
-                    #                    models_config_path=model_config,
-                    #                    saving_strategy='overwrite',
-                    #                    perform_events=True,
-                    #                    perform_objects=True,
-                    #                    perform_lines_fields=True)
-                    # st.success('Finished annotating!')
+                    with st.spinner('Annotating...'):
+                         perform_models(video_path=os.path.join(matchDirectory, videoFileName),
+                                        output_path=matchDirectory + '/annotations/' + annotation_name,
+                                        frequency=float(models_frequency),
+                                        starting_point=float(models_start_point),
+                                        models_config_path=model_config,
+                                        saving_strategy='overwrite',
+                                        perform_events=annotate_events,
+                                        perform_objects=annotate_objects,
+                                        perform_lines_fields=annotate_lines,
+                                        save_imgs=False)
+                    st.success('Finished annotating!')
 
         # create a file with annotations to download
         zipFileName = 'zippedAnnotations.zip'
