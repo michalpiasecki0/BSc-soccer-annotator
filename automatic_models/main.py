@@ -2,10 +2,11 @@
 import sys
 from pathlib import Path
 
-bs_soccer = str((Path('./') / '..').resolve())
-yolo_path = str((Path('./') / '..' / 'automatic_models' / 'object_detection' / 'yolo').resolve())
+bs_soccer = str((Path('./')).resolve())
+yolo_path = str((Path('./') / 'automatic_models' / 'object_detection' / 'yolo').resolve())
 
 for path in (bs_soccer, yolo_path):
+    print(path)
     if path not in sys.path:
         sys.path.append(path)
 
