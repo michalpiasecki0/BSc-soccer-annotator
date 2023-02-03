@@ -139,6 +139,8 @@ class ModelTester(VideoHandler):
             print('Objects were not calculated by models yet')
 
     def calc_lines_stats(self, pixels_thresholds: list = [5, 10, 20, 30], save_figs: bool = True):
+        self.detect_lines_and_fields()
+        self.results_transformed['lines'] = self.results['lines']
         if save_figs and self.output_path:
             if not (self.output_path / 'lines_images').exists():
                 (self.output_path / 'lines_images').mkdir()
