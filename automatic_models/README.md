@@ -123,7 +123,7 @@ Here, I provide general descrption for most important files/folders in `automati
 [object_detection](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/object_detection): implementation of Players, Ball detection  
 [lines_and_field_detection](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/lines_and_field_detection): implementation of field annotation and lines detection  
 [event_annotation](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/event_annotation): implementation of event annotation   
-[model_tests](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests): implemtation of tests for models  
+[model_tests](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests): implementation of tests for models  
 
 
 
