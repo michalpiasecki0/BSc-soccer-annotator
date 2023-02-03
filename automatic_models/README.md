@@ -49,8 +49,52 @@ Example run:
 
 If someone doesn't want to run script from CLI, one can also modify function parameters and run it from IDE.
 
+## Configs for models:
+User can define model parameters via configuration file (argument `--models_config_path`). Such config must be in json
+format and follow specific structure. In particular, json structure must be as follows:  
+``` json
+{  
+    {  
+        "lines_field_homo_model": {}  
+        "object_detection_model": {}  
+        "event_annotation_model": {}  
+    }  
+}  
+```
+1. `lines_field_homo_model`: configuration for Lines and Field Detector. Following attributes can be provided:  
+    * `desired_homography`: `optim/orig`: method for calculating homography matrix  
+    * `optim_iters`: `<int>`: number of optimization iterations for homogrpahy matrix (applies only to optim method)  
+    * `constant_var_use_cuda`: `<bool>`: bool to indicate if CUDA is used  
+    * `torch_backends_cudnn_enabled`: `<bool>`: bool to indicate if CUDA is enabled  
+2. `object_detection_model`: configuration for Object Detection. FOllowing attributes can be provided:  
+    * `objects_labels`: `<tuple>`: tuple with objects, which detector will look for  
+    * `device`: `cuda/cpu`: type of device  
+    * `conf_threshold`: `<float>`: confidence threshold, model will register detected instances only if probability is higher than confidence threshold    
+3. `event_annotation_model`: configuration for Event Annotation. Following attributes can be provided:  
+    * `framerate`: `<int>`: event model will divide video with fps declared by this parameter    
+    * `device`: `cuda/cpu`: type of device  
+    * `confidence_threshold`: `<float>`: confidence threshold, model will register detected instances only if probability is higher than confidence threshold   
 
-
+Example of configuration file:
+```json
+{
+  "lines_field_homo_model": {
+    "optim_iters": 1,
+    "constant_var_use_cuda": false,
+    "torch_backends_cudnn_enabled": false,
+    "desired_homography": "orig"
+  },
+  "object_detection_model": {
+    "conf_threshold": 0.4
+  },
+  "event_annotation_model": {
+    "framerate": 2,
+    "confidence_threshold": 0.7,
+    "device": "cpu"
+  }
+}
+```
+Two configurations files are already provided in [configs](data/configs).
 ## General package overview
 Here, I provide general descrption for most important files/folders in `automatic_models`  
 [main.py](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/automatic_models/main.py): API for automatic models  
