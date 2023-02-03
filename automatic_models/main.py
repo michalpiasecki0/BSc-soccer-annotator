@@ -117,7 +117,7 @@ if __name__ == '__main__':
                        saving_strategy='overwrite',
                        models_config_path='data/configs/basic_config.json',
                        perform_events=False,
-                       perform_objects=True,
-                       perform_lines_fields=False,
+                       perform_objects=False,
+                       perform_lines_fields=True,
                        save_imgs=True)
 
