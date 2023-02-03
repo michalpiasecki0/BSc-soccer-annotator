@@ -94,7 +94,28 @@ Example of configuration file:
   }
 }
 ```
-Two configurations files are already provided in [configs](data/configs).
+Two configurations files are already provided in [configs](data/configs). 
+### Default configuration
+If user does not provide any configuration file, models will be run with following parameters:
+``` json
+{
+  "lines_field_homo_model": {
+    "optim_iters": 20,
+    "constant_var_use_cuda": false,
+    "torch_backends_cudnn_enabled": false,
+    "desired_homography": "optim"
+  },
+  "object_detection_model": {
+    "objects_labels": ('PERSON', 'SPORTS_BALL'),
+    "device": "cpu",
+    "conf_threshold": 0.25
+  },
+  "event_annotation_model": {
+    "framerate": 2,
+    "confidence_threshold": 0.7,
+    "device": "cpu"
+  }
+ ```
 ## General package overview
 Here, I provide general descrption for most important files/folders in `automatic_models`  
 [main.py](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/automatic_models/main.py): API for automatic models  
