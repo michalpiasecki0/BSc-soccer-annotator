@@ -3,7 +3,6 @@
 
 import random
 
-import readline
 import numpy as np
 import torch
 try:
