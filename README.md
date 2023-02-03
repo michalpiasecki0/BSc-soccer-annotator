@@ -1,4 +1,9 @@
 # BSc-soccer-annotator
+Tool for manual and automatic football match videos annotation.  
+  
+This work was developed by Michał Piasecki, Jan Gąska and Konstanty Kraszewski as a project for Bachelor's diploma thesis.
+Ph.D. Anna Wróblewska and MSc Seweryn Karolina were thesis supervisors.
+
 
 ## Installation
 
