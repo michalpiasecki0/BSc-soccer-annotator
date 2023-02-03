@@ -11,11 +11,10 @@ from typing import Optional, Dict, Tuple
 import torch
 from shapely.geometry import LineString, Polygon
 
-from lines_and_field_detection.utils import utils, warp, image_utils, constant_var
-from lines_and_field_detection.models import end_2_end_optimization
-from lines_and_field_detection.utils.image_utils import *
-from extra_utils.helpers import convert_numpy_to_bitmask
-from extra_utils.constants import PATH_TO_AUTOMATIC_MODELS
+from automatic_models.lines_and_field_detection.utils import utils, warp, image_utils, constant_var
+from automatic_models.lines_and_field_detection.models import end_2_end_optimization
+from automatic_models.lines_and_field_detection.utils.image_utils import *
+from automatic_models.extra_utils.constants import PATH_TO_AUTOMATIC_MODELS
 
 
 @dataclass

@@ -1,5 +1,14 @@
 """This module serves as general API with automatic_models module"""
 import sys
+from pathlib import Path
+
+bs_soccer = str((Path('./')).resolve())
+yolo_path = str((Path('./') / 'automatic_models' / 'object_detection' / 'yolo').resolve())
+
+for path in (bs_soccer, yolo_path):
+    print(path)
+    if path not in sys.path:
+        sys.path.append(path)
 
 from automatic_models.handlers import VideoHandler
 from argparse import ArgumentParser
@@ -109,6 +118,6 @@ if __name__ == '__main__':
                        models_config_path='data/configs/basic_config.json',
                        perform_events=False,
                        perform_objects=True,
-                       perform_lines_fields=True,
+                       perform_lines_fields=False,
                        save_imgs=True)
 
