@@ -106,7 +106,7 @@ If user does not provide any configuration file, models will be run with followi
     "desired_homography": "optim"
   },
   "object_detection_model": {
-    "objects_labels": ('PERSON', 'SPORTS_BALL'),
+    "objects_labels": ["PERSON", "SPORTS_BALL"],
     "device": "cpu",
     "conf_threshold": 0.25
   },
