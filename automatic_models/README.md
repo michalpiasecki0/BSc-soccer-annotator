@@ -12,7 +12,7 @@ It can be used as a standalone module or be incorporated into other code (E.g in
 
 ## Usage prerequisities
 In order to use this module make sure, you have completed installation steps mentioned on [main page](https://github.com/michalpiasecki0/BSc-soccer-annotator)
-
+What's more make sure you have `ffmpeg` installed on your system. Link for installation: [ffmpeg](https://ffmpeg.org/download.html)
 What's more make sure you have placed model weights in correct folders, in particular:
 1. Download [out.zip](https://drive.google.com/uc?id=1kgc6wfgdIDsHBhFMAr6YwTWbrigNv_UB&export=download) and extract it in [BSc-soccer-annotator/automatic_models/lines_and_field_detection/out](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/lines_and_field_detection/out) folder.
 2. Download [yolov7.pt](https://github.com/WongKinYiu/yolov7/releases) and place it in [automatic_models/object_detection/yolo](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/object_detection/yolo)
