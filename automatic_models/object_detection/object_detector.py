@@ -78,26 +78,29 @@ class ObjectDetector:
         :param labels: labels for objects, by default COCOLabels are used
         :return: dictionary with detected objects, for each object class, location and confidence is calculated
         """
-        result_dict = {}
-        for line in txt_raw:
-            line = list(map(float, line))
-            if labels(int(line[0])).name in self.config.objects_labels:
-                #  only saving PERSON AND SPORTSBALL DETECTED BY YOLO
-                if self.xywh_format:
-                    result_dict[len(result_dict)] = {'class': labels(int(line[0])).name,
-                                                     'x_center': line[1],
-                                                     'y_center': line[2],
-                                                     'width': line[3],
-                                                     'height': line[4],
-                                                     'confidence': line[5]}
-                else:
-                    result_dict[len(result_dict)] = {'class': labels(int(line[0])).name,
-                                                     'x_top_left': line[1],
-                                                     'y_top_left': line[2],
-                                                     'x_bottom_right': line[3],
-                                                     'y_bottom_right': line[4],
-                                                     'confidence': line[5]}
+        if txt_raw:
+            result_dict = {}
+            for line in txt_raw:
+                line = list(map(float, line))
+                if labels(int(line[0])).name in self.config.objects_labels:
+                    #  only saving PERSON AND SPORTSBALL DETECTED BY YOLO
+                    if self.xywh_format:
+                        result_dict[len(result_dict)] = {'class': labels(int(line[0])).name,
+                                                         'x_center': line[1],
+                                                         'y_center': line[2],
+                                                         'width': line[3],
+                                                         'height': line[4],
+                                                         'confidence': line[5]}
+                    else:
+                        result_dict[len(result_dict)] = {'class': labels(int(line[0])).name,
+                                                         'x_top_left': line[1],
+                                                         'y_top_left': line[2],
+                                                         'x_bottom_right': line[3],
+                                                         'y_bottom_right': line[4],
+                                                         'confidence': line[5]}
 
-        return result_dict
+            return result_dict
+        else:
+            return None
 
 
