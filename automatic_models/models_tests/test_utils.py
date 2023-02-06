@@ -30,7 +30,7 @@ def preprocess_csv_soccernet(soccernet_table: pd.DataFrame):
     for idx in idxs:
         constrained_players = soccernet_table[(soccernet_table['frame_id'] == idx) & (soccernet_table['class'] == 'PERSON')]
         constrained_balls = soccernet_table[(soccernet_table['frame_id'] == idx) & (soccernet_table['class'] == 'Ball')]
-        constrained_players.apply(lambda k: results[''], axis=1)
+        constrained_players.apply(lambda k: result[''], axis=1)
 
 
 
@@ -76,14 +76,15 @@ def get_all_lines(lines: list):
                 [(line['points'][0], line['points'][1]), (line['points'][2], line['points'][3])]
     return result
 
-def get_lines_from_test(lines: dict):
+
+def get_lines_from_test(lines: dict, width=540, height=960):
     result = dict()
     for line_name, points in lines.items():
         if str.upper(line_name) in LINES_DICT:
             result[str.upper(line_name)] = \
                 [
-                    [points[0]['x'], points[0]['y']],
-                    [points[1]['x'], points[1]['y']]
+                    [points[0]['x'] * height, points[0]['y'] * width],
+                    [points[1]['x'] * height, points[1]['y'] * width]
                 ]
     return result
 

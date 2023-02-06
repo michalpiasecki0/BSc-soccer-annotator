@@ -72,7 +72,7 @@ class ModelTester(VideoHandler):
                 ground_truths = json.load(f)
                 self.ground_truths = preprocess_labels_soccernet(ground_truths)
         elif self.data_schema == 'lines_test':
-            self.ground_truths = {}
+            self.ground_truths = {'lines': {}}
             for path in Path(self.match_folder).iterdir():
                 if path.suffix == '.jpg':
                     self.image_handlers[path.stem] = ImageHandler(idx=path.stem,
@@ -80,7 +80,7 @@ class ModelTester(VideoHandler):
                 elif path.suffix == '.json' and path.stem != 'match_info':
                     with open(str(path), 'r') as f:
                         lines = json.load(f)
-                    self.ground_truths[path.stem] = get_lines_from_test(lines)
+                    self.ground_truths['lines'][path.stem] = get_lines_from_test(lines)
         elif self.data_schema == 'fields_test':
             with open(str(Path(match_folder) / 'total_100_converted.json')) as f:
                 self.ground_truths = json.load(f)
