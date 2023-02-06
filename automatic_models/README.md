@@ -182,36 +182,36 @@ divided by union
 
 Object detection model was tested on test dataset with 49 matches from [Soccernet tracking challenge](https://github.com/SoccerNet/sn-tracking).
 
-| Metric | IOU players | IOU balls | % players detected | % balls detected | 
-|--------|-------------|-----------|--------------------|------------------|
-|        | 0.78        | 0.35      | 0.96               | 0.35             |   
+| Metric     | IOU players | IOU balls | % players detected | % balls detected | 
+|------------|-------------|-----------|--------------------|------------------|
+| **Result** | 0.78        | 0.35      | 0.96               | 0.35             |   
 
 
 ### Lines Detection
 
 Lines detection model was tested on test dataset with test dataset containing 2500 dataset from  [Soccernet calibration challenge](https://github.com/SoccerNet/sn-calibration).
 
-| Metric | acc@5 | acc@10 | acc@20 | acc@30 | 
-|--------|-------|--------|--------|--------|
-|        | 0.27  | 0.48   | 0.72   | 0.79   |   
+| Metric     | acc@5 | acc@10 | acc@20 | acc@30 | 
+|------------|-------|--------|--------|--------|
+| **Result** | 0.27  | 0.48   | 0.72   | 0.79   |   
 
 
 ### Field Detection
 
 Field Detection model was tested on 100 hand-labelled images comiing from 20 different games.
 
-| Metric | IOU field |  
-|--------|-----------|
- |        | 0.85      |
+| Metric     | IOU field |  
+|------------|-----------|
+ | **Result** | 0.85      |
 
 
 ### Event annotation
 
 Event annotation was tested on test dataset coming from [Soccernet spotting challenge](https://github.com/SoccerNet/sn-spotting)
 
-| Metric | Avg-MAP |  
-|--------|---------|
- |        | 0.47    |
+| Metric     | Avg-MAP |  
+|------------|---------|
+ | **Result** | 0.47    |
 
 
 
