@@ -171,26 +171,51 @@ Description can be found here: [CALF](https://github.com/SoccerNet/sn-spotting/t
 
 ## Results
 
-Currently, models were tested on two folders, each containing 35 photos.
-Here are the results of best models:
-
-
-| Metric          | acc@5         | acc@10 | acc@20   | acc@30  | IOU players | Players detection ratio | Balls detection ratio   | 
-| -----------     | -----------   | ------ | -----    |   ----  |   -----     |     ------------        |     --------------      |
-| 2019-05-france  |   0.35        | 0.55   |   0.78   |   0.84  |   0.77      |        469 / 491          |       7 / 22          |
-| Barcelona Eibar |   0.18        | 0.43   |   0.71   |   0.81  |   0.79      |        297 / 325          |       1 / 19          |
-
-
+Firstly, I will introduce metrics used for models' evaluation:  
 Metrics description:
 1. `acc@x` - accuracy for line extremities, point is considered true positive, if lies in distance smaller than `x` to ground truth point
 2. `IOU` - intersection over union. Used in object detection, having two bounding boxes (predicted and ground truth), calculates their intersection 
 divided by union
 3. `detection ratio`: calculates number of detected instances divided by all ground truth instances
 
-These results can be found in following folders:
-1. [2019-05-france](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests/data/2019-05-france/results_optim_200)
-2. [Barcelona Eibar](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests/data/2017-05-21%20-%2021-00%20Barcelona%204%20-%202%20Eibar/results_optim_200)
+### Object detection
 
+Object detection model was tested on test dataset with 49 matches from [Soccernet tracking challenge](https://github.com/SoccerNet/sn-tracking).
+
+| Metric | IOU players | IOU balls | % players detected | % balls detected | 
+|--------|-------------|-----------|--------------------|------------------|
+|        | 0.78        | 0.35      | 0.96               | 0.35             |   
+
+
+### Lines Detection
+
+Lines detection model was tested on test dataset with test dataset containing 2500 dataset from  [Soccernet calibration challenge](https://github.com/SoccerNet/sn-calibration).
+
+| Metric | acc@5 | acc@10 | acc@20 | acc@30 | 
+|--------|-------|--------|--------|--------|
+|        | 0.27  | 0.48   | 0.72   | 0.79   |   
+
+
+### Field Detection
+
+Field Detection model was tested on 100 hand-labelled images comiing from 20 different games.
+
+| Metric | IOU field |  
+|--------|-----------|
+ |        | 0.85      |
+
+
+### Event annotation
+
+Event annotation was tested on test dataset coming from [Soccernet spotting challenge](https://github.com/SoccerNet/sn-spotting)
+
+| Metric | Avg-MAP |  
+|--------|---------|
+ |        | 0.47    |
+
+
+
+These results and code to perform evaluation can be found in [models_tests](models_tests) folder.
 
 
 
