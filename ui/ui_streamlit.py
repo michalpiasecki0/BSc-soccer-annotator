@@ -505,16 +505,16 @@ if authentication_status:
                 annotate = st.form_submit_button(label='Get annotations')
                 if annotate:
                     with st.spinner('Annotating...'):
-                         perform_models(video_path=os.path.join(matchDirectory, videoFileName),
-                                        output_path=matchDirectory + '/annotations/' + annotation_name,
-                                        frequency=float(models_frequency),
-                                        starting_point=float(models_start_point),
-                                        models_config_path=model_config,
-                                        saving_strategy='overwrite',
-                                        perform_events=annotate_events,
-                                        perform_objects=annotate_objects,
-                                        perform_lines_fields=annotate_lines,
-                                        save_imgs=False)
+                        perform_models(video_path=os.path.join(matchDirectory, videoFileName),
+                                       output_path=matchDirectory + '/annotations/' + annotation_name,
+                                       frequency=float(models_frequency),
+                                       starting_point=float(models_start_point),
+                                       models_config_path=model_config,
+                                       saving_strategy='overwrite',
+                                       perform_events=annotate_events,
+                                       perform_objects=annotate_objects,
+                                       perform_lines_fields=annotate_lines,
+                                       save_imgs=False)
                     st.success('Finished annotating!')
 
         # create a file with annotations to download
