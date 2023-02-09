@@ -34,7 +34,6 @@ for path in (bs_soccer, automatic_models_path, yolo_path):
 
 from automatic_models.main import perform_models
 
-
 # streamlit configs
 st.set_page_config(
     page_title='Soccer annotator',
@@ -284,9 +283,9 @@ if authentication_status:
                 Team_split_1 = Teams_split[1]
                 Team_split_2 = Teams_split[2]
                 with sidebarColumns[0]:
-                    firstTeam = st.text_input('The first team', value = Team_split_1.capitalize())
+                    firstTeam = st.text_input('The first team', value=Team_split_1.capitalize())
                 with sidebarColumns[1]:
-                    secondTeam = st.text_input('The second team', value = Team_split_2.capitalize())
+                    secondTeam = st.text_input('The second team', value=Team_split_2.capitalize())
             scrapData = st.form_submit_button('Get data')
             if scrapData:
                 # initialize data scraping
@@ -375,6 +374,11 @@ if authentication_status:
                     st.session_state[EVENT_ANNOTATION]['actions'].append(newEvent)
             elif not os.path.exists(os.path.join(matchDirectory, 'scrapped_data.json')):
                 st.error('No scraped data found!')
+            elif 'scrapedData' in st.session_state:
+                scrapedData = st.session_state['scrapedData']
+                players.columns = ['_', firstTeam, secondTeam]
+                players[firstTeam] = scrapedData['first_eleven_team_1']
+                players[secondTeam] = scrapedData['first_eleven_team_2']
 
         with st.form(key='loading_annotations'):
             st.write('Loading saved annotations')
@@ -501,16 +505,16 @@ if authentication_status:
                 annotate = st.form_submit_button(label='Get annotations')
                 if annotate:
                     with st.spinner('Annotating...'):
-                         perform_models(video_path=os.path.join(matchDirectory, videoFileName),
-                                        output_path=matchDirectory + '/annotations/' + annotation_name,
-                                        frequency=float(models_frequency),
-                                        starting_point=float(models_start_point),
-                                        models_config_path=model_config,
-                                        saving_strategy='overwrite',
-                                        perform_events=annotate_events,
-                                        perform_objects=annotate_objects,
-                                        perform_lines_fields=annotate_lines,
-                                        save_imgs=False)
+                        perform_models(video_path=os.path.join(matchDirectory, videoFileName),
+                                       output_path=matchDirectory + '/annotations/' + annotation_name,
+                                       frequency=float(models_frequency),
+                                       starting_point=float(models_start_point),
+                                       models_config_path=model_config,
+                                       saving_strategy='overwrite',
+                                       perform_events=annotate_events,
+                                       perform_objects=annotate_objects,
+                                       perform_lines_fields=annotate_lines,
+                                       save_imgs=False)
                     st.success('Finished annotating!')
 
         # create a file with annotations to download
@@ -1081,16 +1085,16 @@ if authentication_status:
             key='deleteAnnotation'
         )
     # saving current annotations
-    if confirmAnnotations or (len(annotationsTable['selected_rows']) > 0 and deleteAnnotation):
+    if confirmAnnotations or st.session_state.get('deleteAnnotation'):
         if annotationType == EVENT_ANNOTATION:
             st.session_state[annotationType]['actions'] = annotationsTable['data'].to_dict(orient='records')
-            if deleteAnnotation:
+            if st.session_state.get('deleteAnnotation'):
                 st.session_state[annotationType]['actions'].pop(
                     annotationsTable['selected_rows'][0]['_selectedRowNodeInfo']['nodeRowIndex']
                 )
         else:
             st.session_state['currentAnnotations'] = annotationsTable['data'].to_dict(orient='index')
-            if deleteAnnotation:
+            if st.session_state.get('deleteAnnotation'):
                 del st.session_state['currentAnnotations'][
                     annotationsTable['selected_rows'][0]['_selectedRowNodeInfo']['nodeRowIndex']]
             if annotationType in st.session_state:
@@ -1117,6 +1121,13 @@ if authentication_status:
                 )
             st.success(f'{file_name + filenameEnding} saved!')
 
+
+        # creating changelog file
+        save_annotations({
+            'name': name,
+            'username': username,
+            'creation_timestamp': datetimeStr
+        }, 'changelog')
 
         # converting annotations to required formats
         if PLAYER_ANNOTATION in st.session_state and BALL_ANNOTATION in st.session_state:
