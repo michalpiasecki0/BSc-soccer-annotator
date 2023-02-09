@@ -277,7 +277,9 @@ def detect_2(img_array: np.ndarray,
                 txt_results.append(line)
                 label = f'{names[int(cls)]} {conf:.2f}'
                 plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=1)
-        return txt_results, im0
+            return txt_results, im0
+    else:
+        return None, None
 
 
 

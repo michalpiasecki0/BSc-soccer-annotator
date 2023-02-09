@@ -1,0 +1,186 @@
+{
+  "score": "5 - 2",
+  "stadium_name": "Spain",
+  "country": "CampNou Barcelona",
+  "first_eleven_team_1": [
+    "Marc-Andre ter Stegen",
+    "Gerard Pique",
+    "Clement Lenglet",
+    "Nelson Semedo",
+    "Jordi Alba",
+    "Sergio Busquets",
+    "Frenkie de Jong",
+    "Arthur",
+    "Ansu Fati",
+    "Antoine Griezmann",
+    "Carles Perez"
+  ],
+  "first_eleven_team_2": [
+    "Jasper Cillessen",
+    "Gabriel Paulista",
+    "Ezequiel Garay",
+    "Jose Luis Gaya",
+    "Daniel Wass",
+    "Francis Coquelin",
+    "Dani Parejo",
+    "Ferran Torres",
+    "Goncalo Guedes",
+    "Rodrigo",
+    "Kevin Gameiro"
+  ],
+  "match_length": "",
+  "scores_team_1": [
+    [
+      "Frenkie de Jong",
+      "3'"
+    ],
+    [
+      "Ansu Fati",
+      "7'"
+    ],
+    [
+      "Gerard Pique",
+      "52'"
+    ],
+    [
+      " Arthur",
+      "61'"
+    ],
+    [
+      "Antoine Griezmann",
+      "82'"
+    ]
+  ],
+  "scores_team_2": [
+    [
+      "Kevin Gameiro",
+      "27'"
+    ],
+    [
+      "Maxi Gomez",
+      "90+2'"
+    ]
+  ],
+  "team_manager_1": "",
+  "team_manager_2": "",
+  "referee": "Jose Maria Sanchez Martinez",
+  "substitutions_team_1": [
+    [
+      "Inaki Pena",
+      NaN,
+      "up"
+    ],
+    [
+      "Jean-Clair Todibo",
+      NaN,
+      "up"
+    ],
+    [
+      "Hector Junior Firpo",
+      NaN,
+      "up"
+    ],
+    [
+      "Sergi Roberto",
+      NaN,
+      "up"
+    ],
+    [
+      "Arturo Vidal",
+      73.0,
+      "up"
+    ],
+    [
+      "Ivan Rakitic",
+      70.0,
+      "up"
+    ],
+    [
+      "Luis Suarez",
+      618260.0,
+      "up"
+    ],
+    [
+      "Gerard Pique",
+      52,
+      "down"
+    ],
+    [
+      "Jordi Alba",
+      54,
+      "down"
+    ],
+    [
+      "Frenkie de Jong",
+      "70",
+      "down"
+    ],
+    [
+      "Arthur",
+      73,
+      "down"
+    ],
+    [
+      "Ansu Fati",
+      "60",
+      "down"
+    ]
+  ],
+  "substitutions_team_2": [
+    [
+      "Jaume",
+      NaN,
+      "up"
+    ],
+    [
+      "Mouctar Diakhaby",
+      NaN,
+      "up"
+    ],
+    [
+      "Jaume Costa",
+      NaN,
+      "up"
+    ],
+    [
+      "Geoffrey Kondogbia",
+      NaN,
+      "up"
+    ],
+    [
+      "Kang-in Lee",
+      6869.0,
+      "up"
+    ],
+    [
+      "Denis Cheryshev",
+      6984.0,
+      "up"
+    ],
+    [
+      "Maxi Gomez",
+      927278.0,
+      "up"
+    ],
+    [
+      "Ferran Torres",
+      68,
+      "down"
+    ],
+    [
+      "Goncalo Guedes",
+      69,
+      "down"
+    ],
+    [
+      "Rodrigo",
+      "31",
+      "down"
+    ],
+    [
+      "Kevin Gameiro",
+      27,
+      "down"
+    ]
+  ]
+}

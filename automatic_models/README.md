@@ -11,9 +11,9 @@ In particular it automatizes following tasks:
 It can be used as a standalone module or be incorporated into other code (E.g into GUI `ui/ui_streamlit`)
 
 ## Usage prerequisities
-In order to use this module make sure, you have completed installation steps mentioned on [main page](https://github.com/michalpiasecki0/BSc-soccer-annotator)
-
-What's more make sure you have placed model weights in correct folders, in particular:
+In order to use this module make sure, you have completed installation steps mentioned on [main page](https://github.com/michalpiasecki0/BSc-soccer-annotator).  
+What's more make sure you have `ffmpeg` installed on your system. Link for installation: [ffmpeg](https://ffmpeg.org/download.html).  
+Additionally, make sure you have placed model weights in correct folders, in particular:
 1. Download [out.zip](https://drive.google.com/uc?id=1kgc6wfgdIDsHBhFMAr6YwTWbrigNv_UB&export=download) and extract it in [BSc-soccer-annotator/automatic_models/lines_and_field_detection/out](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/lines_and_field_detection/out) folder.
 2. Download [yolov7.pt](https://github.com/WongKinYiu/yolov7/releases) and place it in [automatic_models/object_detection/yolo](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/object_detection/yolo)
 
@@ -49,8 +49,73 @@ Example run:
 
 If someone doesn't want to run script from CLI, one can also modify function parameters and run it from IDE.
 
+## Configs for models:
+User can define model parameters via configuration file (argument `--models_config_path`). Such config must be in json
+format and follow specific structure. In particular, json structure must be as follows:  
+``` json
+{  
+    {  
+        "lines_field_homo_model": {}  
+        "object_detection_model": {}  
+        "event_annotation_model": {}  
+    }  
+}  
+```
+1. `lines_field_homo_model`: configuration for Lines and Field Detector. Following attributes can be provided:  
+    * `desired_homography`: `optim/orig`: method for calculating homography matrix  
+    * `optim_iters`: `<int>`: number of optimization iterations for homogrpahy matrix (applies only to optim method)  
+    * `constant_var_use_cuda`: `<bool>`: bool to indicate if CUDA is used  
+    * `torch_backends_cudnn_enabled`: `<bool>`: bool to indicate if CUDA is enabled  
+2. `object_detection_model`: configuration for Object Detection. FOllowing attributes can be provided:  
+    * `objects_labels`: `<tuple>`: tuple with objects, which detector will look for  
+    * `device`: `cuda/cpu`: type of device  
+    * `conf_threshold`: `<float>`: confidence threshold, model will register detected instances only if probability is higher than confidence threshold    
+3. `event_annotation_model`: configuration for Event Annotation. Following attributes can be provided:  
+    * `framerate`: `<int>`: event model will divide video with fps declared by this parameter    
+    * `device`: `cuda/cpu`: type of device  
+    * `confidence_threshold`: `<float>`: confidence threshold, model will register detected instances only if probability is higher than confidence threshold   
 
-
+Example of configuration file:
+```json
+{
+  "lines_field_homo_model": {
+    "optim_iters": 1,
+    "constant_var_use_cuda": false,
+    "torch_backends_cudnn_enabled": false,
+    "desired_homography": "orig"
+  },
+  "object_detection_model": {
+    "conf_threshold": 0.4
+  },
+  "event_annotation_model": {
+    "framerate": 2,
+    "confidence_threshold": 0.7,
+    "device": "cpu"
+  }
+}
+```
+Two configurations files are already provided in [configs](data/configs). 
+### Default configuration
+If user does not provide any configuration file, models will be run with following parameters:
+``` json
+{
+  "lines_field_homo_model": {
+    "optim_iters": 20,
+    "constant_var_use_cuda": false,
+    "torch_backends_cudnn_enabled": false,
+    "desired_homography": "optim"
+  },
+  "object_detection_model": {
+    "objects_labels": ["PERSON", "SPORTS_BALL"],
+    "device": "cpu",
+    "conf_threshold": 0.25
+  },
+  "event_annotation_model": {
+    "framerate": 2,
+    "confidence_threshold": 0.7,
+    "device": "cpu"
+  }
+ ```
 ## General package overview
 Here, I provide general descrption for most important files/folders in `automatic_models`  
 [main.py](https://github.com/michalpiasecki0/BSc-soccer-annotator/blob/main/automatic_models/main.py): API for automatic models  
@@ -58,7 +123,7 @@ Here, I provide general descrption for most important files/folders in `automati
 [object_detection](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/object_detection): implementation of Players, Ball detection  
 [lines_and_field_detection](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/lines_and_field_detection): implementation of field annotation and lines detection  
 [event_annotation](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/event_annotation): implementation of event annotation   
-[model_tests](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests): implemtation of tests for models  
+[model_tests](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests): implementation of tests for models  
 
 
 
@@ -106,26 +171,51 @@ Description can be found here: [CALF](https://github.com/SoccerNet/sn-spotting/t
 
 ## Results
 
-Currently, models were tested on two folders, each containing 35 photos.
-Here are the results of best models:
-
-
-| Metric          | acc@5         | acc@10 | acc@20   | acc@30  | IOU players | Players detection ratio | Balls detection ratio   | 
-| -----------     | -----------   | ------ | -----    |   ----  |   -----     |     ------------        |     --------------      |
-| 2019-05-france  |   0.35        | 0.55   |   0.78   |   0.84  |   0.77      |        469 / 491          |       7 / 22          |
-| Barcelona Eibar |   0.18        | 0.43   |   0.71   |   0.81  |   0.79      |        297 / 325          |       1 / 19          |
-
-
+Firstly, I will introduce metrics used for models' evaluation:  
 Metrics description:
 1. `acc@x` - accuracy for line extremities, point is considered true positive, if lies in distance smaller than `x` to ground truth point
 2. `IOU` - intersection over union. Used in object detection, having two bounding boxes (predicted and ground truth), calculates their intersection 
 divided by union
 3. `detection ratio`: calculates number of detected instances divided by all ground truth instances
 
-These results can be found in following folders:
-1. [2019-05-france](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests/data/2019-05-france/results_optim_200)
-2. [Barcelona Eibar](https://github.com/michalpiasecki0/BSc-soccer-annotator/tree/main/automatic_models/models_tests/data/2017-05-21%20-%2021-00%20Barcelona%204%20-%202%20Eibar/results_optim_200)
+### Object detection
 
+Object detection model was tested on test dataset with 49 matches from [Soccernet tracking challenge](https://github.com/SoccerNet/sn-tracking).
+
+| Metric     | IOU players | IOU balls | % players detected | % balls detected | 
+|------------|-------------|-----------|--------------------|------------------|
+| **Result** | 0.78        | 0.35      | 0.96               | 0.35             |   
+
+
+### Lines Detection
+
+Lines detection model was tested on test dataset with test dataset containing 2500 dataset from  [Soccernet calibration challenge](https://github.com/SoccerNet/sn-calibration).
+
+| Metric     | acc@5 | acc@10 | acc@20 | acc@30 | 
+|------------|-------|--------|--------|--------|
+| **Result** | 0.27  | 0.48   | 0.72   | 0.79   |   
+
+
+### Field Detection
+
+Field Detection model was tested on 100 hand-labelled images comiing from 20 different games.
+
+| Metric     | IOU field |  
+|------------|-----------|
+ | **Result** | 0.85      |
+
+
+### Event annotation
+
+Event annotation was tested on test dataset coming from [Soccernet spotting challenge](https://github.com/SoccerNet/sn-spotting)
+
+| Metric     | Avg-MAP |  
+|------------|---------|
+ | **Result** | 0.47    |
+
+
+
+These results and code to perform evaluation can be found in [models_tests](models_tests) folder.
 
 
 

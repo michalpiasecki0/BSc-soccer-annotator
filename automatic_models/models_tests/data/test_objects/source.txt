@@ -1,0 +1,2 @@
+Model was tested on test set for sn-tracking challenge on Soccernet containing clips from 49 matches.
+https://github.com/SoccerNet/sn-tracking

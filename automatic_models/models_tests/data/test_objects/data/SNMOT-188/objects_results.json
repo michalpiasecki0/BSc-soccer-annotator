@@ -1,0 +1,1 @@
+{"iou_players": 0.7851022448709802, "iou_balls": 0.6234685254070144, "n_players_detected": 1157, "n_players_gt": 1176, "n_balls_detected": 6, "n_balls_gt": 49, "% of balls detected": 0.12244897959183673, "% of players detected": 0.983843537414966}

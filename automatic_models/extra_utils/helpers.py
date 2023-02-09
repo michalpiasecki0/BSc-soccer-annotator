@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from typing import Tuple, Optional, List, Dict
 from pathlib import Path
-from matplotlib.patches import Rectangle
+from matplotlib.patches import Rectangle, Polygon
 from matplotlib.collections import PatchCollection
 
 
@@ -158,6 +158,28 @@ def show_save_objects_with_bboxes(img_array: np.ndarray,
                             height=(object_dict['y_top_left'] - object_dict['y_bottom_right']))
                   for object_dict in objects.values()]
     pc = PatchCollection(rectangles, facecolor=color, alpha=0.2, edgecolor=color)
+    ax.add_collection(pc)
+    if save_fig_path:
+        fig.savefig(save_fig_path)
+
+def show_save_img_with_polygons(img_array: np.ndarray,
+                                points: list,
+                                save_fig_path: Optional[str],
+                                fig_size: tuple = (12, 7),
+                                color: str = 'royalblue'
+                                ):
+
+    rgb = img_array[:, :, ::-1].copy()  # convert image from bgr to rgb
+
+    fig = plt.figure(frameon=False)
+    fig.set_size_inches(12, 7)
+
+    ax = plt.Axes(fig, [0., 0., 1., 1.])
+    ax.set_axis_off()
+    fig.add_axes(ax)
+    ax.imshow(rgb, aspect='auto')
+    polygons = [Polygon(xy=points, closed=True)]
+    pc = PatchCollection(polygons, facecolor=color, alpha=0.4, edgecolor=color)
     ax.add_collection(pc)
     if save_fig_path:
         fig.savefig(save_fig_path)
