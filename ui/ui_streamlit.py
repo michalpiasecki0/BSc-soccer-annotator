@@ -286,6 +286,7 @@ if authentication_status:
                     firstTeam = st.text_input('The first team', value=Team_split_1.capitalize())
                 with sidebarColumns[1]:
                     secondTeam = st.text_input('The second team', value=Team_split_2.capitalize())
+                st.checkbox('Only update the data')
             scrapData = st.form_submit_button('Get data')
             if scrapData:
                 # initialize data scraping
