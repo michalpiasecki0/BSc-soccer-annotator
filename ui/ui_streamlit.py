@@ -1134,14 +1134,14 @@ if authentication_status:
             st.session_state['changelog'] = {
                 'creator_name': name,
                 'creator_username': username,
-                'creation_timestamp': datetimeStr,
+                'creation_timestamp': datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S'),
                 'modifications': []
             }
         else:
             st.session_state['changelog']['modifications'].append({
                 'modifier_name': name,
                 'modifier_username': username,
-                'modification_timestamp': datetimeStr
+                'modification_timestamp': datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
             })
         save_annotations(st.session_state['changelog'], 'changelog')
 
