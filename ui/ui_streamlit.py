@@ -115,7 +115,7 @@ if authentication_status:
     with sidebar:
         # a function used on video change
         def reset_video_data():
-            for obj in ANNOTATION_TYPES + ['capturedVideo', 'scrapedData']:
+            for obj in ANNOTATION_TYPES + ['capturedVideo', 'scrapedData', 'changelog']:
                 if obj in st.session_state:
                     del st.session_state[obj]
 
@@ -483,6 +483,13 @@ if authentication_status:
                         st.success('actions.json file loaded')
                     else:
                         st.warning('no actions.json file found')
+
+                    if os.path.exists(os.path.join(annotationDirectory, 'changelog.json')):
+                        st.session_state['changelog'] = json.load(
+                            open(os.path.join(annotationDirectory, 'changelog.json'))
+                        )
+                    elif 'changelog' in st.session_state:
+                        del st.session_state['changelog']
 
         if videoSourceType == 'File' and videoFileName:
             with st.form(key='automatic_annotation'):
@@ -1123,11 +1130,20 @@ if authentication_status:
 
 
         # creating changelog file
-        save_annotations({
-            'name': name,
-            'username': username,
-            'creation_timestamp': datetimeStr
-        }, 'changelog')
+        if 'changelog' not in st.session_state:
+            st.session_state['changelog'] = {
+                'creator_name': name,
+                'creator_username': username,
+                'creation_timestamp': datetimeStr,
+                'modifications': []
+            }
+        else:
+            st.session_state['changelog']['modifications'].append({
+                'modifier_name': name,
+                'modifier_username': username,
+                'modification_timestamp': datetimeStr
+            })
+        save_annotations(st.session_state['changelog'], 'changelog')
 
         # converting annotations to required formats
         if PLAYER_ANNOTATION in st.session_state and BALL_ANNOTATION in st.session_state:
