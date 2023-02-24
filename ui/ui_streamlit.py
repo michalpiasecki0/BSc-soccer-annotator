@@ -1032,7 +1032,7 @@ if authentication_status:
     # configuring the table with annotations
     gridOptionsBuilder = GridOptionsBuilder.from_dataframe(annotations)
     gridOptionsBuilder.configure_default_column(editable=True)
-    gridOptionsBuilder.configure_selection(selection_mode='single')
+    gridOptionsBuilder.configure_selection(selection_mode='multiple')
     if annotationType == EVENT_ANNOTATION:
         gridOptionsBuilder.configure_column(
             'label',
@@ -1095,6 +1095,7 @@ if authentication_status:
             key='deleteAnnotation'
         )
 
+
     # saving current annotations
     def confirm_annotations():
         if annotationType == EVENT_ANNOTATION:
@@ -1108,18 +1109,20 @@ if authentication_status:
                     secondsRoundedStr: st.session_state['currentAnnotations']
                 }
 
+
     if confirmAnnotations:
         confirm_annotations()
 
     if st.session_state.get('deleteAnnotation'):
         confirm_annotations()
+        indices_to_delete = sorted(map(lambda row: row['_selectedRowNodeInfo']['nodeRowIndex'],
+                                       annotationsTable['selected_rows']), reverse=True)
         if annotationType == EVENT_ANNOTATION:
-            st.session_state[annotationType]['actions'].pop(
-                annotationsTable['selected_rows'][0]['_selectedRowNodeInfo']['nodeRowIndex']
-            )
+            for i in indices_to_delete:
+                st.session_state[annotationType]['actions'].pop(i)
         else:
-            del st.session_state['currentAnnotations'][
-                annotationsTable['selected_rows'][0]['_selectedRowNodeInfo']['nodeRowIndex']]
+            for i in indices_to_delete:
+                del st.session_state['currentAnnotations'][i]
             st.session_state[annotationType][secondsRoundedStr] = st.session_state['currentAnnotations']
 
     saveAnnotations = st.button('Save annotations')
