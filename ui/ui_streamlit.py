@@ -1094,19 +1094,13 @@ if authentication_status:
             'Delete selected annotation',
             key='deleteAnnotation'
         )
+
     # saving current annotations
-    if confirmAnnotations or st.session_state.get('deleteAnnotation'):
+    def confirm_annotations():
         if annotationType == EVENT_ANNOTATION:
             st.session_state[annotationType]['actions'] = annotationsTable['data'].to_dict(orient='records')
-            if st.session_state.get('deleteAnnotation'):
-                st.session_state[annotationType]['actions'].pop(
-                    annotationsTable['selected_rows'][0]['_selectedRowNodeInfo']['nodeRowIndex']
-                )
         else:
             st.session_state['currentAnnotations'] = annotationsTable['data'].to_dict(orient='index')
-            if st.session_state.get('deleteAnnotation'):
-                del st.session_state['currentAnnotations'][
-                    annotationsTable['selected_rows'][0]['_selectedRowNodeInfo']['nodeRowIndex']]
             if annotationType in st.session_state:
                 st.session_state[annotationType][secondsRoundedStr] = st.session_state['currentAnnotations']
             else:
@@ -1114,8 +1108,23 @@ if authentication_status:
                     secondsRoundedStr: st.session_state['currentAnnotations']
                 }
 
+    if confirmAnnotations:
+        confirm_annotations()
+
+    if st.session_state.get('deleteAnnotation'):
+        confirm_annotations()
+        if annotationType == EVENT_ANNOTATION:
+            st.session_state[annotationType]['actions'].pop(
+                annotationsTable['selected_rows'][0]['_selectedRowNodeInfo']['nodeRowIndex']
+            )
+        else:
+            del st.session_state['currentAnnotations'][
+                annotationsTable['selected_rows'][0]['_selectedRowNodeInfo']['nodeRowIndex']]
+            st.session_state[annotationType][secondsRoundedStr] = st.session_state['currentAnnotations']
+
     saveAnnotations = st.button('Save annotations')
     if saveAnnotations:
+        confirm_annotations()
         datetimeStr = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
         dirName = os.path.join(matchDirectory, 'annotations/annotations_' + datetimeStr)
         os.mkdir(dirName)
