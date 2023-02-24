@@ -947,6 +947,8 @@ if authentication_status:
                 elif annotationType == FIELD_ANNOTATION:
                     if annotationEditingMode == ADD_ANNOTATIONS:
                         for i, field in enumerate(canvasFrame.json_data['objects']):
+                            if 'path' not in field:
+                                continue
                             annotationsDict[str(i)] = {}
                             for j, point in enumerate(field['path']):
                                 if point[0] != 'z':
