@@ -101,6 +101,6 @@ class ObjectDetector:
 
             return result_dict
         else:
-            return None
+            return {}
 
 
