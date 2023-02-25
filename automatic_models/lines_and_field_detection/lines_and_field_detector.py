@@ -8,6 +8,7 @@ import cv2
 from dataclasses import dataclass
 from typing import Optional, Dict, Tuple
 
+import shapely.errors
 import torch
 from shapely.geometry import LineString, Polygon
 
@@ -121,7 +122,10 @@ class LineDetector:
             lambda k: self._map_template_point_to_frame(k, H_inv=self.homography_inv, out_shape=out_shape,
                                                         template_shape=template_shape), axis=1, arr=points_template))
         polygon_frame = Polygon([[0, 0], [out_shape[0], 0], [out_shape[0], out_shape[1]], [0, out_shape[1]]])
-        coords = np.array(polygon_frame.intersection(polygon_mapped).exterior.coords.xy).transpose()
+        try:
+            coords = np.array(polygon_frame.intersection(polygon_mapped).exterior.coords.xy).transpose()
+        except shapely.errors.TopologicalError:
+            return None
         if coords.size > 0:
             self.field = coords.astype(int).tolist()
             return coords
