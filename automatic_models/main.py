@@ -32,14 +32,14 @@ def parse_args():
                                  help='Choose from add/overwrite. If latter new predictions overwrite older ones.')
     argument_parser.add_argument('-conf', '--models_config_path', default=None, type=str,
                                  help='Path to json with parameters for models.')
-    argument_parser.add_argument('-p_e', '--perform_events', default=True, type=bool,
-                                 help='If True model will perform event annotation')
-    argument_parser.add_argument('-p_o', '--perform_objects', default=True, type=bool,
-                                 help='If True model will perform object detection')
-    argument_parser.add_argument('-p_lf', '--perform_lines_fields', default=True, type=bool,
-                                 help='If True model will perform field segmentation and lines detection')
-    argument_parser.add_argument('-img', '--save_images', default=True, type=bool,
-                                 help='If True images with predictions will be saved in output folder')
+    argument_parser.add_argument('-p_e', '--perform_events',  action='store_true',
+                                 help='If flag is set model will perform event annotation')
+    argument_parser.add_argument('-p_o', '--perform_objects', action='store_true',
+                                 help='If flag is set model will perform object detection')
+    argument_parser.add_argument('-p_lf', '--perform_lines_fields', action='store_true',
+                                 help='If flag is set model will perform field segmentation and lines detection')
+    argument_parser.add_argument('-img', '--save_images',  action='store_true',
+                                 help='If flag is set images with predictions will be saved in output folder')
     return argument_parser.parse_args()
 
 
@@ -50,7 +50,7 @@ def perform_models(video_path: str,
                    models_config_path: str = None,
                    saving_strategy: str = 'overwrite',
                    perform_events: bool = False,
-                   perform_objects: bool = True,
+                   perform_objects: bool = False,
                    perform_lines_fields: bool = False,
                    save_imgs: bool = False
                    ) -> None:
@@ -120,4 +120,5 @@ if __name__ == '__main__':
                        perform_objects=False,
                        perform_lines_fields=True,
                        save_imgs=True)
+    sys.exit()
 
