@@ -58,6 +58,7 @@ ADD_ANNOTATIONS = 'Adding annotations'
 
 # loading default data
 players = pd.read_csv('ui/data/default/players.csv')
+playerActions = pd.read_csv('ui/data/default/player_actions.csv')
 events = pd.read_csv('ui/data/default/events.csv')
 lines = list(json.load(open('automatic_models/lines_and_field_detection/data/lines_coordinates.json')).keys())
 fieldAnnotations = pd.read_csv('ui/data/default/field_annotations.csv')
@@ -108,10 +109,20 @@ if not authentication_status:
 if authentication_status:
     # the beginning of the ui rendering
     st.title('Soccer Annotator')
-    st.write('Annotation tool for video matches.')
     sidebar = st.sidebar
     authenticator.logout("Logout", "sidebar")
     st.sidebar.title(f"Welcome {name}")
+    if not os.path.exists('ui/config.json'):
+        st.error('No config.json file found!')
+        st.stop()
+    elif 'config' not in st.session_state:
+        st.session_state['config'] = json.load(open('ui/config.json'))
+    annotatorConfig = st.session_state['config']
+    ANNOTATION_TYPES = list(filter(
+        lambda annotation_type: annotation_type in annotatorConfig['annotation_types'],
+        ANNOTATION_TYPES
+    ))
+    st.write(annotatorConfig['configuration_description'])
     with sidebar:
         # a function used on video change
         def reset_video_data():
@@ -148,6 +159,7 @@ if authentication_status:
                 if loadVideo and firstTeam and secondTeam:
                     reset_video_data()
                     matchDirectory = match_folder_structure_validator.input_match(
+                        annotatorConfig['data_directory'],
                         firstTeam,
                         secondTeam,
                         matchDate
@@ -173,12 +185,12 @@ if authentication_status:
                 matchDirectory = st.session_state['matchDirectory']
 
         elif videoSourceType == 'File':
-            matchDirectories = os.listdir('matches/')
+            matchDirectories = os.listdir(annotatorConfig['data_directory'])
             if len(matchDirectories) == 0:
                 st.error('No videos to annotate')
                 st.stop()
             matchDirectory = os.path.join(
-                'matches',
+                annotatorConfig['data_directory'],
                 st.selectbox(
                     'Select a match',
                     matchDirectories
@@ -235,6 +247,7 @@ if authentication_status:
                 if loadVideo and firstTeam and secondTeam:
                     reset_video_data()
                     matchDirectory = match_folder_structure_validator.input_match(
+                        annotatorConfig['data_directory'],
                         firstTeam,
                         secondTeam,
                         matchDate
@@ -271,115 +284,118 @@ if authentication_status:
                 os.path.join(matchDirectory, 'annotations'))):
             os.mkdir(os.path.join(matchDirectory, 'annotations'))
 
-        with st.form(key='scraper_form'):
-            st.write('Getting data about the match')
-            if videoSourceType == 'File':
-                matchDate = st.date_input(
-                    'Choose the date of the match',
-                    value=datetime.datetime.strptime(matchDirectory[8:18], '%Y-%m-%d')
-                )
-                sidebarColumns = st.columns(2)
-                Teams_split = matchDirectory.split('_')
-                Team_split_1 = Teams_split[1]
-                Team_split_2 = Teams_split[2]
-                with sidebarColumns[0]:
-                    firstTeam = st.text_input('The first team', value=Team_split_1.capitalize())
-                with sidebarColumns[1]:
-                    secondTeam = st.text_input('The second team', value=Team_split_2.capitalize())
-                st.checkbox('Only update the data')
-            scrapData = st.form_submit_button('Get data')
-            if scrapData:
-                # initialize data scraping
-                try:
-                    with st.spinner('Scraping the data...'):
-                        if firstTeam in dict_concatenated:
-                            firstTeam = dict_concatenated[str(firstTeam)]
-                        if secondTeam in dict_concatenated:
-                            secondTeam = dict_concatenated[str(secondTeam)]
-                        run_script(matchDate, firstTeam, secondTeam)
-                        data = get_data_from_GUI(matchDate, firstTeam, secondTeam)
-                        match_date_string = str(data[0]) + '_' + str(data[1]).replace('_', '') + '_' + str(
-                            data[2]).replace(
-                            '_', '')
-                        path_to_scrapped_data = os.path.join('matches', match_date_string, 'scrapped_data.json')
-                    st.success('Acquired the data!')
-                except:
-                    st.error('No data could be found')
+        if annotatorConfig['enable_scraper']:
+            with st.form(key='scraper_form'):
+                st.write('Getting data about the match')
+                if videoSourceType == 'File':
+                    matchDate = st.date_input(
+                        'Choose the date of the match',
+                        value=datetime.datetime.strptime(matchDirectory[8:18], '%Y-%m-%d')
+                    )
+                    sidebarColumns = st.columns(2)
+                    Teams_split = matchDirectory.split('_')
+                    Team_split_1 = Teams_split[1]
+                    Team_split_2 = Teams_split[2]
+                    with sidebarColumns[0]:
+                        firstTeam = st.text_input('The first team', value=Team_split_1.capitalize())
+                    with sidebarColumns[1]:
+                        secondTeam = st.text_input('The second team', value=Team_split_2.capitalize())
+                    st.checkbox('Only update the data')
+                scrapData = st.form_submit_button('Get data')
+                if scrapData:
+                    # initialize data scraping
+                    try:
+                        with st.spinner('Scraping the data...'):
+                            if firstTeam in dict_concatenated:
+                                firstTeam = dict_concatenated[str(firstTeam)]
+                            if secondTeam in dict_concatenated:
+                                secondTeam = dict_concatenated[str(secondTeam)]
+                            run_script(matchDate, firstTeam, secondTeam)
+                            data = get_data_from_GUI(matchDate, firstTeam, secondTeam)
+                            match_date_string = str(data[0]) + '_' + str(data[1]).replace('_', '') + '_' + str(
+                                data[2]).replace(
+                                '_', '')
+                            path_to_scrapped_data = os.path.join(
+                                annotatorConfig['data_directory'], match_date_string, 'scrapped_data.json'
+                            )
+                        st.success('Acquired the data!')
+                    except:
+                        st.error('No data could be found')
 
-            # loading scraped data if exists
-            if os.path.exists(
-                    os.path.join(matchDirectory, 'scrapped_data.json')
-            ) and 'scrapedData' not in st.session_state:
-                st.session_state['scrapedData'] = json.load(
-                    open(os.path.join(matchDirectory, 'scrapped_data.json'))
-                )
-                scrapedData = st.session_state['scrapedData']
-                players.columns = ['_', firstTeam, secondTeam]
-                players[firstTeam] = scrapedData['first_eleven_team_1']
-                players[secondTeam] = scrapedData['first_eleven_team_2']
-                if EVENT_ANNOTATION not in st.session_state:
-                    st.session_state[EVENT_ANNOTATION] = {"actions": []}
-                for score in scrapedData['scores_team_1']:
-                    minute = re.findall(r'\d+', score[1])
-                    if minute:
-                        gamepart = '1' if int(minute[0]) <= 45 else '2'
-                    else:
-                        gamepart = 'other'
-                    newEvent = {
-                        "videoTime": score[1][:-1] + ':0',
-                        "gamePart": gamepart,
-                        "label": "Goal",
-                        "team": firstTeam,
-                        'player': score[0]
-                    }
-                    newEvent['gameTime'] = newEvent['gamePart'] + ' - ' + newEvent['videoTime']
-                    st.session_state[EVENT_ANNOTATION]['actions'].append(newEvent)
-                for score in scrapedData['scores_team_2']:
-                    minute = re.findall(r'\d+', score[1])
-                    if minute:
-                        gamepart = '1' if int(minute[0]) <= 45 else '2'
-                    else:
-                        gamepart = 'other'
-                    newEvent = {
-                        "videoTime": score[1][:-1] + ':0',
-                        "gamePart": gamepart,
-                        "label": "Goal",
-                        "team": secondTeam,
-                        'player': score[0]
-                    }
-                    newEvent['gameTime'] = newEvent['gamePart'] + ' - ' + newEvent['videoTime']
-                    st.session_state[EVENT_ANNOTATION]['actions'].append(newEvent)
-                for substitution in scrapedData['substitutions_team_1']:
-                    if str(substitution[1]) == 'nan':
-                        continue
-                    newEvent = {
-                        "videoTime": str(substitution[1]) + ':0',
-                        "gamePart": '1' if int(substitution[1]) < 45 else '2',
-                        "label": "Substitution - " + substitution[2],
-                        "team": firstTeam,
-                        'player': substitution[0]
-                    }
-                    newEvent['gameTime'] = newEvent['gamePart'] + ' - ' + newEvent['videoTime']
-                    st.session_state[EVENT_ANNOTATION]['actions'].append(newEvent)
-                for substitution in scrapedData['substitutions_team_2']:
-                    if str(substitution[1]) == 'nan':
-                        continue
-                    newEvent = {
-                        "videoTime": str(substitution[1]) + ':0',
-                        "gamePart": '1' if int(substitution[1]) < 45 else '2',
-                        "label": "Substitution - " + substitution[2],
-                        "team": secondTeam,
-                        'player': substitution[0]
-                    }
-                    newEvent['gameTime'] = newEvent['gamePart'] + ' - ' + newEvent['videoTime']
-                    st.session_state[EVENT_ANNOTATION]['actions'].append(newEvent)
-            elif not os.path.exists(os.path.join(matchDirectory, 'scrapped_data.json')):
-                st.error('No scraped data found!')
-            elif 'scrapedData' in st.session_state:
-                scrapedData = st.session_state['scrapedData']
-                players.columns = ['_', firstTeam, secondTeam]
-                players[firstTeam] = scrapedData['first_eleven_team_1']
-                players[secondTeam] = scrapedData['first_eleven_team_2']
+                # loading scraped data if exists
+                if os.path.exists(
+                        os.path.join(matchDirectory, 'scrapped_data.json')
+                ) and 'scrapedData' not in st.session_state:
+                    st.session_state['scrapedData'] = json.load(
+                        open(os.path.join(matchDirectory, 'scrapped_data.json'))
+                    )
+                    scrapedData = st.session_state['scrapedData']
+                    players.columns = ['_', firstTeam, secondTeam]
+                    players[firstTeam] = scrapedData['first_eleven_team_1']
+                    players[secondTeam] = scrapedData['first_eleven_team_2']
+                    if EVENT_ANNOTATION not in st.session_state:
+                        st.session_state[EVENT_ANNOTATION] = {"actions": []}
+                    for score in scrapedData['scores_team_1']:
+                        minute = re.findall(r'\d+', score[1])
+                        if minute:
+                            gamepart = '1' if int(minute[0]) <= 45 else '2'
+                        else:
+                            gamepart = 'other'
+                        newEvent = {
+                            "videoTime": score[1][:-1] + ':0',
+                            "gamePart": gamepart,
+                            "label": "Goal",
+                            "team": firstTeam,
+                            'player': score[0]
+                        }
+                        newEvent['gameTime'] = newEvent['gamePart'] + ' - ' + newEvent['videoTime']
+                        st.session_state[EVENT_ANNOTATION]['actions'].append(newEvent)
+                    for score in scrapedData['scores_team_2']:
+                        minute = re.findall(r'\d+', score[1])
+                        if minute:
+                            gamepart = '1' if int(minute[0]) <= 45 else '2'
+                        else:
+                            gamepart = 'other'
+                        newEvent = {
+                            "videoTime": score[1][:-1] + ':0',
+                            "gamePart": gamepart,
+                            "label": "Goal",
+                            "team": secondTeam,
+                            'player': score[0]
+                        }
+                        newEvent['gameTime'] = newEvent['gamePart'] + ' - ' + newEvent['videoTime']
+                        st.session_state[EVENT_ANNOTATION]['actions'].append(newEvent)
+                    for substitution in scrapedData['substitutions_team_1']:
+                        if str(substitution[1]) == 'nan':
+                            continue
+                        newEvent = {
+                            "videoTime": str(substitution[1]) + ':0',
+                            "gamePart": '1' if int(substitution[1]) < 45 else '2',
+                            "label": "Substitution - " + substitution[2],
+                            "team": firstTeam,
+                            'player': substitution[0]
+                        }
+                        newEvent['gameTime'] = newEvent['gamePart'] + ' - ' + newEvent['videoTime']
+                        st.session_state[EVENT_ANNOTATION]['actions'].append(newEvent)
+                    for substitution in scrapedData['substitutions_team_2']:
+                        if str(substitution[1]) == 'nan':
+                            continue
+                        newEvent = {
+                            "videoTime": str(substitution[1]) + ':0',
+                            "gamePart": '1' if int(substitution[1]) < 45 else '2',
+                            "label": "Substitution - " + substitution[2],
+                            "team": secondTeam,
+                            'player': substitution[0]
+                        }
+                        newEvent['gameTime'] = newEvent['gamePart'] + ' - ' + newEvent['videoTime']
+                        st.session_state[EVENT_ANNOTATION]['actions'].append(newEvent)
+                elif not os.path.exists(os.path.join(matchDirectory, 'scrapped_data.json')):
+                    st.error('No scraped data found!')
+                elif 'scrapedData' in st.session_state:
+                    scrapedData = st.session_state['scrapedData']
+                    players.columns = ['_', firstTeam, secondTeam]
+                    players[firstTeam] = scrapedData['first_eleven_team_1']
+                    players[secondTeam] = scrapedData['first_eleven_team_2']
 
         with st.form(key='loading_annotations'):
             st.write('Loading saved annotations')
@@ -408,18 +424,20 @@ if authentication_status:
                         st.session_state['player_info'] = {}
                         for key, value in st.session_state[PLAYER_ANNOTATION].items():
                             st.session_state['player_info'][key] = {}
-                            for key2, value2 in value.items():
-                                if value2['class'] == 'PERSON':
-                                    st.session_state['player_info'][key][
-                                        (value2['x_top_left'] // 10,
-                                         value2['y_top_left'] // 10,
-                                         value2['x_bottom_right'] // 10,
-                                         value2['y_bottom_right'] // 10)
-                                    ] = (
-                                        value2['confidence'],
-                                        value2['Team'] if 'Team' in value2 else '-',
-                                        value2['Player'] if 'Player' in value2 else '-'
-                                    )
+                            if value:
+                                for key2, value2 in value.items():
+                                    if value2['class'] == 'PERSON':
+                                        st.session_state['player_info'][key][
+                                            (value2['x_top_left'] // 10,
+                                             value2['y_top_left'] // 10,
+                                             value2['x_bottom_right'] // 10,
+                                             value2['y_bottom_right'] // 10)
+                                        ] = (
+                                            value2['confidence'],
+                                            value2['Team'] if 'Team' in value2 else '-',
+                                            value2['Player'] if 'Player' in value2 else '-',
+                                            value2['Action'] if 'Action' in value2 else '-'
+                                        )
 
                         st.session_state[BALL_ANNOTATION] = json.load(
                             open(os.path.join(annotationDirectory, 'objects.json'))
@@ -438,21 +456,22 @@ if authentication_status:
                             i = 0
                             d = {}
                             st.session_state['lines_names'][key] = {}
-                            for key2, value2 in value.items():
-                                d[str(i)] = {
-                                    'line': key2,
-                                    'x1': value2[0][0],
-                                    'y1': value2[0][1],
-                                    'x2': value2[1][0],
-                                    'y2': value2[1][1]
-                                }
-                                i += 1
-                                st.session_state['lines_names'][key][
-                                    (value2[0][0] // 10,
-                                     value2[0][1] // 10,
-                                     value2[1][0] // 10,
-                                     value2[1][1] // 10)
-                                ] = key2
+                            if value:
+                                for key2, value2 in value.items():
+                                    d[str(i)] = {
+                                        'line': key2,
+                                        'x1': value2[0][0],
+                                        'y1': value2[0][1],
+                                        'x2': value2[1][0],
+                                        'y2': value2[1][1]
+                                    }
+                                    i += 1
+                                    st.session_state['lines_names'][key][
+                                        (value2[0][0] // 10,
+                                         value2[0][1] // 10,
+                                         value2[1][0] // 10,
+                                         value2[1][1] // 10)
+                                    ] = key2
                             st.session_state[LINE_ANNOTATION][key] = d
 
                         st.success('lines.json file loaded')
@@ -466,10 +485,11 @@ if authentication_status:
                         ).items():
                             i = 1
                             d = {}
-                            for xy in value:
-                                d['x' + str(i)] = xy[0]
-                                d['y' + str(i)] = xy[1]
-                                i += 1
+                            if value:
+                                for xy in value:
+                                    d['x' + str(i)] = xy[0]
+                                    d['y' + str(i)] = xy[1]
+                                    i += 1
                             st.session_state[FIELD_ANNOTATION][key] = {'0': d}
 
                         st.success('fields.json file loaded')
@@ -492,7 +512,7 @@ if authentication_status:
                     elif 'changelog' in st.session_state:
                         del st.session_state['changelog']
 
-        if videoSourceType == 'File' and videoFileName:
+        if videoSourceType == 'File' and videoFileName and annotatorConfig['enable_automatic_annotation']:
             with st.form(key='automatic_annotation'):
                 annotationDirectories = os.listdir(os.path.join(matchDirectory, 'annotations'))
                 st.write('Getting automatic annotations')
@@ -589,8 +609,8 @@ if authentication_status:
                 'Frame interval',
                 min_value=1,
                 max_value=int(max_frames),
-                value=int(video_fps * st.session_state[
-                    'secondsInterval']) if 'secondsInterval' in st.session_state else 1,
+                value=max(1, int(video_fps * st.session_state[
+                    'secondsInterval'])) if 'secondsInterval' in st.session_state else 1,
                 key='frameInterval'
             )
             frameNumber = st.slider(
@@ -767,6 +787,10 @@ if authentication_status:
                             'Choose player',
                             players[selectedTeam] if selectedTeam != '-' else ['-', 'Referee']
                         )
+                        selectedPlayerAction = st.selectbox(
+                            'Choose player action',
+                            playerActions
+                        )
                         canvasFillColor = teamsColors[
                             selectedTeam] if selectedTeam in teamsColors else "rgba(255, 165, 0, 0.3)"
                 if PLAYER_ANNOTATION in st.session_state and secondsRoundedStr in st.session_state[PLAYER_ANNOTATION]:
@@ -788,7 +812,8 @@ if authentication_status:
                         ] = (
                             data['confidence'],
                             data['Team'] if 'Team' in data else '-',
-                            data['Player'] if 'Player' in data else '-'
+                            data['Player'] if 'Player' in data else '-',
+                            data['Action'] if 'Action' in data else '-'
                         )
                         initialDrawing['objects'].append(player)
             elif annotationType == BALL_ANNOTATION:
@@ -886,6 +911,7 @@ if authentication_status:
                             'Team': firstTeam if player['fill'] == teamsColors[firstTeam] else (
                                 secondTeam if player['fill'] == teamsColors[secondTeam] else '-'),
                             'Player': '-',
+                            'Action': '-',
                             'x_top_left': round(player['left'] / scaleWidth),
                             'y_top_left': round(player['top'] / scaleHeight),
                             'x_bottom_right': round((player['width'] * player['scaleX'] + player['left']) / scaleWidth),
@@ -903,7 +929,8 @@ if authentication_status:
                             st.session_state['player_info'][secondsRoundedStr][coor_tuple] = (
                                 1,
                                 selectedTeam if annotationEditingMode == ADD_ANNOTATIONS else '-',
-                                selectedPlayer if annotationEditingMode == ADD_ANNOTATIONS else '-'
+                                selectedPlayer if annotationEditingMode == ADD_ANNOTATIONS else '-',
+                                selectedPlayerAction if annotationEditingMode == ADD_ANNOTATIONS else '-'
                             )
                         annotationsDict[str(i)]['confidence'] = \
                             st.session_state['player_info'][secondsRoundedStr][coor_tuple][0]
@@ -911,6 +938,8 @@ if authentication_status:
                         #     st.session_state['player_info'][secondsRoundedStr][coor_tuple][1]
                         annotationsDict[str(i)]['Player'] = \
                             st.session_state['player_info'][secondsRoundedStr][coor_tuple][2]
+                        annotationsDict[str(i)]['Action'] = \
+                            st.session_state['player_info'][secondsRoundedStr][coor_tuple][3]
                 elif annotationType == BALL_ANNOTATION:
                     for i, ball in enumerate(canvasFrame.json_data['objects']):
                         annotationsDict[str(i)] = {
@@ -1077,6 +1106,14 @@ if authentication_status:
             },
             cellEditorPopup=True
         )
+        gridOptionsBuilder.configure_column(
+            'Action',
+            cellEditor='agRichSelectCellEditor',
+            cellEditorParams={
+                'values': list(playerActions[playerActions.columns[0]])
+            },
+            cellEditorPopup=True
+        )
     gridOptionsBuilder.configure_grid_options(enableRangeSelection=True)
     # creating annotations table
     annotationsTable = AgGrid(
@@ -1094,7 +1131,6 @@ if authentication_status:
             'Delete selected annotation',
             key='deleteAnnotation'
         )
-
 
     # saving current annotations
     def confirm_annotations():

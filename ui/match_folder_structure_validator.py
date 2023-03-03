@@ -8,9 +8,9 @@ def make_id_from_data(team1, team2, date):
     return "{date}_{team1}_{team2}".format(team1=team1, team2=team2, date=date)
 
 
-def input_match(team1, team2, date):
+def input_match(directory, team1, team2, date):
     id_string = make_id_from_data(team1, team2, date)
-    file_path = os.path.join('matches', id_string)
+    file_path = os.path.join(directory, id_string)
 
     if os.path.exists(file_path) and os.path.isdir(file_path):
         print('Path already exists')
