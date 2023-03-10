@@ -505,7 +505,11 @@ if authentication_status:
                 with c3:
                     annotate_lines = st.checkbox(label='Annotate lines&fields', value=False)
                 annotation_name = st.text_input('Annotation name', value='model_annotation')
-                model_config = st.text_input("Configuration for models", placeholder='Field not necesarry')
+                possible_configs = {config.stem: config for config in (Path(automatic_models_path) / 'data' / 'configs').iterdir()}
+                model_config = st.selectbox(label='Configuration file',
+                                            options=sorted(possible_configs.keys()),
+                                            )
+                #model_config = st.text_input("Configuration for models", placeholder='Field not necesarry')
                 annotate = st.form_submit_button(label='Get annotations')
                 flags_dict = {"--perform_events": annotate_events,
                               "--perform_objects": annotate_objects,
@@ -520,7 +524,7 @@ if authentication_status:
                                  "--frequency", str(models_frequency),
                                  "--starting_point", str(models_start_point),
                                  "--saving_strategy", "overwrite",
-                                 "--models_config_path", model_config,
+                                 "--models_config_path", possible_configs[model_config],
                                  ]
                     for flag, value in flags_dict.items():
                         if value:
