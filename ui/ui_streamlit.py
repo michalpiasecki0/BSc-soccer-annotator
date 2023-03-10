@@ -3,6 +3,8 @@ import json
 import os
 import re
 import sys
+import subprocess
+import psutil
 from base64 import b64encode
 from zipfile import ZipFile
 from pathlib import Path
@@ -22,6 +24,7 @@ import match_folder_structure_validator
 from execute_scrapper import run_script
 from footballdatabase_eu_scrapper import get_data_from_GUI
 from read_team_options import read_teams_options
+
 
 bs_soccer = str((Path('./')).resolve())
 automatic_models_path = str((Path('./') / 'automatic_models').resolve())
@@ -75,6 +78,7 @@ teams_dict = dict(zip(teams_options, teams_options))
 dict_concatenated = {}
 dict_concatenated.update(countries_dict)
 dict_concatenated.update(teams_dict)
+
 
 # --- User Authentication ---
 users = db.fetch_all_users()
@@ -501,21 +505,41 @@ if authentication_status:
                 with c3:
                     annotate_lines = st.checkbox(label='Annotate lines&fields', value=False)
                 annotation_name = st.text_input('Annotation name', value='model_annotation')
-                model_config = st.text_input("Configuration for models", placeholder='Field not necesarry')
+                possible_configs = {config.stem: config for config in (Path(automatic_models_path) / 'data' / 'configs').iterdir()}
+                model_config = st.selectbox(label='Configuration file',
+                                            options=sorted(possible_configs.keys()),
+                                            )
+                #model_config = st.text_input("Configuration for models", placeholder='Field not necesarry')
                 annotate = st.form_submit_button(label='Get annotations')
+                flags_dict = {"--perform_events": annotate_events,
+                              "--perform_objects": annotate_objects,
+                              "--perform_lines": annotate_lines}
+                if 'active_processes' not in st.session_state:
+                    st.session_state.active_processes = {}
                 if annotate:
+                    args_list = [f"{sys.executable}",
+                                 "automatic_models/main.py",
+                                 "--video_path", os.path.join(matchDirectory, videoFileName),
+                                 "--output_path", matchDirectory + '/annotations/' + annotation_name,
+                                 "--frequency", str(models_frequency),
+                                 "--starting_point", str(models_start_point),
+                                 "--saving_strategy", "overwrite",
+                                 "--models_config_path", possible_configs[model_config],
+                                 ]
+                    for flag, value in flags_dict.items():
+                        if value:
+                            args_list.append(flag)
                     with st.spinner('Annotating...'):
-                        perform_models(video_path=os.path.join(matchDirectory, videoFileName),
-                                       output_path=matchDirectory + '/annotations/' + annotation_name,
-                                       frequency=float(models_frequency),
-                                       starting_point=float(models_start_point),
-                                       models_config_path=model_config,
-                                       saving_strategy='overwrite',
-                                       perform_events=annotate_events,
-                                       perform_objects=annotate_objects,
-                                       perform_lines_fields=annotate_lines,
-                                       save_imgs=False)
-                    st.success('Finished annotating!')
+
+                        process = subprocess.Popen(args_list)
+                        st.session_state.active_processes[process.pid] = os.path.join(matchDirectory, videoFileName)
+
+                    st.info("Results will be saved after process is completed")
+                st.info('Currently running annotations. Please note that running many automatic annotations will slow down machine')
+                for process_id in list(st.session_state.active_processes):
+                    if not psutil.pid_exists(process_id):
+                        del st.session_state.active_processes[process_id]
+                st.write(st.session_state.active_processes)
 
         # create a file with annotations to download
         zipFileName = 'zippedAnnotations.zip'
