@@ -1,0 +1,13 @@
+{
+  "configuration_description": "Annotation tool for videos of soccer matches.",
+  "data_directory": "matches",
+  "enable_scraper": true,
+  "enable_automatic_annotation": true,
+  "annotation_types": [
+    "Event annotation",
+    "Field annotation",
+    "Line annotation",
+    "Player annotation",
+    "Ball annotation"
+  ]
+}
