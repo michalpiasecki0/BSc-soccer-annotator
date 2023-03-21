@@ -716,6 +716,19 @@ if authentication_status:
                     st.session_state['annotationSecond'] = next_annotation
 
 
+            def previous_annotation_button_on_click():
+                current_annotations = list(st.session_state[annotationType].keys())
+                current_annotation_index = current_annotations.index(annotationSecond)
+                if current_annotation_index > 0:
+                    next_annotation = current_annotations[current_annotation_index - 1]
+                    st.session_state['annotationSecond'] = next_annotation
+
+
+            previousAnnotationButton = st.button(
+                'Previous annotation',
+                on_click=previous_annotation_button_on_click
+            )
+
             nextAnnotationButton = st.button(
                 'Next annotation',
                 on_click=next_annotation_button_on_click
