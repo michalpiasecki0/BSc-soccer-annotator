@@ -677,6 +677,22 @@ if authentication_status:
                 )
 
 
+            def previous_frame_button_on_click():
+                st.session_state['frameNumber'] = max(
+                    st.session_state['frameNumber'] - frameInterval,
+                    0
+                )
+                st.session_state['secondsNumber'] = max(
+                    st.session_state['secondsNumber'] - secondsInterval,
+                    0
+                )
+
+
+            previousFrameButton = st.button(
+                'Previous frame',
+                on_click=previous_frame_button_on_click
+            )
+
             nextFrameButton = st.button(
                 'Next frame',
                 on_click=next_frame_button_on_click
