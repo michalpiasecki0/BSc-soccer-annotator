@@ -25,7 +25,6 @@ from execute_scrapper import run_script
 from footballdatabase_eu_scrapper import get_data_from_GUI
 from read_team_options import read_teams_options
 
-
 bs_soccer = str((Path('./')).resolve())
 automatic_models_path = str((Path('./') / 'automatic_models').resolve())
 yolo_path = str((Path('./') / 'automatic_models' / 'object_detection' / 'yolo').resolve())
@@ -79,7 +78,6 @@ teams_dict = dict(zip(teams_options, teams_options))
 dict_concatenated = {}
 dict_concatenated.update(countries_dict)
 dict_concatenated.update(teams_dict)
-
 
 # --- User Authentication ---
 users = db.fetch_all_users()
@@ -533,11 +531,12 @@ if authentication_status:
                 with c3:
                     annotate_lines = st.checkbox(label='Annotate lines&fields', value=False)
                 annotation_name = st.text_input('Annotation name', value='model_annotation')
-                possible_configs = {config.stem: config for config in (Path(automatic_models_path) / 'data' / 'configs').iterdir()}
+                possible_configs = {config.stem: config for config in
+                                    (Path(automatic_models_path) / 'data' / 'configs').iterdir()}
                 model_config = st.selectbox(label='Configuration file',
                                             options=sorted(possible_configs.keys()),
                                             )
-                #model_config = st.text_input("Configuration for models", placeholder='Field not necesarry')
+                # model_config = st.text_input("Configuration for models", placeholder='Field not necesarry')
                 annotate = st.form_submit_button(label='Get annotations')
                 flags_dict = {"--perform_events": annotate_events,
                               "--perform_objects": annotate_objects,
@@ -563,11 +562,14 @@ if authentication_status:
                         st.session_state.active_processes[process.pid] = os.path.join(matchDirectory, videoFileName)
 
                     st.info("Results will be saved after process is completed")
-                st.info('Currently running annotations. Please note that running many automatic annotations will slow down machine')
+                    st.info('''\
+                    Currently running annotations. \
+                    Please note that running many automatic annotations will slow down machine.\
+                    ''')
                 for process_id in list(st.session_state.active_processes):
                     if not psutil.pid_exists(process_id):
                         del st.session_state.active_processes[process_id]
-                st.write(st.session_state.active_processes)
+                # st.write(st.session_state.active_processes)
 
         # create a file with annotations to download
         zipFileName = 'zippedAnnotations.zip'
@@ -1155,6 +1157,7 @@ if authentication_status:
             'Delete selected annotation',
             key='deleteAnnotation'
         )
+
 
     # saving current annotations
     def confirm_annotations():
