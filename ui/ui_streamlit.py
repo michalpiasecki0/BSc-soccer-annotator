@@ -128,7 +128,7 @@ if authentication_status:
     with sidebar:
         # a function used on video change
         def reset_video_data():
-            for obj in ANNOTATION_TYPES + ['capturedVideo', 'scrapedData', 'changelog']:
+            for obj in ANNOTATION_TYPES + ['capturedVideo', 'scrapedData', 'changelog', 'secondsOfVideoPlayed']:
                 if obj in st.session_state:
                     del st.session_state[obj]
 
@@ -596,6 +596,8 @@ if authentication_status:
     with uiColumns[0]:
         if 'annotationType' not in st.session_state:  # setting default annotation type
             st.session_state['annotationType'] = EVENT_ANNOTATION
+        if 'secondsOfVideoPlayed' not in st.session_state:  # setting default playing moment
+            st.session_state['secondsOfVideoPlayed'] = 0.0
 
         videoModeType = st.radio(
             '',
@@ -626,10 +628,11 @@ if authentication_status:
                     events=['onProgress'],
                     key='video'
                 )
-            secondsOfVideoPlayed = videoPlayer[1]['playedSeconds'] if videoPlayer[1] is not None else 0.0
+            st.session_state['secondsOfVideoPlayed'] = videoPlayer[1]['playedSeconds'] if videoPlayer[
+                                                                                              1] is not None else 0.0
 
         elif videoModeType == 'Frame by frame':
-            st.write(f'Video FPS rate is {video_fps}.')
+            st.write(f'Video FPS rate is {round(video_fps)}.')
 
             frameInterval = st.number_input(
                 'Frame interval',
@@ -644,8 +647,11 @@ if authentication_status:
                 step=st.session_state['frameInterval'],
                 min_value=0,
                 max_value=int(max_frames),
-                value=int(video_fps * st.session_state[
-                    'secondsNumber']) if 'secondsNumber' in st.session_state else 0,
+                value=int(
+                    video_fps * st.session_state[
+                        'secondsNumber']) if 'secondsNumber' in st.session_state else int(
+                    video_fps * st.session_state.get('secondsOfVideoPlayed', 0)
+                ),
                 key='frameNumber'
             )
 
@@ -698,29 +704,34 @@ if authentication_status:
                 on_click=next_frame_button_on_click
             )
 
-            secondsOfVideoPlayed = frameNumber / video_fps
+            st.session_state['secondsOfVideoPlayed'] = frameNumber / video_fps
 
         elif videoModeType == 'By annotations':
+            currentAnnotations = [key for key in st.session_state[st.session_state['annotationType']]]
+            currentAnnotations.sort(key=float)
+
+            if len(currentAnnotations) == 0:
+                st.error('There are no annotations yet!')
+                st.stop()
+
             annotationSecond = st.select_slider(
                 'Select second with annotations',
-                st.session_state[st.session_state['annotationType']].keys(),
+                currentAnnotations,
                 key='annotationSecond'
             )
 
 
             def next_annotation_button_on_click():
-                current_annotations = list(st.session_state[annotationType].keys())
-                current_annotation_index = current_annotations.index(annotationSecond)
-                if current_annotation_index < len(current_annotations) - 1:
-                    next_annotation = current_annotations[current_annotation_index + 1]
+                current_annotation_index = currentAnnotations.index(annotationSecond)
+                if current_annotation_index < len(currentAnnotations) - 1:
+                    next_annotation = currentAnnotations[current_annotation_index + 1]
                     st.session_state['annotationSecond'] = next_annotation
 
 
             def previous_annotation_button_on_click():
-                current_annotations = list(st.session_state[annotationType].keys())
-                current_annotation_index = current_annotations.index(annotationSecond)
+                current_annotation_index = currentAnnotations.index(annotationSecond)
                 if current_annotation_index > 0:
-                    next_annotation = current_annotations[current_annotation_index - 1]
+                    next_annotation = currentAnnotations[current_annotation_index - 1]
                     st.session_state['annotationSecond'] = next_annotation
 
 
@@ -734,8 +745,9 @@ if authentication_status:
                 on_click=next_annotation_button_on_click
             )
 
-            secondsOfVideoPlayed = float(annotationSecond)
+            st.session_state['secondsOfVideoPlayed'] = float(annotationSecond)
 
+    secondsOfVideoPlayed = st.session_state['secondsOfVideoPlayed']
     secondsRoundedStr = str(float(secondsOfVideoPlayed))  # formatted seconds to get annotations
 
     with uiColumns[2]:
