@@ -17,3 +17,6 @@ In order to use this repository please follow these steps:
 5. Install reqs: `pip install -r requirements.txt`
 6. If you want to use automatic models, please follow instruction, which is located in [automatic_models](automatic_models)
 7. To run the application type (through the level of the directory): `streamlit run ui/ui_streamlit.py`
+
+## Current hosting link:
+The application is currently hosted under the following address: https://0be7-88-156-141-235.ngrok-free.app 
