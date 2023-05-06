@@ -50,9 +50,10 @@ def ratio_balls_detected(predicted_balls: dict,
     :param truth_balls: gt['balls']
     """
     n_predicted, n_truth = 0, 0
-    for idx in predicted_balls.keys():
-        if len(truth_balls[idx]) > 0:
-            n_truth += 1
+    for idx in truth_balls:
+        if idx in predicted_balls:
+            if len(truth_balls[idx]) > 0:
+                n_truth += 1
             if len(predicted_balls[idx]) > 0:
                 n_predicted += 1
     return n_predicted, n_truth
@@ -66,9 +67,10 @@ def ratio_players_detected(predicted_players: dict,
     :param truth_balls: gt['balls']
     """
     n_predicted, n_truth = 0, 0
-    for idx in predicted_players.keys():
-        n_predicted += len(predicted_players[idx])
-        n_truth += len(ground_truths[idx])
+    for idx in ground_truths:
+        if idx in predicted_players:
+            n_predicted += len(predicted_players[idx])
+            n_truth += len(ground_truths[idx])
 
     return n_predicted, n_truth
 
