@@ -17,7 +17,7 @@ from PIL import Image, ImageDraw
 from st_aggrid import AgGrid, GridOptionsBuilder
 from streamlit_drawable_canvas import st_canvas
 from streamlit_player import st_player
-from youtube_dl import YoutubeDL
+from youtube_dl import YoutubeDL, DownloadError
 
 import database as db
 import match_folder_structure_validator
@@ -216,7 +216,7 @@ if authentication_status:
                         indent=2
                     )
                 videoFileName = st.selectbox(
-                    'Select a video',
+                    'Select a video file',
                     videoFiles
                 )
                 videoFile = open(os.path.join(matchDirectory, videoFileName), 'rb')
@@ -227,6 +227,7 @@ if authentication_status:
             elif config['url_youtube']:
                 videoURL = config['url_youtube']
                 videoFileName = None
+                st.info("This video is stored as a URL.")
             else:
                 st.error('No video file found!')
                 st.stop()
@@ -600,7 +601,7 @@ if authentication_status:
             st.session_state['secondsOfVideoPlayed'] = 0.0
 
         videoModeType = st.radio(
-            '',
+            'Choose the video display mode',
             [
                 'Video player', 'Frame by frame', 'By annotations'
             ] if st.session_state[
@@ -788,8 +789,12 @@ if authentication_status:
         # create the cv2.CaptureVideo object
         if 'capturedVideo' not in st.session_state:
             if videoSourceType == 'URL' or (videoSourceType == 'File' and not videoFileName):
-                ydl = YoutubeDL()
-                video_data = ydl.extract_info(videoURL, download=False)
+                try:
+                    ydl = YoutubeDL()
+                    video_data = ydl.extract_info(videoURL, download=False)
+                except DownloadError:
+                    st.error('Failed to load the video data from the URL.')
+                    st.stop()
                 # link with video and audio
                 direct_video_url = [_format['url'] for _format in video_data['formats']
                                     if _format['acodec'] != 'none' and _format['vcodec'] != 'none'][-1]
