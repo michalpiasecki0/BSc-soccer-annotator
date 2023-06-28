@@ -19,4 +19,4 @@ In order to use this repository please follow these steps:
 7. To run the application type (through the level of the directory): `streamlit run ui/ui_streamlit.py`
 
 ## Current hosting link:
-The application is currently hosted under the following address: [https://6792-88-156-141-214.ngrok-free.app](https://a40e-88-156-141-185.ngrok-free.app)https://a40e-88-156-141-185.ngrok-free.app.
+The application is currently hosted under the following address: https://a40e-88-156-141-185.ngrok-free.app.
